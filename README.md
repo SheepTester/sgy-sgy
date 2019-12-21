@@ -1,6 +1,6 @@
 # sgy-sgy
 
-Playing with the Schoology API!
+Playing with the [Schoology API](https://developers.schoology.com/api-documentation/rest-api-v1)!
 
 Put your [API Credentials](https://pausd.schoology.com/api) in a `api-creds.json` file like this:
 
