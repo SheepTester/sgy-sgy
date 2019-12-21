@@ -42,22 +42,7 @@ function askSgy (url, body = null, method = body ? 'POST' : 'GET') {
   })
 }
 
-askSgy(base + '/group/553683519/updates', {
-  body: 'Epic<h1>EPIC</h1><trans>.lol',
-  "attachments": [
-    {
-      "type": "link",
-      "title": "<h1>epic</h1>",
-      "url": "https:\/\/www.example.com"
-    }
-  ]
-})
+askSgy(`${base}/users/2869367/updates`)
   .then(async body => {
-    const { id } = JSON.parse(body)
-    for (let i = 0; i < 10; i++) {
-      await askSgy(base + '/group/553683519/updates/' + id + '/comments', {
-        comment: `ok ${i}er`,
-        uid: '2017219'
-      })
-    }
+    console.log(JSON.parse(body))
   })
