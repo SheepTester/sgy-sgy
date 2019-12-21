@@ -11,8 +11,17 @@ Put your [API Credentials](https://pausd.schoology.com/api) in a `api-creds.json
 }
 ```
 
-Then do
+Edit `index.js` then do
 
 ```bash
-node get-things-from-schoology.js
+node index.js
+```
+
+```js
+askSgy('/user/2017219/updates') // GET
+
+askSgy('/user/2017219/updates/2230965068/comments', { // POST
+  comment: 'comment text',
+  uid: '2017219'
+})
 ```

@@ -19,7 +19,8 @@ const oauth = OAuth({
   }
 })
 
-function askSgy (url, body = null, method = body ? 'POST' : 'GET') {
+function askSgy (path, body = null, method = body ? 'POST' : 'GET') {
+  const url = base + path
   return new Promise((resolve, reject) => {
     request({
       url,
@@ -36,13 +37,10 @@ function askSgy (url, body = null, method = body ? 'POST' : 'GET') {
       } else if (Math.floor(statusCode / 100) !== 2) { // outside of 200s range
         reject(new Error(`${colours.red(statusCode)}\n\n${body}`))
       } else {
-        resolve(body)
+        resolve(JSON.parse(body))
       }
     })
   })
 }
 
-askSgy(`${base}/users/2869367/updates`)
-  .then(async body => {
-    console.log(JSON.parse(body))
-  })
+module.exports = askSgy
