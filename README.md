@@ -25,3 +25,20 @@ askSgy('/user/2017219/updates/2230965068/comments', { // POST
   uid: '2017219'
 })
 ```
+
+## Zoom
+
+Create an [OAuth app](https://marketplace.zoom.us/develop/create) for Zoom, then
+fill out the necessary information for the Install button in the Activation tab.
+Copy Client ID and Secret, and also the redirect URL you put, and paste them
+into a new file at `zoom/credentials.json`. See
+[`zoom/credentials.example.json`](./zoom/credentials.example.json) for a
+template.
+
+When you click on the Install button in the Activation tab, it'll send you to the specified redirect URL with a URL parameter `code` in the URL. Copy its value, then run
+
+```sh
+node zoom/start.js <authorization code here>
+```
+
+It should output `Done.`.

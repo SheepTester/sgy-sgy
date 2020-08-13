@@ -20,7 +20,18 @@ function api (path, paramObj, authType, method = 'GET') {
         : `Bearer ${authType}`
     }
   })
-    .then(async r => r.ok ? r.json() : Promise.reject(new Error(r.status + ' ' + await r.text())))
+    .then(
+      async r => r.ok
+        ? r.text()
+        : Promise.reject(new Error(r.status + ' ' + await r.text()))
+    )
+    .then(text => {
+      try {
+        return JSON.parse(text)
+      } catch {
+        return text
+      }
+    })
 }
 
 async function getTokens (code) {
