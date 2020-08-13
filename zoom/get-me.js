@@ -7,9 +7,11 @@ const paths = {
   token: '/users/me/token',
   settings: '/users/me/settings',
   meetings: '/users/me/meetings',
-  webinars: '/users/me/webinars',
+  webinars: '/users/me/webinars', // ):
   recordings: '/users/me/recordings',
-  assistants: '/users/me/assistants'
+  assistants: '/users/me/assistants',
+  groups: '/groups', // ):
+  users: '/users' // ):
 }
 
 async function main () {
