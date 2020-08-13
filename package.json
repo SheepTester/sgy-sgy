@@ -14,6 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.4.0",
+    "node-fetch": "^2.6.0",
     "oauth-1.0a": "^2.2.6",
     "request": "^2.88.0"
   }
