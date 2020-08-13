@@ -1,4 +1,5 @@
 const askSgy = require('./get-things-from-schoology.js')
+const fs = require('fs').promises
 
 const min = 0x00AE
 const max = 0x0377
@@ -11,6 +12,13 @@ function r (count = 3) {
 }
 
 // 2017219
+askSgy('/sections/136686791/assignments/236174896').then(console.log)
+/*
+askSgy('/users/2017219/grades')
+  .then(json => fs.writeFile('./grades.json', JSON.stringify(json)))
+  .then(() => console.log('ok'))
+*/
+/*
 askSgy('/user/2017219/updates')
   .then(async body => {
     const { update } = body
@@ -25,3 +33,4 @@ askSgy('/user/2017219/updates')
       })
     }
   })
+*/
