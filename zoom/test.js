@@ -1,3 +1,5 @@
+// node zoom/test.js
+
 const { clientId, clientSecret, redirect, code } = require('./credentials.json')
 const fetch = require('node-fetch')
 
@@ -15,7 +17,7 @@ async function getToken () {
     headers: {
       Authorization: `Basic ${toBase64(clientId + ':' + clientSecret)}`
     }
-  }).then(r => r.json())
+  }).then(async r => r.ok ? r.json() : Promise.reject(new Error(await r.text())))
   console.log(json)
   return {
     accessToken: json.access_token,
@@ -24,6 +26,7 @@ async function getToken () {
 }
 
 async function main () {
+  console.log(process.argv.slice(2))
   const { accessToken } = await getToken()
   console.log(await fetch('https://api.zoom.us/v2/users/me', {
     headers: {
