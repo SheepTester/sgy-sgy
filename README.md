@@ -42,3 +42,36 @@ node zoom/start.js <authorization code here>
 ```
 
 It should output `Done.`.
+
+## oauth-3leg
+
+In Node
+
+```sh
+node oauth-3leg/app.js
+```
+
+http://localhost:3000/
+
+In Python, some venv stuff
+
+```sh
+# Activate venv
+source venv/Scripts/activate
+
+# Save
+pip freeze > requirements.txt
+
+# Load
+pip install -r requirements.txt
+```
+
+Then run server
+
+```sh
+export FLASK_APP=oauth-3leg/hello.py
+export FLASK_ENV=development
+flask run
+```
+
+http://127.0.0.1:5000/

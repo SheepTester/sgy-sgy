@@ -3,3 +3,5 @@ node_modules
 grades.json
 credentials.json
 refresh-token.txt
+venv
+__pycache__
