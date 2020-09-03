@@ -1,7 +1,14 @@
-api-creds.json
+# Node
 node_modules
-grades.json
-credentials.json
-refresh-token.txt
+
+# Python
 venv
 __pycache__
+
+# Schoology
+api-creds.json
+grades.json
+
+# Zoom
+credentials.json
+refresh-token.txt
