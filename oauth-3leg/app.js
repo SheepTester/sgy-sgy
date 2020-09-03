@@ -1,3 +1,5 @@
+// node oauth-3leg/app.js
+
 const express = require('express')
 const app = express()
 const port = 3000
@@ -12,29 +14,35 @@ const sgyDomain = 'https://pausd.schoology.com'
 const requestTokens = new Map()
 const accessTokens = new Map()
 
-const headers = {
+const jsonHeaders = {
   'Accept': 'application/json',
   'Content-Type': 'application/json'
 }
 
 const { key, secret } = require('../api-creds.json')
-const consumer = OAuth({
-  consumer: { key, secret },
-  signature_method: 'HMAC-SHA1',
-  hash_function (base_string, key) {
-    return crypto
-      .createHmac('sha1', key)
-      .update(base_string)
-      .digest('base64')
-  }
-})
-function oauth (url, { method = 'GET', token } = {}) {
-  return consumer.toHeader(
-    consumer.authorize(
+function makeConsumer () {
+  return OAuth({
+    consumer: { key, secret },
+    // nonce_length: 16,
+    signature_method: 'HMAC-SHA1',
+    hash_function (base_string, key) {
+      return crypto
+        .createHmac('sha1', key)
+        .update(base_string)
+        .digest('base64')
+    }
+  })
+}
+const consumer = makeConsumer()
+function oauth (url, { method = 'GET', token, auth = consumer } = {}) {
+  const headers = auth.toHeader(
+    auth.authorize(
       { url, method },
       token && { key: token.tokenKey, secret: token.tokenSecret }
     )
   )
+  console.log(headers)
+  return headers
 }
 
 app.get('/', async (req, res) => {
@@ -43,15 +51,15 @@ app.get('/', async (req, res) => {
     let token = accessTokens.get(userId)
     if (token) {
       const url = `${apiBase}/users/me`
-      const res = await fetch(url, {
+      const response = await fetch(url, {
         headers: {
-          ...headers,
+          ...jsonHeaders,
           ...oauth(url, { token })
         }
       })
-      if (!res.ok) {
+      if (!response.ok) {
         accessTokens.delete(userId)
-        return res.status(401).send('token no longer valid :(')
+        return res.status(401).send('token no longer valid :(\n\n' + await response.text())
       }
     } else {
       if (req.query.oauth_token) {
@@ -60,14 +68,12 @@ app.get('/', async (req, res) => {
           return res.status(401).send('"someone\'s tampering with requests" -sgy')
         }
         const url = `${apiBase}/oauth/access_token`
-        const opt = {
+        const apiResult = await fetch(url, {
           headers: {
-            ...headers,
+            ...jsonHeaders,
             ...oauth(url, { token: requestToken })
           }
-        }
-        console.log(opt);
-        const apiResult = await fetch(url, opt)
+        })
           .then(r => r.text())
           .then(text => new URLSearchParams(text))
         token = {
@@ -78,7 +84,7 @@ app.get('/', async (req, res) => {
       } else {
         const url = `${apiBase}/oauth/request_token`
         const result = await fetch(url, {
-          headers: { ...headers, ...oauth(url) }
+          headers: { ...jsonHeaders, ...oauth(url) }
         })
           .then(r => r.text())
           .then(text => new URLSearchParams(text))
@@ -97,14 +103,12 @@ app.get('/', async (req, res) => {
     }
 
     const url = `${apiBase}/users/me`
-    const opt = {
+    const json = await fetch(url, {
       headers: {
-        ...headers,
+        ...jsonHeaders,
         ...oauth(url, { token })
       }
-    }
-    console.log(opt);
-    const json = await fetch(url, opt)
+    })
       .then(r => r.text())
     res.send(json)
   } else {
