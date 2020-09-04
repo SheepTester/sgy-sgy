@@ -11,13 +11,14 @@ function r (count = 3) {
   return str
 }
 
-// 2017219
-askSgy('/sections/136686791/assignments/236174896').then(console.log)
+// My user ID for testing purposes: 2017219
+// askSgy('/sections/136686791/assignments/236174896').then(console.log)
+askSgy('/users/me').then(console.log)
 /*
 askSgy('/users/2017219/grades')
-  .then(json => fs.writeFile('./grades.json', JSON.stringify(json)))
+  .then(json => fs.writeFile('./grades-2.json', JSON.stringify(json)))
   .then(() => console.log('ok'))
-*/
+//*/
 /*
 askSgy('/user/2017219/updates')
   .then(async body => {
