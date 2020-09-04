@@ -30,7 +30,8 @@ function makeConsumer () {
         .createHmac('sha1', key)
         .update(base_string)
         .digest('base64')
-    }
+    },
+    realm: 'Schoology API'
   })
 }
 const consumer = makeConsumer()

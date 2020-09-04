@@ -5,6 +5,9 @@ node_modules
 venv
 __pycache__
 
+# Racket
+*.bak
+
 # Schoology
 api-creds.json
 grades.json

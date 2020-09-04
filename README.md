@@ -1,6 +1,16 @@
 # sgy-sgy
 
-Playing with the [Schoology API](https://developers.schoology.com/api-documentation/rest-api-v1)!
+Playing with the [Schoology API](https://developers.schoology.com/api-documentation/rest-api-v1) and [Zoom API](https://marketplace.zoom.us/docs/api-reference/zoom-api)!
+
+For Node stuff, make sure you do
+
+```sh
+npm install
+```
+
+first.
+
+## Schoology
 
 Put your [API Credentials](https://pausd.schoology.com/api) in a `api-creds.json` file like this:
 
@@ -56,6 +66,8 @@ node zoom/start.js <authorization code here>
 It should output `Done.`.
 
 ## oauth-3leg
+
+[Three-legged OAuth with Schoology.](https://developers.schoology.com/api-documentation/authentication#toc-item-1)
 
 In Node
 

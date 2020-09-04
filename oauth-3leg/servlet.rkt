@@ -2,6 +2,9 @@
 
 (require web-server/servlet
          web-server/servlet-env)
+(require sha)
+
+; hmac-sha1
 
 (define (start req)
   (response/xexpr
