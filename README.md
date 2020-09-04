@@ -11,20 +11,32 @@ Put your [API Credentials](https://pausd.schoology.com/api) in a `api-creds.json
 }
 ```
 
-Edit `index.js` then do
+You can then play with `get-things-from-schoology.js` directly:
 
 ```bash
-node index.js
+$ node
+Welcome to Node.js v14.4.0.
+Type ".help" for more information.
+> const askSgy = require('./get-things-from-schoology.js')
+undefined
 ```
 
 ```js
+// These probably won't work for you unless you change 2017219 to your user ID.
+
 askSgy('/user/2017219/updates') // GET
+  .then(console.log)
 
 askSgy('/user/2017219/updates/2230965068/comments', { // POST
   comment: 'comment text',
   uid: '2017219'
 })
+  .then(console.log)
 ```
+
+If you get an error like the following, I have no idea why. Maybe Schoology is dumb, or the Node library I'm using for OAuth is dumb.
+
+> Duplicate timestamp/nonce combination, possible replay attack. Request rejected.
 
 ## Zoom
 
