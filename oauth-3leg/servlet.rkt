@@ -1,10 +1,8 @@
 #lang racket
 
 (require web-server/servlet
-         web-server/servlet-env)
-(require sha)
-
-; hmac-sha1
+         web-server/servlet-env
+         "oauth.rkt")
 
 (define (start req)
   (response/xexpr

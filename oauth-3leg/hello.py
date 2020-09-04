@@ -81,7 +81,9 @@ def hello_world():
             return ('token no longer valid :( -- ' + response.text, 401);
 
     session = consumer.oauth_session(token);
-    user = session.get(api_base + '/users/me').json();
+    response = session.get(api_base + '/users/me');
+    print(response.request.headers);
+    user = response.json();
     sgy_id = user['id'];
     api_result = session.get(api_base + '/users/%s/sections' % sgy_id).json();
     return '<h4>Courses</h4><ul>%s</ul>' % (''.join(

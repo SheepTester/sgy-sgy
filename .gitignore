@@ -7,10 +7,12 @@ __pycache__
 
 # Racket
 *.bak
+compiled
+
+private
 
 # Schoology
 api-creds.json
-grades.json
 
 # Zoom
 credentials.json
