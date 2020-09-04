@@ -59,6 +59,9 @@ def hello_world():
             );
             token = Token.from_sgy(api_result);
             access_tokens[user_id] = token;
+            new_args = request.args.copy();
+            new_args.pop('oauth_token');
+            return redirect('?' + urlencode(new_args));
         else:
             result = parse_qs(
                 consumer.oauth_session()
@@ -78,7 +81,12 @@ def hello_world():
             return ('token no longer valid :( -- ' + response.text, 401);
 
     session = consumer.oauth_session(token);
-    return session.get(api_base + '/users/me').json()
+    user = session.get(api_base + '/users/me').json();
+    sgy_id = user['id'];
+    api_result = session.get(api_base + '/users/%s/sections' % sgy_id).json();
+    return '<h4>Courses</h4><ul>%s</ul>' % (''.join(
+        '<li>%s: %s</li>' % (section['course_title'], section['section_title']) for section in api_result['section']
+    ) or '<li>No courses were found for this user.</li>');
 
 @app.route('/test')
 def test():
