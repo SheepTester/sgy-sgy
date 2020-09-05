@@ -72,7 +72,11 @@ It should output `Done.`.
 In Node
 
 ```sh
+# Does not work
 node oauth-3leg/app.js
+
+# Works
+node oauth-3leg/app2.js
 ```
 
 http://localhost:3000/
