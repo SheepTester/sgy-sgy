@@ -389,6 +389,119 @@ fields:
       name: Group Code (external ID)
       description: If the group was imported from another system into Schoology, the unique ID of that group in the other system.
       type: string
+  course:
+    note: Courses are parent objects to course sections; they are mere placeholders and cannot be used to upload documents, assignments, etc.
+    fields:
+      - field: id
+        name: Schoology Course ID
+        description: The internal Schoology ID of the course
+        type: string
+        required: false
+      - field: building_id
+        name: Schoology School Building ID
+        description: The internal Schoology ID of the school building to which the course belongs
+        type: string
+        required: false
+      - field: title
+        name: Course Title
+        description: The title of the course
+        type: string
+        required: true
+      - field: course_code
+        name: Course Code
+        description: The course code must be unique across the entire school (e.g. ENG101)
+        type: string
+        required: true
+      - field: department
+        name: Department Name
+        description: The department name (e.g. English)
+        type: string
+      - field: description
+        name: Description
+        description: The course description
+        type: string
+      - field: credits
+        name: Credits
+        description: The number of credits this course is worth
+        type: double
+      - field: synced
+        name: Sync Status
+        description: Whether or not this course was synced with an external system (eg, Student Information System). The default value is 0. For synced courses, the Course Code field is not editable through Schoology.
+        type: {0,1}
+      - field: grade_level_range_start
+        name: Grade Level Range Start
+        description: The lowest (or only) grade level in the course.
+        type: integer {1, 2, 3, ..., 15}
+      - field: grade_level_range_end
+        name: Grade Level Range End
+        description: The highest grade level in the course - must be great than grade_level_range_start if used.
+        type: integer {1, 2, 3, ..., 15}
+      - field: subject_area
+        name: Subject Area
+        description: The subject area of the course
+        type: integer {1, 2, 3, ..., 9}
+values:
+  - meaning: Grade Level
+    for:
+    - grade_level_range_start
+    - grade_level_range_end
+    values:
+      - value: 0
+        meaning: No grade level/remove grade level
+      - value: 1
+        meaning: Pre-K
+      - value: 2
+        meaning: K
+      - value: 3
+        meaning: 1
+      - value: 4
+        meaning: 2
+      - value: 5
+        meaning: 3
+      - value: 6
+        meaning: 4
+      - value: 7
+        meaning: 5
+      - value: 8
+        meaning: 6
+      - value: 9
+        meaning: 7
+      - value: 10
+        meaning: 8
+      - value: 11
+        meaning: 9
+      - value: 12
+        meaning: 10
+      - value: 13
+        meaning: 11
+      - value: 14
+        meaning: 12
+      - value: 15
+        meaning: Higher-Ed
+  - meaning: Subject Area
+    for:
+    - subject_area
+    values:
+      - value: 0
+        meaning: Other
+      - value: 1
+        meaning: Health & Physical Education
+      - value: 2
+        meaning: Language Arts
+      - value: 3
+        meaning: Mathematics
+      - value: 4
+        meaning: Professional Development
+      - value: 5
+        meaning: Science
+      - value: 6
+        meaning: Social Studies
+      - value: 7
+        meaning: Special Education
+      - value: 8
+        meaning: Technology
+      - value: 9
+        meaning: Arts
 resources:
   - name: School
     description: Schools are the most basic groupings of courses, groups, and users. All courses/users are required to have unique usernames, course IDs, and School User IDs throughout the entire school.
@@ -545,7 +658,6 @@ resources:
         method: POST
         content: An object containing association fields
         return: The students school_uid and uid and the parents school_uid and uid OR any relevant error messages.
-    other:
       - description: A shortcut for GET users/{user_id} where {user_id} is the user ID of the current API user.
         path: users/me
         method: GET
@@ -571,6 +683,108 @@ resources:
         method: POST
         content: An object containing group fields
         return: An object containing group fields
+      - name: list
+        description: View a list of groups in your school (paged). You can use the following parameters to filter the resultset:
+        parameters:
+          building_id: return only groups for the given building_id.
+        path: groups
+        method: GET
+        content: null
+        return: A collection of group objects, each one containing group fields
+      - name: view
+        description: View a specified group
+        path: groups/{id}
+        method: GET
+        content: null
+        return: An object containing group fields
+      - name: update
+        description: Modify a group
+        path: groups/{id}
+        method: PUT
+        content: An object containing group fields
+        return: null
+      - name: delete
+        description: Delete a group (cannot be undone)
+        path: aaaa
+        method: DELETE
+        content: null
+        return: null
+      - name: list group categories
+        description: View a list of group categories.
+        path: groups/categories
+        method: GET
+        content: null
+        return: A collection of category objects, each one containing category fields
+  - name: Course
+    description: Courses are simply containers for course sections. Objects cannot belong to courses; they can only belong to course sections.
+    urls:
+      - courses
+      - courses/{id}
+    operations:
+      - name: create
+        description: Create a course
+        path: courses
+        method: POST
+        content: An object containing course fields
+        return: An object containing course fields
+      - name: bulk create
+        description: Create multiple courses (up to 50) in a single API call. The following querystring parameters can be added to this endpoint:
+        parameters:
+          update_existing: Set this to 1 (e.g. ?update_existing=1) in order to update existing courses, matched by the 'course_code' field. Without this parameter, creating a course will fail if another course already exists with the same 'course_code' already.
+        path: courses
+        method: POST
+        content: Multiple courses can be created at a time (up to 50) by wrapping your response in 'course', with course fields wrapped in 'course'. Sections can be also be created at the same time - combined with the update_existing parameter, this can be used for importing or synchronization.
+        return: The API endpoint (location) of each course created, or an error message if there was a problem creating the course.
+      - name: list
+        description: View a list of courses in your school (paged), with the option to filter results with the following query strings:
+        parameters:
+          building_id: Only return courses for the given building.
+        path: courses
+        method: GET
+        content: null
+        return: A collection of course object, each one containing course fields
+      - name: view
+        description: View a specified course
+        path: courses/{id}
+        method: GET
+        content: null
+        return: An object containing course fields
+      - name: update
+        description: Modify a course
+        path: courses/{id}
+        method: PUT
+        content: An object containing course fields
+        return: null
+      - name: bulk update
+        description: Modify multiple courses
+        path: courses
+        method: PUT
+        content: Up to 50 courses can be updated at a time by wrapping your response in 'courses', with course fields wrapped in 'course'
+        return: The Schoology ID of each course updated, or an error message if there was a problem creating the course.
+      - name: delete
+        description: Delete a course (cannot be undone)
+        path: courses/{id}
+        method: DELETE
+        content: null
+        return: null
+      - name: bulk delete
+        description: Delete up to 50 courses (cannot be undone). Comma-separated Schoology IDs are passed in the query string with the course_ids parameter.
+        path: courses/{id}
+        method: DELETE
+        content: null
+        return: null
+  - name: Course Section
+    description: Teachers and students are enrolled into course sections; each section must belong to a parent course.
+    urls:
+      - sections
+      - sections/{id}
+    operations:
+      - name: aaaa
+        description: aaaa
+        path: aaaa
+        method: GET
+        content: null
+        return: null
 templates:
   resource:
     - faa: waaa
