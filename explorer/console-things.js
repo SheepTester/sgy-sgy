@@ -15,3 +15,80 @@ data += '\n'
 }
 return data
 })($0)
+
+// Get all of the Schoology documentations's resources
+// https://developers.schoology.com/api-documentation/rest-api-v1#
+[...document.querySelectorAll('.schoology-table tr')].map(tr => {
+const resource = tr.querySelector('a')
+const desc = tr.children[1]
+const urls = [...tr.querySelectorAll('.api-path-code')].map(t => '    - ' + t.textContent.trim()).join('\n')
+return resource &&
+`- name: ${resource.textContent.trim()}
+  description: ${desc.textContent.trim()}
+  urls:
+${urls}
+  operations:
+    - eeee`
+}).filter(a => a).join('\n')
+
+// Get all operations on a resource page
+function getRow (rows, name) {
+  let row = rows.find(tr => tr.children[0].textContent.trim().toLowerCase() === name)
+  if (row && row.textContent.trim()) {
+  row = row.children[1]
+  if (row.textContent.trim() === 'none') return 'null'
+  else {
+  let content = row.textContent.trim()
+  if (content.includes('JSON')) content = content.slice(0, content.indexOf('JSON')).trim()
+  return content
+  }
+  }
+  return null
+}
+[...document.querySelectorAll('h3')].map(heading => {
+const name = heading.textContent.trim()
+let elem = heading
+let description = ''
+let parameters = ''
+let path, method, content = '', returnz = ''
+while ((elem = elem.nextElementSibling)) {
+if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
+  if (elem.classList.contains('api-path')) elem = elem.children[0]
+  if (elem.tagName === 'P') {
+    const paththing = elem.parentNode.children[1].textContent.trim()
+    if (!paththing) return console.error('??? no <p> path?', elem)
+    ;[method, path] = paththing.split(/ ?https:\/\/api\.schoology\.com\/v1\//)
+    break
+  }
+
+  const rows = [...elem.querySelectorAll('tr')]
+
+  const pathE = getRow(rows, 'path')
+  if (!pathE) return console.error('??? no path?', elem)
+  ;[method, path] = pathE.split(/ ?https:\/\/api\.schoology\.com\/v1\//)
+
+  content = getRow(rows, 'content')
+  if (content) content = '\n  content: ' + content
+
+  returnz = getRow(rows, 'return')
+  if (returnz) returnz = '\n  return: ' + returnz
+  break
+} else if (elem.tagName === 'P') {
+  if (!elem.textContent) continue
+  if (description) {
+    return console.error('description already exists?', elem)
+    description += '\n'
+  }
+  description += elem.textContent.trim()
+} else if (elem.tagName === 'UL') {
+  if (parameters) console.error('extra parameters (probably ok)', elem, parameters)
+  parameters = '\n  parameters:\n' + [...elem.children].map(li => '    ' + li.textContent.trim()).join('\n')
+}
+}
+if (!path || !method) console.error('why are path and method falsy?', heading)
+return `- name: ${name}
+  description: ${description}` + parameters +
+`
+  path: ${path}
+  method: ${method}` + content + returnz
+}).filter(a => a).join('\n')

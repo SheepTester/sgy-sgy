@@ -828,7 +828,7 @@ resources:
         description: Create multiple courses (up to 50) in a single API call. The following querystring parameters can be added to this endpoint:
         parameters:
           update_existing: Set this to 1 (e.g. ?update_existing=1) in order to update existing courses, matched by the 'course_code' field. Without this parameter, creating a course will fail if another course already exists with the same 'course_code' already.
-        path: courses
+        path: courses/
         method: POST
         content: Multiple courses can be created at a time (up to 50) by wrapping your response in 'course', with course fields wrapped in 'course'. Sections can be also be created at the same time - combined with the update_existing parameter, this can be used for importing or synchronization.
         return: The API endpoint (location) of each course created, or an error message if there was a problem creating the course.
@@ -876,7 +876,70 @@ resources:
       - sections
       - sections/{id}
     operations:
-      - eeee
+      - name: create
+        description: Create a course section
+        path: courses/{course_id}/sections
+        method: POST
+        content: An object containing course section fields
+        return: An object containing course section fields
+      - name: bulk create
+        description: Create multiple sections at a time. The following parameters can be added to this endpoint:
+        parameters:
+          update_existing: Set this to 1 (e.g. ?update_existing=1) in order update existing sections, matched by the 'section_code' and 'grading_periods' fields. Without this parameter, creation will fail if a pre-existing section has the same 'section_code' for the given 'grading_periods' as a passed section object.
+        path: courses/{course_id}/sections
+        method: POST
+        content: Multiple sections can be created at a time (up to 50) by wrapping your response in 'sections' with section fields wrapped in 'section'.
+        return: The API endpoint (location) of each sectioncreated, or an error message if there was a problem creating the section.
+      - name: list
+        description: View a list of sections for a course (paged). The following parameters can be added to this path:
+        parameters:
+          include_past: Set this to 1 to include sections from expired/past grading periods.
+        path: courses/{course_id}/sections
+        method: GET
+        content: null
+        return: A collection of section objects, each one containing course section fields
+      - name: view
+        description: View a specified course section
+        path: sections/{id}
+        method: GET
+        content: null
+        return: An object containing course section fields
+      - name: update
+        description: Modify a course
+        path: sections/{id}
+        method: PUT
+        content: An object containing course section fields
+        return: null
+      - name: bulk update
+        description: Modify multiple sections
+        path: sections
+        method: PUT
+        content: Up to 50 sections can be updated at a time by wrapping your response in 'sections', with section fields wrapped in 'section'.
+        return: The schoology ID of each section updated, or an error message if there was a problem creating the section.
+      - name: delete
+        description: Delete a course (cannot be undone)
+        path: sections/{id}
+        method: DELETE
+        content: null
+        return: null
+      - name: bulk delete
+        description: Delete up to 50 sections. Comma-separated Schoology IDs are passed in the query string with the section_ids parameter.
+        path: sections
+        method: DELETE
+        content: null
+        return: null
+      - name: Grading Category
+        description: List the available grading categories for the given course section
+        path: sections/{id}/grading_categories
+        method: GET
+      - name: Grading Scales
+        description: List the available grading scales for the given course section
+        path: sections/{id}/grading_scales
+        method: GET
+      - name: Grading Periods
+        description: List the available grading periods for the given course section
+        path: sections/{id}/grading_periods
+        method: GET
   - name: Enrollment
     description: Enrollments are associations between users and groups or course sections.
     urls:
