@@ -440,6 +440,101 @@ fields:
         name: Subject Area
         description: The subject area of the course
         type: integer {1, 2, 3, ..., 9}
+  course section:
+    note: Teachers and students are enrolled into course sections; each section must belong to a parent course. Assignments, documents, events, and other materials are created and associated with course sections.
+    fields:
+      - field: id
+        name: Schoology Section ID
+        description: The internal Schoology ID of the section
+        type: string
+        required: no
+      - field: title (section_title allowed in POST/PUT)
+        name: Section Title
+        description: The section title (e.g. Section 10b).
+        type: string
+        required: yes
+      - field: section_code
+        name: Section Code
+        description: The section code must be unique across the course and grading period (e.g. "Spring 2010" can only have one "10b" for course "ENG101").
+        type: string
+        required: Either section_code or section_school_code must be set. If both are specified section code will be ignored and section school code will be used.
+      - field: section_school_code
+        name: Section School Code
+        description: The section school code must be unique across the school
+        type: string
+        required: Either section_code or section_school_code must be set. If both are specified section code will be ignored and section school code will be used.
+      - field: access_code
+        name: Access Code
+        description: The access code is created by Schoology automatically, and cannot be adjusted. If this field is blank, the course cannot be enrolled in via access code
+        type: string
+        required: no
+      - field: grading_periods
+        name: Grading Periods
+        description: The grading period IDs with which this course is associated.
+        type: array of integers
+        required: yes
+      - field: description
+        name: Description
+        description: The section description.
+        type: string
+      - field: profile_url
+        name: Profile picture URL
+        description: The full URL of the section's profile picture
+        type: string
+      - field: location
+        name: Location
+        description: The location of the course section.
+        type: string
+      - field: meeting_days
+        name: Meeting Days
+        description: Days of the week that this course section meets. Each day is represented by a number (Sun is 0, Sat is 7).
+        type: array of integers
+      - field: start_time
+        name: Start Time
+        description: The time this section starts on the specified meeting days, from 00:00 to 23:59 (local time). Not applicable if your school uses class period blocks (i.e. sections meet at different times on different days).
+        type: string (HH:mm)
+      - field: end_time
+        name: End Time
+        description: The time this section ends on the specified meeting days.
+        type: string (HH:mm)
+      - field: class_periods
+        name: Class Periods
+        description: The class period IDs with which this course is associated. Not applicable if your school does not use class period blocks (see start_time).
+        type: array of integers
+      - field: options/course_format
+        name: Course Format
+        description: The course format - 1 for basic (default), 2 for topic-based
+        type: {1,2}
+        required: default: 1
+      - field: options/weighted_grading_categories
+        name: Weighted Grading Categories
+        description: Whether grading categories for this course are weighted; otherwise, categories will be weighted evenly.
+        type: {0,1}
+        required: default: 0
+      - field: options/upload_document
+        name: Upload Documents
+        description: Whether students can upload documents to the course profile.
+        type: {0,1}
+        required: default: 0
+      - field: options/create_discussion
+        name: Create Discussion Topic
+        description: Whether students can create discussion topics.
+        type: {0,1}
+        required: default: 0
+      - field: options/member_post
+        name: Post to Course Feed
+        description: Whether students can post to the course feed.
+        type: {0,1}
+        required: default: 0
+      - field: options/member_post_comment
+        name: Post Course Feed Comments
+        description: Whether students can post comments to course feed entries.
+        type: {0,1}
+        required: default: 0
+      - field: synced
+        name: Sync Status
+        description: Whether or not this course section was synced with an external system (eg, Student Information System). The default value is 0. For synced course sections, the Section School Code field is not editable through Schoology.
+        type: {0,1}
 values:
   - meaning: Grade Level
     for:
@@ -503,6 +598,8 @@ values:
       - value: 9
         meaning: Arts
 resources:
+  - name: District
+    description: Districts are groups of independent schools that do not share a common system (e.g. SIS)
   - name: School
     description: Schools are the most basic groupings of courses, groups, and users. All courses/users are required to have unique usernames, course IDs, and School User IDs throughout the entire school.
     urls:
@@ -779,12 +876,311 @@ resources:
       - sections
       - sections/{id}
     operations:
-      - name: aaaa
-        description: aaaa
-        path: aaaa
-        method: GET
-        content: null
-        return: null
+      - eeee
+  - name: Enrollment
+    description: Enrollments are associations between users and groups or course sections.
+    urls:
+      - [realm]/enrollments
+      - [realm]/enrollments/{id}
+      - [realm]/accesscode
+      - enrollments
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Event
+    description: Events can be created for users, courses, groups, schools, or districts; all events automatically feed into the "upcoming" and "calender" portions of the site.
+    urls:
+      - [realm]/events
+      - [realm]/events/{id}
+      - districts/{district_id}
+      - schools/{school_id}
+      - users/{user_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Blog Post
+    description: Blog posts can be created for all realms.
+    urls:
+      - [realm]/posts
+      - [realm]/posts/{id}
+      - districts/{district_id}
+      - schools/{school_id}
+      - users/{user_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Blog Post Comment
+    description: Comments can be made for any blog post.
+    urls:
+      - [realm]/posts/{id}/comments
+      - [realm]/posts/{id}/comments/{id}
+      - districts/{district_id}
+      - schools/{school_id}
+      - users/{user_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Discussion Thread
+    description: Discussion threads can be created for all realms except users.
+    urls:
+      - [realm]/discussions
+      - [realm]/discussions/{id}
+      - districts/{district_id}
+      - schools/{school_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Discussion Reply
+    description: Replies are comments made to discussion threads
+    urls:
+      - [realm]/discussions/{id}/comments
+      - [realm]/discussions/{id}/comments/{id}
+      - districts/{district_id}
+      - schools/{school_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Updates
+    description: Updates are short twitter-style posts found in the Edge for a given realm
+    urls:
+      - [realm]/updates
+      - [realm]/updates/{id}
+      - recent/
+      - users/{user_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Reminders
+    description: Reminders are user notifications reminding them to complete an action for a given realm
+    urls:
+      - /reminders/type
+      - [realm]/reminders/type
+      - sections/{section_id}
+    operations:
+      - eeee
+  - name: Update Comment
+    description: Update Comments are comments made on updates found in the Edge for a given realm
+    urls:
+      - [realm]/updates/{update_id}/comments
+      - users/{user_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Media Album
+    description: Media albums contain audio,video and images with captions and tagging.
+    urls:
+      - [realm]/albums
+      - [realm]/albums/{album_id}
+      - [realm]/albums/{album_id}/content
+      - [realm]/albums/{album_id}/content/{album_content_id}
+      - sections/{section_id}
+      - groups/{group_id}
+    operations:
+      - eeee
+  - name: Media Album Comments
+    description: Media Album Comments are comments made on individual content within media albums
+    urls:
+      - album/{id}/content/{content_id}/comments
+    operations:
+      - eeee
+  - name: Documents
+    description: Documents are standalone File/Links
+    urls:
+      - [realm]/documents
+      - [realm]/documents/{id}
+    operations:
+      - eeee
+  - name: Grading Scales
+    description: Grading scales allow you to use non-numeric notations within grades (eg A+, etc)
+    urls:
+      - sections/{section_id}/grading_scales
+    operations:
+      - eeee
+  - name: Grading Rubrics
+    description: Grading rubrics allow you to grade assignments and discussions using a standard of performance for your students.
+    urls:
+      - sections/{section_id}/grading_rubrics
+      - sections/{section_id}/grading_rubrics/{grading_rubric_id}
+    operations:
+      - eeee
+  - name: Grading Categories
+    description: Grading categories are required for grading. Assignments without categories will be ungraded.
+    urls:
+      - sections/{section_id}/grading_categories
+    operations:
+      - eeee
+  - name: Grading Groups
+    description: Grading groups are groups of students within a course that can be assigned specific content.
+    urls:
+      - sections/{section_id}/grading_groups
+    operations:
+      - eeee
+  - name: Assignment
+    description: Assignments are containers for coursework and test/quizzes. Every assignment has an entry in the gradebook.
+    urls:
+      - sections/{section_id}/assignments
+      - sections/{section_id}/assignments/{id}
+    operations:
+      - eeee
+  - name: Assignment Comments
+    description: Comments can be made for any assignment.
+    urls:
+      - sections/{section_id}/assignments/{id}/comments
+      - sections/{section_id}/assignments/{id}/comments/{id}
+    operations:
+      - eeee
+  - name: Grade
+    description: Grades are associated with an enrollment and an assignment.
+    urls:
+      - sections/{section_id}/grades
+    operations:
+      - eeee
+  - name: Attendance
+    description: Attendance statuses are associated with an enrollment and a specific date.
+    urls:
+      - sections/{section_id}/attendance
+      - sections/{section_id}/attendance/{id}
+    operations:
+      - eeee
+  - name: Submissions
+    description: Submissions are uniquely identified by a Section ID, Grade Item ID, User ID, and Revision ID.
+    urls:
+      - sections/{section_id}/submissions/{grade_item_id}
+      - sections/{section_id}/submissions/{grade_item_id}/{action}
+      - sections/{section_id}/submissions/{grade_item_id}/{user_id}
+      - sections/{section_id}/submissions/{grade_item_id}/{user_id}/revisions
+      - sections/{section_id}/submissions/{grade_item_id}/{user_id}/revisions/{revision_id}
+      - sections/{section_id}/submissions/{grade_item_id}/{user_id}/comments
+      - sections/{section_id}/submissions/{grade_item_id}/{user_id}/comments/{comment_id}
+    operations:
+      - eeee
+  - name: Course Folder
+    description: A course folder request returns all the contents of the folder with pointers to that piece of content if the API supports it.  This includes child Folders.
+    urls:
+      - courses/{section_id}/folder/{folder_id}
+    operations:
+      - eeee
+  - name: Pages
+    description: Pages can be used to display any sort of content. HTML can be used to format the content of the page to anything you like.
+    urls:
+      - sections/{section_id}/pages
+      - sections/{section_id}/pages/{id}
+    operations:
+      - eeee
+  - name: Scorm Package
+    description: Scorm packages are containers for a Sharable Content Object Reference Model that can be integrated with Schoology.
+    urls:
+      - sections/{section_id}/packages
+      - sections/{section_id}/packages/{id}
+    operations:
+      - eeee
+  - name: Web Content Package
+    description: Web Content Packages are website files, compressed in .zip format, that can be added to Schoology course sections.
+    urls:
+      - sections/{section_id}/web_packages
+      - sections/{section_id}/web_packages/{id}
+    operations:
+      - eeee
+  - name: Completion
+    description: Each user enrolled in a course section has a completion object with information about the student's progress in the section.
+    urls:
+      - sections/{section_id}/completion
+      - sections/{section_id}/completion/user/{uid}
+    operations:
+      - eeee
+  - name: Friend Request
+    description: Friend requests can be sent from/received by other Schoology users in your network.
+    urls:
+      - users/{user_id}/requests/friends
+      - users/{user_id}/requests/friends/{id}
+    operations:
+      - eeee
+  - name: Invite
+    description: Users can receive requests to join course sections and groups.
+    urls:
+      - users/{user_id}/invites/[realm]
+      - users/{user_id}/invites/[realm]/{invite_id}
+      - sections
+      - groups
+    operations:
+      - eeee
+  - name: Network
+    description: View a list of users in the given user's network
+    urls:
+      - users/{user_id}/network
+      - users/{user_id}/network
+    operations:
+      - eeee
+  - name: Grades
+    description: View a list of the given user's grades
+    urls:
+      - users/{id}/grades
+    operations:
+      - eeee
+  - name: Grading Period
+    description: Grading periods (marking periods) determine when a course section is active.
+    urls:
+      - gradingperiods
+      - gradingperiods/{id}
+    operations:
+      - eeee
+  - name: Role
+    description: Every user is associated with a collection permissions called roles.
+    urls:
+      - roles
+      - roles/{id}
+    operations:
+      - eeee
+  - name: Private Messaging
+    description: Private messages are 'e-mail style' messages that can be sent and shared between multiple users.
+    urls:
+      - messages
+      - messages/[message folder]
+      - messages/[message folder]/{message_id}
+      - inbox
+      - sent
+    operations:
+      - eeee
+  - name: Search
+    description: Search users,schools,groups and courses.
+    urls:
+      - search
+    operations:
+      - eeee
+  - name: Resource Collections
+    description: Resource Collections are containers for user and group resource templates.
+    urls:
+      - collections
+      - collections/[collection_id]
+    operations:
+      - eeee
+  - name: Resource Templates
+    description: Resource templates are objects placed in Resource Collections.  Each template has an assigned type (e.g. Document, Assignment, Discussion).
+    urls:
+      - collections/[collection_id]/resources
+      - [realm]/[realm_id]/resources
+    operations:
+      - eeee
+  - name: Multi-get
+    description: Make multiple GET calls with a single POST call and receive each response body in full in a single compiled response.
+    urls:
+      - multiget
+    operations:
+      - eeee
+  - name: Multi-options
+    description: Make multiple OPTIONS calls with a single POST call and receive reach response body in full in a single compiled response.
+    urls:
+      - multioptions
+    operations:
+      - eeee
 templates:
   resource:
     - faa: waaa

@@ -1,3 +1,4 @@
+// Turn a table into a YAML list
 // Select the <table> element in inspect element
 (table => {
 const headings = Array.from(table.querySelectorAll('th'), d => d.textContent.trim().toLowerCase())
