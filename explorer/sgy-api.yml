@@ -535,6 +535,58 @@ fields:
         name: Sync Status
         description: Whether or not this course section was synced with an external system (eg, Student Information System). The default value is 0. For synced course sections, the Section School Code field is not editable through Schoology.
         type: {0,1}
+  grading category:
+    note: List the available grading categories for the given course section
+    fields:
+      - field: title
+        name: Grading category title
+        description: The name of the grading category
+        type: integer
+      - field: calculation_type
+        name: Calculation type
+        description: Whether the grades for the given category are calculated as a percentage (1) or as points (2). Only course section administrators can see this value.
+        type: {1,2}
+      - field: default_max_points
+        name: Default max points
+        description: The default number of max points given to assignments in this category. Only course section administrators can see this value.
+        type: integer
+      - field: default_grading_scale_id
+        name: Default grading scale Id
+        description: The default grading scale assigned to assignments in this category. Only course section administrators can see this value.
+        type: integer
+      - field: drop_lowest
+        name: Drop lowest
+        description: Indicates the number of lower most grades to drop when calculating the final grade for the given category. Only course section administrators can see this value.
+        type: integer
+  enrollment:
+    note: Enrollments associate users to courses or groups.
+    fields:
+      - field: id
+        name: Enrollment ID
+        description: The Schoology assigned ID of the enrollment record.
+        type: string
+        required: no
+      - field: uid
+        name: User ID
+        description: The Schoology ID of the user.
+        type: string
+        required: yes
+      - field: admin
+        name: Admin
+        description: Whether this user is an administrator (e.g. teacher) as opposed to a regular member (e.g. student)
+        type: {0,1}
+        required: yes
+      - field: status
+        name: Status
+        description: |-
+          The current status of the enrollment.
+          1: Active
+          2: Expired (i.e. past course)
+          3: Invite pending
+          4: Request Pending
+          5: Archived (Course specific status members can be placed in before being fully unenrolled)
+        type: {1-5}
+        required: yes
 values:
   - meaning: Grade Level
     for:
@@ -890,6 +942,25 @@ resources:
         method: POST
         content: Multiple sections can be created at a time (up to 50) by wrapping your response in 'sections' with section fields wrapped in 'section'.
         return: The API endpoint (location) of each sectioncreated, or an error message if there was a problem creating the section.
+      - name: bulk copy
+        description: Copy existing sections and their content into new or existing sections
+        parameters:
+          source_section_id or source_section_school_code: the identifier of the section getting copied - required
+          section_id or section_school_code or section_code: |-
+            required
+            - if section_id is provided then we assume section exists - check permissions, make sure section has no content, and then just copy content to existing section
+            - if section_school_code is provided then check if section_school_code exists.
+              - If exists, check if section is empty and then copy contents to existing section.
+              - If does not exist then create new section and then copy contents to new section.
+            - If section_code is provided then try and create new section
+          course_id or course_code: the identifier of the parent course that the copied section will live in - required
+          title - the title of the new section: required
+          grading_periods: the grading_periods the new section with span - required
+          description: the description of the new section - optional
+          synced: If set to 1 course section fields (section_school_code, grading_periods) will not be editable. If not set, "synced" property will be inherited from source section - optional
+          enroll_user: Set this to 1 (e.g. ?enroll_user=1) in order enroll the user making the API call into the newly copied section
+        path: sections/copy
+        method: POST
       - name: list
         description: View a list of sections for a course (paged). The following parameters can be added to this path:
         parameters:
@@ -950,7 +1021,87 @@ resources:
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create an enrollment
+        path: [realm]/enrollments
+        method: POST
+        content: An object containing enrollment fields
+        return: An object containing enrollment fields
+      - name: create
+        description: Create an enrollment with an access code
+        path: [realm]/accesscode
+        method: POST
+        content: An object containing an access code.  The object will look like {"access_code" : "VCVKF-4MJG9"}.
+        return: An object containing enrollment fields
+      - name: bulk create - single realm
+        description: Create multiple enrollments at a time in one realm
+        path: [realm]/enrollments
+        method: POST
+        content: Multiple enrollments can be created at a time (up to 50) by wrapping your response in 'enrollments', with enrollment fields wrapped in 'enrollment'.
+        return: The API endpoint (location) of each enrollment created, or an error message if there was a problem creating the enrollment.
+      - name: bulk create - multi realm
+        description: Create multiple enrollments across multiple realms at one time
+        path: enrollments
+        method: POST
+        content: |-
+          Multiple enrollments can be created at a time (up to 50) by wrapping your response in 'enrollments', with enrollment fields wrapped in 'enrollment'. Along with the base enrollment fields include realm [group, section] and group_id or section_id in the enrollment objects.  Each enrollment object would look something like
+          The whole body will look something like:
+        return: The API endpoint (location) of each enrollment created, or an error message if there was a problem creating the enrollment.
+      - name: course enrollment import
+        description: Create and update many course enrollments at a time by grading_period_id, course_code, section_code, and user unique_id. This this endpoint does not require you to know the Schoology IDs for each course, section, or user, this can be used for easy synchronization. You are required, however, to pass a Schoology grading period ID (or multiple, comma-separated IDs). For example, if you pass 5,6,7 as a grading_period_id, you will be importing into sections that span all three grading periods for the given course_code/section_code combination. This endpoint is only available for courses (and not for groups).
+        path: enrollments/import/course/[grading_period_id]
+        method: POST
+        content: Multiple enrollments can be created at a time (up to 50), and require a course course_code, section section_code, and user school_uid. You can also pass admin to mark an enrollment as a teacher, or delete to remove an enrollment.
+        return: The API endpoint (location) of each enrollment created, or an error message if there was a problem creating the enrollment.
+      - name: course enrollment import alternative
+        description: Create and update multiple course enrollments using section_school_code and user unique_id. This is similar to the course enrollment import above with the exception of not having to provide the grading_period_id. Instead, unique section_school_code values are used to determine the sections for each enrollment.
+        path: enrollments/import/course
+        method: POST
+        content: Multiple enrollments can be created at a time (up to 50), and require a course section section_school_code and user school_uid. You can also pass admin to mark an enrollment as a teacher, or delete to remove an enrollment.
+        return: The API endpoint (location) of each enrollment created, or an error message if there was a problem creating the enrollment.
+      - name: list
+        description: |-
+          View a list of enrollments (paged). The following query strings can (optionally) be appended to the path to filter results:
+          For each of the above query strings, you can specify a coma delimited list of values. Retrieving this list without specifying the above parameters will return a paged list of all enrollments in the given realm.
+        parameters:
+          uid: filter enrollments for a given user
+          enrollment_status: filter enrollments for a given enrollment status (1-5)
+          type: filter enrollments by an enrollment type. Possible values: ['admin', 'member']
+          picture_size: specify size of profile picture returned with this user.  Possible values: ['big', 'reg', 'sm', 'tiny']
+        path: [realm]/enrollments
+        method: GET
+        content: null
+        return: A collection of enrollment objects, each one containing enrollment fields
+      - name: view
+        description: View a specified enrollment
+        path: [realm]/enrollments/{id}
+        method: GET
+        content: null
+        return: An object containing enrollment fields
+      - name: update
+        description: Modify an enrollment
+        path: [realm]/enrollments/{id}
+        method: PUT
+        content: An object containing enrollment fields
+        return: null
+      - name: bulk update
+        description: Modify multiple enrollments
+        path: [realm]/enrollments
+        method: PUT
+        content: Up to 50 enrollments can be updated at a time by wrapping your response in 'enrollments', with enrollment fields wrapped in 'enrollment'.
+        return: The schoology ID of each enrollment updated, or an error message if there was a problem creating the enrollment.
+      - name: delete
+        description: Delete an enrollment (cannot be undone)
+        path: [realm]/enrollments/{id}
+        method: DELETE
+        content: null
+        return: null
+      - name: bulk delete
+        description: Delete up to 50 enrollments. Comma-separated Schoology IDs are passed in the query string with the enrollment_ids parameter.
+        path: enrollments?enrollment_ids=[comma-separated-enrollment-ids]
+        method: DELETE
+        content: null
+        return: null
   - name: Event
     description: Events can be created for users, courses, groups, schools, or districts; all events automatically feed into the "upcoming" and "calender" portions of the site.
     urls:

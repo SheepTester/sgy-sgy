@@ -76,13 +76,17 @@ if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
 } else if (elem.tagName === 'P') {
   if (!elem.textContent) continue
   if (description) {
-    return console.error('description already exists?', elem)
+    console.error('description already exists?', elem)
+    if (elem.children[0]?.tagName === 'B') {
+      console.error('^ was bold so will not add to description')
+      continue
+    }
     description += '\n'
   }
   description += elem.textContent.trim()
 } else if (elem.tagName === 'UL') {
   if (parameters) console.error('extra parameters (probably ok)', elem, parameters)
-  parameters = '\n  parameters:\n' + [...elem.children].map(li => '    ' + li.textContent.trim()).join('\n')
+  parameters = (parameters ? parameters + '\n' : '\n  parameters:\n') + [...elem.children].map(li => '    ' + li.textContent.trim()).join('\n')
 }
 }
 if (!path || !method) console.error('why are path and method falsy?', heading)
