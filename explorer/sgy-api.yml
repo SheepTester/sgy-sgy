@@ -1,0 +1,599 @@
+fields:
+  school:
+    fields:
+      - field: id
+        name: School Id
+        description: The internal Schoology ID that identifies the school. This field cannot be used in create operations; only update and read operations.
+        type: string
+      - field: title
+        name: School Title
+        description: The name of the school
+        type: string
+        required: true
+      - field: address1
+        name: Street address line 1
+        description: The first line of the school's street address
+        type: string
+      - field: address2
+        name: Street address line 2
+        description: The second line of the school's street address
+        type: string
+      - field: city
+        name: City
+        description: The city where the school is located
+        type: string
+      - field: state
+        name: State
+        description: The state/province where the school is located
+        type: string
+      - field: postal_code
+        name: Postal code
+        description: The postal code where the school is located
+        type: string
+      - field: country
+        name: Country
+        description: The country where the school is located
+        type: string
+      - field: website
+        name: Website
+        description: The school's website address
+        type: string
+      - field: phone
+        name: Phone number
+        description: The school's phone number
+        type: string
+      - field: fax
+        name: Fax Number
+        description: The school's fax number
+        type: string
+      - field: picture_url
+        name: Profile Picture URL
+        description: The full URL of the school's profile picture
+        type: string
+  building:
+    note: Buildings have the same fields as schools.
+    fields:
+      - field: id
+        name: Building Id
+        description: The internal Schoology ID that identifies the building. This field cannot be used in create operations; only update and read operations.
+        type: string
+      - field: title
+        name: Building Title
+        description: The name of the building
+        type: string
+        required: true
+      - field: address1
+        name: Street address line 1
+        description: The first line of the building's street address
+        type: string
+      - field: address2
+        name: Street address line 2
+        description: The second line of the building's street address
+        type: string
+      - field: city
+        name: City
+        description: The city where the building is located
+        type: string
+      - field: state
+        name: State
+        description: The state/province where the building is located
+        type: string
+      - field: postal_code
+        name: Postal code
+        description: The postal code where the building is located
+        type: string
+      - field: country
+        name: Country
+        description: The country where the building is located
+        type: string
+      - field: website
+        name: Website
+        description: The building's website address
+        type: string
+      - field: phone
+        name: Phone number
+        description: The building's phone number
+        type: string
+      - field: fax
+        name: Fax number
+        description: The building's fax number
+        type: string
+      - field: building_code
+        name: Building Code
+        description: The configurable external ID of this building (used for imports and synchronization)
+        type: string
+      - field: picture_url
+        name: Profile Picture URL
+        description: The full URL of the school's profile picture
+        type: string
+  user:
+    note: |-
+      Users objects are the accounts on the system.
+      * Denotes fields are only displayed if the current API user has the 'Administer users' permission enabled.
+    fields:
+      - field: uid
+        name: User ID
+        description: The internal Schoology ID of the user
+        type: string
+      - field: school_id
+        name: Schoology School ID
+        description: The internal Schoology ID of the school to which the user belongs
+        type: string
+      - field: building_id
+        name: Schoology School Building ID
+        description: The internal Schoology ID of the school building to which the user belongs
+        type: string
+      - field: school_uid*
+        name: Unique ID
+        description: The user's unique ID (e.g. student ID, SIS ID)
+        type: string
+        required: true
+      - field: name_title
+        name: Name Title
+        description: The user's title, must be one of the following: Mr., Mrs., Ms., Miss, Dr., Professor
+        type: string
+      - field: name_title_show
+        name: Show Name Title
+        description: Whether to show the user's title when displaying his/her full name
+        type: {0,1}
+      - field: name_first
+        name: First Name
+        description: The user's first name
+        type: string
+        required: true
+      - field: name_first_preferred
+        name: Preferred First Name
+        description: The name by which the user goes
+        type: string
+      - field: name_middle
+        name: Middle Name
+        description: The user's middle name
+        type: string
+      - field: name_middle_show
+        name: Show Middle Name
+        description: Whether to show the user's middle name when displaying his/her full name
+        type: string
+      - field: name_last
+        name: Last Name
+        description: The user's last name
+        type: string
+        required: true
+      - field: name_display
+        name: Display Name
+        description: A fully-constructed name based on the user's account settings. Cannot be set - only available on GET.
+        required: false
+      - field: username*
+        name: Username
+        description: The user's username (either a username or email address is required for each user)
+        type: string
+        required: username or email
+      - field: primary_email
+        name: Primary Email Address
+        description: The user's primary email address (either a username or email address is required for each user)
+        type: string
+        required: username or email
+      - field: position
+        name: Job Position
+        description: The user's position in the school/company.
+        type: string
+      - field: gender
+        name: Gender
+        description: The user's gender
+        type: {M,F}
+      - field: grad_year*
+        name: Graduation Year
+        description: The user's graduation year (YYYY)
+        type: 4 digit integer
+      - field: birthday_date
+        name: Birthday
+        description: The user's birthday (YYYY-MM-DD)
+        type: string
+      - field: password*
+        name: Password
+        description: The user's password (existing passwords will not be changed if left blank)
+        type: string
+      - field: role_id*
+        name: Role ID
+        description: The ID of the role to which you would like to assign the user
+        type: integer
+        required: true
+      - field: email_login_info
+        name: Email Login Information
+        description: Whether to send login information by email (if an email address is set); used only during user creation
+        type: {0,1}
+      - field: profile_url
+        name: Profile picture URL
+        description: The full URL of the user's profile picture
+        type: string
+      - field: tz_name*
+        name: Timezone Name
+        description: An IANA-defined timezone name (see http://en.wikipedia.org/wiki/List_of_tz_database_time_zones)
+      - field: parents
+        name: User Parents
+        description: The user accounts of the user's parents; requires 'View user parents' permission to be enabled for the current API user.
+        type: user objects
+      - field: parent_uids
+        name: User Parent User Ids
+        description: When creating/updating user accounts, a comma delimited list of the user's parents' user ids. API users must have permission to create users in order to create/update these associations.
+        type: comma-delimited list of integers
+      - field: advisor_uids
+        name: User Advisor User Ids
+        description: When creating/updating user accounts, a comma delimited list of the user's advisors' user ids. API users must have permission to create users in order to create/update these associations.
+        type: comma-delimited list of integers
+      - field: child_uids
+        name: User Child User Ids
+        description: A comma-delimited list of user ids identifying the user's children.
+        type: comma-delimited list of integers
+      - field: send_message
+        name: Send Message status
+        description: Whether or not the signed-in user can send a private message to the listed user
+        type: integer
+      - field: synced
+        name: Sync Status
+        description: Whether or not this user was synced with an external system (eg, Student Information System). The default value is 0. For synced users, the Unique ID field is not editable through Schoology.
+        type: {0,1}
+      - field: profile_picture_fid
+        name: Profile Picture File ID
+        description: ID pointing to temporary save of the profile picture upload (write-only). For more details on uploading files: File Uploading
+        type: integer
+      - field: additional_buildings
+        name: Additional Buildings
+        description: The internal building IDs to which the user belongs to as a non-main building
+        type: Comma-delimited list of integers
+  detailed profile:
+    note: |-
+      Detailed profile fields can be added to the user object with the ?extended=TRUE argument. The following read-only fields will be included in the user object in the sub attribute profile_info
+      *Fields only included if the user is a course realm admin
+    fields:
+      - field: subjects_taught
+        name: Subjects Taught*
+        description: The subjects taught by a teacher.
+        type: string
+      - field: grades_taught
+        name: Grades Taught*
+        description: The grades taught by a teacher
+        type: string
+      - field: position
+        name: Position*
+        description: A user generated description of their position
+        type: string
+      - field: department*
+        name: Department
+        description: A user generated description of their department.
+        type: string
+      - field: bio
+        name: Biography
+        description: A user generated short bio on themselves.
+        type: string
+      - field: phone
+        name: Phone
+        description: The phone number of the user
+        type: string
+      - field: website
+        name: Website
+        description: User Website
+        type: string
+      - field: address
+        name: Address
+        description: User Address
+        type: string
+      - field: interests
+        name: Interests
+        description: User Interests
+        type: string
+      - field: activities
+        name: Activities
+        description: User Activities
+        type: string
+      - field: birthday_date
+        name: Birthday
+        description: The user's birthday
+        type: string
+  association:
+    fields:
+      - field: student_school_uid
+        name: Unique ID
+        description: The student's unique ID
+        type: string
+        required: true
+      - field: parent_school_uid / advisor_school_uid
+        name: Unique ID
+        description: The parent's / advisor's unique ID
+        type: string
+        required: true
+      - field: delete
+        name: Delete
+        description: Whether or not to delete this association if it exists
+        type: (0 ,1)
+  group:
+    - field: id
+      name: Schoology Group ID
+      description: The internal Schoology ID of the group
+      type: string
+      required: false
+    - field: building_id
+      name: Schoology School Building ID
+      description: The internal Schoology ID of the school building to which the group belongs
+      type: string
+      required: false
+    - field: school_id
+      name: Schoology School ID
+      description: The internal Schoology ID of the school to which the group belongs
+      type: string
+      required: false
+    - field: title
+      name: Group Title
+      description: The title of the group
+      type: string
+      required: true
+    - field: description
+      name: Description
+      description: The group description
+      type: string
+    - field: picture_url
+      name: Picture
+      description: The URL of the group's profile picture
+      type: string
+    - field: website
+      name: Website
+      description: The group website
+      type: string
+    - field: access_code
+      name: Access Code
+      description: The access code that users can use to join the group (only admins can see this value).
+      type: string
+    - field: privacy_level
+      name: Privacy level
+      description: The privacy of the group.
+     everyone: All schoology users can see the group.
+     school: Only members of the school can see the group
+     building: Only members of the building can see the group
+     group: Only group members can see the group
+    custom: Custom privacy settings (read only; not supported in POST/PUT)
+      type: {everyone, school, building, group}
+      required: Default: school
+    - field: category
+      name: Category
+      description: The category of the group (see below on how to retrieve a list of available categories)
+      type: string
+      required: false
+    - field: options/invite_type
+      name: Invite Type
+      description: How members can join the group.
+     0: Invite only
+     1: Request to join
+     2: Anyone can join
+      type: {0-2}
+      required: Default: 0
+    - field: options/member_post
+      name: Post a group update
+      description: Whether or not a group member can post a group update
+      type: {0,1}
+      required: Default: 1
+    - field: options/member_post_comment
+      name: Post a comment on a group update
+      description: Whether or not a group member can post comments to group udpates
+      type: {0,1}
+      required: Default: 1
+    - field: options/create_discussion
+      name: Create a discussion thread
+      description: Whether or not a group member can create a discussion thread
+      type: {0,1}
+      required: Default: 0
+    - field: options/create_files
+      name: Create files
+      description: Whether or not members can create resources for the group
+      type: {0,1}
+      required: Default: 0
+    - field: group_code
+      name: Group Code (external ID)
+      description: If the group was imported from another system into Schoology, the unique ID of that group in the other system.
+      type: string
+resources:
+  - name: School
+    description: Schools are the most basic groupings of courses, groups, and users. All courses/users are required to have unique usernames, course IDs, and School User IDs throughout the entire school.
+    urls:
+      - schools
+      - schools/{id}
+    operations:
+      - name: view
+        description: View a specified school
+        path: schools/{id}
+        method: GET
+        content: null
+        return: An object containing school fields
+      - name: create
+        description: Create a school
+        path: schools
+        method: POST
+        content: An object containing school fields
+        return: An object containing school fields
+      - name: create
+        description: Create a building in school
+        path: schools/{school id}/buildings
+        method: POST
+        content: An object containing school fields
+        return: An object containing school fields
+      - name: edit
+        description: Edit a specified school
+        path: schools/{id}
+        method: PUT
+        content: An object containing school fields
+      - name: delete
+        description: Delete a specified school
+        path: schools/{id}
+        method: DELETE
+  - name: Building
+    description: Buildings (AKA campuses), are further separations of courses, groups, and users that all belong to the same system.
+    urls:
+      - schools/{id}/buildings
+    operations-note: For other operations related to buildings (i.e. GET,POST,PUT,DELETE) you can treat buildings like schools and use the available school object endpoints. For example, to make a change to an existing building, you would use PUT /school/[building_id]. For more details, check out the School Object.
+    operations:
+      - name: view
+        description: View the buildings for a school
+        path: schools/{id}/buildings
+        method: GET
+        content: null
+        return: An list of buildings containing building fields
+  - name: User
+    description: Each account corresponds to a user object.
+    urls:
+      - users
+      - users/{id}
+    operations:
+      - name: create
+        description: Create a user in your school
+        path: users
+        method: POST
+        content: An object containing user fields
+        return: An object containing user fields
+      - name: bulk create
+        description: Create multiple users at a time. The following parameters can be added to this endpoint:
+        parameters:
+          update_existing: Set this to 1 (e.g. ?update_existing=1) in order update existing users, matched by the 'school_uid' field. Without this parameter, user creation will fail if a pre-existing user has the same 'school_uid' as a passed user object.
+          ignore_email_conflicts: If set to 1 and one of the users to be created has the same email address as another account in a different school, the user will be created without an email address. If a username was not specified, one will be generated based on the school_uid parameter. If this flag is not specified or if the conflict is with another account in the same school, an error will be thrown.
+          email_conflict_resolution:
+            - set to 1 (e.g. ?email_conflict_resolution=1) to create an account in your school with a username if an email account already exists within Schoology. (Eg - If john@schoology.com already exists, the new account will be created with only a username 'john'). If a new username is present, the new account will be created using that username.
+            - set to 2 (e.g. ?email_conflict_resolution=2) to merge duplicate Schoology accounts with [email]@[verified_domain] into the new account that you're creating. However, if an email acount differs from your claimed domain, an account will be created using only a username.
+        path: users
+        method: POST
+        content: Multiple users can be created at a time (up to 50) by wrapping your response in 'users', with user fields wrapped in 'user'.
+        return: The API endpoint (location) of each user created, or an error message if there was a problem creating the user.
+      - name: list
+        description: View a list of users in your school (paged). If your school has multiple buildings and you are not an administrator for all buildings, only users in your same building will be returned. Administrators for all buildings (i.e. administrators that are not associated with a specific building) will have users in all buildings returned and can optionally filter results with the following query strings:
+        parameters:
+          building_id: Only return users for the given building.
+          role_ids: (Comma-separated list of IDs) Only return users who belong to the given role IDs
+          parent_access_codes: Add in parent access codes for each of the returned users (set to 1)
+          school_uids: A comma-separated list of school_uids within the school (up to 50 at one time)
+        path: users
+        method: GET
+        content: null
+        return: A collection of user objects, each one containing user fields
+      - name: list
+        description: View a list of inactive users in your school
+        path: users/inactive
+        method: GET
+        content: null
+        return: A collection of user objects, each one containing user fields
+      - name: view
+        description: View a specified user
+        path: users/{id}
+        method: GET
+        content: null
+        return: An object containing user fields
+      - name: view
+        description: View a specified inactive user
+        path: users/inactive/{id}
+        method: GET
+        content: null
+        return: An object containing user fields
+      - name: update
+        description: Modify a user
+        path: users/{id}
+        method: PUT
+        content: An object containing user fields
+        return: null
+      - name: bulk update
+        description: Modify multiple users
+        path: users
+        method: PUT
+        content: Up to 50 users can be updated at a time by wrapping your response in 'users', with user fields wrapped in 'user'.
+        return: The schoology ID of each user updated, or an error message if there was a problem creating the user.
+      - name: bulk update (re-activate)
+        description: Re-activate inactive users.
+        parameters:
+          option_reenroll: Set option_reenroll to 1 in the request body to place the user back into their courses and groups.
+        path: users/reactivate
+        method: PUT
+        content: An object containing user fields
+        return: A link to the user profiles of the reactivated users
+      - name: delete
+        description: Delete a user (cannot be undone). The following parameters can be added to this endpoint:
+        parameters:
+          option_comment: Reason for marking inactive
+          option_keep_enrollments: Set this to 1 (e.g. ?option_keep_enrollments=1) to keep a history of the user's grade and attendance data. Note: if this parameter is not set, this endpoint will delete all history of the user's grades and attendance records. This process cannot be reversed
+          email_notification: Whether or not the deleted user should be notified via email that their account has been made inactive. If set to 1, email will be sent. If set to 0, email will not be sent. If this parameter is not used, emails will be sent by default.
+        path: users/{id}
+        method: DELETE
+        content: null
+        return: null
+      - name: bulk delete
+        description: Delete up to 50 users. The following parameters can be added to this endpoint:
+        parameters:
+          uids: Comma-separated list of Schoology IDs
+          option_comment: Reason for marking inactive
+          option_keep_enrollments: Set this to 1 (e.g. ?option_keep_enrollments=1) to keep a history of the user's grade and attendance data. Note: if this parameter is not set, this endpoint will delete all history of the user's grades and attendance records. This process cannot be reversed
+          email_notification: Whether or not the deleted user should be notified via email that their account has been made inactive. If set to 1, email will be sent. If set to 0, email will not be sent. If this parameter is not used, emails will be sent by default.
+        path: users
+        method: DELETE
+        content: null
+        return: null
+      - name: Bulk Import Associations
+        description: |-
+          Create parent-child or advisor-advisee associations.
+          - Two separate endpoints depending on the type of association.
+        path: users/import/associations/advisors
+        method: POST
+        content: An object containing association fields
+        return: The students school_uid and uid and the advisors school_uid and uid OR any relevant error messages.
+      - name: Bulk Import Associations
+        description: |-
+          Create parent-child or advisor-advisee associations.
+          - Two separate endpoints depending on the type of association.
+        path: users/import/associations/parents
+        method: POST
+        content: An object containing association fields
+        return: The students school_uid and uid and the parents school_uid and uid OR any relevant error messages.
+    other:
+      - description: A shortcut for GET users/{user_id} where {user_id} is the user ID of the current API user.
+        path: users/me
+        method: GET
+      - description: If the user has an active Schoology web session, it returns the user id for the passed OAuth tokens and the Schoology web session timestamp. Use this information to validate the given access tokens for the logged in user and to check if the user has an active Schoology web session
+        path: app-user-info
+        method: GET
+        content: null
+        return: { web_session_timestamp, api_uid }
+      - description: Returns a list of all currently available interfaces languages. Use the language code property from returned language objects when creating/updating user languages
+        path: users/languages
+        method: GET
+        content: null
+        return: { language: { language_code, language_name }[] }
+  - name: Group
+    description: Groups are non-academic versions of course sections; they can hold members, events, documents, etc.
+    urls:
+      - groups
+      - groups/{id}
+    operations:
+      - name: create
+        description: Create a group
+        path: groups
+        method: POST
+        content: An object containing group fields
+        return: An object containing group fields
+templates:
+  resource:
+    - faa: waaa
+      la:
+        uh:
+          lol: wow
+    - name: aaaa
+      description: aaaa
+      urls:
+        - aaaa
+      operations:
+        - name: aaaa
+          description: aaaa
+          path: aaaa
+          method: GET
+          content: null
+          return: null
+  operation:
+    - ta: weee
+      wow: indents
+    - name: aaaa
+      description: aaaa
+      path: aaaa
+      method: GET
+      content: null
+      return: null
