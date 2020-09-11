@@ -1,6 +1,6 @@
 // Turn a table into a YAML list
-// Select the <table> element in inspect element
-(table => {
+// Or select the <table> element in inspect element
+;(table => {
 const headings = Array.from(table.querySelectorAll('th'), d => d.textContent.trim().toLowerCase())
 let data = ''
 for (const row of [...table.querySelectorAll('tr')].slice(1)) {
@@ -36,7 +36,7 @@ function getRow (rows, name) {
   let row = rows.find(tr => tr.children[0].textContent.trim().toLowerCase() === name)
   if (row && row.textContent.trim()) {
   row = row.children[1]
-  if (row.textContent.trim() === 'none') return 'null'
+  if (row.textContent.trim().toLowerCase() === 'none') return 'null'
   else {
   let content = row.textContent.trim()
   if (content.includes('JSON')) content = content.slice(0, content.indexOf('JSON')).trim()
@@ -96,3 +96,23 @@ return `- name: ${name}
   path: ${path}
   method: ${method}` + content + returnz
 }).filter(a => a).join('\n')
+
+// Autocreates a fields entry
+;(table => {
+const wrapper = document.querySelector('.field-item')
+const note = wrapper.firstElementChild.tagName === 'P' ? wrapper.firstElementChild.textContent.trim() : null
+const headings = Array.from(table.querySelectorAll('th'), d => d.textContent.trim().toLowerCase())
+let data = document.querySelector('#page-title').textContent.trim().toLowerCase() + ':\n' +
+(note ? `  note: ${note}\n` : '') + '  fields:\n'
+for (const row of [...table.querySelectorAll('tr')].slice(1)) {
+for (let i = 0; i < row.children.length; i++) {
+const val = row.children[i].textContent.trim()
+if (!val) continue
+data += i === 0 ? '    - ' : '      '
+data += headings[i] + ': '
+data += val === 'yes' || val === 'Y' ? true : val === 'no' || val === 'N' ? false : val
+data += '\n'
+}
+}
+return data
+})(document.querySelector('table'))

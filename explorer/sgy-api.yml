@@ -587,6 +587,436 @@ fields:
           5: Archived (Course specific status members can be placed in before being fully unenrolled)
         type: {1-5}
         required: yes
+  event:
+    - field: id
+      name: Schoology Event ID
+      description: The internal Schoology ID of the event
+      type: string
+      required: yes
+    - field: title
+      name: Title
+      description: The event title
+      type: string
+      required: yes
+    - field: description
+      name: Description
+      description: The event description
+      type: string
+    - field: start
+      name: Start
+      description: The start of the event
+      type: datetime(YYYY-MM-DD HH:MM:SS)
+      required: yes
+    - field: has_end
+      name: Has End
+      description: Whether or not this event has an end date/time
+      type: {0,1}
+      required: default: 0
+    - field: end
+      name: End
+      description: The end of the event, if has_end is 1.
+      type: datetime(YYYY-MM-DD HH:MM:SS)
+    - field: all_day
+      name: All Day
+      description: Whether or not this event is an all-day event (i.e. no time, just start/end day)
+      type: {0,1}
+      required: default: 0
+    - field: rsvp
+      name: RSVP Settings
+      description: Determines who is allowed to RSVP into this event. 0 implies that no one can RSVP. 1 implies that only people who have been invited to the events can RSVP. 2 implies that anyone can RSVP.
+      type: {0,1,2}
+      required: default: 0
+    - field: comments_enabled
+      name: Enable Comments
+      description: Determine whether or not users can have a discussion within the event.
+      type: {0,1}
+      required: default: 1
+    - field: type
+      name: Event Type
+      description: Determine the type of the event. 'event' implies that the event is a normal event. 'assignment' implies that the event is a due event for an assignment. 'discussion' implies that the event is a due event for a discussion.
+      type: {'event', 'assignment', 'discussion'}
+  blog post:
+    note: Blog posts can be made for any realm.
+    fields:
+      - field: title
+        name: Title
+        description: The post title
+        type: string
+        required: true
+      - field: body
+        name: Post body
+        description: The post body
+        type: string (rendered as HTML - line breaks need a <br />
+  blog post comment:
+    note: Comments can be made for any blog post.
+    fields:
+      - field: id
+        name: Schoology Blog ID
+        description: The internal Schoology ID of the blog
+        type: string
+        required: true
+      - field: comment
+        name: Comment
+        description: The comment body
+        type: string
+        required: true
+      - field: uid
+        name: User ID
+        description: The user ID of the user who posted the comment
+        type: string
+  discussion thread:
+    note: Discussion threads can be made for any realm except users.
+    fields:
+      - field: id
+        name: Schoology Discussion ID
+        description: The internal Schoology ID of the discussion
+        type: string
+        required: true
+      - field: title
+        name: Title
+        description: The thread title
+        type: string
+        required: true
+      - field: body
+        name: Thread Body
+        description: The thread body
+        type: string
+      - field: graded
+        name: Graded
+        description: Whether or not the discussion is graded
+        type: integer {0,1}
+      - field: due
+        name: Due Date
+        description: When the assignment is due
+        type: datetime(YYYY-MM-DD HH:MM:SS)
+      - field: grade_item_id
+        name: Grade Item ID
+        description: The Id of the grade item associated with this discussion. Mostly used for grades.
+        type: integer
+      - field: grading_scale
+        name: Grading Scale
+        description: The ID of the grading scale for this assignment. For no grading scale, use "0". Course grading scales can be found on the course Grade Setup page.
+        type: integer
+        required: default: 0
+      - field: grading_period
+        name: Grading Period
+        description: The grading period ID to which this assignment belongs. For "Other", use "0".
+        type: integer
+        required: default: 0
+      - field: grading_category
+        name: Grading Category
+        description: The grading category ID to which this assignment belongs
+        type: integer
+        required: default: 0
+      - field: max_points
+        name: Maximum Points
+        description: The maximum number of points for this assignment (excl. extra credit)
+        type: float
+        required: default: 100
+      - field: factor
+        name: Factor
+        description: The relative weight of this assignment
+        type: float
+        required: default: 1.0
+      - field: is_final
+        name: Is a Final
+        description: Mark this assignment as a midterm or final
+        type: {0,1}
+        required: default: 0
+      - field: published
+        name: Published
+        description: Whether or not the discussion is published. Only applies to section discussions NOT associated with topics.
+        type: {0,1}
+        required: default: 1
+      - field: require_initial_post
+        name: Requires Initial Post
+        description: Flag indicating whether a member needs to participate before seeing other member posts
+        type: {0,1}
+        required: default: 0
+  discussion reply:
+    note: Discussion replies are comments to any discussion thread.
+    fields:
+      - field: uid
+        name: User Id
+        description: The Schoology user id of the user who created the comment
+        type: integer
+      - field: comment
+        name: Comment
+        description: The comment/reply text
+        type: string
+        required: true
+      - field: created
+        name: Created timestamp
+        description: The Unix timestamp when the comment was created
+        type: integer
+      - field: parent_id
+        name: Parent Id
+        description: If this comment is in reply to another comment, specify it here. To reply to the discussion thread instead of a specific comment, set the parent to "0".
+        type: integer
+        required: false
+      - field: status
+        name: Comment status
+        description: Whether or not the comment was deleted. Only available for course admins with 'manage discussion' permission.
+        type: {1,0}
+  updates:
+    fields:
+      - field: body
+        name: Body
+        description: The body text of the update
+        type: string
+        required: true
+      - field: uid
+        name: Posting user ID
+        description: The user ID of the user who posted the update.
+        type: string
+      - field: display_name
+        name: Posting user display name
+        description: The display name of the user who posted the update.
+        type: string
+      - field: last_updated
+        name: Last updated timestamp
+        description: The unix timestamp of the most recent time the post was created/modified.
+        type: string
+      - field: attachment/type
+        name: Attachment type
+        description: For updates with attachments, the type of the attachment
+        type: {'file','link','video'}
+      - field: attachment/title
+        name: Attachment title
+        description: The display value of the link to the attachment
+        type: string
+      - field: attachment/url
+        name: Attachment URL
+        description: The absolute URL of the attachment
+        type: string
+      - field: attachment/thumbnail
+        name: Attachment thumbnail
+        description: For attachments of type 'link', a thumbnail screenshot of the linked page
+        type: string
+      - field: poll/options
+        name: Poll options
+        description: For updates with polls attached to them, this array will hold all of the poll's options.
+        type: array
+      - field: poll/options/title
+        name: Poll option title
+        description: The title and displayable name of the given poll option
+        type: string
+      - field: poll/options/count
+        name: Poll option vote count
+        description: The number of users who have selected this option in the poll
+        type: int
+      - field: poll/options/selected
+        name: Poll option selected
+        description: This variable is true if the current user selected this poll item
+        type: bool
+  reminder:
+    note: |-
+      The API supports the viewing of realm specific reminders that mirror the functionality of the reminder widget on the web
+      Fields will differ depending on the type of reminder (ungraded, resubmitted)
+    fields:
+      - field: type
+        name: Type
+        description: type of reminder
+        type: string of one of the supported reminder types
+      - field: count
+        name: Count
+        description: The number of reminders
+        type: integer
+  update comment:
+    fields:
+      - field: comment
+        name: Comment
+        description: The comment text
+        type: string
+        required: true
+      - field: uid
+        name: User ID
+        description: The ID of the user who created the comment
+        type: integer
+  media album:
+    fields:
+      - field: Title
+        name: title
+        description: The album title
+        type: string
+        required: true
+      - field: Description
+        name: description
+        description: The album description
+        type: string
+        required: false
+      - field: Comments setting
+        name: setting_comments
+        description: Whether or not comments are enabled for media album content
+        type: {0,1}
+      - field: Member post setting
+        name: setting_member_post
+        description: Whether or not non-admins can add content to the media album
+        type: {0,1}
+      - field: Published
+        name: published
+        description: Whether or not the media album is published
+        type: {0,1}
+      - field: Photo count
+        name: photo_count
+        description: The number of images in the album
+        type: integer
+      - field: Video count
+        name: video_count
+        description: The number of video files in the album
+        type: integer
+      - field: Audio count
+        name: audio_count
+        description: The number of audio files in the album
+        type: integer
+      - field: Cover image URL
+        name: cover_image_url
+        description: The full URL of the cover image
+        type: string
+      - field: Created timestamp
+        name: created
+        description: The unix timestamp when the media album was created
+        type: integer
+  media album comments:
+    fields:
+      - field: content_id
+        name: Content ID
+        description: The ID of the content related to the comment
+        type: integer
+        required: true
+      - field: uid
+        name: User ID
+        description: The ID of the user who created the comment
+        type: integer
+      - field: comment
+        name: Comment
+        description: The comment text
+        type: string
+      - field: created
+        name: Created timestamp
+        description: The unix timestamp when the comment was created
+        type: integer
+  documents:
+    note: Documents are currently supported in Courses and Schools.  On the website, group documents are done through Resources.  Documents are simple pieces of content that simply have one attachment.  Because a document must have an attachment, all available document have attachments just like an piece of content that accepts the with_attachment query parameter.  If you pass in the with_attachment parameter you will get the same response as the request without the parameter.
+    fields:
+      - field: id
+        name: ID
+        description: The Unique ID of the document
+        type: integer
+        required: false
+      - field: title
+        name: Title
+        description: The Document Title
+        type: string
+      - field: course_fid
+        name: Course Folder ID
+        description: The course folder ID this content is in.  Only applicable if realm = course
+        type: integer
+      - field: available
+        name: Available
+        description: Is this available under course completion rules
+        type: integer {0,1}
+      - field: published
+        name: Published
+        description: Is this piece of content published (1) or unpublished (0)
+        type: integer {0,1}
+      - field: attachments
+        name: Attachment
+        description: Attachment array
+        type: array
+      - field: url
+        name: URL
+        description: For creating documents with link or embed, send the value in this field
+        type: string
+      - field: display_inline
+        name: Display Inline
+        description: For creating documents with links, this field determines whether the link will open in an iframe (1) or a new tab (0)
+        type: integer {0,1}
+      - field: file-attachments
+        name: File
+        description: For creating documents with files, follow the standard file attachment technique
+        type: array
+  grading scales:
+    fields:
+      - field: id
+        description: The ID of the grading scale
+        type: integer
+      - field: title
+        description: The title of the grading scale
+        type: string
+      - field: type
+        description: 1 corresponds to "Classic 5pt chromatic" or other "Percent" scales. 3 corresponds to "Point" scales. 0 corresponds to "Numeric"
+        type: integer
+      - field: auto_averaging
+        description: Automatically calculate average values for each level
+        type: integer
+      - field: hide_numeric
+        description: If 1, student will only see the letter grade
+        type: integer
+  grading rubrics:
+    fields:
+      - field: id
+        description: The ID of the grading rubric
+        type: integer
+      - field: created
+        description: The created timestamp of the grading rubric
+        type: string
+      - field: title
+        description: The title of the grading rubric
+        type: string
+      - field: total points
+        description: The total points of the grading rubric
+        type: integer
+      - field: realm
+        description: The Schoology realm of the grading rubric (section)
+        type: string
+      - field: realm_id
+        description: The Schoology realm id of the grading rubric (section id)
+        type: integer
+  grading categories:
+    fields:
+      - field: id
+        description: The ID of the grading category
+        type: integer
+      - field: title
+        description: The title of the grading category
+        type: string
+      - field: calculation_type
+        description: 1 corresponds to "Percent". 2 corresponds to "Total pts"
+        type: integer
+      - field: default_max_points
+        description: 'The default # of points to give to assignments when created'
+        type: float
+      - field: default_grading_scale_id
+        description: 0 for numeric grading scale, or the id of the grading scale
+        type: integer
+      - field: drop_lowest
+        description: Number of low scores to drop in the category
+        type: integer {0-10}
+      - field: weight
+        description: Category weight
+        type: integer
+      - field: delta
+        description: List order of the category
+        type: integer
+  grading groups:
+    fields:
+      - field: id
+        description: The ID of the grading group
+        type: integer
+        required: false
+      - field: title
+        description: The title of the grading group
+        type: string
+        required: true
+      - field: section_id
+        description: The Schoology section id that the grading group is in
+        type: integer
+        required: false
+      - field: members
+        description: An array of enrollment ids part of the grading group
+        type: array of integers
+        required: false
 values:
   - meaning: Grade Level
     for:
@@ -1017,6 +1447,7 @@ resources:
       - [realm]/enrollments
       - [realm]/enrollments/{id}
       - [realm]/accesscode
+    realms:
       - enrollments
       - sections/{section_id}
       - groups/{group_id}
@@ -1107,87 +1538,309 @@ resources:
     urls:
       - [realm]/events
       - [realm]/events/{id}
+    realms:
       - districts/{district_id}
       - schools/{school_id}
       - users/{user_id}
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create an event
+        path: [realm]/events
+        method: POST
+        content: An object containing event fields
+        return: An object containing event fields
+      - name: list
+        description: View a list of events (paged). You can limit the result set by date by specify both 'start_date' and 'end_date' as key value pairs in the query string (i.e. ?start_date=[date]&end_date=[date]). The expected date format is YYYY-MM-DD or YYYYMMDD. The following query strings can (optionally) be appended to the path to filter results:
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+        path: [realm]/events
+        method: GET
+        content: null
+        return: A collection of event objects, each one containing event fields
+      - name: view
+        description: View a specified event. The following query strings can (optionally) be appended to the path to filter results:
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+        path: [realm]/events/{id}
+        method: GET
+        content: null
+        return: An object containing event fields
+      - name: update
+        description: Modify an event
+        path: [realm]/events/{id}
+        method: PUT
+        content: An object containing event fields
+        return: null
+      - name: delete
+        description: Delete an event (cannot be undone)
+        path: [realm]/events/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Blog Post
     description: Blog posts can be created for all realms.
     urls:
       - [realm]/posts
       - [realm]/posts/{id}
+    realms:
       - districts/{district_id}
       - schools/{school_id}
       - users/{user_id}
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create a blog post
+        path: [realm]/posts
+        method: POST
+        content: An object containing blog post fields
+        return: An object containing blog post fields
+      - name: list
+        description: View a list of posts (paged)
+        path: [realm]/posts
+        method: GET
+        content: null
+        return: A collection of blog post objects, each one containing blog post fields
+      - name: view
+        description: View a specified blog post
+        path: [realm]/posts/{id}
+        method: GET
+        content: null
+        return: An object containing blog post fields
+      - name: update
+        description: Modify a blog post
+        path: [realm]/posts/{id}
+        method: PUT
+        content: An object containing blog post fields
+        return: null
+      - name: delete
+        description: Delete a blog post (cannot be undone)
+        path: [realm]/posts/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Blog Post Comment
     description: Comments can be made for any blog post.
     urls:
       - [realm]/posts/{id}/comments
       - [realm]/posts/{id}/comments/{id}
+    realms:
       - districts/{district_id}
       - schools/{school_id}
       - users/{user_id}
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create a blog post comment
+        path: [realm]/posts/{post_id}/comments
+        method: POST
+        content: An object containing blog post fields
+        return: An object containing blog post fields
+      - name: list
+        description: View a list of post comments (paged)
+        path: [realm]/posts/{post_id}/comments
+        method: GET
+        content: null
+        return: A collection of blog post objects, each one containing blog post fields
+      - name: view
+        description: View a specified blog post comment
+        path: [realm]/posts/{post_id}/comments/{comment_id}
+        method: GET
+        content: null
+        return: An object containing blog post fields
+      - name: delete
+        description: Delete a blog post comment (cannot be undone)
+        path: [realm/posts/{post_id}/comments/{comment_id}
+        method: DELETE
+        content: null
+        return: null
   - name: Discussion Thread
     description: Discussion threads can be created for all realms except users.
     urls:
       - [realm]/discussions
       - [realm]/discussions/{id}
+    realms:
       - districts/{district_id}
       - schools/{school_id}
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create a discussion thread
+        path: [realm]/discussions
+        method: POST
+        content: An object containing discussion thread fields
+        return: An object containing discussion thread fields
+      - name: list
+        description: View a list discussion threads (paged). The following query strings can (optionally) be appended:
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+          with_tags: retrieve tags of this piece of content.
+        path: [realm]/discussions
+        method: GET
+        content: null
+        return: A collection of discussion objects, each one containing discussion thread fields
+      - name: view
+        description: View a specified discussion thread. The following query strings can (optionally) be appended:
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+          with_tags: retrieve tags of this piece of content.
+        path: [realm]/discussions/{id}
+        method: GET
+        content: null
+        return: An object containing discussion thread fields
+      - name: update
+        description: Modify a discussion thread
+        path: [realm]/discussions/{id}
+        method: PUT
+        content: An object containing discussion thread fields
+        return: null
+      - name: delete
+        description: Delete a discussion thread (cannot be undone)
+        path: [realm]/discussions/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Discussion Reply
     description: Replies are comments made to discussion threads
     urls:
       - [realm]/discussions/{id}/comments
       - [realm]/discussions/{id}/comments/{id}
+    realms:
       - districts/{district_id}
       - schools/{school_id}
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create a comment
+        path: [realm]/discussions/{post_id}/comments
+        method: POST
+        content: An object containing discussion reply fields
+        return: An object containing discussion reply fields
+      - name: list
+        description: View a list of comments (paged)
+        path: [realm]/discussions/{post_id}/comments
+        method: GET
+        content: null
+        return: A collection of comment objects, each one containing discussion reply fields
+      - name: view
+        description: View a specified comment
+        path: [realm]/discussions/{post_id}/comments/{id}
+        method: GET
+        content: null
+        return: An object containing discussion reply fields
+      - name: delete
+        description: Delete a comment (cannot be undone)
+        path: [realm]/discussions/{post_id}/comments/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Updates
     description: Updates are short twitter-style posts found in the Edge for a given realm
     urls:
       - [realm]/updates
       - [realm]/updates/{id}
+    realms:
       - recent/
       - users/{user_id}
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create an update for the signed-in user.
+        path: [realm]/updates
+        method: POST
+        content: An object containing update fields
+        return: An object containing update fields
+      - name: list
+        description: View a list of updates (paged). The URL '/recent' is an alias for '/users/%uid/updates' where %uid is the user id of the signed in user. The following query strings can (optionally) be appended to the path to filter results:
+        parameters:
+          with_attachments: retrieve attachments and polls for this piece of content.
+        path: [realm]/updates
+        method: GET
+        content: null
+        return: A collection of update objects, each one containing update fields
+      - name: view
+        description: View a specified update. The following query strings can (optionally) be appended to the path to filter results:
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+        path: [realm]/updates/{id}
+        method: GET
+        content: null
+        return: An object containing update fields
+      - name: delete
+        description: Delete an update (cannot be undone)
+        path: [realm]/updates/{id}
+        method: DELETE
+        content: null
+        return: null
+      - name: update
+        description: Edit the body of an update.  Note that if somebody other than the user who created the update (e.g. an Admin) edits the update, the User ID will not be updated.
+        path: [realm]/updates/{id}
+        method: PUT
+        content: An object containing update fields
+        return: An object containing update fields
   - name: Reminders
     description: Reminders are user notifications reminding them to complete an action for a given realm
     urls:
       - /reminders/type
       - [realm]/reminders/type
+    realms:
       - sections/{section_id}
     operations:
-      - eeee
+      - name: list
+        description: View a list of reminders across all realms for a specific type.
+        parameters:
+          with_attachments: retrieve attachments  for this piece of content.
+        path: reminders/{type}
+        method: GET
+        content: null
+        return: A collection of reminder objects
+      - name: list
+        description: View a list of reminders for a specific realm for a specific type.
+        parameters:
+          with_attachments: retrieve attachments  for this piece of content.
+        path: {realm}/{realm_id}/reminders/{type}
+        method: GET
+        content: null
+        return: A collection of reminder objects
   - name: Update Comment
     description: Update Comments are comments made on updates found in the Edge for a given realm
     urls:
       - [realm]/updates/{update_id}/comments
+    realms:
       - users/{user_id}
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - name: create
+        description: Create a comment
+        path: [realm]/updates/{update_id}/comments
+        method: POST
+        content: An object containing comment fields
+        return: An object containing comment fields
+      - name: list
+        description: View a list of comments (paged)
+        path: [realm]/updates/{update_id}/comments
+        method: GET
+        content: null
+        return: A collection of comment objects, each one containing comment fields
+      - name: view
+        description: View a specified comment
+        path: [realm]/updates/{update_id}/comments/{id}
+        method: GET
+        content: null
+        return: An object containing comment fields
+      - name: delete
+        description: Delete a comment (cannot be undone)
+        path: [realm]/updates/{update_id}/comments/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Media Album
     description: Media albums contain audio,video and images with captions and tagging.
     urls:
@@ -1195,48 +1848,157 @@ resources:
       - [realm]/albums/{album_id}
       - [realm]/albums/{album_id}/content
       - [realm]/albums/{album_id}/content/{album_content_id}
+    realms:
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - eeee
+      - TODO
   - name: Media Album Comments
     description: Media Album Comments are comments made on individual content within media albums
     urls:
       - album/{id}/content/{content_id}/comments
     operations:
-      - eeee
+      - TODO
   - name: Documents
     description: Documents are standalone File/Links
     urls:
       - [realm]/documents
       - [realm]/documents/{id}
     operations:
-      - eeee
+      - name: create
+        description: Create a Document
+        path: [realm]/documents
+        method: POST
+        content: An object containing document fields. 'url' or 'file-attachments' are required.  If both are given, the 'file-attachments' will be respected and 'url' ignored
+        return: An object containing document fields
+      - name: list
+        description: View a list of documents (paged). The following query string can (optionally) be appended:
+        parameters:
+          with_tags: retrieve tags of this piece of content.
+        path: [realm]/documents
+        method: GET
+        content: null
+        return: A collection of document objects, each one containing document fields
+      - name: view
+        description: View a specified document. The following query string can (optionally) be appended:
+        parameters:
+          with_tags: retrieve tags of this piece of content.
+        path: [realm]/documents/{id}
+        method: GET
+        content: null
+        return: An object containing document fields
+      - name: update
+        description: Modify a document.  Title and published/unpublished can be changed
+        path: [realm]/documents/{id}
+        method: PUT
+        content: An object containing document fields
+        return: null
+      - name: delete
+        description: Delete a document (cannot be undone)
+        path: [realm]/documents/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Grading Scales
     description: Grading scales allow you to use non-numeric notations within grades (eg A+, etc)
     urls:
       - sections/{section_id}/grading_scales
     operations:
-      - eeee
+      - name: view
+        description: View a grading scale
+        path: sections/{section_id}/grading_scales
+        method: GET
+        content: null
+        return: An object containing grading scale fields
   - name: Grading Rubrics
     description: Grading rubrics allow you to grade assignments and discussions using a standard of performance for your students.
     urls:
       - sections/{section_id}/grading_rubrics
       - sections/{section_id}/grading_rubrics/{grading_rubric_id}
     operations:
-      - eeee
+      - name: list
+        description: List all grading rubrics in a course section
+        path: sections/{section_id}/grading_rubrics
+        method: GET
+        content: null
+        return: An object containing grading rubric fields
+      - name: view
+        description: View a  grading rubric in a course section
+        path: sections/{section_id}/grading_rubrics/{grading_rubric_id}
+        method: GET
+        content: null
+        return: An object containing grading rubric fields
   - name: Grading Categories
     description: Grading categories are required for grading. Assignments without categories will be ungraded.
     urls:
       - sections/{section_id}/grading_categories
     operations:
-      - eeee
+      - name: Bulk Create
+        description: Create one or more grading categories in a section
+        path: sections/{section_id}/grading_categories
+        method: POST
+        content: An object containing grading category fields
+      - name: List
+        description: List grading categories
+        path: sections/{section_id}/grading_categories
+        method: GET
+        content: null
+        return: An object containing grading category fields
+      - name: View
+        description: View a specific grading category in a section
+        path: sections/{section_id}/grading_categories/{gc_id}
+        method: GET
+        content: null
+        return: An object containing grading category fields
+      - name: Update
+        description: Update a single grading category in a section
+        path: sections/{section_id}/grading_categories/{gc_id}
+        method: PUT
+        content: An object containing grading category fields
+      - name: Bulk Update
+        description: Update one or more grading categories in a section
+        path: sections/{section_id}/grading_categories
+        method: PUT
+        content: An object containing grading category fields
+      - name: Delete
+        description: Delete a grading category (cannot be undone).
+        path: sections/{section_id}/grading_categories/{gc_id}
+        method: DELETE
+        content: null
+        return: null
   - name: Grading Groups
     description: Grading groups are groups of students within a course that can be assigned specific content.
     urls:
       - sections/{section_id}/grading_groups
     operations:
-      - eeee
+      - name: Bulk Create
+        description: Create one or more grading groups in a section
+        path: sections/{section_id}/grading_groups
+        method: POST
+        content: An object containing grading group fields
+      - name: List
+        description: List grading groups
+        path: sections/{section_id}/grading_groups
+        method: GET
+        content: null
+        return: An object containing grading group fields
+      - name: View
+        description: View a specific grading group in a section
+        path: sections/{section_id}/grading_groups/{gg_id}
+        method: GET
+        content: null
+        return: An object containing grading group fields
+      - name: Update
+        description: Update a single grading group in a section
+        path: sections/{section_id}/grading_groups/{gg_id}
+        method: PUT
+        content: An object containing grading group fields
+      - name: Delete
+        description: Delete a grading group (cannot be undone).
+        path: sections/{section_id}/grading_groups/{gg_id}
+        method: DELETE
+        content: null
+        return: null
   - name: Assignment
     description: Assignments are containers for coursework and test/quizzes. Every assignment has an entry in the gradebook.
     urls:
@@ -1322,6 +2084,7 @@ resources:
     urls:
       - users/{user_id}/invites/[realm]
       - users/{user_id}/invites/[realm]/{invite_id}
+    realms:
       - sections
       - groups
     operations:
