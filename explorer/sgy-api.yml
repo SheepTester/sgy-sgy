@@ -1506,6 +1506,268 @@ fields:
         name: Timestamp
         description: The Unix timestamp the last time the grade was modified in any way, according to the server time.
         type: string
+  grading period:
+    note: Course sections and assignments are linked to grading periods (or marking periods). This endpoint lists all grading periods for the school. To view a list of grading periods for a specific section, see course sections. This endpoint is only available to school administrators.
+    fields:
+      - field: title
+        name: Title
+        description: The grading period title. This title must be unique across all grading periods in the school.
+        type: string
+        required: true
+      - field: start
+        name: Start Date
+        description: The grading period start date
+        type: date string(YYYY-MM-DD)
+        required: true
+      - field: end
+        name: End Date
+        description: The grading period end date
+        type: date string(YYYY-MM-DD)
+        required: true
+  role:
+    note: Every user is associated with a role; each role contains a list of permissions that allow users to do certain actions on the system.
+    fields:
+      - field: title
+        name: Role Name
+        description: The title of the role
+        type: string
+        required: true
+      - field: faculty
+        name: Faculty
+        description: Whether or not the role is a faculty role
+        type: integer {0,1}
+        required: true
+      - field: role_type
+        name: Role Type
+        description: The level type of the role. Right now the valid values are 1 for organization roles and 2 for building roles (a.k.a school override roles)
+        type: integer {1,2}
+        required: true
+  private messaging:
+    fields:
+      - field: subject
+        name: Message Subject
+        description: The subject of the message
+        type: string
+      - field: message
+        name: Message body
+        description: The body of the message
+        type: string
+        required: false
+      - field: recipient_ids
+        name: Recipient User IDs
+        description: A comma delimited list of the message recipients' user IDs
+        type: string
+        required: true
+      - field: last_updated
+        name: Last updated timestamp
+        description: The unix timestamp when the message was last updated
+        type: integer
+      - field: message_status
+        name: Message status
+        description: Whether or not the message has been read
+        type: "{read,unread}"
+      - field: id
+        name: Message thread ID
+        description: The ID of the existing message thread. Specify this value in POST when replying to an existing message.
+        type: integer
+        required: false
+      - field: author_id
+        name: Message author ID
+        description: The user ID of the user who sent the message
+        type: integer
+  user search result:
+    note: There are 3 different types of search results: users, groups, and courses. Depending on the type of search result, the result object will contain different properties.
+    fields:
+      - field: uid
+        name: User ID
+        description: The user id of the user
+        type: integer
+      - field: name
+        name: User display name
+        description: The display name of the user
+        type: string
+      - field: picture_url
+        name: User picture URL
+        description: The full URL of the user's profile picture
+        type: string
+      - field: school
+        name: School display name
+        description: The display name of the user's school
+        type: string
+      - field: school_id
+        name: School ID
+        description: The id of the user's school
+        type: integer
+  course search result:
+    fields:
+      - field: id
+        name: Course ID
+        description: The id of the course
+        type: integer
+      - field: course_title
+        name: Course title
+        description: The display name of the course
+        type: string
+      - field: dep_code
+        name: Department code
+        description: The course's department code
+        type: string
+      - field: course_code
+        name: Course Code
+        description: The course code
+        type: string
+      - field: course_description
+        name: Course description
+        description: The course description
+        type: string
+      - field: picture_url
+        name: The course's profile picture URL
+        description: The full URL of the course's profile picture
+        type: string
+      - field: school
+        name: School display name
+        description: The display name of the user's school
+        type: string
+      - field: school_id
+        name: School ID
+        description: The id of the user's school
+        type: integer
+  group search result:
+    fields:
+      - field: id
+        name: Group ID
+        description: The id of the group
+        type: integer
+      - field: group_title
+        name: Group title
+        description: The display name of the group
+        type: string
+      - field: picture_url
+        name: The group's profile picture URL
+        description: The full URL of the group's profile picture
+        type: string
+      - field: school
+        name: School display name
+        description: The display name of the group's school
+        type: string
+      - field: school_id
+        name: School ID
+        description: The id of the group's school
+        type: integer
+  resource collection:
+    note: Resource Collections are containers for Resource Templates.
+    fields:
+      - field: Id
+        name: id
+        description: The Schoology Id of the collection
+        type: integer
+      - field: Title
+        name: title
+        description: The title the collection
+        type: string
+      - field: Uid
+        name: User Id
+        description: The owner of the collection
+        type: integer
+      - field: Default Collection
+        name: is_default
+        description: |-
+          - 0: Regular collection
+          - 1: Default home collection
+          - 2: Default Downloads collection
+        type: "{0,1,2}"
+      - field: Shared Users
+        name: shared_users
+        description: The number of users this collection is shared with
+        type: integer
+      - field: Realm
+        name: realm
+        description: The realm the collection is in
+        type: string
+      - field: Realm ID
+        name: realm_id
+        description: The realm id of the collection
+        type: integer
+      - field: Realm Link
+        name: realm_link
+        description: A URL to the realm that owns the collection
+        type: string
+  resource template:
+    fields:
+      - field: Id
+        name: id
+        description: The Schoology Id of the template
+        type: integer
+      - field: Title
+        name: title
+        description: The title the template. Note that documents do not require a title.
+        type: string
+        required: true
+      - field: Uid
+        name: User Id
+        description: The creator of the template
+        type: integer
+      - field: Resource Notes
+        name: resource_notes
+        description: Resource notes that can be attached to the actual template
+        type: string
+      - field: Folder Id
+        name: folder_id
+        description: The resource folder this item is in.
+        type: integer
+      - field: Collection Id
+        name: collection_id
+        description: The Collection this item is contained in
+        type: integer
+      - field: Template type
+        name: type
+        description: The type of template this template item is. Note that we only support assignment, discussion, page, and document creation currently.
+        type: "{assessment, assignment, discussion, page, album, document, folder}"
+        required: true
+      - field: Template Fields
+        name: template_fields
+        description: Fields specific to this template type.
+        type: object
+  page template:
+    fields:
+      - field: Body
+        name: body
+        description: The content of the resource Page
+        type: string
+  discussion template:
+    fields:
+      - field: Body
+        name: body
+        description: The description of the discussion
+        type: string
+  assignment template:
+    fields:
+      - field: Body
+        name: body
+        description: The description of the assignment
+        type: string
+      - field: Max Points
+        name: max_points
+        description: The max number of points for this assignment
+        type: integer
+  assessment template:
+    fields:
+      - field: Body
+        name: body
+        description: The description of the assignment
+        type: string
+      - field: Max Points
+        name: max_points
+        description: The max number of points for this assignment
+        type: integer
+  document template:
+    note: Note to create a document you need to send in an attachment with it like you do for any other content type that supports attachments. See here.
+    fields:
+      - field: Document Type
+        name: document_type
+        description: The type of content attached to this item {file,link,video,embed}
+        type: string
+
 values:
   - meaning: Grade Level
     for:
@@ -1568,6 +1830,7 @@ values:
         meaning: Technology
       - value: 9
         meaning: Arts
+
 resources:
   - name: District
     description: Districts are groups of independent schools that do not share a common system (e.g. SIS)
@@ -3016,14 +3279,57 @@ resources:
       - gradingperiods
       - gradingperiods/{id}
     operations:
-      - eeee
+      - name: create
+        description: Create a grading period
+        path: gradingperiods
+        method: POST
+        content: An object containing grading period fields
+        return: An object containing grading period fields
+      - name: list
+        description: "View a list of grading periods. You can also use the following parameters to filter results:"
+        parameters:
+          title: specifies an exact title to search for.
+          startswith: set this value to 1 to match all grading periods whose titles begin with the title provided.
+        path: gradingperiods
+        method: GET
+        content: null
+        return: A collection of grading period objects, each one containing grading period fields
+      - name: view
+        description: "View a specific grading period:"
+        path: gradingperiods/{id}
+        method: GET
+        content: null
+        return: An object containing grading period fields
+      - name: update
+        description: Modify a grading period
+        path: gradingperiods/{id}
+        method: PUT
+        content: An object containing grading period fields
+        return: null
+      - name: delete
+        description: Delete a grading period (cannot be undone). All course sections belonging to this grading period must first be deleted or associated with a different period.
+        path: gradingperiods/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Role
     description: Every user is associated with a collection permissions called roles.
     urls:
       - roles
       - roles/{id}
     operations:
-      - eeee
+      - name: list
+        description: View a list of roles in your school. If your school has the school override role feature enabled and contains school level overrides (i.e. role_type = 1), they will be returned in their own array called 'building_role'.
+        path: roles
+        method: GET
+        content: null
+        return: A collection of roles.
+      - name: view
+        description: View a specified role
+        path: roles/{id}
+        method: GET
+        content: null
+        return: An role object.
   - name: Private Messaging
     description: Private messages are 'e-mail style' messages that can be sent and shared between multiple users.
     urls:
@@ -3033,25 +3339,204 @@ resources:
       - inbox
       - sent
     operations:
-      - eeee
+      - name: recipient list
+        description: |-
+          View a list of valid message recipients for the given user. This list may vary significantly from the list of users in the school, or in the user's network, as there are several permissions that affect whether or not users can message one another.
+          The operations listed below this line are available for the following message folders (replace [message folder] with the appropriate message folder name):
+        path: messages/recipients
+        method: GET
+        content: null
+        return: A collection of message objects, each one containing message fields.
+      - name: list
+        description: View a list of messages in the user's inbox or sent message folder.
+        parameters:
+          ?with_attachments=TRUE: available
+        path: messages/[message folder]
+        method: GET
+        content: null
+        return: A collection of message objects, each one containing message fields.
+      - name: view
+        description: |-
+          View an individual message. However, if the given message is part of a message thread, all of the related thread messages will be returned in list fashion.
+          Executing this endpoint will automatically mark the thread as read. If you wish to keep the thread set as unread, pass the following query
+        parameters:
+          ?with_attachments=TRUE: available
+          ?keep_unread=TRUE: ""
+        path: messages/[message folder]/{id}
+        method: GET
+        content: null
+        return: An object or collection of objects containing message fields.
+      - name: update
+        description: Modify the message status of an existing message in the inbox message folder. The message status value should be either 'read' or 'unread'.
+        path: messages/inbox/{id}
+        method: PUT
+        content: "An example PUT call request body looks like this:"
+        return: null
+      - name: create
+        description: Create a message
+        path: messages
+        method: POST
+        content: An object containing message fields
+        return: none
+      - name: delete
+        description: "Delete a message (cannot be undone). Note: deleting a message from the sent folder does NOT un-send the message."
+        path: messages/[message folder]/{id}
+        method: DELETE
+        content: null
+        return: null
+      - name: reply
+        description: |-
+          Reply to an individual thread.
+          Executing this endpoint will automatically mark the thread as read. If you wish to keep the thread set as unread, pass the following query
+        parameters:
+          ?keep_unread=TRUE
+        path: messages/[id]
+        method: POST
+        content: An object or collection of objects containing message fields
+        return: An object or collection of objects containing message fields.
   - name: Search
     description: Search users,schools,groups and courses.
     urls:
       - search
     operations:
-      - eeee
+      - name: Operations
+        description: |-
+          There is only 1 operation available for search, the GET list call. The 2 URL parameters used with this call are 'keywords' and 'type'. The 'keyword' parameter is used to specify the search phrase. The 'type' parameter is used to specify which, if any, search type result you want to limit your search to. For example, if you want to search for users named 'Avilo', the URI would look something like this:
+          /search?keywords=avilo&type=user
+          Note that all searches are case-insensitive.
+        path: search
+        method: GET
+        content: null
+        return: A collection of search objects, each one containing search fields.
   - name: Resource Collections
     description: Resource Collections are containers for user and group resource templates.
     urls:
       - collections
       - collections/[collection_id]
     operations:
-      - eeee
+      - name: list
+        description: List a users Collections
+        path: collections
+        method: GET
+        return: A object containing a list of collection fields
+      - name: create
+        description: Create a Collection
+        path: collections
+        method: POST
+        content: An object containing collection fields
+        return: A object containing a list of collection fields
+      - name: list
+        description: Get a single Collection
+        path: collections/[collection_id]
+        method: GET
+        return: An object containing collection fields
+      - name: edit
+        description: Edit a Collection
+        path: collections/[collection_id]
+        method: PUT
+        content: An object containing collection fieldsnull
+      - name: delete
+        description: Delete a Collection
+        path: collections/[collection_id]
+        method: DELETE
+      - name: list
+        description: "List a collection's resources. Note: Realm resource collections are only available for groups and schools"
+        path:
+          - collections/[collection_id]/resources
+          - "[realm]/[realm_id]/resources"
+        method: GET
+        return: An object containing the parent collection in the 'parent' attribute and a list of resource templates for the requested folder in the 'resources' attribute
+      - name: create
+        description: "Create a Template in the specified collection. Note: Realm resource collections are only available for groups and schools"
+        path:
+          - collections/[collection_id]/resources
+          - "[realm]/[realm_id]/resources"
+        method: POST
+        content: |-
+          An object containing template fields
+          An example document template post might be:
+        return: An object containing template fields
   - name: Resource Templates
     description: Resource templates are objects placed in Resource Collections.  Each template has an assigned type (e.g. Document, Assignment, Discussion).
     urls:
       - collections/[collection_id]/resources
       - "[realm]/[realm_id]/resources"
+    operations:
+      - name: list
+        description: List a users Collections
+        path: collections
+        method: GET
+        return: A object containing a list of collection fields
+      - name: create
+        description: Create a Collection
+        path: collections
+        method: POST
+        content: An object containing collection fields
+        return: A object containing a list of collection fields
+      - name: list
+        description: Get a single Collection
+        path: collections/[collection_id]
+        method: GET
+        return: An object containing collection fields
+      - name: edit
+        description: Edit a Collection
+        path: collections/[collection_id]
+        method: PUT
+        content: An object containing collection fieldsnull
+      - name: delete
+        description: Delete a Collection
+        path: collections/[collection_id]
+        method: DELETE
+      - name: list
+        description: "List a collection's resources. Note: Realm resource collections are only available for groups and schools"
+        path:
+          - collections/[collection_id]/resources
+          - "[realm]/[realm_id]/resources"
+        method: GET
+        return: An object containing the parent collection in the 'parent' attribute and a list of resource templates for the requested folder in the 'resources' attribute
+      - name: create
+        description: "Create a Template in the specified collection. Note: Realm resource collections are only available for groups and schools"
+        path:
+          - collections/[collection_id]/resources
+          - "[realm]/[realm_id]/resources"
+        method: POST
+        content: "An object containing template fields\n An example document template post might be:"
+        return: An object containing template fields
+  - name: Like
+    description: Like an object or see a list of users who like a given object
+    urls:
+      - like/%id
+      - like/%id/comment/%comment_id
+    operations:
+      - eeee
+  - name: Poll
+    description: Vote on a Poll
+    urls:
+      - poll/%id/vote
+    operations:
+      - eeee
+  - name: User Actions
+    description: List of actions for a user.
+    urls:
+      - /analytics/users/%uid?start_time={timestamp}&end_time={timestamp}
+    operations:
+      - eeee
+  - name: Section Enrollment Highlights
+    description: Information about user interactions with a section.
+    urls:
+      - /analytics/highlights/sections/%section_id
+    operations:
+      - eeee
+  - name: School by Buildings
+    description: Aggregated data about actions grouped by building and date.
+    urls:
+      - /analytics/schools/buildings?time_units={months/weeks/days}&start_time={timestamp}&end_time={timestamp}
+    operations:
+      - eeee
+  - name: School Building by Role
+    description: Aggregated data about actions for a particular building grouped by user role and date.
+    urls:
+      - /analytics/schools/buildings/%building_id?time_units={months/weeks/days}&start_time={timestamp}&end_time={timestamp}
     operations:
       - eeee
   - name: Multi-get
@@ -3066,29 +3551,3 @@ resources:
       - multioptions
     operations:
       - eeee
-templates:
-  resource:
-    - faa: waaa
-      la:
-        uh:
-          lol: wow
-    - name: aaaa
-      description: aaaa
-      urls:
-        - aaaa
-      operations:
-        - name: aaaa
-          description: aaaa
-          path: aaaa
-          method: GET
-          content: null
-          return: null
-  operation:
-    - ta: weee
-      wow: indents
-    - name: aaaa
-      description: aaaa
-      path: aaaa
-      method: GET
-      content: null
-      return: null

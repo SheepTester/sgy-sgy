@@ -18,7 +18,7 @@ return data
 
 // Get all of the Schoology documentations's resources
 // https://developers.schoology.com/api-documentation/rest-api-v1#
-[...document.querySelectorAll('.schoology-table tr')].map(tr => {
+[...document.querySelectorAll('table tr')].map(tr => {
 const resource = tr.children[0]
 if (resource.tagName === 'TH') return
 const desc = tr.children[1]
@@ -26,18 +26,17 @@ const urls = [...tr.querySelectorAll('.api-path-code')].map(t => '    - ' + t.te
 if (!tr.querySelector('a')) console.warn(resource.textContent.trim())
 return `- name: ${resource.textContent.trim()}
   description: ${desc.textContent.trim()}
-  urls:
-${urls}` + (tr.querySelector('a') ? `
+  urls: ${urls ? '\n' + urls : '[]'}` + (tr.querySelector('a') ? `
   operations:
     - eeee` : '')
 }).filter(a => a).join('\n')
 
 // Get all operations on a resource page
 function getRow (rows, name, pathMode = false) {
-  let row = rows.find(tr => tr.children[0].textContent.trim().toLowerCase() === name)
+  let row = rows.find(tr => tr.children[0]?.textContent.trim().toLowerCase() === name)
   if (row && row.textContent.trim()) {
   row = row.children[1]
-  if (row.textContent.trim().toLowerCase() === 'none') return 'null'
+  if (row.textContent.trim().toLowerCase() === 'none' || row.textContent.trim().toLowerCase() === '-') return 'null'
   else {
   if (pathMode && row.querySelectorAll('.api-path-code').length >= 2) {
     row = row.querySelector('.api-path-code')
@@ -49,7 +48,7 @@ function getRow (rows, name, pathMode = false) {
   }
   return null
 }
-function check (str) {
+function check (str = '') {
   if (str.includes('\n')) console.warn('newline detected', str)
   if (str.includes(':') || str[0] === '[' || str[0] === '{') return JSON.stringify(str)
   else return str
@@ -60,8 +59,8 @@ let elem = heading
 let description = ''
 let parameters = ''
 let path, method, content = '', returnz = ''
-while ((elem = elem.nextElementSibling)) {
-if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
+while ((elem = elem.nextSibling)) {
+if (elem.tagName === 'TABLE' || elem.classList?.contains('api-path')) {
   if (elem.classList.contains('api-path')) elem = elem.children[0]
   if (elem.tagName === 'P') {
     const paththing = elem.parentNode.children[1].textContent.trim()
@@ -73,7 +72,10 @@ if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
   const rows = [...elem.querySelectorAll('tr')]
 
   const pathE = getRow(rows, 'path', true)
-  if (!pathE) return console.error('??? no path?', elem)
+  if (!pathE) {
+    console.error('??? no path? CONTINUE.', elem)
+    continue
+  }
   ;[method, path] = pathE.split(/ ?https:\/\/api\.schoology\.com\/v1\//)
 
   content = getRow(rows, 'content')
@@ -82,8 +84,9 @@ if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
   returnz = getRow(rows, 'return')
   if (returnz) returnz = '\n  return: ' + check(returnz)
   break
-} else if (elem.tagName === 'P') {
-  if (!elem.textContent) continue
+} else if (elem.tagName === 'P' || elem.nodeType === Node.TEXT_NODE) {
+  const text = (elem.textContent || elem.nodeValue).trim()
+  if (!text) continue
   if (description) {
     console.error('description already exists?', elem)
     if (elem.firstChild?.tagName === 'B') {
@@ -92,7 +95,7 @@ if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
     }
     description += '\n'
   }
-  description += elem.textContent.trim()
+  description += text
 } else if (elem.tagName === 'UL') {
   if (parameters) console.error('extra parameters (probably ok)', elem, parameters)
   parameters = (parameters ? parameters + '\n' : '\n  parameters:\n') + [...elem.children].map(li => '    ' + li.textContent.trim()).join('\n')
