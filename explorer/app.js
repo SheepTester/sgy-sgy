@@ -4,11 +4,10 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-app.set('views', __dirname + '/views');
-app.set('view engine', 'jsx');
-app.engine('jsx', require('express-react-views').createEngine())
+// app.set('views', __dirname + '/views');
+// app.set('view engine', 'jsx');
+// app.engine('jsx', require('express-react-views').createEngine())
 
-const fetch = require('node-fetch')
 const YAML = require('yaml')
 const fs = require('fs/promises')
 const path = require('path')

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Schoology REST API documentation</title>
+    <meta name="description" content="A viewer for sgy-api.yml" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <style>
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 60px;
+      }
+      p,
+      td {
+        white-space: pre-wrap;
+      }
+      .break-word {
+        word-break: break-word;
+      }
+      :target {
+        animation: flash 2s;
+      }
+      .list-style-lower-latin {
+        list-style: lower-latin;
+      }
+      @keyframes flash {
+        from {
+          background-color: #ffeb3b;
+        }
+        to {
+          background-color: transparent;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-light bg-light sticky-top">
+      <div class="container">
+        <span class="navbar-brand">API docs</span>
+        <a href="#" class="btn btn-light">Back to top</a>
+      </div>
+    </nav>
+    <main role="main" class="container">
+      <h1 class="mt-5">Schoology REST API documentation</h1>
+      <p class="lead">This is pretty much a copypaste from Schoology's <a href="https://developers.schoology.com/api-documentation/rest-api-v1/">official REST API documentation</a>.</p>
+      <ol>
+        <li>
+          <details>
+            <summary><a href="#fields">Object fields</a></summary>
+            <ol>
+              <% for (const fieldName of Object.keys(fields)) { %>
+                <li><a href="#fields-<%= dashify(fieldName) %>"><%= fieldName %></a></li>
+              <% } %>
+            </ol>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary><a href="#values">Value representations</a></summary>
+            <ol>
+              <% for (const { meaning } of values) { %>
+                <li><a href="#values-<%= dashify(meaning) %>"><%= meaning %></a></li>
+              <% } %>
+            </ol>
+          </details>
+        </li>
+        <li>
+          <details>
+            <summary><a href="#resources">Operations</a></summary>
+            <ol>
+              <% for (const { name, operations } of resources) { %>
+                <% const link = 'resource-' + dashify(name) %>
+                <li>
+                  <details>
+                    <summary><a href="#<%= link %>"><%= name %></a></summary>
+                    <% if (operations && operations.length ){ %>
+                      <ol class="list-style-lower-latin">
+                        <% for (const { name } of operations) { %>
+                          <li><a href="#<%= link + '-' + dashify(name) %>"><%= name %></a></li>
+                        <% } %>
+                      </ol>
+                    <% } %>
+                  </details>
+                </li>
+              <% } %>
+            </ol>
+          </details>
+        </li>
+      </ol>
+      <h2 id="fields">Object fields <a href="#fields">#</a></h2>
+      <p>Fields/properties for objects used by the Schoology API.</p>
+      <% for (const [fieldName, { note, fields: fieldList }] of Object.entries(fields)) { %>
+        <% const link = 'fields-' + dashify(fieldName) %>
+        <h3 id="<%= link %>"><%= fieldName %> <a href="#<%= link %>">#</a></h3>
+        <% if (note) { %>
+          <p><%= note %></p>
+        <% } %>
+        <table class="table table-responsive">
+          <tr>
+            <th scope="col">Field</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Required</th>
+          </tr>
+          <% for (const { field, name, description, type, required } of fieldList) { %>
+            <tr>
+              <td><code><%= field %></code></td>
+              <td><%= name %></td>
+              <td class="break-word"><%= description %></td>
+              <td><%= type %></td>
+              <td class="break-word"><%= required %></td>
+            </tr>
+          <% } %>
+        </table>
+      <% } %>
+      <h2 id="values">Value representations <a href="#values">#</a></h2>
+      <p>Some Schoology API fields use arbitrary numbers that mean different things.</p>
+      <% for (const { meaning, for: usedFor, values: pairs } of values) { %>
+        <% const link = 'fields-' + dashify(meaning) %>
+        <h3 id="<%= link %>"><%= meaning %> <a href="#<%= link %>">#</a></h3>
+        <p>These values are used for</p>
+        <ul>
+          <% for (const used of usedFor) { %>
+            <li><code><%= used %></code></li>
+          <% } %>
+        </ul>
+        <table class="table table-responsive">
+          <tr>
+            <th scope="col">Value</th>
+            <th scope="col"><%= meaning %></th>
+          </tr>
+          <% for (const { value, meaning: representation } of pairs) { %>
+            <tr>
+              <td><code><%= value %></code></td>
+              <td><%= representation %></td>
+            </tr>
+          <% } %>
+        </table>
+      <% } %>
+      <h2 id="resources">Operations <a href="#resources">#</a></h2>
+      <p>Schoology API operations, roughly categorized under a specific resource like a User or Course.</p>
+      <% for (const { name, description, urls, realms, operations } of resources) { %>
+        <% const link = 'resource-' + dashify(name) %>
+        <h3 id="<%= link %>"><%= name %> <a href="#<%= link %>">#</a></h3>
+        <p><%= description %></p>
+        <h4>Paths</h4>
+        <ul>
+          <% for (const url of urls) { %>
+            <li><code><%= url %></code></li>
+          <% } %>
+        </ul>
+        <% if (realms) { %>
+          <p>Where <code>[realm]</code> can be:</p>
+          <ul>
+            <% for (const realm of realms) { %>
+              <li><code><%= realm %></code></li>
+            <% } %>
+          </ul>
+        <% } %>
+        <% if (operations) { %>
+          <% for (const { name, description, parameters, path, method, content, return: returnType } of operations) { %>
+            <% const opLink = link + '-' + dashify(name) %>
+            <h4 id="<%= opLink %>"><%= name %> <a href="#<%= opLink %>">#</a></h4>
+            <p><%= description %></p>
+            <% if (parameters) { %>
+              <ul>
+                <% for (const [parameter, description] of Object.entries(parameters)) { %>
+                  <li><code><%= parameter %></code>: <%= description %></li>
+                <% } %>
+              </ul>
+            <% } %>
+            <% const paths = Array.isArray(path) ? path : [path] %>
+            <% for (const path of paths) { %>
+              <p><code><%= method %></code> <code>https://api.schoology.com/v1/<%= path %></code></p>
+            <% } %>
+            <div class="row">
+              <% if (content || content === null) { %>
+                <div class="col-sm">
+                  <h5>Content</h5>
+                  <% if (content === null) { %>
+                    <p><span class="badge badge-secondary">none</span></p>
+                  <% } else { %>
+                    <p><%= content %></p>
+                  <% } %>
+                </div>
+              <% } %>
+              <% if (returnType || returnType === null) { %>
+                <div class="col-sm">
+                  <h5>Return</h5>
+                  <% if (returnType === null) { %>
+                    <p><span class="badge badge-secondary">none</span></p>
+                  <% } else { %>
+                    <p><%= returnType %></p>
+                  <% } %>
+                </div>
+              <% } %>
+            </div>
+          <% } %>
+        <% } else { %>
+          <div class="alert alert-danger" role="alert">Operations are hidden from the public.</div>
+        <% } %>
+      <% } %>
+    </div>
+  </body>
+</html>

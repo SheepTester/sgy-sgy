@@ -3438,7 +3438,7 @@ resources:
         description: Edit a Collection
         path: collections/[collection_id]
         method: PUT
-        content: An object containing collection fieldsnull
+        content: An object containing collection fields
       - name: delete
         description: Delete a Collection
         path: collections/[collection_id]
