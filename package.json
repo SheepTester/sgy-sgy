@@ -15,9 +15,13 @@
   "dependencies": {
     "colors": "^1.4.0",
     "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
     "node-fetch": "^2.6.1",
     "oauth": "^0.9.15",
     "oauth-1.0a": "^2.2.6",
-    "request": "^2.88.2"
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "request": "^2.88.2",
+    "yaml": "^1.10.0"
   }
 }

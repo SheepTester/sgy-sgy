@@ -130,12 +130,12 @@ fields:
         required: true
       - field: name_title
         name: Name Title
-        description: The user's title, must be one of the following: Mr., Mrs., Ms., Miss, Dr., Professor
+        description: "The user's title, must be one of the following: Mr., Mrs., Ms., Miss, Dr., Professor"
         type: string
       - field: name_title_show
         name: Show Name Title
         description: Whether to show the user's title when displaying his/her full name
-        type: {0,1}
+        type: "{0,1}"
       - field: name_first
         name: First Name
         description: The user's first name
@@ -179,7 +179,7 @@ fields:
       - field: gender
         name: Gender
         description: The user's gender
-        type: {M,F}
+        type: "{M,F}"
       - field: grad_year*
         name: Graduation Year
         description: The user's graduation year (YYYY)
@@ -200,7 +200,7 @@ fields:
       - field: email_login_info
         name: Email Login Information
         description: Whether to send login information by email (if an email address is set); used only during user creation
-        type: {0,1}
+        type: "{0,1}"
       - field: profile_url
         name: Profile picture URL
         description: The full URL of the user's profile picture
@@ -231,10 +231,10 @@ fields:
       - field: synced
         name: Sync Status
         description: Whether or not this user was synced with an external system (eg, Student Information System). The default value is 0. For synced users, the Unique ID field is not editable through Schoology.
-        type: {0,1}
+        type: "{0,1}"
       - field: profile_picture_fid
         name: Profile Picture File ID
-        description: ID pointing to temporary save of the profile picture upload (write-only). For more details on uploading files: File Uploading
+        description: "ID pointing to temporary save of the profile picture upload (write-only). For more details on uploading files: File Uploading"
         type: integer
       - field: additional_buildings
         name: Additional Buildings
@@ -306,89 +306,92 @@ fields:
         description: Whether or not to delete this association if it exists
         type: (0 ,1)
   group:
-    - field: id
-      name: Schoology Group ID
-      description: The internal Schoology ID of the group
-      type: string
-      required: false
-    - field: building_id
-      name: Schoology School Building ID
-      description: The internal Schoology ID of the school building to which the group belongs
-      type: string
-      required: false
-    - field: school_id
-      name: Schoology School ID
-      description: The internal Schoology ID of the school to which the group belongs
-      type: string
-      required: false
-    - field: title
-      name: Group Title
-      description: The title of the group
-      type: string
-      required: true
-    - field: description
-      name: Description
-      description: The group description
-      type: string
-    - field: picture_url
-      name: Picture
-      description: The URL of the group's profile picture
-      type: string
-    - field: website
-      name: Website
-      description: The group website
-      type: string
-    - field: access_code
-      name: Access Code
-      description: The access code that users can use to join the group (only admins can see this value).
-      type: string
-    - field: privacy_level
-      name: Privacy level
-      description: The privacy of the group.
-     everyone: All schoology users can see the group.
-     school: Only members of the school can see the group
-     building: Only members of the building can see the group
-     group: Only group members can see the group
-    custom: Custom privacy settings (read only; not supported in POST/PUT)
-      type: {everyone, school, building, group}
-      required: Default: school
-    - field: category
-      name: Category
-      description: The category of the group (see below on how to retrieve a list of available categories)
-      type: string
-      required: false
-    - field: options/invite_type
-      name: Invite Type
-      description: How members can join the group.
-     0: Invite only
-     1: Request to join
-     2: Anyone can join
-      type: {0-2}
-      required: Default: 0
-    - field: options/member_post
-      name: Post a group update
-      description: Whether or not a group member can post a group update
-      type: {0,1}
-      required: Default: 1
-    - field: options/member_post_comment
-      name: Post a comment on a group update
-      description: Whether or not a group member can post comments to group udpates
-      type: {0,1}
-      required: Default: 1
-    - field: options/create_discussion
-      name: Create a discussion thread
-      description: Whether or not a group member can create a discussion thread
-      type: {0,1}
-      required: Default: 0
-    - field: options/create_files
-      name: Create files
-      description: Whether or not members can create resources for the group
-      type: {0,1}
-      required: Default: 0
-    - field: group_code
-      name: Group Code (external ID)
-      description: If the group was imported from another system into Schoology, the unique ID of that group in the other system.
-      type: string
+    fields:
+      - field: id
+        name: Schoology Group ID
+        description: The internal Schoology ID of the group
+        type: string
+        required: false
+      - field: building_id
+        name: Schoology School Building ID
+        description: The internal Schoology ID of the school building to which the group belongs
+        type: string
+        required: false
+      - field: school_id
+        name: Schoology School ID
+        description: The internal Schoology ID of the school to which the group belongs
+        type: string
+        required: false
+      - field: title
+        name: Group Title
+        description: The title of the group
+        type: string
+        required: true
+      - field: description
+        name: Description
+        description: The group description
+        type: string
+      - field: picture_url
+        name: Picture
+        description: The URL of the group's profile picture
+        type: string
+      - field: website
+        name: Website
+        description: The group website
+        type: string
+      - field: access_code
+        name: Access Code
+        description: The access code that users can use to join the group (only admins can see this value).
+        type: string
+      - field: privacy_level
+        name: Privacy level
+        description: |-
+          The privacy of the group.
+          everyone: All schoology users can see the group.
+          school: Only members of the school can see the group
+          building: Only members of the building can see the group
+          group: Only group members can see the group
+          custom: Custom privacy settings (read only; not supported in POST/PUT)
+        type: "{everyone, school, building, group}"
+        required: "Default: school"
+      - field: category
+        name: Category
+        description: The category of the group (see below on how to retrieve a list of available categories)
+        type: string
+        required: false
+      - field: options/invite_type
+        name: Invite Type
+        description: |-
+          How members can join the group.
+          0: Invite only
+          1: Request to join
+          2: Anyone can join
+        type: "{0-2}"
+        required: "Default: 0"
+      - field: options/member_post
+        name: Post a group update
+        description: Whether or not a group member can post a group update
+        type: "{0,1}"
+        required: "Default: 1"
+      - field: options/member_post_comment
+        name: Post a comment on a group update
+        description: Whether or not a group member can post comments to group udpates
+        type: "{0,1}"
+        required: "Default: 1"
+      - field: options/create_discussion
+        name: Create a discussion thread
+        description: Whether or not a group member can create a discussion thread
+        type: "{0,1}"
+        required: "Default: 0"
+      - field: options/create_files
+        name: Create files
+        description: Whether or not members can create resources for the group
+        type: "{0,1}"
+        required: "Default: 0"
+      - field: group_code
+        name: Group Code (external ID)
+        description: If the group was imported from another system into Schoology, the unique ID of that group in the other system.
+        type: string
   course:
     note: Courses are parent objects to course sections; they are mere placeholders and cannot be used to upload documents, assignments, etc.
     fields:
@@ -427,7 +430,7 @@ fields:
       - field: synced
         name: Sync Status
         description: Whether or not this course was synced with an external system (eg, Student Information System). The default value is 0. For synced courses, the Course Code field is not editable through Schoology.
-        type: {0,1}
+        type: "{0,1}"
       - field: grade_level_range_start
         name: Grade Level Range Start
         description: The lowest (or only) grade level in the course.
@@ -504,37 +507,37 @@ fields:
       - field: options/course_format
         name: Course Format
         description: The course format - 1 for basic (default), 2 for topic-based
-        type: {1,2}
-        required: default: 1
+        type: "{1,2}"
+        required: "default: 1"
       - field: options/weighted_grading_categories
         name: Weighted Grading Categories
         description: Whether grading categories for this course are weighted; otherwise, categories will be weighted evenly.
-        type: {0,1}
-        required: default: 0
+        type: "{0,1}"
+        required: "default: 0"
       - field: options/upload_document
         name: Upload Documents
         description: Whether students can upload documents to the course profile.
-        type: {0,1}
-        required: default: 0
+        type: "{0,1}"
+        required: "default: 0"
       - field: options/create_discussion
         name: Create Discussion Topic
         description: Whether students can create discussion topics.
-        type: {0,1}
-        required: default: 0
+        type: "{0,1}"
+        required: "default: 0"
       - field: options/member_post
         name: Post to Course Feed
         description: Whether students can post to the course feed.
-        type: {0,1}
-        required: default: 0
+        type: "{0,1}"
+        required: "default: 0"
       - field: options/member_post_comment
         name: Post Course Feed Comments
         description: Whether students can post comments to course feed entries.
-        type: {0,1}
-        required: default: 0
+        type: "{0,1}"
+        required: "default: 0"
       - field: synced
         name: Sync Status
         description: Whether or not this course section was synced with an external system (eg, Student Information System). The default value is 0. For synced course sections, the Section School Code field is not editable through Schoology.
-        type: {0,1}
+        type: "{0,1}"
   grading category:
     note: List the available grading categories for the given course section
     fields:
@@ -545,7 +548,7 @@ fields:
       - field: calculation_type
         name: Calculation type
         description: Whether the grades for the given category are calculated as a percentage (1) or as points (2). Only course section administrators can see this value.
-        type: {1,2}
+        type: "{1,2}"
       - field: default_max_points
         name: Default max points
         description: The default number of max points given to assignments in this category. Only course section administrators can see this value.
@@ -574,7 +577,7 @@ fields:
       - field: admin
         name: Admin
         description: Whether this user is an administrator (e.g. teacher) as opposed to a regular member (e.g. student)
-        type: {0,1}
+        type: "{0,1}"
         required: yes
       - field: status
         name: Status
@@ -585,56 +588,57 @@ fields:
           3: Invite pending
           4: Request Pending
           5: Archived (Course specific status members can be placed in before being fully unenrolled)
-        type: {1-5}
+        type: "{1-5}"
         required: yes
   event:
-    - field: id
-      name: Schoology Event ID
-      description: The internal Schoology ID of the event
-      type: string
-      required: yes
-    - field: title
-      name: Title
-      description: The event title
-      type: string
-      required: yes
-    - field: description
-      name: Description
-      description: The event description
-      type: string
-    - field: start
-      name: Start
-      description: The start of the event
-      type: datetime(YYYY-MM-DD HH:MM:SS)
-      required: yes
-    - field: has_end
-      name: Has End
-      description: Whether or not this event has an end date/time
-      type: {0,1}
-      required: default: 0
-    - field: end
-      name: End
-      description: The end of the event, if has_end is 1.
-      type: datetime(YYYY-MM-DD HH:MM:SS)
-    - field: all_day
-      name: All Day
-      description: Whether or not this event is an all-day event (i.e. no time, just start/end day)
-      type: {0,1}
-      required: default: 0
-    - field: rsvp
-      name: RSVP Settings
-      description: Determines who is allowed to RSVP into this event. 0 implies that no one can RSVP. 1 implies that only people who have been invited to the events can RSVP. 2 implies that anyone can RSVP.
-      type: {0,1,2}
-      required: default: 0
-    - field: comments_enabled
-      name: Enable Comments
-      description: Determine whether or not users can have a discussion within the event.
-      type: {0,1}
-      required: default: 1
-    - field: type
-      name: Event Type
-      description: Determine the type of the event. 'event' implies that the event is a normal event. 'assignment' implies that the event is a due event for an assignment. 'discussion' implies that the event is a due event for a discussion.
-      type: {'event', 'assignment', 'discussion'}
+    fields:
+      - field: id
+        name: Schoology Event ID
+        description: The internal Schoology ID of the event
+        type: string
+        required: yes
+      - field: title
+        name: Title
+        description: The event title
+        type: string
+        required: yes
+      - field: description
+        name: Description
+        description: The event description
+        type: string
+      - field: start
+        name: Start
+        description: The start of the event
+        type: datetime(YYYY-MM-DD HH:MM:SS)
+        required: yes
+      - field: has_end
+        name: Has End
+        description: Whether or not this event has an end date/time
+        type: "{0,1}"
+        required: "default: 0"
+      - field: end
+        name: End
+        description: The end of the event, if has_end is 1.
+        type: datetime(YYYY-MM-DD HH:MM:SS)
+      - field: all_day
+        name: All Day
+        description: Whether or not this event is an all-day event (i.e. no time, just start/end day)
+        type: "{0,1}"
+        required: "default: 0"
+      - field: rsvp
+        name: RSVP Settings
+        description: Determines who is allowed to RSVP into this event. 0 implies that no one can RSVP. 1 implies that only people who have been invited to the events can RSVP. 2 implies that anyone can RSVP.
+        type: "{0,1,2}"
+        required: "default: 0"
+      - field: comments_enabled
+        name: Enable Comments
+        description: Determine whether or not users can have a discussion within the event.
+        type: "{0,1}"
+        required: "default: 1"
+      - field: type
+        name: Event Type
+        description: Determine the type of the event. 'event' implies that the event is a normal event. 'assignment' implies that the event is a due event for an assignment. 'discussion' implies that the event is a due event for a discussion.
+        type: "{'event', 'assignment', 'discussion'}"
   blog post:
     note: Blog posts can be made for any realm.
     fields:
@@ -697,42 +701,42 @@ fields:
         name: Grading Scale
         description: The ID of the grading scale for this assignment. For no grading scale, use "0". Course grading scales can be found on the course Grade Setup page.
         type: integer
-        required: default: 0
+        required: "default: 0"
       - field: grading_period
         name: Grading Period
         description: The grading period ID to which this assignment belongs. For "Other", use "0".
         type: integer
-        required: default: 0
+        required: "default: 0"
       - field: grading_category
         name: Grading Category
         description: The grading category ID to which this assignment belongs
         type: integer
-        required: default: 0
+        required: "default: 0"
       - field: max_points
         name: Maximum Points
         description: The maximum number of points for this assignment (excl. extra credit)
         type: float
-        required: default: 100
+        required: "default: 100"
       - field: factor
         name: Factor
         description: The relative weight of this assignment
         type: float
-        required: default: 1.0
+        required: "default: 1.0"
       - field: is_final
         name: Is a Final
         description: Mark this assignment as a midterm or final
-        type: {0,1}
-        required: default: 0
+        type: "{0,1}"
+        required: "default: 0"
       - field: published
         name: Published
         description: Whether or not the discussion is published. Only applies to section discussions NOT associated with topics.
-        type: {0,1}
-        required: default: 1
+        type: "{0,1}"
+        required: "default: 1"
       - field: require_initial_post
         name: Requires Initial Post
         description: Flag indicating whether a member needs to participate before seeing other member posts
-        type: {0,1}
-        required: default: 0
+        type: "{0,1}"
+        required: "default: 0"
   discussion reply:
     note: Discussion replies are comments to any discussion thread.
     fields:
@@ -757,7 +761,7 @@ fields:
       - field: status
         name: Comment status
         description: Whether or not the comment was deleted. Only available for course admins with 'manage discussion' permission.
-        type: {1,0}
+        type: "{1,0}"
   updates:
     fields:
       - field: body
@@ -780,7 +784,7 @@ fields:
       - field: attachment/type
         name: Attachment type
         description: For updates with attachments, the type of the attachment
-        type: {'file','link','video'}
+        type: "{'file','link','video'}"
       - field: attachment/title
         name: Attachment title
         description: The display value of the link to the attachment
@@ -848,15 +852,15 @@ fields:
       - field: Comments setting
         name: setting_comments
         description: Whether or not comments are enabled for media album content
-        type: {0,1}
+        type: "{0,1}"
       - field: Member post setting
         name: setting_member_post
         description: Whether or not non-admins can add content to the media album
-        type: {0,1}
+        type: "{0,1}"
       - field: Published
         name: published
         description: Whether or not the media album is published
-        type: {0,1}
+        type: "{0,1}"
       - field: Photo count
         name: photo_count
         description: The number of images in the album
@@ -1082,6 +1086,8 @@ values:
 resources:
   - name: District
     description: Districts are groups of independent schools that do not share a common system (e.g. SIS)
+    urls: []
+    operations: []
   - name: School
     description: Schools are the most basic groupings of courses, groups, and users. All courses/users are required to have unique usernames, course IDs, and School User IDs throughout the entire school.
     urls:
@@ -1140,11 +1146,11 @@ resources:
         content: An object containing user fields
         return: An object containing user fields
       - name: bulk create
-        description: Create multiple users at a time. The following parameters can be added to this endpoint:
+        description: "Create multiple users at a time. The following parameters can be added to this endpoint:"
         parameters:
           update_existing: Set this to 1 (e.g. ?update_existing=1) in order update existing users, matched by the 'school_uid' field. Without this parameter, user creation will fail if a pre-existing user has the same 'school_uid' as a passed user object.
           ignore_email_conflicts: If set to 1 and one of the users to be created has the same email address as another account in a different school, the user will be created without an email address. If a username was not specified, one will be generated based on the school_uid parameter. If this flag is not specified or if the conflict is with another account in the same school, an error will be thrown.
-          email_conflict_resolution:
+          email_conflict_resolution: |-
             - set to 1 (e.g. ?email_conflict_resolution=1) to create an account in your school with a username if an email account already exists within Schoology. (Eg - If john@schoology.com already exists, the new account will be created with only a username 'john'). If a new username is present, the new account will be created using that username.
             - set to 2 (e.g. ?email_conflict_resolution=2) to merge duplicate Schoology accounts with [email]@[verified_domain] into the new account that you're creating. However, if an email acount differs from your claimed domain, an account will be created using only a username.
         path: users
@@ -1152,7 +1158,7 @@ resources:
         content: Multiple users can be created at a time (up to 50) by wrapping your response in 'users', with user fields wrapped in 'user'.
         return: The API endpoint (location) of each user created, or an error message if there was a problem creating the user.
       - name: list
-        description: View a list of users in your school (paged). If your school has multiple buildings and you are not an administrator for all buildings, only users in your same building will be returned. Administrators for all buildings (i.e. administrators that are not associated with a specific building) will have users in all buildings returned and can optionally filter results with the following query strings:
+        description: "View a list of users in your school (paged). If your school has multiple buildings and you are not an administrator for all buildings, only users in your same building will be returned. Administrators for all buildings (i.e. administrators that are not associated with a specific building) will have users in all buildings returned and can optionally filter results with the following query strings:"
         parameters:
           building_id: Only return users for the given building.
           role_ids: (Comma-separated list of IDs) Only return users who belong to the given role IDs
@@ -1201,21 +1207,21 @@ resources:
         content: An object containing user fields
         return: A link to the user profiles of the reactivated users
       - name: delete
-        description: Delete a user (cannot be undone). The following parameters can be added to this endpoint:
+        description: "Delete a user (cannot be undone). The following parameters can be added to this endpoint:"
         parameters:
           option_comment: Reason for marking inactive
-          option_keep_enrollments: Set this to 1 (e.g. ?option_keep_enrollments=1) to keep a history of the user's grade and attendance data. Note: if this parameter is not set, this endpoint will delete all history of the user's grades and attendance records. This process cannot be reversed
+          option_keep_enrollments: "Set this to 1 (e.g. ?option_keep_enrollments=1) to keep a history of the user's grade and attendance data. Note: if this parameter is not set, this endpoint will delete all history of the user's grades and attendance records. This process cannot be reversed"
           email_notification: Whether or not the deleted user should be notified via email that their account has been made inactive. If set to 1, email will be sent. If set to 0, email will not be sent. If this parameter is not used, emails will be sent by default.
         path: users/{id}
         method: DELETE
         content: null
         return: null
       - name: bulk delete
-        description: Delete up to 50 users. The following parameters can be added to this endpoint:
+        description: "Delete up to 50 users. The following parameters can be added to this endpoint:"
         parameters:
           uids: Comma-separated list of Schoology IDs
           option_comment: Reason for marking inactive
-          option_keep_enrollments: Set this to 1 (e.g. ?option_keep_enrollments=1) to keep a history of the user's grade and attendance data. Note: if this parameter is not set, this endpoint will delete all history of the user's grades and attendance records. This process cannot be reversed
+          option_keep_enrollments: "Set this to 1 (e.g. ?option_keep_enrollments=1) to keep a history of the user's grade and attendance data. Note: if this parameter is not set, this endpoint will delete all history of the user's grades and attendance records. This process cannot be reversed"
           email_notification: Whether or not the deleted user should be notified via email that their account has been made inactive. If set to 1, email will be sent. If set to 0, email will not be sent. If this parameter is not used, emails will be sent by default.
         path: users
         method: DELETE
@@ -1237,19 +1243,22 @@ resources:
         method: POST
         content: An object containing association fields
         return: The students school_uid and uid and the parents school_uid and uid OR any relevant error messages.
-      - description: A shortcut for GET users/{user_id} where {user_id} is the user ID of the current API user.
+      - name: Other Calls
+        description: A shortcut for GET users/{user_id} where {user_id} is the user ID of the current API user.
         path: users/me
         method: GET
-      - description: If the user has an active Schoology web session, it returns the user id for the passed OAuth tokens and the Schoology web session timestamp. Use this information to validate the given access tokens for the logged in user and to check if the user has an active Schoology web session
+      - name: Other Calls
+        description: If the user has an active Schoology web session, it returns the user id for the passed OAuth tokens and the Schoology web session timestamp. Use this information to validate the given access tokens for the logged in user and to check if the user has an active Schoology web session
         path: app-user-info
         method: GET
         content: null
-        return: { web_session_timestamp, api_uid }
-      - description: Returns a list of all currently available interfaces languages. Use the language code property from returned language objects when creating/updating user languages
+        return: "{ web_session_timestamp, api_uid }"
+      - name: Other Calls
+        description: Returns a list of all currently available interfaces languages. Use the language code property from returned language objects when creating/updating user languages
         path: users/languages
         method: GET
         content: null
-        return: { language: { language_code, language_name }[] }
+        return: "{ language: { language_code, language_name }[] }"
   - name: Group
     description: Groups are non-academic versions of course sections; they can hold members, events, documents, etc.
     urls:
@@ -1263,7 +1272,7 @@ resources:
         content: An object containing group fields
         return: An object containing group fields
       - name: list
-        description: View a list of groups in your school (paged). You can use the following parameters to filter the resultset:
+        description: "View a list of groups in your school (paged). You can use the following parameters to filter the resultset:"
         parameters:
           building_id: return only groups for the given building_id.
         path: groups
@@ -1307,7 +1316,7 @@ resources:
         content: An object containing course fields
         return: An object containing course fields
       - name: bulk create
-        description: Create multiple courses (up to 50) in a single API call. The following querystring parameters can be added to this endpoint:
+        description: "Create multiple courses (up to 50) in a single API call. The following querystring parameters can be added to this endpoint:"
         parameters:
           update_existing: Set this to 1 (e.g. ?update_existing=1) in order to update existing courses, matched by the 'course_code' field. Without this parameter, creating a course will fail if another course already exists with the same 'course_code' already.
         path: courses/
@@ -1315,7 +1324,7 @@ resources:
         content: Multiple courses can be created at a time (up to 50) by wrapping your response in 'course', with course fields wrapped in 'course'. Sections can be also be created at the same time - combined with the update_existing parameter, this can be used for importing or synchronization.
         return: The API endpoint (location) of each course created, or an error message if there was a problem creating the course.
       - name: list
-        description: View a list of courses in your school (paged), with the option to filter results with the following query strings:
+        description: "View a list of courses in your school (paged), with the option to filter results with the following query strings:"
         parameters:
           building_id: Only return courses for the given building.
         path: courses
@@ -1365,7 +1374,7 @@ resources:
         content: An object containing course section fields
         return: An object containing course section fields
       - name: bulk create
-        description: Create multiple sections at a time. The following parameters can be added to this endpoint:
+        description: "Create multiple sections at a time. The following parameters can be added to this endpoint:"
         parameters:
           update_existing: Set this to 1 (e.g. ?update_existing=1) in order update existing sections, matched by the 'section_code' and 'grading_periods' fields. Without this parameter, creation will fail if a pre-existing section has the same 'section_code' for the given 'grading_periods' as a passed section object.
         path: courses/{course_id}/sections
@@ -1392,7 +1401,7 @@ resources:
         path: sections/copy
         method: POST
       - name: list
-        description: View a list of sections for a course (paged). The following parameters can be added to this path:
+        description: "View a list of sections for a course (paged). The following parameters can be added to this path:"
         parameters:
           include_past: Set this to 1 to include sections from expired/past grading periods.
         path: courses/{course_id}/sections
@@ -1444,9 +1453,9 @@ resources:
   - name: Enrollment
     description: Enrollments are associations between users and groups or course sections.
     urls:
-      - [realm]/enrollments
-      - [realm]/enrollments/{id}
-      - [realm]/accesscode
+      - "[realm]/enrollments"
+      - "[realm]/enrollments/{id}"
+      - "[realm]/accesscode"
     realms:
       - enrollments
       - sections/{section_id}
@@ -1454,19 +1463,19 @@ resources:
     operations:
       - name: create
         description: Create an enrollment
-        path: [realm]/enrollments
+        path: "[realm]/enrollments"
         method: POST
         content: An object containing enrollment fields
         return: An object containing enrollment fields
       - name: create
         description: Create an enrollment with an access code
-        path: [realm]/accesscode
+        path: "[realm]/accesscode"
         method: POST
-        content: An object containing an access code.  The object will look like {"access_code" : "VCVKF-4MJG9"}.
+        content: "An object containing an access code.  The object will look like {\"access_code\" : \"VCVKF-4MJG9\"}."
         return: An object containing enrollment fields
       - name: bulk create - single realm
         description: Create multiple enrollments at a time in one realm
-        path: [realm]/enrollments
+        path: "[realm]/enrollments"
         method: POST
         content: Multiple enrollments can be created at a time (up to 50) by wrapping your response in 'enrollments', with enrollment fields wrapped in 'enrollment'.
         return: The API endpoint (location) of each enrollment created, or an error message if there was a problem creating the enrollment.
@@ -1497,33 +1506,33 @@ resources:
         parameters:
           uid: filter enrollments for a given user
           enrollment_status: filter enrollments for a given enrollment status (1-5)
-          type: filter enrollments by an enrollment type. Possible values: ['admin', 'member']
-          picture_size: specify size of profile picture returned with this user.  Possible values: ['big', 'reg', 'sm', 'tiny']
-        path: [realm]/enrollments
+          type: "filter enrollments by an enrollment type. Possible values: ['admin', 'member']"
+          picture_size: "specify size of profile picture returned with this user.  Possible values: ['big', 'reg', 'sm', 'tiny']"
+        path: "[realm]/enrollments"
         method: GET
         content: null
         return: A collection of enrollment objects, each one containing enrollment fields
       - name: view
         description: View a specified enrollment
-        path: [realm]/enrollments/{id}
+        path: "[realm]/enrollments/{id}"
         method: GET
         content: null
         return: An object containing enrollment fields
       - name: update
         description: Modify an enrollment
-        path: [realm]/enrollments/{id}
+        path: "[realm]/enrollments/{id}"
         method: PUT
         content: An object containing enrollment fields
         return: null
       - name: bulk update
         description: Modify multiple enrollments
-        path: [realm]/enrollments
+        path: "[realm]/enrollments"
         method: PUT
         content: Up to 50 enrollments can be updated at a time by wrapping your response in 'enrollments', with enrollment fields wrapped in 'enrollment'.
         return: The schoology ID of each enrollment updated, or an error message if there was a problem creating the enrollment.
       - name: delete
         description: Delete an enrollment (cannot be undone)
-        path: [realm]/enrollments/{id}
+        path: "[realm]/enrollments/{id}"
         method: DELETE
         content: null
         return: null
@@ -1536,8 +1545,8 @@ resources:
   - name: Event
     description: Events can be created for users, courses, groups, schools, or districts; all events automatically feed into the "upcoming" and "calender" portions of the site.
     urls:
-      - [realm]/events
-      - [realm]/events/{id}
+      - "[realm]/events"
+      - "[realm]/events/{id}"
     realms:
       - districts/{district_id}
       - schools/{school_id}
@@ -1547,43 +1556,43 @@ resources:
     operations:
       - name: create
         description: Create an event
-        path: [realm]/events
+        path: "[realm]/events"
         method: POST
         content: An object containing event fields
         return: An object containing event fields
       - name: list
-        description: View a list of events (paged). You can limit the result set by date by specify both 'start_date' and 'end_date' as key value pairs in the query string (i.e. ?start_date=[date]&end_date=[date]). The expected date format is YYYY-MM-DD or YYYYMMDD. The following query strings can (optionally) be appended to the path to filter results:
+        description: "View a list of events (paged). You can limit the result set by date by specify both 'start_date' and 'end_date' as key value pairs in the query string (i.e. ?start_date=[date]&end_date=[date]). The expected date format is YYYY-MM-DD or YYYYMMDD. The following query strings can (optionally) be appended to the path to filter results:"
         parameters:
           with_attachments: retrieve attachments of this piece of content.
-        path: [realm]/events
+        path: "[realm]/events"
         method: GET
         content: null
         return: A collection of event objects, each one containing event fields
       - name: view
-        description: View a specified event. The following query strings can (optionally) be appended to the path to filter results:
+        description: "View a specified event. The following query strings can (optionally) be appended to the path to filter results:"
         parameters:
           with_attachments: retrieve attachments of this piece of content.
-        path: [realm]/events/{id}
+        path: "[realm]/events/{id}"
         method: GET
         content: null
         return: An object containing event fields
       - name: update
         description: Modify an event
-        path: [realm]/events/{id}
+        path: "[realm]/events/{id}"
         method: PUT
         content: An object containing event fields
         return: null
       - name: delete
         description: Delete an event (cannot be undone)
-        path: [realm]/events/{id}
+        path: "[realm]/events/{id}"
         method: DELETE
         content: null
         return: null
   - name: Blog Post
     description: Blog posts can be created for all realms.
     urls:
-      - [realm]/posts
-      - [realm]/posts/{id}
+      - "[realm]/posts"
+      - "[realm]/posts/{id}"
     realms:
       - districts/{district_id}
       - schools/{school_id}
@@ -1593,39 +1602,39 @@ resources:
     operations:
       - name: create
         description: Create a blog post
-        path: [realm]/posts
+        path: "[realm]/posts"
         method: POST
         content: An object containing blog post fields
         return: An object containing blog post fields
       - name: list
         description: View a list of posts (paged)
-        path: [realm]/posts
+        path: "[realm]/posts"
         method: GET
         content: null
         return: A collection of blog post objects, each one containing blog post fields
       - name: view
         description: View a specified blog post
-        path: [realm]/posts/{id}
+        path: "[realm]/posts/{id}"
         method: GET
         content: null
         return: An object containing blog post fields
       - name: update
         description: Modify a blog post
-        path: [realm]/posts/{id}
+        path: "[realm]/posts/{id}"
         method: PUT
         content: An object containing blog post fields
         return: null
       - name: delete
         description: Delete a blog post (cannot be undone)
-        path: [realm]/posts/{id}
+        path: "[realm]/posts/{id}"
         method: DELETE
         content: null
         return: null
   - name: Blog Post Comment
     description: Comments can be made for any blog post.
     urls:
-      - [realm]/posts/{id}/comments
-      - [realm]/posts/{id}/comments/{id}
+      - "[realm]/posts/{id}/comments"
+      - "[realm]/posts/{id}/comments/{id}"
     realms:
       - districts/{district_id}
       - schools/{school_id}
@@ -1635,33 +1644,33 @@ resources:
     operations:
       - name: create
         description: Create a blog post comment
-        path: [realm]/posts/{post_id}/comments
+        path: "[realm]/posts/{post_id}/comments"
         method: POST
         content: An object containing blog post fields
         return: An object containing blog post fields
       - name: list
         description: View a list of post comments (paged)
-        path: [realm]/posts/{post_id}/comments
+        path: "[realm]/posts/{post_id}/comments"
         method: GET
         content: null
         return: A collection of blog post objects, each one containing blog post fields
       - name: view
         description: View a specified blog post comment
-        path: [realm]/posts/{post_id}/comments/{comment_id}
+        path: "[realm]/posts/{post_id}/comments/{comment_id}"
         method: GET
         content: null
         return: An object containing blog post fields
       - name: delete
         description: Delete a blog post comment (cannot be undone)
-        path: [realm/posts/{post_id}/comments/{comment_id}
+        path: "[realm]/posts/{post_id}/comments/{comment_id}"
         method: DELETE
         content: null
         return: null
   - name: Discussion Thread
     description: Discussion threads can be created for all realms except users.
     urls:
-      - [realm]/discussions
-      - [realm]/discussions/{id}
+      - "[realm]/discussions"
+      - "[realm]/discussions/{id}"
     realms:
       - districts/{district_id}
       - schools/{school_id}
@@ -1670,45 +1679,45 @@ resources:
     operations:
       - name: create
         description: Create a discussion thread
-        path: [realm]/discussions
+        path: "[realm]/discussions"
         method: POST
         content: An object containing discussion thread fields
         return: An object containing discussion thread fields
       - name: list
-        description: View a list discussion threads (paged). The following query strings can (optionally) be appended:
+        description: "View a list discussion threads (paged). The following query strings can (optionally) be appended:"
         parameters:
           with_attachments: retrieve attachments of this piece of content.
           with_tags: retrieve tags of this piece of content.
-        path: [realm]/discussions
+        path: "[realm]/discussions"
         method: GET
         content: null
         return: A collection of discussion objects, each one containing discussion thread fields
       - name: view
-        description: View a specified discussion thread. The following query strings can (optionally) be appended:
+        description: "View a specified discussion thread. The following query strings can (optionally) be appended:"
         parameters:
           with_attachments: retrieve attachments of this piece of content.
           with_tags: retrieve tags of this piece of content.
-        path: [realm]/discussions/{id}
+        path: "[realm]/discussions/{id}"
         method: GET
         content: null
         return: An object containing discussion thread fields
       - name: update
         description: Modify a discussion thread
-        path: [realm]/discussions/{id}
+        path: "[realm]/discussions/{id}"
         method: PUT
         content: An object containing discussion thread fields
         return: null
       - name: delete
         description: Delete a discussion thread (cannot be undone)
-        path: [realm]/discussions/{id}
+        path: "[realm]/discussions/{id}"
         method: DELETE
         content: null
         return: null
   - name: Discussion Reply
     description: Replies are comments made to discussion threads
     urls:
-      - [realm]/discussions/{id}/comments
-      - [realm]/discussions/{id}/comments/{id}
+      - "[realm]/discussions/{id}/comments"
+      - "[realm]/discussions/{id}/comments/{id}"
     realms:
       - districts/{district_id}
       - schools/{school_id}
@@ -1717,33 +1726,33 @@ resources:
     operations:
       - name: create
         description: Create a comment
-        path: [realm]/discussions/{post_id}/comments
+        path: "[realm]/discussions/{post_id}/comments"
         method: POST
         content: An object containing discussion reply fields
         return: An object containing discussion reply fields
       - name: list
         description: View a list of comments (paged)
-        path: [realm]/discussions/{post_id}/comments
+        path: "[realm]/discussions/{post_id}/comments"
         method: GET
         content: null
         return: A collection of comment objects, each one containing discussion reply fields
       - name: view
         description: View a specified comment
-        path: [realm]/discussions/{post_id}/comments/{id}
+        path: "[realm]/discussions/{post_id}/comments/{id}"
         method: GET
         content: null
         return: An object containing discussion reply fields
       - name: delete
         description: Delete a comment (cannot be undone)
-        path: [realm]/discussions/{post_id}/comments/{id}
+        path: "[realm]/discussions/{post_id}/comments/{id}"
         method: DELETE
         content: null
         return: null
   - name: Updates
     description: Updates are short twitter-style posts found in the Edge for a given realm
     urls:
-      - [realm]/updates
-      - [realm]/updates/{id}
+      - "[realm]/updates"
+      - "[realm]/updates/{id}"
     realms:
       - recent/
       - users/{user_id}
@@ -1752,35 +1761,35 @@ resources:
     operations:
       - name: create
         description: Create an update for the signed-in user.
-        path: [realm]/updates
+        path: "[realm]/updates"
         method: POST
         content: An object containing update fields
         return: An object containing update fields
       - name: list
-        description: View a list of updates (paged). The URL '/recent' is an alias for '/users/%uid/updates' where %uid is the user id of the signed in user. The following query strings can (optionally) be appended to the path to filter results:
+        description: "View a list of updates (paged). The URL '/recent' is an alias for '/users/%uid/updates' where %uid is the user id of the signed in user. The following query strings can (optionally) be appended to the path to filter results:"
         parameters:
           with_attachments: retrieve attachments and polls for this piece of content.
-        path: [realm]/updates
+        path: "[realm]/updates"
         method: GET
         content: null
         return: A collection of update objects, each one containing update fields
       - name: view
-        description: View a specified update. The following query strings can (optionally) be appended to the path to filter results:
+        description: "View a specified update. The following query strings can (optionally) be appended to the path to filter results:"
         parameters:
           with_attachments: retrieve attachments of this piece of content.
-        path: [realm]/updates/{id}
+        path: "[realm]/updates/{id}"
         method: GET
         content: null
         return: An object containing update fields
       - name: delete
         description: Delete an update (cannot be undone)
-        path: [realm]/updates/{id}
+        path: "[realm]/updates/{id}"
         method: DELETE
         content: null
         return: null
       - name: update
         description: Edit the body of an update.  Note that if somebody other than the user who created the update (e.g. an Admin) edits the update, the User ID will not be updated.
-        path: [realm]/updates/{id}
+        path: "[realm]/updates/{id}"
         method: PUT
         content: An object containing update fields
         return: An object containing update fields
@@ -1788,7 +1797,7 @@ resources:
     description: Reminders are user notifications reminding them to complete an action for a given realm
     urls:
       - /reminders/type
-      - [realm]/reminders/type
+      - "[realm]/reminders/type"
     realms:
       - sections/{section_id}
     operations:
@@ -1804,14 +1813,14 @@ resources:
         description: View a list of reminders for a specific realm for a specific type.
         parameters:
           with_attachments: retrieve attachments  for this piece of content.
-        path: {realm}/{realm_id}/reminders/{type}
+        path: "{realm}/{realm_id}/reminders/{type}"
         method: GET
         content: null
         return: A collection of reminder objects
   - name: Update Comment
     description: Update Comments are comments made on updates found in the Edge for a given realm
     urls:
-      - [realm]/updates/{update_id}/comments
+      - "[realm]/updates/{update_id}/comments"
     realms:
       - users/{user_id}
       - sections/{section_id}
@@ -1819,35 +1828,35 @@ resources:
     operations:
       - name: create
         description: Create a comment
-        path: [realm]/updates/{update_id}/comments
+        path: "[realm]/updates/{update_id}/comments"
         method: POST
         content: An object containing comment fields
         return: An object containing comment fields
       - name: list
         description: View a list of comments (paged)
-        path: [realm]/updates/{update_id}/comments
+        path: "[realm]/updates/{update_id}/comments"
         method: GET
         content: null
         return: A collection of comment objects, each one containing comment fields
       - name: view
         description: View a specified comment
-        path: [realm]/updates/{update_id}/comments/{id}
+        path: "[realm]/updates/{update_id}/comments/{id}"
         method: GET
         content: null
         return: An object containing comment fields
       - name: delete
         description: Delete a comment (cannot be undone)
-        path: [realm]/updates/{update_id}/comments/{id}
+        path: "[realm]/updates/{update_id}/comments/{id}"
         method: DELETE
         content: null
         return: null
   - name: Media Album
     description: Media albums contain audio,video and images with captions and tagging.
     urls:
-      - [realm]/albums
-      - [realm]/albums/{album_id}
-      - [realm]/albums/{album_id}/content
-      - [realm]/albums/{album_id}/content/{album_content_id}
+      - "[realm]/albums"
+      - "[realm]/albums/{album_id}"
+      - "[realm]/albums/{album_id}/content"
+      - "[realm]/albums/{album_id}/content/{album_content_id}"
     realms:
       - sections/{section_id}
       - groups/{group_id}
@@ -1862,40 +1871,40 @@ resources:
   - name: Documents
     description: Documents are standalone File/Links
     urls:
-      - [realm]/documents
-      - [realm]/documents/{id}
+      - "[realm]/documents"
+      - "[realm]/documents/{id}"
     operations:
       - name: create
         description: Create a Document
-        path: [realm]/documents
+        path: "[realm]/documents"
         method: POST
         content: An object containing document fields. 'url' or 'file-attachments' are required.  If both are given, the 'file-attachments' will be respected and 'url' ignored
         return: An object containing document fields
       - name: list
-        description: View a list of documents (paged). The following query string can (optionally) be appended:
+        description: "View a list of documents (paged). The following query string can (optionally) be appended:"
         parameters:
           with_tags: retrieve tags of this piece of content.
-        path: [realm]/documents
+        path: "[realm]/documents"
         method: GET
         content: null
         return: A collection of document objects, each one containing document fields
       - name: view
-        description: View a specified document. The following query string can (optionally) be appended:
+        description: "View a specified document. The following query string can (optionally) be appended:"
         parameters:
           with_tags: retrieve tags of this piece of content.
-        path: [realm]/documents/{id}
+        path: "[realm]/documents/{id}"
         method: GET
         content: null
         return: An object containing document fields
       - name: update
         description: Modify a document.  Title and published/unpublished can be changed
-        path: [realm]/documents/{id}
+        path: "[realm]/documents/{id}"
         method: PUT
         content: An object containing document fields
         return: null
       - name: delete
         description: Delete a document (cannot be undone)
-        path: [realm]/documents/{id}
+        path: "[realm]/documents/{id}"
         method: DELETE
         content: null
         return: null
@@ -2143,7 +2152,7 @@ resources:
     description: Resource templates are objects placed in Resource Collections.  Each template has an assigned type (e.g. Document, Assignment, Discussion).
     urls:
       - collections/[collection_id]/resources
-      - [realm]/[realm_id]/resources
+      - "[realm]/[realm_id]/resources"
     operations:
       - eeee
   - name: Multi-get
