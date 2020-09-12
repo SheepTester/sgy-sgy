@@ -3439,54 +3439,12 @@ resources:
         description: Delete a Collection
         path: collections/[collection_id]
         method: DELETE
-      - name: list
-        description: "List a collection's resources. Note: Realm resource collections are only available for groups and schools"
-        path:
-          - collections/[collection_id]/resources
-          - "[realm]/[realm_id]/resources"
-        method: GET
-        return: An object containing the parent collection in the 'parent' attribute and a list of resource templates for the requested folder in the 'resources' attribute
-      - name: create
-        description: "Create a Template in the specified collection. Note: Realm resource collections are only available for groups and schools"
-        path:
-          - collections/[collection_id]/resources
-          - "[realm]/[realm_id]/resources"
-        method: POST
-        content: |-
-          An object containing template fields
-          An example document template post might be:
-        return: An object containing template fields
   - name: Resource Templates
     description: Resource templates are objects placed in Resource Collections.  Each template has an assigned type (e.g. Document, Assignment, Discussion).
     urls:
       - collections/[collection_id]/resources
       - "[realm]/[realm_id]/resources"
     operations:
-      - name: list
-        description: List a users Collections
-        path: collections
-        method: GET
-        return: A object containing a list of collection fields
-      - name: create
-        description: Create a Collection
-        path: collections
-        method: POST
-        content: An object containing collection fields
-        return: A object containing a list of collection fields
-      - name: list
-        description: Get a single Collection
-        path: collections/[collection_id]
-        method: GET
-        return: An object containing collection fields
-      - name: edit
-        description: Edit a Collection
-        path: collections/[collection_id]
-        method: PUT
-        content: An object containing collection fieldsnull
-      - name: delete
-        description: Delete a Collection
-        path: collections/[collection_id]
-        method: DELETE
       - name: list
         description: "List a collection's resources. Note: Realm resource collections are only available for groups and schools"
         path:
@@ -3503,51 +3461,87 @@ resources:
         content: "An object containing template fields\n An example document template post might be:"
         return: An object containing template fields
   - name: Like
-    description: Like an object or see a list of users who like a given object
+    description: |-
+      Like an object or see a list of users who like a given object
+      Likes are a unique creature in the sense that they are not a standalone object. They mean very little outside of the context of the object that those 'likes' belong. Because of this, Schoology architected the like operations in the following manner:
+      - Viewing Likes: A user can view the likes associated with any given object as well as their like state by looking at the values in "user_like_actions" : true, "likes" : 4 inside the body of any piece of content that can be "liked"
+      - Creating a like: A user can like either an update post or a comment using one of the POST endpoints below.
     urls:
       - like/%id
       - like/%id/comment/%comment_id
     operations:
-      - eeee
+      - name: create
+        description: Like an update
+        path: like/{id}
+        method: POST
+        content: An object indicating what sort of like action the user would like to take
+        return: "An object returning the two like fields included in all objects. {\"likes\" : 2, \"user_like_action\" : true}"
+      - name: create
+        description: Like a comment object
+        path: like/{id}/comment/{comment_id}
+        method: POST
+        content: An object indicating what sort of like action the user would like to take
+        return: "An object returning the two like fields included in all objects. {\"likes\" : 2, \"user_like_action\" : true}"
+      - name: list
+        description: View a list of users who liked an update
+        path: like/{id}
+        method: GET
+        return: A list of user objects
+      - name: list
+        description: View a list of users who liked a comment object
+        path: like/{id}/comment/{comment_id}
+        method: GET
+        return: A list of user objects
   - name: Poll
-    description: Vote on a Poll
+    description: |-
+      Vote on a Poll
+      Polls are currently only available on updates. The only operation we currently support is voting on a poll. A valid vote request has two fields in the POST body { "id" : 961, "select" : true }. The "id" is the poll option the signed in user would like to vote in, and "select" indicates whether to vote or un-vote on that choice. If the logged in user is trying to re-do an action already taken on a poll option, the Schoology app will return a 400 (i.e. a user is trying to vote on a poll option he or she has already voted on). To see possible polls in the api to vote on, make an updates call with the query parameter with_attachments=TRUE.
     urls:
       - poll/%id/vote
     operations:
-      - eeee
+      - name: Vote
+        description: Vote on a poll option
+        path: poll/{id}/vote
+        method: POST
+        content: An object indicating what sort of action the user would like to take on the poll
+        return: An entire update object with attachments included
   - name: User Actions
     description: List of actions for a user.
     urls:
       - /analytics/users/%uid?start_time={timestamp}&end_time={timestamp}
-    operations:
-      - eeee
   - name: Section Enrollment Highlights
     description: Information about user interactions with a section.
     urls:
       - /analytics/highlights/sections/%section_id
-    operations:
-      - eeee
   - name: School by Buildings
     description: Aggregated data about actions grouped by building and date.
     urls:
       - /analytics/schools/buildings?time_units={months/weeks/days}&start_time={timestamp}&end_time={timestamp}
-    operations:
-      - eeee
   - name: School Building by Role
     description: Aggregated data about actions for a particular building grouped by user role and date.
     urls:
       - /analytics/schools/buildings/%building_id?time_units={months/weeks/days}&start_time={timestamp}&end_time={timestamp}
-    operations:
-      - eeee
   - name: Multi-get
-    description: Make multiple GET calls with a single POST call and receive each response body in full in a single compiled response.
+    description: |-
+      Make multiple GET calls with a single POST call and receive each response body in full in a single compiled response.
+      Multi-GET is enabled for the following API calls:
+      /groups/[group_id]
+      /courses/[course_id]
+      /courses/[course_id]/sections
+      /sections/[section_id]
+      /sections/[section_id]/assignments
+      /sections/[section_id]/enrollments
+      /users/[user_id]
+      /users/[user_id]/sections
+      /users/[user_id]/groups
+      /[realm]/[realm_id]/updates
+      /[realm]/[realm_id]/discussions
+      /[realm]/[realm_id]/events
     urls:
       - multiget
-    operations:
-      - eeee
   - name: Multi-options
-    description: Make multiple OPTIONS calls with a single POST call and receive reach response body in full in a single compiled response.
+    description: |-
+      Make multiple OPTIONS calls with a single POST call and receive reach response body in full in a single compiled response.
+      Multi-options is enabled for any valid API endpoint. Here is an example Multi-options Call request body in text/xml format:
     urls:
       - multioptions
-    operations:
-      - eeee
