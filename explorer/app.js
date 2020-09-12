@@ -27,7 +27,8 @@ async function main () {
     await fs.readFile(path.resolve(__dirname, './sgy-api.yml'), 'utf8'),
     { prettyErrors: true }
   )
-  console.log(apiData, checkSgyApiShape(apiData))
+  const problems = checkSgyApiShape(apiData)
+  console.log(problems || apiData)
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })

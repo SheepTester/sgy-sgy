@@ -1576,7 +1576,7 @@ fields:
         description: The user ID of the user who sent the message
         type: integer
   user search result:
-    note: There are 3 different types of search results: users, groups, and courses. Depending on the type of search result, the result object will contain different properties.
+    note: "There are 3 different types of search results: users, groups, and courses. Depending on the type of search result, the result object will contain different properties."
     fields:
       - field: uid
         name: User ID
@@ -3004,9 +3004,8 @@ resources:
       - name: create
         description: The {action} parameter dictates whether a revision with files attached is created, or a revision is created from text or HTML.  Files the action is {file}, creation from text/html the action is {create}.
         parameters:
-          file action will create a submission from file IDs passed in as file attachments
-          create action will look for a <body> attribute in the request body. When using create, keep in mind a user can only have one active revision.  If they try to POST a file revision, they will be denied.  Also, if the <draft> flag is not set, the API will default to submitting this revision.  If you would like it saved as a draft the <draft> flag must be set to TRUE.
-          File Uploads Accepted
+          file: action will create a submission from file IDs passed in as file attachments
+          create: action will look for a <body> attribute in the request body. When using create, keep in mind a user can only have one active revision.  If they try to POST a file revision, they will be denied.  Also, if the <draft> flag is not set, the API will default to submitting this revision.  If you would like it saved as a draft the <draft> flag must be set to TRUE.
         path: sections/{section_id}/submissions/{grade_item_id}/{action}
         method: POST
         content: none
@@ -3257,22 +3256,27 @@ resources:
     description: Course Sections that a user is enrolled in.
     urls:
       - users/{id}/sections
+    operations: []
   - name: Groups
     description: Groups that a user is enrolled in.
     urls:
       - users/{id}/groups
+    operations: []
   - name: Requests
     description: Request objects are items that require an action (e.g. a user is requesting to be your friend).
     urls:
       - users/{id}/requests/{realm}
+    operations: []
   - name: Invites
     description: Invite objects are items that require an action (e.g. a user has invited you to a group)
     urls:
       - users/{id}/invites/{realm}
+    operations: []
   - name: External Id
     description: Look up a user by their Schoology Unique ID. This is generally used to link Schoology with an external system. For instance, if you have stored the Schoology Unique ID to be consistent with a Student Information System (SIS), and you would like to find a user by their SIS ID, you can use this API call to do so.
     urls:
       - users/ext/{id}
+    operations: []
   - name: Grading Period
     description: Grading periods (marking periods) determine when a course section is active.
     urls:
@@ -3389,7 +3393,7 @@ resources:
           Reply to an individual thread.
           Executing this endpoint will automatically mark the thread as read. If you wish to keep the thread set as unread, pass the following query
         parameters:
-          ?keep_unread=TRUE
+          ?keep_unread=TRUE: ""
         path: messages/[id]
         method: POST
         content: An object or collection of objects containing message fields
@@ -3509,39 +3513,51 @@ resources:
     description: List of actions for a user.
     urls:
       - /analytics/users/%uid?start_time={timestamp}&end_time={timestamp}
+    operations: null
   - name: Section Enrollment Highlights
     description: Information about user interactions with a section.
     urls:
       - /analytics/highlights/sections/%section_id
+    operations: null
   - name: School by Buildings
     description: Aggregated data about actions grouped by building and date.
     urls:
       - /analytics/schools/buildings?time_units={months/weeks/days}&start_time={timestamp}&end_time={timestamp}
+    operations: null
   - name: School Building by Role
     description: Aggregated data about actions for a particular building grouped by user role and date.
     urls:
       - /analytics/schools/buildings/%building_id?time_units={months/weeks/days}&start_time={timestamp}&end_time={timestamp}
+    operations: null
   - name: Multi-get
-    description: |-
-      Make multiple GET calls with a single POST call and receive each response body in full in a single compiled response.
-      Multi-GET is enabled for the following API calls:
-      /groups/[group_id]
-      /courses/[course_id]
-      /courses/[course_id]/sections
-      /sections/[section_id]
-      /sections/[section_id]/assignments
-      /sections/[section_id]/enrollments
-      /users/[user_id]
-      /users/[user_id]/sections
-      /users/[user_id]/groups
-      /[realm]/[realm_id]/updates
-      /[realm]/[realm_id]/discussions
-      /[realm]/[realm_id]/events
+    description: Make multiple GET calls with a single POST call and receive each response body in full in a single compiled response.
     urls:
       - multiget
+    operations:
+      - name: multi-get
+        description: |-
+          Multi-GET is enabled for the following API calls:
+          /groups/[group_id]
+          /courses/[course_id]
+          /courses/[course_id]/sections
+          /sections/[section_id]
+          /sections/[section_id]/assignments
+          /sections/[section_id]/enrollments
+          /users/[user_id]
+          /users/[user_id]/sections
+          /users/[user_id]/groups
+          /[realm]/[realm_id]/updates
+          /[realm]/[realm_id]/discussions
+          /[realm]/[realm_id]/events
+          Note: There is a request limit of 50 URLs when making a multi-GET call. Only the first 50 URLs are returned for call with more than 50 URLs.
+        path: multiget
+        method: GET
   - name: Multi-options
-    description: |-
-      Make multiple OPTIONS calls with a single POST call and receive reach response body in full in a single compiled response.
-      Multi-options is enabled for any valid API endpoint. Here is an example Multi-options Call request body in text/xml format:
+    description: Make multiple OPTIONS calls with a single POST call and receive reach response body in full in a single compiled response.
     urls:
       - multioptions
+    operations:
+      - name: multi-options
+        description: "Multi-options is enabled for any valid API endpoint. Here is an example Multi-options Call request body in text/xml format:"
+        path: multioptions
+        method: POST
