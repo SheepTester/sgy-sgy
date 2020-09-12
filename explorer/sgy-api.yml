@@ -1021,6 +1021,491 @@ fields:
         description: An array of enrollment ids part of the grading group
         type: array of integers
         required: false
+  assignment:
+    note: Assignments are containers for coursework and test/quizzes. Every assignment has an entry in the gradebook.
+    fields:
+      - field: title
+        name: Title
+        description: The assignment title
+        type: string
+        required: true
+      - field: description
+        name: Description
+        description: The assignment description
+        type: integer
+      - field: due
+        name: Due Date
+        description: When the assignment is due
+        type: "datetime(YYYY-MM-DD HH:MM:SS)"
+      - field: grading_scale
+        name: Grading Scale
+        description: The ID of the grading scale for this assignment. For no grading scale, use "0". Course grading scales can be found on the course Grade Setup page.
+        type: integer
+        required: "default: 0"
+      - field: grading_period
+        name: Grading Period
+        description: The grading period ID to which this assignment belongs. For "Other", use "0".
+        type: integer
+        required: "default: 0"
+      - field: grading_category
+        name: Grading Category
+        description: The grading category ID to which this assignment belongs
+        type: integer
+        required: "default: 0"
+      - field: max_points
+        name: Maximum Points
+        description: The maximum number of points for this assignment (excl. extra credit)
+        type: float
+        required: "default: 100"
+      - field: factor
+        name: Factor
+        description: The relative weight of this assignment
+        type: float
+        required: "default: 1.0"
+      - field: is_final
+        name: Is a Final
+        description: Mark this assignment as a midterm or final
+        type: "{0,1}"
+        required: "default: 0"
+      - field: show_comments
+        name: Show Comments
+        description: Show grade comments to students
+        type: "{0,1}"
+        required: "default: 0"
+      - field: grade_stats
+        name: Assignment Grade Statistics Visibility
+        description: |-
+          - 0: Hide statistics
+          - 1: Show statistics without bell curve
+        type: "{0,1}"
+        required: "default: 0"
+      - field: allow_dropbox
+        name: Enable Dropbox
+        description: Allow students to post assignment submissions to a dropbox.
+        type: "{0,1}"
+        required: "default: 1"
+      - field: allow_discussion
+        name: Enable Assignment Discussion
+        description: Enable the assignment profile discussion board
+        type: "{0,1}"
+        required: "default: 1"
+      - field: published
+        name: Assignment is published
+        description: Whether or not the assignment is published
+        type: "{0,1}"
+        required: "default: 1"
+      - field: type
+        name: The type of Grade Item
+        description: Distinguishes different types of grade items (grade items being a broad term for anything that can have a grade).
+        type: "{assignment, discussion, assessment}"
+      - field: grade_item_id
+        name: ID of the node that can be graded
+        description: If this is of type assignment, this ID will point to the assignment object id attribute.  If this is of type discussion, this ID will point to the discussion object ID.
+        type: integer
+      - field: dropbox_submissions
+        name: Number of dropbox submissions
+        description: This field is only available to teachers and will only be returned if the ?with_dropbox_stats=TRUE argument is given.  This is a snapshot of the number of submissions in this assignments dropbox
+        type: integer
+      - field: dropbox_last_submission
+        name: Time of the last dropbox submission
+        description: This field is only available to teachers and will only be returned if the ?with_dropbox_stats=TRUE argument is given.  This is a timestamp representing when the last dropbox revision was submitted.
+        type: integer
+      - field: show_rubric
+        name: Display rubric to students
+        description: This field is true when the assignment is using a rubric and the teacher has enabled the option for students to see the rubric.
+        type: bool
+      - field: assignees
+        name: Individually Assigned enrollments
+        description: This field shows which enrollees are assigned a particular assignment. This field can be used in a POST or PUT operation. If an empty array is sent in, all assignees will be removed from the assignment
+        type: array of enrollment ids
+      - field: grading_group_ids
+        name: Grading Group Ids
+        description: This field shows what grading groups are assigned a particular assignment. This field can be used in a POST or PUT operation. If an empty array is sent in, all grading groups will be removed from the assignment
+        type: array of grading group ids
+  assignment comments:
+    fields:
+      - field: uid
+        name: User Id
+        description: The Schoology user id of the user who created the comment
+        type: integer
+        required: true
+      - field: comment
+        name: Comment
+        description: The comment text
+        type: string
+        required: true
+      - field: created
+        name: Created timestamp
+        description: The Unix timestamp when the comment was created
+        type: integer
+        required: false
+      - field: parent_id
+        name: Parent ID
+        description: The ID of the comment being replied to.
+        type: integer
+        required: false
+      - field: status
+        name: Comment status
+        description: Whether the comment is deleted (0) , available (1) or pending moderation approval (3)
+        type: "{0,1,3}"
+        required: false
+  grade:
+    note: Grades are point values assigned to users for a specific assignment through enrollments.
+    fields:
+      - field: enrollment_id
+        name: Enrollment ID
+        description: The ID of the enrollment for which you are assigning a grade
+        type: integer
+        required: true
+      - field: assignment_id
+        name: Assignment ID
+        description: The ID of the assignment for which you are assigning a grade
+        type: string
+        required: true
+      - field: grade
+        name: Grade
+        description: The grade you are assigning the enrollment/assignment combination. Assignments with an assigned grading scale can accept letter-grades as defined by the scale - these will be converted to numeric values upon save.
+        type: integer or string
+        required: true
+      - field: exception
+        name: Exception
+        description: An exception represents an exception to the grade item associated with this grade.  If exception > 0 then grade will be set to NULL.  Right now the only exceptions that exist are 1 for 'excused' & 2 for 'incomplete'.
+        type: integer
+      - field: comment
+        name: Comment
+        description: A comment to associate with this grade
+        type: string
+      - field: timestamp
+        name: Timestamp
+        description: The Unix timestamp the last time the grade was updated in any way, according to the server time
+        type: integer
+      - field: is_final
+        name: Is Final
+        description: Whether or the grade object belongs to a midterm/final.
+        type: integer {0,1}
+      - field: type
+        name: Type
+        description: This is the type of grade item this grade refers to
+        type: string {assignment, discussion}
+      - field: location
+        name: API location
+        description: This points to an API endpoint where the specific content this grade refers to can be found.  Important that now there are assignments and discussions, meaning endpoints are not the same.
+        type: string
+  final comments:
+    fields:
+      - field: enrollment_id
+        name: Enrollment ID
+        description: The ID of the enrollment for which you are assigning a grade
+        type: integer
+        required: true
+      - field: period_id
+        name: Period Id
+        description: Which grading period to post the comment for (if "final" is passed in as period_id, comment will post to final grade for course)
+        type: integer OR "final"
+        required: true
+      - field: comment
+        name: Comment
+        description: A comment to associate with this grade
+        type: string
+        required: true
+      - field: comment_status
+        name: Comment Status
+        description: Whether the comment is visible to the student (default is 0)
+        type: "{1,0}"
+        required: false
+  attendance:
+    note: Attendance statuses are assigned to users for a specific date through enrollments.
+    fields:
+      - field: enrollment_id
+        name: Enrollment ID
+        description: The ID of the enrollment for which you are assigning an attendance status
+        type: integer
+        required: true
+      - field: date
+        name: Date
+        description: The date for which the status is being set
+        type: date (YYYY-MM-DD)
+        required: true
+      - field: status
+        name: Status
+        description: |-
+          The attendance status:
+          - 1: present
+          - 2: absent
+          - 3: late
+          - 4: excused
+        type: "{1-4}"
+        required: true
+      - field: comment
+        name: Comment
+        description: A comment to associate with this attendance status
+        type: string
+  submissions:
+    fields:
+      - field: revision_id
+        name: Revision ID
+        description: A unique identifier grouping a collection of items and representing a single students submission for a single assignment.
+        type: integer
+      - field: created
+        name: Created
+        description: The time the revision was submitted.
+        type: integer
+      - field: late
+        name: Late
+        description: Indicates whether or not this revision was turned in late.
+        type: integer
+      - field: num_items
+        name: Number of Items
+        description: The number of items associated with this revision.
+        type: integer
+      - field: draft
+        name: Draft
+        description: Whether or not the revision is a draft.  A user can only have one active draft, and if they have an active draft they cannot create another revision until this draft is submitted or deleted.
+        type: integer {0,1}
+      - field: body
+        name: Content of Revision
+        description: The content of the Revision.  This is expected in POST calls to dropbox/assignment_id/create.  Otherwise it is not really used.
+        type: string
+  course folder:
+    fields:
+      - field: id
+        name: Schoology ID of the folder content
+        description: Schoology ID of the folder content
+        type: integer
+      - field: title
+        name: Title
+        description: The content title
+        type: string
+      - field: body
+        name: Description of the Content
+        description: If the content has a description or body this is it
+        type: string
+      - field: type
+        name: Type of content
+        description: Type of content  {folder, assignment, discussion, media-album}
+        type: string
+        required: "default: 0"
+      - field: location
+        name: API endpoint to retrieve content from
+        description: If the content is accessible via API this location field points to it.
+        type: string
+  pages:
+    fields:
+      - field: Title
+        name: title
+        description: The page title
+        type: string
+        required: true
+      - field: Body
+        name: body
+        description: The content of the page. Can be in HTML format.
+        type: string
+        required: false
+      - field: Published
+        name: published
+        description: Whether or not the page is published
+        type: "{0,1}"
+      - field: Inline
+        name: inline
+        description: Set to 1 in order to set this page as an inline page
+        type: "{0,1}"
+      - field: Created timestamp
+        name: created
+        description: The timestamp of when the page was created
+        type: integer
+      - field: assignees
+        name: Individually Assigned enrollments
+        description: This field shows which enrollees are assigned a particular page. This field can be used in a POST or PUT operation. If an empty array is sent in, all assignees will be removed from the page
+        type: array of enrollment ids
+      - field: grading_group_ids
+        name: Grading Group Ids
+        description: This field shows what grading groups are assigned a particular page. This field can be used in a POST or PUT operation. If an empty array is sent in, all grading groups will be removed from the page
+        type: array of grading group ids
+  scorm package:
+    note: Scorm packages are containers for a Sharable Content Object Reference Model that can be integrated with Schoology.
+    fields:
+      - field: title
+        name: Title
+        description: The scorm package title
+        type: string
+      - field: url
+        name: Launch Url
+        description: The URL to launch the scorm package
+        type: string
+      - field: num_attempts
+        name: Number of Attempts
+        description: The total number of attempts on a scorm package in the course section
+        type: integer
+      - field: scorm_grading_enabled
+        name: Scorm Grading Enabled
+        description: Whether or not grading for the Scorm Package is enabled.
+        type: integer {0,1}
+      - field: sco_grading_enabled
+        name: Sco Grading Enabled
+        description: Whether or not grading for one or more Sco is enabled
+        type: integer {0,1}
+      - field: grade_timing_type
+        name: Grade Timing Type
+        description: Timing type for the scorm/sco grade items
+        type: integer1 = Scorm Completion2 = Sco Completion First3 = Sco Completion Last
+      - field: grade_timing_option
+        name: Grade Timing Option
+        description: Timing options for the scorm grade item (excl. extra credit)
+        type: integer1 = Score2 = Completion3 = Satisfaction
+      - field: available
+        name: Available
+        description: The availability status of the scorm package
+        type: integer {0,1}
+      - field: completed
+        name: Completed
+        description: Whether or not the scorm package has been completed
+        type: integer {0,1}
+      - field: completion_status
+        name: Completion Status
+        description: The completion status of the scorm package
+        type: string
+  web content package:
+    note: Web Content Packages are website files, compressed in .zip format, that can be added to Schoology course sections
+    fields:
+      - field: id
+        name: Id
+        description: The Schoology \ id of the web content package
+        type: string
+      - field: title
+        name: Title
+        description: The title of the web package
+        type: string
+      - field: url
+        name: uid
+        description: The id of the user who created the web package
+        type: integer
+      - field: url
+        name: Launch URL
+        description: The URL to launch the web package
+        type: string
+  section completion:
+    fields:
+      - field: uid
+        name: User Id
+        description: The Schoology user id of the user
+        type: string
+      - field: total_rules
+        name: Total Rules
+        description: The total number of completion rules for the user for the section
+        type: integer
+      - field: completed_rules
+        name: Completed Rules
+        description: The total number of rules the user has completed for the section
+        type: integer
+      - field: percent_complete
+        name: Percent Complete
+        description: The percentage of the section the user has completed.
+        type: float
+      - field: completed
+        name: Completed?
+        description: Whether the section has been completed by the user
+        type: "{0,1}"
+  friend request:
+    fields:
+      - field: requestor_id
+        name: Requester ID
+        description: The user ID of the user making the request
+        type: integer
+      - field: requester_name
+        name: Requester Name
+        description: The display name of the user making the request
+        type: string
+      - field: picture_url
+        name: Picture URL
+        description: The full URL of the profile picture of the requesting user
+        type: string
+      - field: school_name
+        name: School Name
+        description: The school of the requesting user
+        type: string
+      - field: school_id
+        name: School ID
+        description: The ID of the school of the requesting user
+        type: string
+      - field: created
+        name: Date Created
+        description: The unix timestamp when the request was created
+        type: string
+  invite:
+    fields:
+      - field: section_id
+        name: Section ID
+        description: For course invites, the ID of the course section related to the invite
+        type: integer
+      - field: section_name
+        name: Section Name
+        description: For course invites, the display name of the course section related to the invite
+        type: string
+      - field: group_id
+        name: Group ID
+        description: For group invites, the ID of the group related to the invite
+        type: string
+      - field: group_name
+        name: Group Name
+        description: For group invites, the display name of the group related to the invite
+        type: string
+      - field: picture_url
+        name: Picture URL
+        description: The full URL of the profile picture of the related group or course section
+        type: string
+      - field: school_name
+        name: School Name
+        description: The name of the school that owns the realm related to the invite
+        type: string
+      - field: school_id
+        name: School ID
+        description: The ID of the school that owns the realm related to the invite
+        type: string
+      - field: created
+        name: Date Created
+        description: The unix timestamp when the request was created
+        type: string
+        required: true
+  network:
+    fields:
+      - field: uid
+        name: User ID
+        description: The user ID of the listed user
+        type: integer
+      - field: name
+        name: User display name
+        description: The display name of the listed user
+        type: string
+  user grades:
+    fields:
+      - field: enrollment_id
+        name: Enrollment ID
+        description: The ID of the enrollment to which the grade belongs
+        type: integer
+      - field: assignment_id
+        name: Assignment ID
+        description: The ID of the assignment to which the grade belongs
+        type: integer
+      - field: section_id
+        name: Assignment ID
+        description: The ID of the course section to which the enrollment belongs
+        type: integer
+      - field: grade
+        name: Grade
+        description: The grade received for the assignment. Assignments with an assigned grading scale can accept letter-grades as defined by the scale.
+        type: integer or string
+      - field: comment
+        name: Comment
+        description: A comment associated with the grade
+        type: string
+      - field: comment_status
+        name: Comment status
+        description: Whether or not the grade comment is visible to the student. Only administrators will see this value.
+        type: "{1,0}"
+      - field: timestamp
+        name: Timestamp
+        description: The Unix timestamp the last time the grade was modified in any way, according to the server time.
+        type: string
 values:
   - meaning: Grade Level
     for:
@@ -1122,10 +1607,11 @@ resources:
         path: schools/{id}
         method: DELETE
   - name: Building
-    description: Buildings (AKA campuses), are further separations of courses, groups, and users that all belong to the same system.
+    description: |-
+      Buildings (AKA campuses), are further separations of courses, groups, and users that all belong to the same system.
+      For other operations related to buildings (i.e. GET,POST,PUT,DELETE) you can treat buildings like schools and use the available school object endpoints. For example, to make a change to an existing building, you would use PUT /school/[building_id]. For more details, check out the School Object.
     urls:
       - schools/{id}/buildings
-    operations-note: For other operations related to buildings (i.e. GET,POST,PUT,DELETE) you can treat buildings like schools and use the available school object endpoints. For example, to make a change to an existing building, you would use PUT /school/[building_id]. For more details, check out the School Object.
     operations:
       - name: view
         description: View the buildings for a school
@@ -1861,13 +2347,89 @@ resources:
       - sections/{section_id}
       - groups/{group_id}
     operations:
-      - TODO
+      - name: create
+        description: Create an album
+        path: "[realm]/albums"
+        method: POST
+        content: An object containing album fields
+        return: An object containing album fields
+      - name: list
+        description: "View a list of albums for the given realm. The following query string can (optionally) be appended to the path to include the contents of the album in the response:"
+        parameters:
+          withcontent=1: include the contents of the album in the response
+        path: "[realm]/albums"
+        method: GET
+        content: null
+        return: A collection of album objects, each one containing album fields
+      - name: view
+        description: View a specified album
+        path: "[realm]/albums/{id}"
+        method: GET
+        content: null
+        return: An object containing album fields
+      - name: update
+        description: Update a specified album
+        path: "[realm]/albums/{id}"
+        method: PUT
+        content: An object containing album fields
+        return: null
+      - name: delete
+        description: Delete an album (cannot be undone)
+        path: "[realm]/albums/{id}"
+        method: DELETE
+        content: null
+        return: null
+      - name: view
+        description: View specified album content
+        path: "[realm]/albums/{id}"
+        method: GET
+        content: null
+        return: An object containing album content fields
+      - name: update
+        description: Update specified album content
+        path: "[realm]/albums/{id}/content/{id}"
+        method: PUT
+        content: An object containing album content fields
+        return: null
+      - name: create
+        description: "Create album content. For more details on uploading files as part of this POST call: File Uploading"
+        path: "[realm]/albums/{id}/content"
+        method: POST
+      - name: delete
+        description: Delete album content (cannot be undone)
+        path: "[realm]/albums/{id}/content/{id}"
+        method: DELETE
+        content: null
+        return: null
   - name: Media Album Comments
     description: Media Album Comments are comments made on individual content within media albums
     urls:
       - album/{id}/content/{content_id}/comments
     operations:
-      - TODO
+      - name: create
+        description: Create a comment
+        path: "[realm]/albums/{id}/content/{content_id}/comments"
+        method: POST
+        content: An object containing comment fields
+        return: An object containing comment fields
+      - name: list
+        description: View a list of comments (paged)
+        path: "[realm]/albums/{id}/content/{content_id}/comments"
+        method: GET
+        content: null
+        return: A collection of comment objects, each one containing comment fields
+      - name: view
+        description: View a specified comment
+        path: "[realm]/albums/{id}/content/{content_id}/comments/{comment_id}"
+        method: GET
+        content: null
+        return: An object containing comment fields
+      - name: delete
+        description: Delete a comment (cannot be undone)
+        path: "[realm]/albums/{id}/content/{content_id}/comments/{comment_id}"
+        method: DELETE
+        content: null
+        return: null
   - name: Documents
     description: Documents are standalone File/Links
     urls:
@@ -2014,27 +2576,148 @@ resources:
       - sections/{section_id}/assignments
       - sections/{section_id}/assignments/{id}
     operations:
-      - eeee
+      - name: create
+        description: Create an assignment
+        path: sections/{section_id}/assignments
+        method: POST
+        content: An object containing assignment fields
+        return: An object containing assignment fields
+      - name: list
+        description: |-
+          View a list of assignments. Note that assignments are first ordered by assignment type (non-final and final), and then by due date. Also, the standard 'start' and 'limit' key pairs are applied to these types individually for each call. For example, if you append '&lmiit=2' to a call to this endpoint, you will get back 2 non-final assignments and 2 final assignments, ordered in the expected way.
+          This endpoint only returns grade-items of type assignment. The following query strings can (optionally) be appended:
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+          with_tags: retrieve tags of this piece of content.
+          limit: Number of results.
+        path: sections/{section_id}/assignments
+        method: GET
+        content: null
+        return: A collection of assignment objects, each one containing assignment fields
+      - name: list
+        description: "This endpoint returns any type of content that can be graded (e.g. assignment and discussions). The following query strings can (optionally) be appended:"
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+          with_tags: retrieve tags of this piece of content.
+        path: sections/{section_id}/grade_items
+        method: GET
+        content: null
+        return: A collection of assignment objects, each one containing assignment fields
+      - name: view
+        description: "View a specified assignment. The following query strings can (optionally) be appended:"
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+          with_tags: retrieve tags of this piece of content.
+        path: sections/{section_id}/assignments/{id}
+        method: GET
+        content: null
+        return: An object containing assignment fields
+      - name: update
+        description: Modify an assignment
+        path: sections/{section_id}/assignments/{id}
+        method: PUT
+        content: An object containing assignment fields
+        return: null
+      - name: delete
+        description: Delete an assignment (cannot be undone)
+        path: sections/{section_id}/assignments/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Assignment Comments
     description: Comments can be made for any assignment.
     urls:
       - sections/{section_id}/assignments/{id}/comments
       - sections/{section_id}/assignments/{id}/comments/{id}
     operations:
-      - eeee
+      - name: create
+        description: Create a comment
+        path: sections/{section_id}/assignments/{assignment_id}/comments
+        method: POST
+        content: An object containing comment fields
+        return: An object containing comment fields
+      - name: list
+        description: View a list of comments (paged)
+        path: sections/{section_id}/assignments/{assignment_id}/comments
+        method: GET
+        content: null
+        return: A collection of comment objects, each one containing comment fields
+      - name: view
+        description: View a specified comment
+        path: sections/{section_id}/assignments/{assignment_id}/comments/{id}
+        method: GET
+        content: null
+        return: An object containing comment fields
+      - name: delete
+        description: Delete a comment (cannot be undone)
+        path: sections/{section_id}/assignments/{assignment_id}/comments/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Grade
     description: Grades are associated with an enrollment and an assignment.
     urls:
       - sections/{section_id}/grades
     operations:
-      - eeee
+      - name: list
+        description: |-
+          View a list of grades (paged). The following query strings can (optionally) be appended to the path to filter results:
+          Retrieving this list without specifying the above parameters will return a paged list of all grades for all assignments and students in the course section.
+        parameters:
+          assignment_id: filter grades for a given assignment
+          enrollment_id: filter grades for a given enrollment
+          timestamp: return only grades that have been changed since the given timestamp, according to the server time.
+        path: sections/{section_id}/grades
+        method: GET
+        content: null
+        return: A collection of grade objects, each one containing grade fields
+      - name: list
+        description: |-
+          View a list of grades (paged) for a given user. Append the following query strings to the path to filter results:
+          Retrieving this list without specifying the section_id parameter returns a 403 Forbidden error.
+          Retrieving this list without specifying the timestamp parameter returns all grades for all assignments and course sections, and for the section indicated by the section_id parameter.
+        parameters:
+          section_id: filter grades for a given course section.Required
+          timestamp: return only grades that have been changed since the given timestamp, according to the server time.Optional
+        path: users/{user_id}/grades
+        method: GET
+        content: null
+        return: A collection of grade objects, each one containing grade fields
+      - name: update
+        description: Set/modify grades
+        path: sections/{section_id}/grades
+        method: PUT
+        content: Objects containing grade fields
+        return: null
+      - name: update final comments
+        description: Set/modify comments for students for a grading period and the overall course
+        path: sections/{section_id}/grades
+        method: PUT
+        content: Objects containing final comments fields
+        return: null
   - name: Attendance
     description: Attendance statuses are associated with an enrollment and a specific date.
     urls:
       - sections/{section_id}/attendance
       - sections/{section_id}/attendance/{id}
     operations:
-      - eeee
+      - name: list
+        description: |-
+          View a list of attendance statuses (paged). The following query strings can (optionally) be appended to the path to filter results:
+          Retrieving this list without specifying the above parameters will return a paged list of all statuses for all dates and students in the course section.
+        parameters:
+          start and end: filter statuses for a given date range, inclusive (YYYY-MM-DD)
+          enrollment_id: filter statuses for a given enrollment
+        path: sections/{section_id}/attendance
+        method: GET
+        content: null
+        return: A collection of attendance status objects, each one containing attendance fields
+      - name: update
+        description: Modify attendance statuses
+        path: sections/{section_id}/attendance
+        method: PUT
+        content: Objects containing attendance fields
+        return: An array of attendance ids and statuses
   - name: Submissions
     description: Submissions are uniquely identified by a Section ID, Grade Item ID, User ID, and Revision ID.
     urls:
@@ -2046,48 +2729,212 @@ resources:
       - sections/{section_id}/submissions/{grade_item_id}/{user_id}/comments
       - sections/{section_id}/submissions/{grade_item_id}/{user_id}/comments/{comment_id}
     operations:
-      - eeee
+      - name: Revision Item
+        description: The {action} parameter dictates whether a revision with files attached is created, or a revision is created from text or HTML.  Files the action is {file}, creation from text/html the action is {create}.
+        parameters:
+          file: action will create a submission from file IDs passed in as file attachments
+          create: action will look for a <body> attribute in the request body. When using create, keep in mind a user can only have one active revision.  If they try to POST a file revision, they will be denied.  Also, if the <draft> flag is not set, the API will default to submitting this revision.  If you would like it saved as a draft the <draft> flag must be set to TRUE.
+        path: sections/{section_id}/submissions/{grade_item_id}/{action}
+        method: POST
+        content: none
+        return: Revision items and drop item attachments if requested grouped by user
+      - name: create
+        description: The {action} parameter dictates whether a revision with files attached is created, or a revision is created from text or HTML.  Files the action is {file}, creation from text/html the action is {create}.
+        parameters:
+          file action will create a submission from file IDs passed in as file attachments
+          create action will look for a <body> attribute in the request body. When using create, keep in mind a user can only have one active revision.  If they try to POST a file revision, they will be denied.  Also, if the <draft> flag is not set, the API will default to submitting this revision.  If you would like it saved as a draft the <draft> flag must be set to TRUE.
+          File Uploads Accepted
+        path: sections/{section_id}/submissions/{grade_item_id}/{action}
+        method: POST
+        content: none
+        return: Revision items and drop item attachments if requested grouped by user
+      - name: list
+        description: "All the Revisions for a requested grade item, sorted by the most recent revision and grouped by user. The following query strings can (optionally) be appended to the path to filter results:"
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+          all_revisions: optional argument to get all revisions instead of just the most recent one.  Accepts a boolean.
+        path: sections/{section_id}/submissions/{grade_item_id}/
+        method: GET
+        content: null
+        return: Revision items and drop item attachments if requested grouped by user
+      - name: view
+        description: "Revisions for a given user for a given grade item, sorted by the most recent revision. The following query strings can (optionally) be appended to the path to filter results:"
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+        path: sections/{section_id}/submissions/{grade_item_id}/{user_id}
+        method: GET
+        content: null
+        return: Revision items and drop item attachments if requested
+      - name: view
+        description: "Specific revision for a given user for a given grade item. The following query strings can (optionally) be appended to the path to filter results:"
+        parameters:
+          with_attachments: retrieve attachments of this piece of content.
+        path: sections/{section_id}/submissions/{grade_item_id}/{user_id}/revision/{revision_id}
+        method: GET
+        content: null
+        return: Revision items and drop item attachments if requested
+      - name: delete
+        description: Delete assignment submission revision
+        path: sections/{section_id}/submissions/{grade_item_id}/{user_id}/revision/{revision_id}
+        method: DELETE
+        content: null
+        return: null
+      - name: list
+        description: View a list of submission comments for a given user and given grade item id in a section
+        path: sections/{section_id}/submissions/{grade_item_id}/{user_id}/comments
+        method: GET
+        content: null
+        return: Submission comments
+      - name: view
+        description: View a specific submission comment for a given user and given grade item id in a section
+        path: sections/{section_id}/submissions/{grade_item_id}/{user_id}/comments/{comment_id}
+        method: GET
+        content: null
+        return: Submission comment
+      - name: delete
+        description: Delete a submission comment
+        path: sections/{section_id}/submissions/{grade_item_id}/{user_id}/comments/{comment_id}
+        method: DELETE
+        content: null
+        return: null
   - name: Course Folder
     description: A course folder request returns all the contents of the folder with pointers to that piece of content if the API supports it.  This includes child Folders.
     urls:
       - courses/{section_id}/folder/{folder_id}
     operations:
-      - eeee
+      - name: view
+        description: View the contents of a specific folder
+        path: courses/{course_id}/folder/{folder_id}
+        method: GET
+        content: null
+        return: A list of objects within the folder
   - name: Pages
     description: Pages can be used to display any sort of content. HTML can be used to format the content of the page to anything you like.
     urls:
       - sections/{section_id}/pages
       - sections/{section_id}/pages/{id}
     operations:
-      - eeee
+      - name: create
+        description: Create a page
+        path: "[realm]/pages"
+        method: POST
+        content: An object containing page fields
+        return: An object containing page fields
+      - name: list
+        description: "View a list of pages for the given realm. The following query strings can (optionally) be appended:"
+        parameters:
+          withcontent=1: include the contents of the page in the response
+          with_tags: retrieve tags of this piece of content.
+        path: "[realm]/pages"
+        method: GET
+        content: null
+        return: A collection of page objects, each one containing page fields
+      - name: view
+        description: "View a specified page. The following query string can (optionally) be appended:"
+        parameters:
+          with_tags: retrieve tags of this piece of content.
+        path: "[realm]/page/{id}"
+        method: GET
+        content: null
+        return: An object containing page fields
+      - name: update
+        description: Update a specified page
+        path: "[realm]/pages/{id}"
+        method: PUT
+        content: An object containing page fields
+        return: null
+      - name: delete
+        description: Delete a page (cannot be undone)
+        path: "[realm]/pages/{id}"
+        method: DELETE
+        content: null
+        return: null
   - name: Scorm Package
     description: Scorm packages are containers for a Sharable Content Object Reference Model that can be integrated with Schoology.
     urls:
       - sections/{section_id}/packages
       - sections/{section_id}/packages/{id}
     operations:
-      - eeee
+      - name: list
+        description: View a list of SCORM packages in a course section
+        path: sections/{section_id}/packages
+        method: GET
+        content: null
+        return: A collection of scorm packages, each one containing scorm package fields
+      - name: view
+        description: "View a specified scorm package.:"
+        path: sections/{section_id}/package/{id}
+        method: GET
+        content: null
+        return: An object containing scorm package fields
+      - name: delete
+        description: Delete a scorm package (cannot be undone)
+        path: sections/{section_id}/package/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Web Content Package
     description: Web Content Packages are website files, compressed in .zip format, that can be added to Schoology course sections.
     urls:
       - sections/{section_id}/web_packages
       - sections/{section_id}/web_packages/{id}
     operations:
-      - eeee
+      - name: list
+        description: View a list of web content packages in a course section
+        path: sections/{section_id}/web_packages
+        method: GET
+        content: null
+        return: A collection of web content packages, each one containing web content package fields
+      - name: view
+        description: "View a specified web content package.:"
+        path: sections/{section_id}/web_packages/{id}
+        method: GET
+        content: null
+        return: An object containing web content package fields
+      - name: delete
+        description: Delete a web content package (cannot be undone)
+        path: sections/{section_id}/web_packages/{id}
+        method: DELETE
+        content: null
+        return: null
   - name: Completion
     description: Each user enrolled in a course section has a completion object with information about the student's progress in the section.
     urls:
       - sections/{section_id}/completion
       - sections/{section_id}/completion/user/{uid}
     operations:
-      - eeee
+    - name: list
+      description: View a list of section completion objects
+      path: sections/{section_id}/completion
+      method: GET
+      content: null
+      return: A collection of section completion objects, each one containing section completion fields
+    - name: view
+      description: View a specified section completion object for a particular user
+      path: sections/{section_id}/completion/user/{uid}/{id}
+      method: GET
+      content: null
+      return: An object containing section completion fields
   - name: Friend Request
     description: Friend requests can be sent from/received by other Schoology users in your network.
     urls:
       - users/{user_id}/requests/friends
       - users/{user_id}/requests/friends/{id}
     operations:
-      - eeee
+      - name: list
+        description: |-
+          View a list of pending requests. You can specify the key 'created_offset' in the query string to view only requests that were created after the specified time. The expected format of the 'created_offset' key value is anything that PHP's strtotime function can interperet. For example:
+          /users/[user_id]/requests/friends?created_offset=2010-05-14+22:23:00
+        path: users/{user_id}/requests/friends
+        method: GET
+        content: null
+        return: A collection of friend request objects, each one containing friend request fields
+      - name: update
+        description: "Update a pending request. The request action field value must be a string( accept | deny ). Here's an example text/xml formatted request body:"
+        path: users/{user_id}/requests/friends/{request_id}
+        method: PUT
+        content: An object containing a request_action field
+        return: null
   - name: Invite
     description: Users can receive requests to join course sections and groups.
     urls:
@@ -2097,20 +2944,72 @@ resources:
       - sections
       - groups
     operations:
-      - eeee
+      - name: list
+        description: |-
+          View a list of pending invites. You can specify the key 'created_offset' in the query string to view only invites that were created after the specified time. The expected format of the 'created_offset' key value is anything that PHP's strtotime function can interperet. For example:
+          /users/[user_id]/invites/group?created_offset=2010-05-14+23:44:32
+        path: users/{user_id}/invites/{realm}
+        method: GET
+        content: null
+        return: A collection of invite objects, each one containing invite fields
+      - name: update
+        description: "Update a pending invite. The invite action field value must be a string( accept | deny ). NOTE: Currently there is an issue with this API call that requires an additional tag for correct request body structure. See the example below for details."
+        path: users/{user_id}/invites/{realm}/{invite_id}
+        method: PUT
+        content: An object containing a invite_action field
+        return: null
   - name: Network
     description: View a list of users in the given user's network
     urls:
       - users/{user_id}/network
       - users/{user_id}/network
     operations:
-      - eeee
+      - name: list
+        description: |-
+          View a list of users in the given user's network. The following query strings can (optionally) be appended to the path to filter results:
+          If you are looking for a list of users in the given users school, you should make a call to https://api.schoology.com/v1/users. For more information see: API - User.
+        parameters:
+          search: show only results matching the given search string. Matching is a case-insensitive comparison performed on user names for both exact and partial phrases (i.e. searching for 'john' will return users named 'John Doe' and 'William johnson').
+          page: the current response body limit is 30 records per page. Use this query string to specify which page of the results you'd like to see.
+        path: users/{user_id}/network
+        method: GET
+        content: null
+        return: A collection of network objects, each one containing network fields
   - name: Grades
     description: View a list of the given user's grades
     urls:
       - users/{id}/grades
     operations:
-      - eeee
+      - name: list
+        description: "View a list of grades for the given user. The following query strings can (optionally) be appended to the path to filter results:"
+        parameters:
+          section_id: Specifying a section id limits results to that section.
+          timestamp: Specifying a timestamp limits results to recorded grades that have been updated since the given timestamp, according to the server time.
+          grading_period_ids: Specifying a comma-delimited list of grading period ids limits results to those grading periods. Use 'other' for the 'Other' grading period, and 'final' for final grades.
+        path: users/{user_id}/grades
+        method: GET
+        content: null
+        return: A collection of grade objects, each one containing grade fields
+  - name: Sections
+    description: Course Sections that a user is enrolled in.
+    urls:
+      - users/{id}/sections
+  - name: Groups
+    description: Groups that a user is enrolled in.
+    urls:
+      - users/{id}/groups
+  - name: Requests
+    description: Request objects are items that require an action (e.g. a user is requesting to be your friend).
+    urls:
+      - users/{id}/requests/{realm}
+  - name: Invites
+    description: Invite objects are items that require an action (e.g. a user has invited you to a group)
+    urls:
+      - users/{id}/invites/{realm}
+  - name: External Id
+    description: Look up a user by their Schoology Unique ID. This is generally used to link Schoology with an external system. For instance, if you have stored the Schoology Unique ID to be consistent with a Student Information System (SIS), and you would like to find a user by their SIS ID, you can use this API call to do so.
+    urls:
+      - users/ext/{id}
   - name: Grading Period
     description: Grading periods (marking periods) determine when a course section is active.
     urls:

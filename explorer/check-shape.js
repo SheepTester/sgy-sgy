@@ -135,7 +135,6 @@ module.exports = function checkSgyApiShape (yaml) {
       description: str,
       urls: arrOf(str),
       realms: maybe(arrOf(str)),
-      'operations-note': maybe(str),
       operations: arrOf(objOf({
         name: str,
         description: str,

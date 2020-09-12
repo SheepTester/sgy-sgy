@@ -19,31 +19,40 @@ return data
 // Get all of the Schoology documentations's resources
 // https://developers.schoology.com/api-documentation/rest-api-v1#
 [...document.querySelectorAll('.schoology-table tr')].map(tr => {
-const resource = tr.querySelector('a')
+const resource = tr.children[0]
+if (resource.tagName === 'TH') return
 const desc = tr.children[1]
 const urls = [...tr.querySelectorAll('.api-path-code')].map(t => '    - ' + t.textContent.trim()).join('\n')
-return resource &&
-`- name: ${resource.textContent.trim()}
+if (!tr.querySelector('a')) console.warn(resource.textContent.trim())
+return `- name: ${resource.textContent.trim()}
   description: ${desc.textContent.trim()}
   urls:
-${urls}
+${urls}` + (tr.querySelector('a') ? `
   operations:
-    - eeee`
+    - eeee` : '')
 }).filter(a => a).join('\n')
 
 // Get all operations on a resource page
-function getRow (rows, name) {
+function getRow (rows, name, pathMode = false) {
   let row = rows.find(tr => tr.children[0].textContent.trim().toLowerCase() === name)
   if (row && row.textContent.trim()) {
   row = row.children[1]
   if (row.textContent.trim().toLowerCase() === 'none') return 'null'
   else {
+  if (pathMode && row.querySelectorAll('.api-path-code').length >= 2) {
+    row = row.querySelector('.api-path-code')
+  }
   let content = row.textContent.trim()
   if (content.includes('JSON')) content = content.slice(0, content.indexOf('JSON')).trim()
   return content
   }
   }
   return null
+}
+function check (str) {
+  if (str.includes('\n')) console.warn('newline detected', str)
+  if (str.includes(':') || str[0] === '[' || str[0] === '{') return JSON.stringify(str)
+  else return str
 }
 [...document.querySelectorAll('h3')].map(heading => {
 const name = heading.textContent.trim()
@@ -63,21 +72,21 @@ if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
 
   const rows = [...elem.querySelectorAll('tr')]
 
-  const pathE = getRow(rows, 'path')
+  const pathE = getRow(rows, 'path', true)
   if (!pathE) return console.error('??? no path?', elem)
   ;[method, path] = pathE.split(/ ?https:\/\/api\.schoology\.com\/v1\//)
 
   content = getRow(rows, 'content')
-  if (content) content = '\n  content: ' + content
+  if (content) content = '\n  content: ' + check(content)
 
   returnz = getRow(rows, 'return')
-  if (returnz) returnz = '\n  return: ' + returnz
+  if (returnz) returnz = '\n  return: ' + check(returnz)
   break
 } else if (elem.tagName === 'P') {
   if (!elem.textContent) continue
   if (description) {
     console.error('description already exists?', elem)
-    if (elem.children[0]?.tagName === 'B') {
+    if (elem.firstChild?.tagName === 'B') {
       console.error('^ was bold so will not add to description')
       continue
     }
@@ -90,14 +99,19 @@ if (elem.tagName === 'TABLE' || elem.classList.contains('api-path')) {
 }
 }
 if (!path || !method) console.error('why are path and method falsy?', heading)
-return `- name: ${name}
-  description: ${description}` + parameters +
+return `- name: ${check(name)}
+  description: ${check(description)}` + parameters +
 `
-  path: ${path}
-  method: ${method}` + content + returnz
+  path: ${check(path)}
+  method: ${check(method)}` + content + returnz
 }).filter(a => a).join('\n')
 
 // Autocreates a fields entry
+function check (str) {
+  if (str.includes('\n')) console.warn('newline detected', str)
+  if (str.includes(':') || str[0] === '[' || str[0] === '{') return JSON.stringify(str)
+  else return str
+}
 ;(table => {
 const wrapper = document.querySelector('.field-item')
 const note = wrapper.firstElementChild.tagName === 'P' ? wrapper.firstElementChild.textContent.trim() : null
@@ -110,7 +124,7 @@ const val = row.children[i].textContent.trim()
 if (!val) continue
 data += i === 0 ? '    - ' : '      '
 data += headings[i] + ': '
-data += val === 'yes' || val === 'Y' ? true : val === 'no' || val === 'N' ? false : val
+data += val === 'yes' || val === 'Y' ? true : val === 'no' || val === 'N' ? false : check(val)
 data += '\n'
 }
 }
