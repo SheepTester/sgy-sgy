@@ -1,6 +1,6 @@
 const { OAuth } = require('oauth')
 const { key, secret } = require('../api-creds.json')
-const { apiBase, sgyDomain } = require('./constants.js')
+const { apiBase } = require('./constants.js')
 
 const oauth = new OAuth(
   `${apiBase}/oauth/request_token`,
@@ -19,18 +19,19 @@ oauth.setClientOptions({
 
 // node-oauth uses callbacks >:(
 function promiseify (fn) {
-  return (...args) => new Promise((resolve, reject) => {
-    fn(...args, (err, ...out) => {
-      if (err) {
-        err.args = args
-        err.out = out
-        console.error(err, out)
-        reject(err)
-      } else {
-        resolve(out)
-      }
+  return (...args) =>
+    new Promise((resolve, reject) => {
+      fn(...args, (err, ...out) => {
+        if (err) {
+          err.args = args
+          err.out = out
+          console.error(err, out)
+          reject(err)
+        } else {
+          resolve(out)
+        }
+      })
     })
-  })
 }
 
 function toJson ([data]) {
@@ -49,7 +50,9 @@ function follow303 (err) {
 }
 
 module.exports = {
+  key,
   toJson,
+  follow303,
   getOAuthRequestToken: promiseify(oauth.getOAuthRequestToken.bind(oauth)),
   getOAuthAccessToken: promiseify(oauth.getOAuthAccessToken.bind(oauth)),
   get: promiseify(oauth.get.bind(oauth)),

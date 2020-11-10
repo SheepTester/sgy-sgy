@@ -2,13 +2,15 @@
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 10068
+
+const nodePath = require('path')
 
 app.set('view engine', 'ejs')
 app.set('view options', {
   rmWhitespace: true
 })
-app.set('views', __dirname + '/views')
+app.set('views', nodePath.resolve(__dirname, './views'))
 
 function dashify (str = '') {
   return str.toLowerCase().replace(/\s+/g, '-')
@@ -16,7 +18,7 @@ function dashify (str = '') {
 
 const docs = require('yaml').parse(
   require('fs').readFileSync(
-    require('path').resolve(__dirname, './sgy-api.yml'),
+    nodePath.resolve(__dirname, './sgy-api.yml'),
     'utf-8'
   )
 )
