@@ -4,6 +4,15 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+const nodePath = require('path')
+app.set('views', nodePath.resolve(__dirname, './views'))
+// app.set('view engine', 'jsx');
+// app.engine('jsx', require('express-react-views').createEngine())
+app.set('view options', {
+  rmWhitespace: true
+})
+app.set('view engine', 'ejs')
+
 const cookieSession = require('cookie-session')
 app.use(
   cookieSession({
@@ -13,10 +22,6 @@ app.use(
 )
 
 app.use(require('./sgy-oauth-middleware.js'))
-
-// app.set('views', __dirname + '/views');
-// app.set('view engine', 'jsx');
-// app.engine('jsx', require('express-react-views').createEngine())
 
 const YAML = require('yaml')
 const fs = require('fs/promises')
@@ -34,6 +39,18 @@ app.get('/', async (req, res) => {
       )
       .join('') || '<li>No courses were found for this user.</li>'}</ul>`
   )
+})
+
+app.use('/api', async (req, res, next) => {
+  if (req.method === 'GET') {
+    try {
+      res.send(await req.schoology.get(req.path))
+    } catch ({ statusCode, data }) {
+      res.status(statusCode).send(data)
+    }
+  } else {
+    next()
+  }
 })
 
 async function main () {

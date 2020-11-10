@@ -25,7 +25,6 @@ function promiseify (fn) {
         if (err) {
           err.args = args
           err.out = out
-          console.error(err, out)
           reject(err)
         } else {
           resolve(out)
@@ -33,6 +32,8 @@ function promiseify (fn) {
       })
     })
 }
+
+const get = promiseify(oauth.get.bind(oauth))
 
 function toJson ([data]) {
   return JSON.parse(data)
@@ -42,8 +43,7 @@ function toJson ([data]) {
 function follow303 (err) {
   if (err.statusCode === 303) {
     const [, request] = err.out
-    console.log(request.headers.location)
-    return oauth.get(request.headers.location, ...err.args.slice(1))
+    return get(request.headers.location, ...err.args.slice(1))
   } else {
     return Promise.reject(err)
   }
@@ -55,7 +55,7 @@ module.exports = {
   follow303,
   getOAuthRequestToken: promiseify(oauth.getOAuthRequestToken.bind(oauth)),
   getOAuthAccessToken: promiseify(oauth.getOAuthAccessToken.bind(oauth)),
-  get: promiseify(oauth.get.bind(oauth)),
+  get,
   post: promiseify(oauth.post.bind(oauth)),
   put: promiseify(oauth.put.bind(oauth)),
   delete: promiseify(oauth.delete.bind(oauth))

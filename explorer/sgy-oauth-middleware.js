@@ -26,14 +26,14 @@ module.exports = async (req, res, next) => {
               "Your client seemed to have forgotten that you were signing into Schoology. (The cookies didn't save.)"
             )
         }
-        if (requestToken.key !== oauthToken) {
+        if (requestToken !== oauthToken) {
           return res
             .status(401)
             .send('Are you tampering with requests? Schoology thinks you are.')
         }
         const [key, secret] = await oauth.getOAuthAccessToken(
-          requestToken.key,
-          requestToken.secret
+          requestToken,
+          requestTokens.get(requestToken)
         )
         req.session[accessTokenKey] = key
         req.session[accessSecretKey] = secret
@@ -53,7 +53,7 @@ module.exports = async (req, res, next) => {
               return Promise.reject(err)
             }
           })
-        if (uid) {
+        if (!uid) {
           delete req.session[accessTokenKey]
           delete req.session[accessSecretKey]
           return res
@@ -69,12 +69,16 @@ module.exports = async (req, res, next) => {
         req.session[requestTokenKey] = requestKey
         // https://stackoverflow.com/a/10185427
         const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl
-        return res.redirect(
-          `${sgyDomain}/oauth/authorize?${new URLSearchParams({
+        const redirectUrl =
+          sgyDomain +
+          '/oauth/authorize?' +
+          new URLSearchParams({
             oauth_callback: fullUrl,
-            oauth_token: oauth.key
-          })}`
-        )
+            oauth_token: requestKey
+          })
+        // Can't use a 302 redirect because then the cookie won't be set. :/
+        // redirectUrl
+        return res.render('oauth-redirect', { url: redirectUrl })
       }
     }
 
@@ -82,7 +86,8 @@ module.exports = async (req, res, next) => {
     // oauth_token parameter from the URL.
     if (oauthToken) {
       delete req.query.oauth_token
-      return res.redirect('?' + new URLSearchParams(req.query))
+      const withoutParam = '?' + new URLSearchParams(req.query)
+      return res.redirect(withoutParam === '?' ? './' : withoutParam)
     }
   }
   const {

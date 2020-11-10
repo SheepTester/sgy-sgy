@@ -4,6 +4,10 @@ I put the documentation from [Schoology's REST API documentation](https://develo
 
 See [types.ts](./types.ts) for how the YAML file is structured.
 
+```sh
+node app.js
+```
+
 ## Simpler documentation
 
 ```sh
