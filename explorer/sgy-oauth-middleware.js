@@ -90,6 +90,13 @@ module.exports = async (req, res, next) => {
       return res.redirect(withoutParam === '?' ? './' : withoutParam)
     }
   }
+  function analyzeError (err) {
+    if (err.statusCode === 401) {
+      delete req.session[accessTokenKey]
+      return null
+    }
+    throw err
+  }
   const {
     [accessTokenKey]: key,
     [accessSecretKey]: secret,
@@ -97,7 +104,9 @@ module.exports = async (req, res, next) => {
   } = req.session
   req.schoology = {
     userId: uid,
-    get: path => oauth.get(apiBase + path, key, secret).then(oauth.toJson)
+    get: path => oauth.get(apiBase + path, key, secret)
+      .then(oauth.toJson)
+      .catch(analyzeError)
   }
   next()
 }

@@ -17,15 +17,24 @@ oauth.setClientOptions({
   followRedirects: true
 })
 
+class OAuthError extends Error {
+  constructor ({ statusCode, data }, args, out) {
+    super(`[${statusCode}] ${data}`)
+    this.statusCode = statusCode
+    this.data = data
+    this.args = args
+    this.out = out
+    this.name = this.constructor.name
+  }
+}
+
 // node-oauth uses callbacks >:(
 function promiseify (fn) {
   return (...args) =>
     new Promise((resolve, reject) => {
       fn(...args, (err, ...out) => {
         if (err) {
-          err.args = args
-          err.out = out
-          reject(err)
+          reject(new OAuthError(err, args, out))
         } else {
           resolve(out)
         }
