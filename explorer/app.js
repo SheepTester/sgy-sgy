@@ -47,7 +47,7 @@ app.get('/', async (req, res) => {
 app.use('/api', async (req, res, next) => {
   if (req.method === 'GET') {
     try {
-      res.send(await req.schoology.get(req.path))
+      res.send(await req.schoology.get(req.url))
     } catch ({ statusCode, data }) {
       res.status(statusCode).send(data || statusCode)
     }
