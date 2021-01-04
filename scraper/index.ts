@@ -13,9 +13,9 @@ import { config } from 'https://deno.land/x/dotenv/mod.ts'
 import { Md5 } from 'https://deno.land/std@0.83.0/hash/md5.ts'
 import { ensureDir } from 'https://deno.land/std@0.83.0/fs/ensure_dir.ts'
 
-await ensureDir('./private/')
-
-const identity = <T>(value: T): T => value
+function wait (time: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, time))
+}
 
 const {
   HOST,
@@ -30,67 +30,83 @@ const headers = {
   'Content-Type': 'application/json',
   cookie: `SESS${new Md5().update(HOST).toString()}=${SESS_ID}`,
 }
-const host = `https://${HOST}`
+const host = `https://${HOST}/v1`
 
-interface Response {
-  response_code: number
-  body: any
-}
-
-async function multiGet (requests: string[]): Promise<Response[]> {
-  const response = await fetch(host + '/v1/multiget', {
-    method: 'POST',
-    body: JSON.stringify({
-      request: requests,
-    }),
-    headers,
-  })
-  const json = await response.json()
-  return json.response
-}
-
-interface Fulfill {
-  resolve: (value: any) => void
-  reject: (value: any) => void
-}
-
-const requests: [string, Fulfill][] = []
-let getting = false
-async function flush () {
-  const multiget = requests.splice(0, 50)
-  if (multiget.length === 0) {
-    getting = false
-    return
-  } else {
-    getting = true
-  }
-  const responses = await multiGet(multiget.map(req => req[0]))
-  responses.forEach((response, i) => {
-    if (Math.floor(response.response_code / 100) === 2) {
-      multiget[i][1].resolve(response.body)
-    } else {
-      multiget[i][1].reject(JSON.stringify(response, null, 2))
+async function get (request: string, retry: boolean = true): Promise<any> {
+  request = request.replace(/^(?:https?:\/\/\w+\.schoology\.com)?\/v1/, '')
+  const response = await fetch(host + request, { headers })
+  if (!response.ok) {
+    if (response.status === 429 && retry) {
+      // Too many requests, so take a break
+      console.log('Too many requests; retrying in 5 seconds')
+      await wait(5000)
+      return await get(request, false)
     }
-  })
-  await flush()
-}
-function get (request: string): Promise<any> {
-  let fulfill!: Fulfill
-  const promise: Promise<any> = new Promise((resolve, reject) => {
-    fulfill = { resolve, reject }
-  })
-  requests.push([request, fulfill])
-  if (!getting) {
-    getting = true
-    Promise.resolve().then(() => flush())
+    throw new Error(`${response.status} (${response.url}): ${await response.text()}`)
   }
-  return promise
+  console.log(request)
+  return await response.json()
 }
 
-const { section: sections } = await get(`/v1/users/${userId}/sections`)
-await Promise.all(sections.map(async ({ course_id }: any) => {
-  const items = await get(`/v1/courses/${course_id}/folder/0`).catch(identity)
-  console.log(items)
-}))
-Deno.writeTextFile('./private/sections.json', JSON.stringify(sections, null, '\t'))
-// console.log(await fetch(`${host}/v1/users/${userId}/sections`, { headers }).then(r => r.json()))
+interface FolderItem {
+  id: number
+  title: string
+  type: string
+  location: string
+}
+
+async function getFolder (
+  sectionId: string,
+  items: FolderItem[] | undefined,
+  path: string,
+) {
+  if (!items) return
+  for (const { id, title, type, location } of items) {
+    const data = await get(location)
+    if (type === 'folder') {
+      const subpath = path + id + '/'
+      await ensureDir(subpath)
+      await Deno.writeTextFile(subpath + 'README.md', `# ${title}\n`)
+      await Deno.writeTextFile(subpath + 'items.json', JSON.stringify(data, null, '\t'))
+      await getFolder(sectionId, data['folder-item'], subpath)
+    } else {
+      await Deno.writeTextFile(path + id + '.json', JSON.stringify(data, null, '\t'))
+      if (type === 'discussion') {
+        // Docs say it's paged but it doesn't seem to care about ?start and
+        // &limit so I'm assuming it's not actually paged.
+        const comments = await get(location + '/comments')
+        await Deno.writeTextFile(path + id + '_comments.json', JSON.stringify(comments, null, '\t'))
+      }
+      if ('grade_item_id' in data) {
+        const submissions = await get(`/v1/sections/${sectionId}/submissions/${data.grade_item_id}?with_attachments=1&all_revisions=1`)
+        await Deno.writeTextFile(path + id + '_submissions.json', JSON.stringify(submissions, null, '\t'))
+      }
+    }
+  }
+}
+
+await ensureDir('./private/')
+
+const grades = await get(`/users/${userId}/grades`)
+await Deno.writeTextFile('./private/grades.json', JSON.stringify(grades, null, '\t'))
+
+const sections = await get(`/users/${userId}/sections`)
+await Deno.writeTextFile('./private/sections.json', JSON.stringify(sections, null, '\t'))
+
+await ensureDir('./private/courses/')
+for (const { id, course_title, section_title } of sections.section) {
+  await ensureDir(`./private/courses/${id}/`)
+
+  const folder = await get(`/courses/${id}/folder/0`)
+  await Deno.writeTextFile(`./private/courses/${id}/README.md`, `# ${course_title} ${section_title}\n`)
+  await Deno.writeTextFile(`./private/courses/${id}/items.json`, JSON.stringify(folder, null, '\t'))
+
+  // idk what the actual limit of limit is, but it's probably at least 100, and
+  // probably all my classes've posted less than 100 updates
+  const updates = await get(`/v1/sections/${id}/updates?with_attachments=1&limit=1000`)
+  await Deno.writeTextFile(`./private/courses/${id}/updates.json`, JSON.stringify(updates, null, '\t'))
+
+  await getFolder(id, folder['folder-item'], `./private/courses/${id}/`)
+
+  break // TEMP
+}
