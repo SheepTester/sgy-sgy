@@ -17,6 +17,21 @@ function wait (time: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, time))
 }
 
+class FetchError extends Error {
+  response: Response
+  responseText: string
+
+  constructor (response: Response, responseText: string) {
+    const text = responseText.length > 200
+      ? responseText.slice(0, 100) + ' [...] ' + responseText.slice(-100)
+      : responseText
+    super(`${response.status} (${response.url}): ${text}`)
+    this.name = this.constructor.name
+    this.response = response
+    this.responseText = responseText
+  }
+}
+
 const {
   HOST,
   UID: userId,
@@ -42,10 +57,21 @@ async function get (request: string, retry: boolean = true): Promise<any> {
       await wait(5000)
       return await get(request, false)
     }
-    throw new Error(`${response.status} (${response.url}): ${await response.text()}`)
+    throw new FetchError(response, await response.text())
   }
   console.log(request)
   return await response.json()
+}
+async function fetchToFile (path: string, request: string, useFile: boolean = true): Promise<any> {
+  if (useFile) {
+    const file = await Deno.readTextFile(path).catch(() => null)
+    if (file !== null) {
+      return JSON.parse(file)
+    }
+  }
+  const json = await get(request)
+  await Deno.writeTextFile(path, JSON.stringify(json, null, '\t'))
+  return json
 }
 
 interface FolderItem {
@@ -62,24 +88,39 @@ async function getFolder (
 ) {
   if (!items) return
   for (const { id, title, type, location } of items) {
-    const data = await get(location)
+    if (!location) {
+      console.warn(`${path}'s ${id} doesn't have a location for some reason.`)
+      continue
+    }
+    const subpath = path + id + '/'
     if (type === 'folder') {
-      const subpath = path + id + '/'
       await ensureDir(subpath)
+    }
+    const filePath = type === 'folder'
+      ? subpath + 'items.json'
+      : path + id + '.json'
+    const loc = type === 'media-album'
+      ? `/sections/${sectionId}/albums/${id}?withcontent=1`
+      : location
+    const data = await fetchToFile(filePath, loc).catch(err => {
+      if (err instanceof FetchError && err.response.status === 403) {
+        console.warn(`[!] ${err.response.url} 403'd.`)
+        return { error: err.responseText }
+      } else {
+        return Promise.reject(err)
+      }
+    })
+    if (type === 'folder') {
       await Deno.writeTextFile(subpath + 'README.md', `# ${title}\n`)
-      await Deno.writeTextFile(subpath + 'items.json', JSON.stringify(data, null, '\t'))
       await getFolder(sectionId, data['folder-item'], subpath)
     } else {
-      await Deno.writeTextFile(path + id + '.json', JSON.stringify(data, null, '\t'))
       if (type === 'discussion') {
         // Docs say it's paged but it doesn't seem to care about ?start and
         // &limit so I'm assuming it's not actually paged.
-        const comments = await get(location + '/comments')
-        await Deno.writeTextFile(path + id + '_comments.json', JSON.stringify(comments, null, '\t'))
+        await fetchToFile(path + id + '_comments.json', location + '/comments')
       }
       if ('grade_item_id' in data) {
-        const submissions = await get(`/v1/sections/${sectionId}/submissions/${data.grade_item_id}?with_attachments=1&all_revisions=1`)
-        await Deno.writeTextFile(path + id + '_submissions.json', JSON.stringify(submissions, null, '\t'))
+        await fetchToFile(path + id + '_submissions.json', `/v1/sections/${sectionId}/submissions/${data.grade_item_id}?with_attachments=1&all_revisions=1`)
       }
     }
   }
@@ -87,26 +128,20 @@ async function getFolder (
 
 await ensureDir('./private/')
 
-const grades = await get(`/users/${userId}/grades`)
-await Deno.writeTextFile('./private/grades.json', JSON.stringify(grades, null, '\t'))
+await fetchToFile('./private/grades.json', `/users/${userId}/grades`)
 
-const sections = await get(`/users/${userId}/sections`)
-await Deno.writeTextFile('./private/sections.json', JSON.stringify(sections, null, '\t'))
+const { section: sections } = await fetchToFile('./private/sections.json', `/users/${userId}/sections`)
 
 await ensureDir('./private/courses/')
-for (const { id, course_title, section_title } of sections.section) {
+for (const { id, course_title, section_title } of sections) {
   await ensureDir(`./private/courses/${id}/`)
 
-  const folder = await get(`/courses/${id}/folder/0`)
+  const folder = await fetchToFile(`./private/courses/${id}/items.json`, `/courses/${id}/folder/0`)
   await Deno.writeTextFile(`./private/courses/${id}/README.md`, `# ${course_title} ${section_title}\n`)
-  await Deno.writeTextFile(`./private/courses/${id}/items.json`, JSON.stringify(folder, null, '\t'))
 
   // idk what the actual limit of limit is, but it's probably at least 100, and
   // probably all my classes've posted less than 100 updates
-  const updates = await get(`/v1/sections/${id}/updates?with_attachments=1&limit=1000`)
-  await Deno.writeTextFile(`./private/courses/${id}/updates.json`, JSON.stringify(updates, null, '\t'))
+  await fetchToFile(`./private/courses/${id}/updates.json`, `/v1/sections/${id}/updates?with_attachments=1&limit=1000`)
 
   await getFolder(id, folder['folder-item'], `./private/courses/${id}/`)
-
-  break // TEMP
 }
