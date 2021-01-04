@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title><%= courseTitle %> . <%= title %></title>
+    <meta name="description" content="<%= description %>" />
+
+    <style>
+      .url,
+      .time {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <p><a href="./">&uparrow; <%= parentFolder %></a></p>
+    <h1><%= courseTitle %></h1>
+    <h2><%- title %></h2>
+    <p style="white-space: pre-wrap;"><%= description.replace('<base href="https://app.schoology.com"/>', '') %></p>
+    <dl>
+      <dt>Due</dt>
+      <dd><%= dueDate %></dd>
+      <dt>Max points</dt>
+      <dd><%= maxPoints %></dd>
+      <dt>Factor</dt>
+      <dd><%= factor %></dd>
+      <dt>Type</dt>
+      <dd><%= type %></dd>
+      <dt>Last updated</dt>
+      <dd><%= lastUpdated && lastUpdated.toLocaleString() %></dd>
+    </dl>
+    <ul>
+      <% for (const { url, title, summary, favicon } of links) { %>
+        <li>
+          <img src="<%= favicon %>" alt="Favicon" height="16">
+          <a href="<%= url %>"><%= title %></a>
+          <p><%= summary %></p>
+          <span class="url"><%= url %></span>
+        </li>
+      <% } %>
+    </ul>
+    <% if (submissions) { %>
+      <h3>Submissions</h3>
+      <ul>
+        <% for (const { created, late, draft, files } of submissions) { %>
+          <li>
+            <p><%= created.toLocaleString() %></p>
+            <span style="color: red;"><%= late ? 'late' : '' %> <%= draft ? 'draft' : '' %></span>
+            <ul>
+              <% for (const { title, filesize, timestamp, filemime, download_path, converted_download_path } of files) { %>
+                <li>
+                  <a href="<%= download_path %>"><%= title %></a> (<a href="<%= converted_download_path %>">converted</a>)
+                  (<%= filesize %> b / <%= filemime %>)
+                  <span class="time"><%= timestamp.toLocaleString() %></span>
+                </li>
+              <% } %>
+            </ul>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+    <details>
+      <summary>JSON</summary>
+      <pre><%= json %></pre>
+    </details>
+    <details>
+      <summary>JSON from parent</summary>
+      <pre><%= parentEntryJson %></pre>
+    </details>
+    <% if (submissionsJson) { %>
+      <details>
+        <summary>Submissions JSON</summary>
+        <pre><%= submissionsJson %></pre>
+      </details>
+    <% } %>
+  </body>
+</html>

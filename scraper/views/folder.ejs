@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title><%= courseTitle %> / <%= folderTitle %></title>
+    <meta name="description" content="<%= folderDesc %>" />
+
+    <style>
+      .folder-item-type {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <% if (topLevel) { %>
+      <p><a href="../">&leftarrow; courses</a></p>
+    <% } else { %>
+      <p><a href="../">&uparrow; <%= parentFolder %></a></p>
+    <% } %>
+    <h1><%= courseTitle %></h1>
+    <h2><span style="color: <%= colour %>;">███</span> <%= folderTitle %></h2>
+    <p style="white-space: pre-wrap;"><%= folderDesc %></p>
+    <dl>
+      <dt>Publish times</dt>
+      <dd><%= publishTimes %></dd>
+      <dt>Completed</dt>
+      <dd><%= completed %></dd>
+      <dt>Completion status</dt>
+      <dd><%= completionStatus %></dd>
+    </dl>
+    <ul>
+      <% for (const item of items) { %>
+        <li class="folder-item <%= item.type %>">
+          <% if (item.color) { %>
+            <span style="color: <%= item.color %>;">███</span>
+          <% } %>
+          <a href="./<%= item.type === 'folder' ? item.id + '/' : item.id %>"><%- item.title %></a>
+          <span class="folder-item-type"><%= item.type %></span>
+          <p style="white-space: pre-wrap;"><%= item.body.replace('<base href="https://app.schoology.com"/>', '') %></p>
+        </li>
+      <% } %>
+    </ul>
+    <details>
+      <summary>JSON</summary>
+      <pre><%= json %></pre>
+    </details>
+    <% if (!topLevel) { %>
+      <details>
+        <summary>JSON from parent</summary>
+        <pre><%= parentEntryJson %></pre>
+      </details>
+    <% } %>
+  </body>
+</html>

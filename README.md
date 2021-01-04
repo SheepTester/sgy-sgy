@@ -103,3 +103,37 @@ flask run
 ```
 
 http://127.0.0.1:5000/
+
+## Scraper
+
+Gets all the course materials from Schoology. You'll need to populate `.env` first:
+
+```
+HOST=pausd.schoology.com
+UID=
+CSRF_KEY=
+CSRF_TOKEN=
+SESS_ID=
+```
+
+On Schoology, you can get the first four by running the following in the console:
+
+```js
+`HOST=${window.location.hostname}
+UID=${Drupal.settings.s_common.user.uid}
+CSRF_KEY=${Drupal.settings.s_common.csrf_key}
+CSRF_TOKEN=${Drupal.settings.s_common.csrf_token}
+SESS_ID=`
+```
+
+To get `SESS_ID`, you need to look for the SESS<hash> cookie in the Application tab of devtools.
+
+```sh
+# In scraper/:
+
+# Scrape Schoology -> ./private/ (Uses Deno)
+deno run --allow-read=./ --allow-write=./private/ --allow-env --allow-net index.ts
+
+# Web server to view ./private/ (Uses Node)
+node app.js
+```
