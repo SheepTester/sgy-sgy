@@ -10,6 +10,7 @@ __pycache__
 compiled
 
 private
+.env
 
 # Schoology
 api-creds.json
