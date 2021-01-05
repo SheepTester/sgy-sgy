@@ -123,6 +123,11 @@ async function getFolder (
         await fetchToFile(path + id + '_submissions.json', `/v1/sections/${sectionId}/submissions/${data.grade_item_id}?with_attachments=1&all_revisions=1`)
         await fetchToFile(path + id + '_submission_comments.json', `/v1/sections/${sectionId}/submissions/${data.grade_item_id}/${userId}/comments?limit=100`)
       }
+      if (type === 'page') {
+        // Docs say it's paged but it doesn't seem to care about ?start and
+        // &limit so I'm assuming it's not actually paged.
+        await fetchToFile(path + id + '_page.json', location.replace('page', 'pages') + '?withcontent=1&with_attachments=TRUE')
+      }
     }
   }
 }

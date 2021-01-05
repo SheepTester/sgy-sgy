@@ -38,7 +38,7 @@
           <% } %>
           <a href="./<%= item.type === 'folder' ? item.id + '/' : item.id %>"><%- item.title %></a>
           <span class="folder-item-type"><%= item.type %></span>
-          <p style="white-space: pre-wrap;"><%= item.body.replace('<base href="https://app.schoology.com"/>', '') %></p>
+          <p style="white-space: pre-wrap;"><%= item.body && item.body.replace('<base href="https://app.schoology.com"/>', '') %></p>
         </li>
       <% } %>
     </ul>

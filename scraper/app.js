@@ -62,7 +62,7 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
   const { section: sections } = JSON.parse(await fs.readFile('./private/sections.json', 'utf8'))
   const { course_title, section_title } = sections.find(section => section.id === courseId)
   const parent = JSON.parse(
-    await fs.readFile(`./private/courses/${courseId}/${path.map(name => name + '/')}items.json`, 'utf8')
+    await fs.readFile(`./private/courses/${courseId}/${path.map(name => name + '/').join('')}items.json`, 'utf8')
   )
   const parentEntry = last
     ? parent['folder-item'].find(item => item.id === +last)
@@ -71,6 +71,7 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
     const {
       title,
       body,
+      type: itemType,
     } = parentEntry
     const material = JSON.parse(
       await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}.json`, 'utf8')
@@ -104,6 +105,39 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
       if (period) {
         gradingPeriod = period.period_title
         gradeData = period.assignment.find(assignment => assignment.assignment_id === grade_item_id)
+      }
+    }
+    let page, pageHtml, pageFiles
+    if (itemType === 'page') {
+      page = JSON.parse(
+        await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_page.json`, 'utf8')
+      )
+      pageHtml = page.body.replace('<base href="https://app.schoology.com"/>', '')
+      pageFiles = page.attachments && page.attachments.files.file.map(transformFile)
+    }
+    let discussionComments, replies
+    if (itemType === 'discussion') {
+      discussionComments = JSON.parse(
+        await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_comments.json`, 'utf8')
+      )
+      const repliesById = new Map()
+      replies = []
+      for (const { id, uid, comment, created, parent_id, likes, user_like_action } of discussionComments.comment) {
+        const obj = {
+          authorId: uid,
+          comment,
+          created: new Date(created * 1000),
+          isReply: !!parent_id,
+          replies: [],
+          likes,
+          likedByMe: user_like_action,
+        }
+        repliesById.set(id, obj)
+        if (parent_id) {
+          repliesById.get(parent_id).replies.push(obj)
+        } else {
+          replies.push(obj)
+        }
       }
     }
     res.render('material', {
@@ -154,8 +188,13 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
         thumbnail: thumbnail_url,
         files: files.map(transformFile),
       })),
+      replies,
+      pageHtml,
+      pageFiles,
       parentEntryJson: JSON.stringify(parentEntry, null, '\t'),
       json: JSON.stringify(material, null, '\t'),
+      discussionCommentsJson: JSON.stringify(discussionComments, null, '\t'),
+      pageJson: JSON.stringify(page, null, '\t'),
       submissionsJson: submissions && JSON.stringify(submissions, null, '\t'),
       submissionCommentsJson: submissionComments && JSON.stringify(submissionComments, null, '\t'),
       gradesJson: gradeData && JSON.stringify(gradeData, null, '\t'),

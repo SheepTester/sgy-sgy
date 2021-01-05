@@ -1,0 +1,13 @@
+<li>
+  <a href="https://pausd.schoology.com/user/<%= authorId %>/"><%= authorId %></a>
+  <p style="white-space: pre-wrap;"><%= comment %></p>
+  <span class="<%= likes ? '' : 'no-one-likes' %>"><%= likes %> like(s) <%= likedByMe ? '(liking)' : '' %></span>
+  <span class="time"><%= created.toLocaleString() %></span>
+  <% if (replies.length) { %>
+    <ul>
+      <% for (const reply of replies) { %>
+        <%- include('discussion-reply', reply) %>
+      <% } %>
+    </ul>
+  <% } %>
+</li>

@@ -9,7 +9,8 @@
 
     <style>
       .url,
-      .time {
+      .time,
+      .no-one-likes {
         opacity: 0.5;
       }
     </style>
@@ -21,6 +22,9 @@
     <p style="white-space: pre-wrap;"><%= description.replace('<base href="https://app.schoology.com"/>', '') %></p>
     <% if (appUrl) { %>
       <p><a href="<%= appUrl %>">Open in Schoology</a></p>
+    <% } %>
+    <% if (pageHtml) { %>
+      <div style="border: 1px solid grey;"><%- pageHtml %></div>
     <% } %>
     <dl>
       <% if (dueDate) { %>
@@ -69,6 +73,14 @@
         <%- include('file-item', file) %>
       <% } %>
     </ul>
+    <% if (pageFiles) { %>
+      <h3>Page files</h3>
+      <ul>
+        <% for (const file of pageFiles) { %>
+          <%- include('file-item', file) %>
+        <% } %>
+      </ul>
+    <% } %>
     <% if (submissions) { %>
       <h3>Submissions</h3>
       <ul>
@@ -112,6 +124,14 @@
         <% } %>
       </ul>
     <% } %>
+    <% if (replies) { %>
+      <h3>Discussion replies</h3>
+      <ul>
+        <% for (const reply of replies) { %>
+          <%- include('discussion-reply', reply) %>
+        <% } %>
+      </ul>
+    <% } %>
     <% if (grade) { %>
       <h3>Grade</h3>
       <dl>
@@ -139,6 +159,18 @@
       <summary>JSON from parent</summary>
       <pre><%= parentEntryJson %></pre>
     </details>
+    <% if (discussionCommentsJson) { %>
+      <details>
+        <summary>Discussion comments JSON</summary>
+        <pre><%= discussionCommentsJson %></pre>
+      </details>
+    <% } %>
+    <% if (pageJson) { %>
+      <details>
+        <summary>Page JSON</summary>
+        <pre><%= pageJson %></pre>
+      </details>
+    <% } %>
     <% if (submissionsJson) { %>
       <details>
         <summary>Submissions JSON</summary>
