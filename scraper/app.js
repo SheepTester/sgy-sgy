@@ -17,6 +17,20 @@ function asyncHandler (handler) {
   }
 }
 
+const transformFile = ({
+  title,
+  filesize,
+  timestamp,
+  filemime,
+  download_path,
+}) => ({
+  title,
+  filesize,
+  timestamp: new Date(timestamp * 1000),
+  filemime,
+  downloadLink: download_path.replace('api.', '').replace('/v1', ''),
+})
+
 const app = express()
 const port = 10068
 
@@ -62,19 +76,35 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
       await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}.json`, 'utf8')
     )
     const {
-      attachments: { links: { link: links = [] } = {} } = {},
+      attachments: {
+        links: { link: links = [] } = {},
+        files: { file: files = [] } = {},
+      } = {},
       due,
       max_points,
       factor,
       type,
       grade_item_id,
+      grading_period,
       last_updated,
+      content,
+      web_url,
     } = material
-    let submissions
+    let submissions, submissionComments, gradingPeriod, gradeData
     if (grade_item_id) {
       submissions = JSON.parse(
         await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_submissions.json`, 'utf8')
       )
+      submissionComments = JSON.parse(
+        await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_submission_comments.json`, 'utf8')
+      )
+      const { section: sectionGrades } = JSON.parse(await fs.readFile('./private/grades.json', 'utf8'))
+      const grades = sectionGrades.find(section => section.section_id === courseId)
+      const period = grades && grades.period.find(period => period.period_id === 'p' + grading_period)
+      if (period) {
+        gradingPeriod = period.period_title
+        gradeData = period.assignment.find(assignment => assignment.assignment_id === grade_item_id)
+      }
     }
     res.render('material', {
       courseTitle: `${course_title}: ${section_title}`,
@@ -87,6 +117,8 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
       factor,
       type,
       lastUpdated: last_updated && new Date(+last_updated * 1000),
+      files: files.map(transformFile),
+      appUrl: web_url && web_url.replace('app.', 'pausd.'),
       submissions: submissions && submissions.revision.map(({
         created,
         late,
@@ -96,25 +128,37 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
         created: new Date(created * 1000),
         late,
         draft,
-        files: files.map(({
-          title,
-          filesize,
-          timestamp,
-          filemime,
-          download_path,
-          converted_download_path,
-        }) => ({
-          title,
-          filesize,
-          timestamp: new Date(timestamp * 1000),
-          filemime,
-          download_path,
-          converted_download_path,
-        })),
+        files: files.map(transformFile),
+      })),
+      submissionComments: submissionComments && submissionComments.comment.map(({
+        comment,
+        created,
+      }) => ({
+        comment,
+        created: new Date(created * 1000),
+      })),
+      gradingPeriod,
+      grade: gradeData,
+      albumImages: content && content.map(({
+        caption,
+        created,
+        content_url,
+        content_filesize,
+        thumbnail_url,
+        attachments: { files: { file: files } },
+      }) => ({
+        caption,
+        created:new Date(created * 1000),
+        image: content_url,
+        fileSize: content_filesize,
+        thumbnail: thumbnail_url,
+        files: files.map(transformFile),
       })),
       parentEntryJson: JSON.stringify(parentEntry, null, '\t'),
       json: JSON.stringify(material, null, '\t'),
       submissionsJson: submissions && JSON.stringify(submissions, null, '\t'),
+      submissionCommentsJson: submissionComments && JSON.stringify(submissionComments, null, '\t'),
+      gradesJson: gradeData && JSON.stringify(gradeData, null, '\t'),
     })
     return
   }

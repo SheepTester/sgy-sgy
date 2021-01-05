@@ -121,6 +121,7 @@ async function getFolder (
       }
       if ('grade_item_id' in data) {
         await fetchToFile(path + id + '_submissions.json', `/v1/sections/${sectionId}/submissions/${data.grade_item_id}?with_attachments=1&all_revisions=1`)
+        await fetchToFile(path + id + '_submission_comments.json', `/v1/sections/${sectionId}/submissions/${data.grade_item_id}/${userId}/comments?limit=100`)
       }
     }
   }

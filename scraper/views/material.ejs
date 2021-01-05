@@ -19,18 +19,38 @@
     <h1><%= courseTitle %></h1>
     <h2><%- title %></h2>
     <p style="white-space: pre-wrap;"><%= description.replace('<base href="https://app.schoology.com"/>', '') %></p>
+    <% if (appUrl) { %>
+      <p><a href="<%= appUrl %>">Open in Schoology</a></p>
+    <% } %>
     <dl>
-      <dt>Due</dt>
-      <dd><%= dueDate %></dd>
-      <dt>Max points</dt>
-      <dd><%= maxPoints %></dd>
-      <dt>Factor</dt>
-      <dd><%= factor %></dd>
-      <dt>Type</dt>
-      <dd><%= type %></dd>
-      <dt>Last updated</dt>
-      <dd><%= lastUpdated && lastUpdated.toLocaleString() %></dd>
+      <% if (dueDate) { %>
+        <dt>Due</dt>
+        <dd><%= dueDate %></dd>
+      <% } %>
+      <% if (maxPoints) { %>
+        <dt>Max points</dt>
+        <dd><%= maxPoints %></dd>
+      <% } %>
+      <% if (factor) { %>
+        <dt>Factor</dt>
+        <dd><%= factor %></dd>
+      <% } %>
+      <% if (type) { %>
+        <dt>Type</dt>
+        <dd><%= type %></dd>
+      <% } %>
+      <% if (lastUpdated) { %>
+        <dt>Last updated</dt>
+        <dd><%= lastUpdated.toLocaleString() %></dd>
+      <% } %>
+      <% if (gradingPeriod) { %>
+        <dt>Grading period</dt>
+        <dd><%= gradingPeriod %></dd>
+      <% } %>
     </dl>
+    <% if (links.length) { %>
+      <h3>Links</h3>
+    <% } %>
     <ul>
       <% for (const { url, title, summary, favicon } of links) { %>
         <li>
@@ -41,6 +61,14 @@
         </li>
       <% } %>
     </ul>
+    <% if (files.length) { %>
+      <h3>Files</h3>
+    <% } %>
+    <ul>
+      <% for (const file of files) { %>
+        <%- include('file-item', file) %>
+      <% } %>
+    </ul>
     <% if (submissions) { %>
       <h3>Submissions</h3>
       <ul>
@@ -49,17 +77,59 @@
             <p><%= created.toLocaleString() %></p>
             <span style="color: red;"><%= late ? 'late' : '' %> <%= draft ? 'draft' : '' %></span>
             <ul>
-              <% for (const { title, filesize, timestamp, filemime, download_path, converted_download_path } of files) { %>
-                <li>
-                  <a href="<%= download_path %>"><%= title %></a> (<a href="<%= converted_download_path %>">converted</a>)
-                  (<%= filesize %> b / <%= filemime %>)
-                  <span class="time"><%= timestamp.toLocaleString() %></span>
-                </li>
+              <% for (const file of files) { %>
+                <%- include('file-item', file) %>
               <% } %>
             </ul>
           </li>
         <% } %>
       </ul>
+    <% } %>
+    <% if (submissionComments) { %>
+      <h4>Comments</h4>
+      <ul>
+        <% for (const { created, comment } of submissionComments) { %>
+          <li>
+            <p style="white-space: pre-wrap;"><%= comment %></p>
+            <span class="time"><%= created.toLocaleString() %></span>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+    <% if (albumImages) { %>
+      <h3>Album content</h3>
+      <ul>
+        <% for (const { caption, created, image, fileSize, thumbnail, files } of albumImages) { %>
+          <li style="display: inline-block;">
+            <p><%= caption %> <span class="time"><%= created.toLocaleString() %></span> <%= fileSize %> b</p>
+            <a href="<%= image %>"><img src="<%= thumbnail %>" alt="thumbnail <%= caption %>" style="height: 100px;"></a>
+            <ul>
+              <% for (const file of files) { %>
+                <%- include('file-item', file) %>
+              <% } %>
+            </ul>
+          </li>
+        <% } %>
+      </ul>
+    <% } %>
+    <% if (grade) { %>
+      <h3>Grade</h3>
+      <dl>
+        <dt>Grade</dt>
+        <dd><%= grade.grade || 'ungraded' %></dd>
+        <% if (grade.exception) { %>
+          <dt>Excuse</dt>
+          <dd><%= [null, 'Excused', 'Incomplete'][grade.exception] %></dd>
+        <% } %>
+        <dt>Max points</dt>
+        <dd><%= grade.max_points %></dd>
+        <dt>Is final?</dt>
+        <dd><%= grade.is_final %></dd>
+        <dt>Timestamp</dt>
+        <dd><%= new Date(grade.timestamp * 1000).toLocaleString() %></dd>
+        <dt>Comment</dt>
+        <dd><%= grade.comment %></dd>
+      </dl>
     <% } %>
     <details>
       <summary>JSON</summary>
@@ -73,6 +143,18 @@
       <details>
         <summary>Submissions JSON</summary>
         <pre><%= submissionsJson %></pre>
+      </details>
+    <% } %>
+    <% if (submissionCommentsJson) { %>
+      <details>
+        <summary>Submission comments JSON</summary>
+        <pre><%= submissionCommentsJson %></pre>
+      </details>
+    <% } %>
+    <% if (gradesJson) { %>
+      <details>
+        <summary>Grade JSON</summary>
+        <pre><%= gradesJson %></pre>
       </details>
     <% } %>
   </body>
