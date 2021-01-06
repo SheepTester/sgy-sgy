@@ -59,11 +59,11 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
     .split(/\/+/)
     .filter(part => /\d+/.test(part))
   const last = path.pop()
-  const { section: sections } = JSON.parse(await fs.readFile('./private/sections.json', 'utf8'))
+  const { section: sections } = await fs.readFile('./private/sections.json', 'utf8')
+    .then(JSON.parse)
   const { course_title, section_title } = sections.find(section => section.id === courseId)
-  const parent = JSON.parse(
-    await fs.readFile(`./private/courses/${courseId}/${path.map(name => name + '/').join('')}items.json`, 'utf8')
-  )
+  const parent = await fs.readFile(`./private/courses/${courseId}/${path.map(name => name + '/').join('')}items.json`, 'utf8')
+    .then(JSON.parse)
   const parentEntry = last
     ? parent['folder-item'].find(item => item.id === +last)
     : parent.self
@@ -73,9 +73,8 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
       body,
       type: itemType,
     } = parentEntry
-    const material = JSON.parse(
-      await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}.json`, 'utf8')
-    )
+    const material = await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}.json`, 'utf8')
+      .then(JSON.parse)
     const {
       attachments: {
         links: { link: links = [] } = {},
@@ -93,33 +92,30 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
     } = material
     let submissions, submissionComments, gradingPeriod, gradeData
     if (grade_item_id) {
-      submissions = JSON.parse(
-        await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_submissions.json`, 'utf8')
-      )
-      submissionComments = JSON.parse(
-        await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_submission_comments.json`, 'utf8')
-      )
-      const { section: sectionGrades } = JSON.parse(await fs.readFile('./private/grades.json', 'utf8'))
-      const grades = sectionGrades.find(section => section.section_id === courseId)
-      const period = grades && grades.period.find(period => period.period_id === 'p' + grading_period)
-      if (period) {
-        gradingPeriod = period.period_title
-        gradeData = period.assignment.find(assignment => assignment.assignment_id === grade_item_id)
-      }
+      submissions = await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_submissions.json`, 'utf8')
+        .then(JSON.parse)
+      submissionComments = await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_submission_comments.json`, 'utf8')
+        .then(JSON.parse)
+      gradeData = await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_grade.json`, 'utf8')
+        .then(JSON.parse)
+      // const grades = sectionGrades.find(section => section.section_id === courseId)
+      // const period = grades && grades.period.find(period => period.period_id === 'p' + grading_period)
+      // if (period) {
+      //   gradingPeriod = period.period_title
+      //   gradeData = period.assignment.find(assignment => assignment.assignment_id === grade_item_id)
+      // }
     }
     let page, pageHtml, pageFiles
     if (itemType === 'page') {
-      page = JSON.parse(
-        await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_page.json`, 'utf8')
-      )
+      page = await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_page.json`, 'utf8')
+        .then(JSON.parse)
       pageHtml = page.body.replace('<base href="https://app.schoology.com"/>', '')
       pageFiles = page.attachments && page.attachments.files.file.map(transformFile)
     }
     let discussionComments, replies
     if (itemType === 'discussion') {
-      discussionComments = JSON.parse(
-        await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_comments.json`, 'utf8')
-      )
+      discussionComments = await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}_comments.json`, 'utf8')
+        .then(JSON.parse)
       const repliesById = new Map()
       replies = []
       for (const { id, uid, comment, created, parent_id, likes, user_like_action } of discussionComments.comment) {
@@ -201,9 +197,8 @@ app.get('/courses/*', asyncHandler(async (req, res) => {
     })
     return
   }
-  const folder = JSON.parse(
-    await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}/items.json`, 'utf8')
-  )
+  const folder = await fs.readFile(`./private/courses/${courseId}/${last ? path.join('/') + '/' + last : ''}/items.json`, 'utf8')
+    .then(JSON.parse)
   const {
     self: { title, body, publish_start, publish_end, color, completed, completion_status },
     'folder-item': items = [],

@@ -52,6 +52,15 @@ class FetchError extends Error {
     this.response = response
     this.responseText = responseText
   }
+
+  static allow403 (err: any): { error: string } {
+    if (err instanceof FetchError && err.response.status === 403) {
+      console.warn(`[!] ${err.response.url} 403'd.`)
+      return { error: err.responseText }
+    } else {
+      throw err
+    }
+  }
 }
 
 const {
@@ -124,14 +133,7 @@ async function getFolder (
     const loc = type === 'media-album'
       ? `/sections/${sectionId}/albums/${id}?withcontent=1`
       : location
-    const data = await fetchToFile(filePath, loc).catch(err => {
-      if (err instanceof FetchError && err.response.status === 403) {
-        console.warn(`[!] ${err.response.url} 403'd.`)
-        return { error: err.responseText }
-      } else {
-        return Promise.reject(err)
-      }
-    })
+    const data = await fetchToFile(filePath, loc).catch(FetchError.allow403)
     if (type === 'folder') {
       await Deno.writeTextFile(subpath + 'README.md', `# ${title}\n`)
       await getFolder(sectionId, data['folder-item'], subpath)
@@ -140,6 +142,10 @@ async function getFolder (
         // Docs say it's paged but it doesn't seem to care about ?start and
         // &limit so I'm assuming it's not actually paged.
         await fetchToFile(path + id + '_comments.json', location + '/comments')
+      }
+      if (type === 'discussion' || type === 'assignment') {
+        await fetchToFile(path + id + '_grade.json', `/v1/sections/${sectionId}/grades?assignment_id=${id}`)
+          .catch(FetchError.allow403)
       }
       if ('grade_item_id' in data) {
         await fetchToFile(path + id + '_submissions.json', `/v1/sections/${sectionId}/submissions/${data.grade_item_id}?with_attachments=1&all_revisions=1`)
@@ -170,6 +176,15 @@ for (const { id, course_title, section_title } of sections) {
   // idk what the actual limit of limit is, but it's probably at least 100, and
   // probably all my classes've posted less than 100 updates
   await fetchToFile(`./private/courses/${id}/updates.json`, `/v1/sections/${id}/updates?with_attachments=1&limit=1000`)
+
+  await fetchToFile(`./private/courses/${id}/grading_scales.json`, `/v1/sections/${id}/grading_scales`)
+    .catch(FetchError.allow403)
+  // await fetchToFile(`./private/courses/${id}/grading_rubrics.json`, `/v1/sections/${id}/grading_rubrics`)
+  //   .catch(FetchError.allow403)
+  await fetchToFile(`./private/courses/${id}/grading_categories.json`, `/v1/sections/${id}/grading_categories`)
+    .catch(FetchError.allow403)
+  // await fetchToFile(`./private/courses/${id}/grading_groups.json`, `/v1/sections/${id}/grading_groups`)
+  //   .catch(FetchError.allow403)
 
   await getFolder(id, folder['folder-item'], `./private/courses/${id}/`)
 }
