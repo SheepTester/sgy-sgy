@@ -137,3 +137,15 @@ deno run --allow-read=./ --allow-write=./private/ --allow-env --allow-net index.
 # Web server to view ./private/ (Uses Node)
 node app.js
 ```
+
+### Irrelevant side note
+
+Comparing grades.json, which gets randomly jambled:
+
+```sh
+git show <commit>:grades.json > ../../private/grades-old.json
+git show <commit>:grades.json > ../../private/grades-new.json
+deno run --allow-read --allow-write irrelevant-scripts-maybe/sort-grades.ts private/grades-old.json
+deno run --allow-read --allow-write irrelevant-scripts-maybe/sort-grades.ts private/grades-new.json
+diff private/grades-old.json private/grades-new.json --color=always -c | sed -e 's/\t/ /g'
+```
