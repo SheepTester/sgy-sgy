@@ -1,4 +1,4 @@
-/// deno run --allow-read=./ --allow-write=./private/ --allow-env --allow-net index.ts
+/// deno run --allow-read=./ --allow-write=./private/ --allow-env --allow-net index.ts --help
 
 /*
 In .env:
@@ -12,6 +12,28 @@ SESS_ID=`
 import { config } from 'https://deno.land/x/dotenv/mod.ts'
 import { Md5 } from 'https://deno.land/std@0.83.0/hash/md5.ts'
 import { ensureDir } from 'https://deno.land/std@0.83.0/fs/ensure_dir.ts'
+import { parse } from 'https://deno.land/std@0.83.0/flags/mod.ts'
+
+const {
+  help,
+  'hard-refresh': hardRefresh,
+} = parse(Deno.args, {
+  boolean: [
+    'hard-refresh',
+    'help',
+  ],
+  alias: {
+    h: 'help',
+  },
+})
+
+if (help) {
+  console.log('deno run --allow-read=./ --allow-write=./private/ --allow-env --allow-net index.ts [options]')
+  console.log('Options:')
+  console.log('--help (-h)\n\tShow help.')
+  console.log('--hard-refresh\n\tForce reload everything from Schoology, even if the files already exist.')
+  Deno.exit(0)
+}
 
 function wait (time: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, time))
@@ -63,7 +85,7 @@ async function get (request: string, retry: boolean = true): Promise<any> {
   return await response.json()
 }
 async function fetchToFile (path: string, request: string, useFile: boolean = true): Promise<any> {
-  if (useFile) {
+  if (useFile && !hardRefresh) {
     const file = await Deno.readTextFile(path).catch(() => null)
     if (file !== null) {
       return JSON.parse(file)
