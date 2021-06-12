@@ -48,6 +48,12 @@ If you get an error like the following, I have no idea why. Maybe Schoology is d
 
 > Duplicate timestamp/nonce combination, possible replay attack. Request rejected.
 
+### Explorer
+
+```sh
+node explorer/app.js
+```
+
 ## Zoom
 
 Create an [OAuth app](https://marketplace.zoom.us/develop/create) for Zoom, then
