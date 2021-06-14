@@ -4,14 +4,22 @@ import { stringToPath } from './utilts.ts'
 
 await ensureDir('./cache/')
 
-export async function cachePath (path: string): Promise<any> {
-  const filePath = './cache/' + stringToPath(path.replace(/^\//, '')) + '.json'
+type CacheType = 'json' | 'html'
+
+export async function cachePath (path: string, type: CacheType = 'json'): Promise<any> {
+  const filePath = `./cache/${stringToPath(path.replace(/^\//, ''))}.${type}`
   try {
     const file = await Deno.readTextFile(filePath)
-    return JSON.parse(file)
+    console.log(`Loading ${path} from cache`)
+    return type === 'html' ? file : JSON.parse(file)
   } catch {
-    const json = await fetch(root + path, options).then(r => r.json())
-    await Deno.writeTextFile(filePath, JSON.stringify(json, null, '\t'))
+    const json = await fetch(root + path, options)
+      .then(r => type === 'html' ? r.text() : r.json())
+    console.log(`Saving ${path} to cache`)
+    await Deno.writeTextFile(
+      filePath,
+      type === 'html' ? json : JSON.stringify(json, null, '\t')
+    )
     return json
   }
 }

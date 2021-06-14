@@ -1,6 +1,10 @@
+import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
+import { Element } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
 import { cachePath } from './cache.ts'
-import { options, root } from './init.ts'
+import * as html from './html-maker.ts'
+import { root } from './init.ts'
 import { me } from './me.ts'
+import { assert, parseHtml, shouldBeElement, stringToPath } from './utilts.ts'
 
 interface SgyUserSections {
   links: {
@@ -61,10 +65,93 @@ interface SgyUserSections {
   }[]
 }
 
+const colours: Record<string, { background: string; border: string }> = {
+  red: { background: 'F1567B', border: 'C11E45'},
+  orange: { background: 'F79060', border: 'C84E22'},
+  yellow: { background: 'EFD962', border: 'BB9300'},
+  green: { background: 'B5DB75', border: '5A9503'},
+  blue: { background: '8EC4E3', border: '4198D2'},
+  purple: { background: 'A487C3', border: '66519E'},
+  pink: { background: 'EF8FC0', border: 'C24784'},
+  black: { background: '6D6D6D', border: '333333'},
+  gray: { background: 'F1F1F2', border: 'BBBDBF'},
+}
+
 const sections: SgyUserSections = await cachePath(`/v1/users/${me.id}/sections`)
 // console.log(sections.section.map(({ id, course_title, weight, course_code }) => ({ id, course_title, weight, course_code })))
 const courseIds = sections.section
   .sort((a, b) => +b.weight - +a.weight)
-  .map(section => section.id)
+  .map(section => ({
+    id: section.id,
+    name: `${section.course_title}: ${section.section_title}`,
+  }))
 
-await cachePath(`/course/${courseIds[0]}/materials?ajax=1`)
+async function getCourseMaterials (courseId: string, courseName: string) {
+  const document = await cachePath(`/course/${courseId}/materials`, 'html').then(parseHtml)
+  const outPath = `./output/courses/${stringToPath(courseName)}`
+  await ensureDir(outPath)
+  await Deno.writeTextFile(outPath + '/materials.html', html.div(
+    html.base({
+      href: root
+    }),
+    html.ul([...document.querySelectorAll('.item-info')].map(elem => {
+      if (!(elem instanceof Element)) {
+        throw new TypeError(`elem is not an Element: ${Deno.inspect(elem)}`)
+      }
+      // Folders
+      if (elem.classList.contains('materials-folder')) {
+        const iconColour = [...assert(elem.parentElement?.querySelector('.inline-icon')).classList]
+          .find(className => className.startsWith('folder-color-'))
+          ?.replace('folder-color-', '')
+        const { background, border } = colours[iconColour ?? '']
+        return html.li(
+          html.h2(
+            { style: { 'font-size': '1em' } },
+            html.span({
+              style: {
+                width: '1em',
+                height: '1em',
+                display: 'inline-block',
+                'background-color': `#${background}`,
+                border: `1px solid #${border}`,
+              }
+            }),
+            elem.querySelector('.folder-title')?.textContent ?? ''
+          ),
+          html.raw(elem.querySelector('.folder-description')?.innerHTML ?? ''),
+        )
+      }
+      // Links
+      const docBodyTitle = elem.querySelector('.document-body-title')
+      if (docBodyTitle) {
+        const link = docBodyTitle.children[0].children[0]
+        const url = new URL(link.getAttribute('href') ?? '', root)
+        return html.li(
+          html.h3(
+            { style: { 'font-size': '1em' } },
+            html.a(
+              { href: url.searchParams.get('path') },
+              link.textContent,
+            )
+          )
+        )
+      }
+      // Assignments
+      const itemTitleLink = elem.querySelector('.item-title a')
+      if (itemTitleLink) {
+        return html.li(
+          html.h3(
+            { style: { 'font-size': '1em' } },
+            itemTitleLink.textContent,
+          ),
+          html.raw(elem.querySelector('.item-body')?.innerHTML ?? ''),
+        )
+      }
+      throw new Error('idk how to deal with ' + elem.outerHTML)
+    })),
+  ).html)
+}
+
+for (const { id, name } of courseIds.slice(0, 2)) {
+  await getCourseMaterials(id, name)
+}

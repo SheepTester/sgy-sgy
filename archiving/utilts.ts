@@ -1,3 +1,5 @@
+import { DOMParser, Element, HTMLDocument } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
+
 const charNames: Record<string, string> = {
   '`': 'tick',
   '~': 'tilde',
@@ -43,4 +45,27 @@ export function stringToPath (string: string): string {
       }_`
     }
   })
+}
+
+export function parseHtml (html: string): HTMLDocument {
+  const document = new DOMParser().parseFromString(html, 'text/html')
+  if (!document) {
+    throw new Error('document from parsed HTML is null')
+  }
+  return document
+}
+
+export function assert<T> (value: T | null | undefined): T {
+  if (value === null || value === undefined) {
+    throw new Error('Value is ' + value)
+  }
+  return value
+}
+
+export function shouldBeElement (value: unknown): Element {
+  if (value instanceof Element) {
+    return value
+  } else {
+    throw new TypeError(`${value} is not Element`)
+  }
 }
