@@ -87,7 +87,7 @@ const courseIds = sections.section
   }))
 
 async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
-  return html.ul(await asyncMap(document.querySelectorAll('.item-info'), async elem => {
+  return html.div(await asyncMap(document.querySelectorAll('.item-info'), async elem => {
     if (!(elem instanceof Element)) {
       throw new TypeError(`elem is not an Element: ${Deno.inspect(elem)}`)
     }
@@ -102,22 +102,38 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
         folderTitle.children[0].getAttribute('href') ?? '',
         'html'
       ).then(parseHtml) : null
-      return html.li(
-        html.h2(
-          { style: { 'font-size': '1em' } },
-          html.span({
+      return html.details(
+        { open: true },
+        html.summary(
+          {
             style: {
-              width: '1em',
-              height: '1em',
-              display: 'inline-block',
-              'background-color': `#${background}`,
-              border: `1px solid #${border}`,
+              display: 'flex',
             }
-          }),
-          folderTitle.textContent
+          },
+          html.div(
+            html.strong(
+              html.span({
+                style: {
+                  width: '1em',
+                  height: '1em',
+                  display: 'inline-block',
+                  'background-color': `#${background}`,
+                  border: `1px solid #${border}`,
+                }
+              }),
+              folderTitle.textContent
+            ),
+            html.raw(elem.querySelector('.folder-description')?.innerHTML ?? ''),
+          ),
         ),
-        html.raw(elem.querySelector('.folder-description')?.innerHTML ?? ''),
-        folderDoc && await getFolderContents(folderDoc),
+        html.div(
+          {
+            style: {
+              margin: '0 40px'
+            }
+          },
+          folderDoc && await getFolderContents(folderDoc),
+        ),
       )
     }
     // Links
@@ -126,9 +142,8 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
       const link = docBodyTitle.children[0].children[0]
       if (link.classList.contains('attachments-file-name')) {
         // Attachment
-        return html.li(
-          html.h3(
-            { style: { 'font-size': '1em' } },
+        return html.p(
+          html.strong(
             '📄',
             link.querySelector('.infotip')
               ? link.children[0].children[0].childNodes[0].nodeValue
@@ -145,9 +160,13 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
         }
       }
       const url = sgyPath && new URL(sgyPath, root)
-      return html.li(
-        html.h3(
-          { style: { 'font-size': '1em', color: !url && 'red' } },
+      return html.p(
+        html.strong(
+          {
+            style: {
+              color: !url && 'red'
+            }
+          },
           '🔗',
           url ? html.a(
             { href: url.searchParams.get('path') },
@@ -159,9 +178,8 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
     // Assignments
     const itemTitleLink = elem.querySelector('.item-title a')
     if (itemTitleLink) {
-      return html.li(
-        html.h3(
-          { style: { 'font-size': '1em' } },
+      return html.p(
+        html.strong(
           '📝',
           itemTitleLink.textContent,
         ),
@@ -176,10 +194,23 @@ async function getCourseMaterials (courseId: string, courseName: string) {
   const document = await cachePath(`/course/${courseId}/materials`, 'html').then(parseHtml)
   const outPath = `./output/courses/${stringToPath(courseName)}`
   await ensureDir(outPath)
-  await Deno.writeTextFile(outPath + '/materials.html', html.div(
+  await Deno.writeTextFile(outPath + '/materials.html', html.body(
     html.base({
       href: root
     }),
+    html.style(
+      html.raw([
+        'summary::before {',
+        'content: "▶";',
+        'display: block;',
+        'width: 2ch;',
+        'flex: none;',
+        '}',
+        'details[open] > summary::before {',
+        'content: "▼";',
+        '}',
+      ].join(''))
+    ),
     await getFolderContents(document),
   ).html)
 }

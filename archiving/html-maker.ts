@@ -34,25 +34,24 @@ type Child = string | Html | Attributes | Child[] | null | undefined
 function attributes (attributes: Attributes = {}): string {
   let str = ''
   for (const [key, value] of Object.entries(attributes)) {
+    if (!value && value !== '') continue
+    str += ' ' + key
+    if (value === true) continue
+    str += '="'
     if (typeof value === 'string') {
-      str += ` ${key}="${escape(value)}"`
+      str += escape(value)
     } else if (Array.isArray(value)) {
-      str += ` ${key}="${
-        value
-          .filter((token): token is string => !!token)
-          .map(token => escape(token))
-          .join(' ')
-      }"`
-    } else if (value === true) {
-      str += key
-    } else if (value) {
-      str += ` ${key}="${
-        Object.entries(value)
-          .filter((entry): entry is [string, string] => !!entry[1])
-          .map(([key, value]) => `${key}:${escape(value)}`)
-          .join(';')
-      }"`
+      str += value
+        .filter((token): token is string => !!token)
+        .map(token => escape(token))
+        .join(' ')
+    } else {
+      str += Object.entries(value)
+        .filter((entry): entry is [string, string] => !!entry[1])
+        .map(([key, value]) => `${key}:${escape(value)}`)
+        .join(';')
     }
+    str += '"'
   }
   return str
 }
@@ -99,6 +98,8 @@ export const h3 = element('h3')
 export const span = element('span')
 export const details = element('details')
 export const summary = element('summary')
+export const style = element('style')
+export const body = element('body')
 export const base = selfClosingElement('base')
 
 export function raw (html: string): Html {
