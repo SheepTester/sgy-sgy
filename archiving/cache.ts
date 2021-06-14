@@ -26,12 +26,12 @@ export async function cachePath (
       .catch(console.error)
     return type === 'html' ? file : JSON.parse(file)
   } catch {
+    log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
     const response = await fetch(root + path, options)
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}`)
+      throw new Error(`HTTP ${response.status} for ${response.url}`)
     }
     const json = await (type === 'html' ? response.text() : response.json())
-    log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
     await ensureFile(filePath)
     await Deno.writeTextFile(
       filePath,
@@ -39,4 +39,10 @@ export async function cachePath (
     )
     return json
   }
+}
+
+export function external (url: string): string {
+  const params = new URLSearchParams()
+  params.set('path', url)
+  return `/link?${params}`
 }

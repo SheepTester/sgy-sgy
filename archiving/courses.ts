@@ -96,8 +96,12 @@ const courseIds = sections.section
   }))
 
 async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
+  const items = document.querySelectorAll('.item-info')
+  if (items.length === 0) {
+    return html.em('Empty.')
+  }
   return html.div(
-    await asyncMap(document.querySelectorAll('.item-info'), async elem => {
+    await asyncMap(items, async elem => {
       if (!(elem instanceof Element)) {
         throw new TypeError(`elem is not an Element: ${Deno.inspect(elem)}`)
       }
@@ -127,17 +131,20 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
               },
             },
             html.div(
-              html.strong(
-                html.span({
-                  style: {
-                    width: '1em',
-                    height: '1em',
-                    display: 'inline-block',
-                    'background-color': `#${background}`,
-                    border: `1px solid #${border}`,
-                  },
-                }),
-                folderTitle.textContent,
+              html.p(
+                html.strong(
+                  html.span({
+                    style: {
+                      width: '1em',
+                      height: '1em',
+                      display: 'inline-block',
+                      'background-color': `#${background}`,
+                      border: `1px solid #${border}`,
+                    },
+                  }),
+                  ' ',
+                  folderTitle.textContent,
+                ),
               ),
               html.raw(
                 elem.querySelector('.folder-description')?.innerHTML ?? '',
@@ -162,10 +169,10 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
           // Attachment
           return html.p(
             html.strong(
-              '📄',
+              '📄 ',
               link.querySelector('.infotip')
                 ? link.children[0].children[0].childNodes[0].nodeValue
-                : link.textContent,
+                : link.children[0].textContent,
             ),
           )
         }
@@ -185,7 +192,7 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
                 color: !url && 'red',
               },
             },
-            '🔗',
+            '🔗 ',
             url
               ? html.a({ href: url.searchParams.get('path') }, link.textContent)
               : link.textContent,
@@ -195,8 +202,47 @@ async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
       // Assignments
       const itemTitleLink = elem.querySelector('.item-title a')
       if (itemTitleLink) {
-        return html.p(
-          html.strong('📝', itemTitleLink.textContent),
+        const url = expect(itemTitleLink.getAttribute('href'))
+        if (
+          url.includes('discussion') ||
+          url.includes('common-assessment') ||
+          itemTitleLink.parentElement?.parentElement?.parentElement?.children[0].classList.contains(
+            'assessment-icon',
+          )
+        ) {
+          const doc = await cachePath(url, 'html').then(parseHtml)
+          if (url.includes('common-assessment')) {
+            console.log(url)
+            const fnName = 'window.initSgyUiApp'
+            const script = expect(
+              [...doc.querySelectorAll('script')].find(script =>
+                script.textContent.includes(fnName),
+              ),
+            ).textContent
+            const {
+              initialization: { submissions },
+            } = JSON.parse(
+              `[${script.slice(
+                script.indexOf(fnName) + fnName.length + 1,
+                script.indexOf(');'),
+              )}]`,
+            )[5]
+            for (const { id } of submissions) {
+              // Ignore the 403 error
+              await cachePath(
+                `/iapi2/common-assessments/edit-submission/${id}`,
+              ).catch(() => {})
+            }
+          } else if (url.includes('assignment')) {
+            // console.log(doc.querySelectorAll('.sub-edit a').length, url)
+            for (const link of doc.querySelectorAll('.sub-edit a')) {
+              const url = expect(shouldBeElement(link).getAttribute('href'))
+              await cachePath(url, 'html')
+            }
+          }
+        }
+        return html.div(
+          html.p(html.strong('📝 ', itemTitleLink.textContent)),
           html.raw(elem.querySelector('.item-body')?.innerHTML ?? ''),
         )
       }
@@ -224,8 +270,9 @@ async function getCourseMaterials (courseId: string, courseName: string) {
             'summary::before {',
             'content: "▶";',
             'display: block;',
-            'width: 2ch;',
+            'width: 2.5ch;',
             'flex: none;',
+            'margin-top: 1em;',
             '}',
             'details[open] > summary::before {',
             'content: "▼";',
@@ -236,8 +283,59 @@ async function getCourseMaterials (courseId: string, courseName: string) {
       await getFolderContents(document),
     ).html,
   )
+
+  const gradesDoc = await cachePath(
+    `/course/${courseId}/student_grades`,
+    'html',
+  ).then(parseHtml)
+  for (const element of gradesDoc.querySelectorAll(
+    '.expandable-icon-grading-report',
+  )) {
+    element.remove()
+  }
+  await Deno.writeTextFile(
+    outPath + '/grades.html',
+    html.body(
+      html.base({ href: root }),
+      html.style(
+        html.raw(
+          [
+            'th, td { text-align: left; }',
+            '.title-column .due-date{ font-weight: normal; font-size: 12px; color: #767676; padding-right: 15px; margin-left: 15px; }',
+            '.title-column .reportSpacer-2 { padding-left: 20px; }',
+            '.title-column .reportSpacer-3 { padding-left: 40px; }',
+            '.title-column .reportSpacer-4 { padding-left: 60px; }',
+            '.item-row .grade-column, .final-row .grade-column { color:#3aa406; font-size: 12px; font-weight: bold; }',
+            '.grade-column .max-grade { color:#767676; font-size: 12px; font-weight: normal; }',
+            '.visually-hidden { display: none; }',
+          ].join(''),
+        ),
+      ),
+      html.raw(
+        expect(gradesDoc.querySelector('.gradebook-course-grades table'))
+          .outerHTML,
+      ),
+    ).html,
+  )
+
+  let page = 0
+  while (true) {
+    const { output } = await cachePath(`/course/${courseId}/feed?page=${page}`)
+    if (
+      output ===
+      '<div class="item-list"><ul class="s-edge-feed feed-no-realm"><li id="feed-empty-message" class="first last"><div class="small gray">There are no posts</div></li>\n</ul></div>'
+    ) {
+      break
+    }
+    page++
+    if (page > 100) {
+      throw new RangeError("That's a lot of pages! Uhh")
+    }
+  }
 }
 
-for (const { id, name } of courseIds.slice(0, 2)) {
+// await cachePath(`/home/notifications`, 'html')
+// await cachePath(`/v1/users/${me.id}/grades`)
+for (const { id, name } of courseIds) {
   await getCourseMaterials(id, name)
 }
