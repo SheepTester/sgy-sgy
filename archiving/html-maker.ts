@@ -1,4 +1,4 @@
-class Html {
+export class Html {
   html: string
 
   constructor (html: string) {
@@ -97,6 +97,8 @@ export const h1 = element('h1')
 export const h2 = element('h2')
 export const h3 = element('h3')
 export const span = element('span')
+export const details = element('details')
+export const summary = element('summary')
 export const base = selfClosingElement('base')
 
 export function raw (html: string): Html {

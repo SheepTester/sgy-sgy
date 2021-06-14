@@ -35,16 +35,26 @@ const charNames: Record<string, string> = {
   '?': 'q',
 }
 
-export function stringToPath (string: string): string {
-  return string.replace(/[^A-Za-z0-9]/g, char => {
+export interface StringToPath {
+  allowSlash?: boolean
+}
+
+export function stringToPath (string: string, { allowSlash = false }: StringToPath = {}): string {
+  return string.replace(/[^A-Za-z0-9`~!@#$%^&()\-=+[\];',]|\.(?:$|(?=\/))/g, char => {
     switch (char) {
-      case '/': return '.'
-      case ' ': return '-'
-      default: return `_${
-        charNames[char] || '-' + char.charCodeAt(0).toString(16).padStart(4, '0')
-      }_`
+      case '/': return allowSlash ? '/' : '{slash}'
+      case ' ': return '_'
+      default: return `{${
+        charNames[char] ??
+        'u+' +
+          char
+            .charCodeAt(0)
+            .toString(16)
+            .padStart(4, '0')
+            .toUpperCase()
+      }}`
     }
-  })
+  }) || '{empty}'
 }
 
 export function parseHtml (html: string): HTMLDocument {
@@ -55,7 +65,7 @@ export function parseHtml (html: string): HTMLDocument {
   return document
 }
 
-export function assert<T> (value: T | null | undefined): T {
+export function expect<T> (value: T | null | undefined): T {
   if (value === null || value === undefined) {
     throw new Error('Value is ' + value)
   }
@@ -68,4 +78,12 @@ export function shouldBeElement (value: unknown): Element {
   } else {
     throw new TypeError(`${value} is not Element`)
   }
+}
+
+export async function asyncMap<A, B> (iterable: Iterable<A>, map: (value: A) => Promise<B>): Promise<B[]> {
+  const results = []
+  for (const value of iterable) {
+    results.push(await map(value))
+  }
+  return results
 }

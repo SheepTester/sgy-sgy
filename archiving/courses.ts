@@ -1,10 +1,10 @@
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
-import { Element } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
+import { Element, HTMLDocument } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
 import { cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
 import { root } from './init.ts'
 import { me } from './me.ts'
-import { assert, parseHtml, shouldBeElement, stringToPath } from './utilts.ts'
+import { expect, asyncMap, parseHtml, shouldBeElement, stringToPath } from './utilts.ts'
 
 interface SgyUserSections {
   links: {
@@ -86,6 +86,92 @@ const courseIds = sections.section
     name: `${section.course_title}: ${section.section_title}`,
   }))
 
+async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
+  return html.ul(await asyncMap(document.querySelectorAll('.item-info'), async elem => {
+    if (!(elem instanceof Element)) {
+      throw new TypeError(`elem is not an Element: ${Deno.inspect(elem)}`)
+    }
+    // Folders
+    if (elem.classList.contains('materials-folder')) {
+      const iconColour = [...expect(elem.parentElement?.querySelector('.inline-icon')).classList]
+        .find(className => className.startsWith('folder-color-'))
+        ?.replace('folder-color-', '')
+      const { background, border } = colours[iconColour ?? '']
+      const folderTitle = expect(elem.querySelector('.folder-title'))
+      const folderDoc = folderTitle.children.length > 0 ? await cachePath(
+        folderTitle.children[0].getAttribute('href') ?? '',
+        'html'
+      ).then(parseHtml) : null
+      return html.li(
+        html.h2(
+          { style: { 'font-size': '1em' } },
+          html.span({
+            style: {
+              width: '1em',
+              height: '1em',
+              display: 'inline-block',
+              'background-color': `#${background}`,
+              border: `1px solid #${border}`,
+            }
+          }),
+          folderTitle.textContent
+        ),
+        html.raw(elem.querySelector('.folder-description')?.innerHTML ?? ''),
+        folderDoc && await getFolderContents(folderDoc),
+      )
+    }
+    // Links
+    const docBodyTitle = elem.querySelector('.document-body-title')
+    if (docBodyTitle) {
+      const link = docBodyTitle.children[0].children[0]
+      if (link.classList.contains('attachments-file-name')) {
+        // Attachment
+        return html.li(
+          html.h3(
+            { style: { 'font-size': '1em' } },
+            '📄',
+            link.querySelector('.infotip')
+              ? link.children[0].children[0].childNodes[0].nodeValue
+              : link.textContent,
+          ),
+        )
+      }
+      let sgyPath = link.getAttribute('href')
+      if (sgyPath && !sgyPath.startsWith('/link')) {
+        const document = await cachePath(sgyPath, 'html').then(parseHtml)
+        const link = document.querySelector('.page-title a')
+        if (link) {
+          sgyPath = link.getAttribute('href')
+        }
+      }
+      const url = sgyPath && new URL(sgyPath, root)
+      return html.li(
+        html.h3(
+          { style: { 'font-size': '1em', color: !url && 'red' } },
+          '🔗',
+          url ? html.a(
+            { href: url.searchParams.get('path') },
+            link.textContent,
+          ) : link.textContent,
+        )
+      )
+    }
+    // Assignments
+    const itemTitleLink = elem.querySelector('.item-title a')
+    if (itemTitleLink) {
+      return html.li(
+        html.h3(
+          { style: { 'font-size': '1em' } },
+          '📝',
+          itemTitleLink.textContent,
+        ),
+        html.raw(elem.querySelector('.item-body')?.innerHTML ?? ''),
+      )
+    }
+    throw new Error('idk how to deal with ' + elem.outerHTML)
+  }))
+}
+
 async function getCourseMaterials (courseId: string, courseName: string) {
   const document = await cachePath(`/course/${courseId}/materials`, 'html').then(parseHtml)
   const outPath = `./output/courses/${stringToPath(courseName)}`
@@ -94,61 +180,7 @@ async function getCourseMaterials (courseId: string, courseName: string) {
     html.base({
       href: root
     }),
-    html.ul([...document.querySelectorAll('.item-info')].map(elem => {
-      if (!(elem instanceof Element)) {
-        throw new TypeError(`elem is not an Element: ${Deno.inspect(elem)}`)
-      }
-      // Folders
-      if (elem.classList.contains('materials-folder')) {
-        const iconColour = [...assert(elem.parentElement?.querySelector('.inline-icon')).classList]
-          .find(className => className.startsWith('folder-color-'))
-          ?.replace('folder-color-', '')
-        const { background, border } = colours[iconColour ?? '']
-        return html.li(
-          html.h2(
-            { style: { 'font-size': '1em' } },
-            html.span({
-              style: {
-                width: '1em',
-                height: '1em',
-                display: 'inline-block',
-                'background-color': `#${background}`,
-                border: `1px solid #${border}`,
-              }
-            }),
-            elem.querySelector('.folder-title')?.textContent ?? ''
-          ),
-          html.raw(elem.querySelector('.folder-description')?.innerHTML ?? ''),
-        )
-      }
-      // Links
-      const docBodyTitle = elem.querySelector('.document-body-title')
-      if (docBodyTitle) {
-        const link = docBodyTitle.children[0].children[0]
-        const url = new URL(link.getAttribute('href') ?? '', root)
-        return html.li(
-          html.h3(
-            { style: { 'font-size': '1em' } },
-            html.a(
-              { href: url.searchParams.get('path') },
-              link.textContent,
-            )
-          )
-        )
-      }
-      // Assignments
-      const itemTitleLink = elem.querySelector('.item-title a')
-      if (itemTitleLink) {
-        return html.li(
-          html.h3(
-            { style: { 'font-size': '1em' } },
-            itemTitleLink.textContent,
-          ),
-          html.raw(elem.querySelector('.item-body')?.innerHTML ?? ''),
-        )
-      }
-      throw new Error('idk how to deal with ' + elem.outerHTML)
-    })),
+    await getFolderContents(document),
   ).html)
 }
 
