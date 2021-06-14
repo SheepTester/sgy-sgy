@@ -1,10 +1,19 @@
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
-import { Element, HTMLDocument } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
+import {
+  Element,
+  HTMLDocument,
+} from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
 import { cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
 import { root } from './init.ts'
 import { me } from './me.ts'
-import { expect, asyncMap, parseHtml, shouldBeElement, stringToPath } from './utilts.ts'
+import {
+  expect,
+  asyncMap,
+  parseHtml,
+  shouldBeElement,
+  stringToPath,
+} from './utilts.ts'
 
 interface SgyUserSections {
   links: {
@@ -66,15 +75,15 @@ interface SgyUserSections {
 }
 
 const colours: Record<string, { background: string; border: string }> = {
-  red: { background: 'F1567B', border: 'C11E45'},
-  orange: { background: 'F79060', border: 'C84E22'},
-  yellow: { background: 'EFD962', border: 'BB9300'},
-  green: { background: 'B5DB75', border: '5A9503'},
-  blue: { background: '8EC4E3', border: '4198D2'},
-  purple: { background: 'A487C3', border: '66519E'},
-  pink: { background: 'EF8FC0', border: 'C24784'},
-  black: { background: '6D6D6D', border: '333333'},
-  gray: { background: 'F1F1F2', border: 'BBBDBF'},
+  red: { background: 'F1567B', border: 'C11E45' },
+  orange: { background: 'F79060', border: 'C84E22' },
+  yellow: { background: 'EFD962', border: 'BB9300' },
+  green: { background: 'B5DB75', border: '5A9503' },
+  blue: { background: '8EC4E3', border: '4198D2' },
+  purple: { background: 'A487C3', border: '66519E' },
+  pink: { background: 'EF8FC0', border: 'C24784' },
+  black: { background: '6D6D6D', border: '333333' },
+  gray: { background: 'F1F1F2', border: 'BBBDBF' },
 }
 
 const sections: SgyUserSections = await cachePath(`/v1/users/${me.id}/sections`)
@@ -87,132 +96,146 @@ const courseIds = sections.section
   }))
 
 async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
-  return html.div(await asyncMap(document.querySelectorAll('.item-info'), async elem => {
-    if (!(elem instanceof Element)) {
-      throw new TypeError(`elem is not an Element: ${Deno.inspect(elem)}`)
-    }
-    // Folders
-    if (elem.classList.contains('materials-folder')) {
-      const iconColour = [...expect(elem.parentElement?.querySelector('.inline-icon')).classList]
-        .find(className => className.startsWith('folder-color-'))
-        ?.replace('folder-color-', '')
-      const { background, border } = colours[iconColour ?? '']
-      const folderTitle = expect(elem.querySelector('.folder-title'))
-      const folderDoc = folderTitle.children.length > 0 ? await cachePath(
-        folderTitle.children[0].getAttribute('href') ?? '',
-        'html'
-      ).then(parseHtml) : null
-      return html.details(
-        { open: true },
-        html.summary(
-          {
-            style: {
-              display: 'flex',
-            }
-          },
-          html.div(
-            html.strong(
-              html.span({
-                style: {
-                  width: '1em',
-                  height: '1em',
-                  display: 'inline-block',
-                  'background-color': `#${background}`,
-                  border: `1px solid #${border}`,
-                }
-              }),
-              folderTitle.textContent
+  return html.div(
+    await asyncMap(document.querySelectorAll('.item-info'), async elem => {
+      if (!(elem instanceof Element)) {
+        throw new TypeError(`elem is not an Element: ${Deno.inspect(elem)}`)
+      }
+      // Folders
+      if (elem.classList.contains('materials-folder')) {
+        const iconColour = [
+          ...expect(elem.parentElement?.querySelector('.inline-icon'))
+            .classList,
+        ]
+          .find(className => className.startsWith('folder-color-'))
+          ?.replace('folder-color-', '')
+        const { background, border } = colours[iconColour ?? '']
+        const folderTitle = expect(elem.querySelector('.folder-title'))
+        const folderDoc =
+          folderTitle.children.length > 0
+            ? await cachePath(
+                folderTitle.children[0].getAttribute('href') ?? '',
+                'html',
+              ).then(parseHtml)
+            : null
+        return html.details(
+          { open: true },
+          html.summary(
+            {
+              style: {
+                display: 'flex',
+              },
+            },
+            html.div(
+              html.strong(
+                html.span({
+                  style: {
+                    width: '1em',
+                    height: '1em',
+                    display: 'inline-block',
+                    'background-color': `#${background}`,
+                    border: `1px solid #${border}`,
+                  },
+                }),
+                folderTitle.textContent,
+              ),
+              html.raw(
+                elem.querySelector('.folder-description')?.innerHTML ?? '',
+              ),
             ),
-            html.raw(elem.querySelector('.folder-description')?.innerHTML ?? ''),
           ),
-        ),
-        html.div(
-          {
-            style: {
-              margin: '0 40px'
-            }
-          },
-          folderDoc && await getFolderContents(folderDoc),
-        ),
-      )
-    }
-    // Links
-    const docBodyTitle = elem.querySelector('.document-body-title')
-    if (docBodyTitle) {
-      const link = docBodyTitle.children[0].children[0]
-      if (link.classList.contains('attachments-file-name')) {
-        // Attachment
+          html.div(
+            {
+              style: {
+                margin: '0 40px',
+              },
+            },
+            folderDoc && (await getFolderContents(folderDoc)),
+          ),
+        )
+      }
+      // Links
+      const docBodyTitle = elem.querySelector('.document-body-title')
+      if (docBodyTitle) {
+        const link = docBodyTitle.children[0].children[0]
+        if (link.classList.contains('attachments-file-name')) {
+          // Attachment
+          return html.p(
+            html.strong(
+              '📄',
+              link.querySelector('.infotip')
+                ? link.children[0].children[0].childNodes[0].nodeValue
+                : link.textContent,
+            ),
+          )
+        }
+        let sgyPath = link.getAttribute('href')
+        if (sgyPath && !sgyPath.startsWith('/link')) {
+          const document = await cachePath(sgyPath, 'html').then(parseHtml)
+          const link = document.querySelector('.page-title a')
+          if (link) {
+            sgyPath = link.getAttribute('href')
+          }
+        }
+        const url = sgyPath && new URL(sgyPath, root)
         return html.p(
           html.strong(
-            '📄',
-            link.querySelector('.infotip')
-              ? link.children[0].children[0].childNodes[0].nodeValue
+            {
+              style: {
+                color: !url && 'red',
+              },
+            },
+            '🔗',
+            url
+              ? html.a({ href: url.searchParams.get('path') }, link.textContent)
               : link.textContent,
           ),
         )
       }
-      let sgyPath = link.getAttribute('href')
-      if (sgyPath && !sgyPath.startsWith('/link')) {
-        const document = await cachePath(sgyPath, 'html').then(parseHtml)
-        const link = document.querySelector('.page-title a')
-        if (link) {
-          sgyPath = link.getAttribute('href')
-        }
-      }
-      const url = sgyPath && new URL(sgyPath, root)
-      return html.p(
-        html.strong(
-          {
-            style: {
-              color: !url && 'red'
-            }
-          },
-          '🔗',
-          url ? html.a(
-            { href: url.searchParams.get('path') },
-            link.textContent,
-          ) : link.textContent,
+      // Assignments
+      const itemTitleLink = elem.querySelector('.item-title a')
+      if (itemTitleLink) {
+        return html.p(
+          html.strong('📝', itemTitleLink.textContent),
+          html.raw(elem.querySelector('.item-body')?.innerHTML ?? ''),
         )
-      )
-    }
-    // Assignments
-    const itemTitleLink = elem.querySelector('.item-title a')
-    if (itemTitleLink) {
-      return html.p(
-        html.strong(
-          '📝',
-          itemTitleLink.textContent,
-        ),
-        html.raw(elem.querySelector('.item-body')?.innerHTML ?? ''),
-      )
-    }
-    throw new Error('idk how to deal with ' + elem.outerHTML)
-  }))
+      }
+      throw new Error('idk how to deal with ' + elem.outerHTML)
+    }),
+  )
 }
 
 async function getCourseMaterials (courseId: string, courseName: string) {
-  const document = await cachePath(`/course/${courseId}/materials`, 'html').then(parseHtml)
+  const document = await cachePath(
+    `/course/${courseId}/materials`,
+    'html',
+  ).then(parseHtml)
   const outPath = `./output/courses/${stringToPath(courseName)}`
   await ensureDir(outPath)
-  await Deno.writeTextFile(outPath + '/materials.html', html.body(
-    html.base({
-      href: root
-    }),
-    html.style(
-      html.raw([
-        'summary::before {',
-        'content: "▶";',
-        'display: block;',
-        'width: 2ch;',
-        'flex: none;',
-        '}',
-        'details[open] > summary::before {',
-        'content: "▼";',
-        '}',
-      ].join(''))
-    ),
-    await getFolderContents(document),
-  ).html)
+  await Deno.writeTextFile(
+    outPath + '/materials.html',
+    html.body(
+      html.base({
+        href: root,
+      }),
+      html.style(
+        html.raw(
+          [
+            'summary::before {',
+            'content: "▶";',
+            'display: block;',
+            'width: 2ch;',
+            'flex: none;',
+            '}',
+            'details[open] > summary::before {',
+            'content: "▼";',
+            '}',
+          ].join(''),
+        ),
+      ),
+      await getFolderContents(document),
+    ).html,
+  )
 }
 
 for (const { id, name } of courseIds.slice(0, 2)) {

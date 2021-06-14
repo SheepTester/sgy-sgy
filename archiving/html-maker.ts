@@ -17,17 +17,30 @@ interface EscapeOptions {
   useBr?: boolean
   useNbsp?: boolean
 }
-function escape (text: string, { useBr = false, useNbsp = false }: EscapeOptions = {}): string {
-  return text.replace(/[<>&" ]|\r?\n/g, char => (
+function escape (
+  text: string,
+  { useBr = false, useNbsp = false }: EscapeOptions = {},
+): string {
+  return text.replace(/[<>&" ]|\r?\n/g, char =>
     char[char.length - 1] === '\n'
-      ? (useBr ? '<br>' : '&#010;')
+      ? useBr
+        ? '<br>'
+        : '&#010;'
       : char === ' ' && !useNbsp
-        ? ' '
-        : `&${escapes[char]};`
-  ))
+      ? ' '
+      : `&${escapes[char]};`,
+  )
 }
 
-type Attributes = Record<string, string | boolean | (string | false | null | undefined)[] | Record<string, string | false | null | undefined> | null | undefined>
+type Attributes = Record<
+  string,
+  | string
+  | boolean
+  | (string | false | null | undefined)[]
+  | Record<string, string | false | null | undefined>
+  | null
+  | undefined
+>
 
 type Child = string | Html | Attributes | Child[] | null | undefined
 

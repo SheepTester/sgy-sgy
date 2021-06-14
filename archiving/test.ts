@@ -1,5 +1,8 @@
 import { config } from 'https://deno.land/x/dotenv@v2.0.0/mod.ts'
-import { DOMParser, HTMLDocument } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
+import {
+  DOMParser,
+  HTMLDocument,
+} from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
 
 const env = config({ safe: true })
 

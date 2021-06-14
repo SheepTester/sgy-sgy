@@ -9,16 +9,21 @@ const encoder = new TextEncoder()
 
 type CacheType = 'json' | 'html'
 
-export async function cachePath (path: string, type: CacheType = 'json'): Promise<any> {
+export async function cachePath (
+  path: string,
+  type: CacheType = 'json',
+): Promise<any> {
   if (path === '') {
     throw new Error('Path is empty.')
   }
-  const filePath = `./cache/${
-    stringToPath(path.replace(/^\//, ''), { allowSlash: true })
-  }.${type}`
+  const filePath = `./cache/${stringToPath(path.replace(/^\//, ''), {
+    allowSlash: true,
+  })}.${type}`
   try {
     const file = await Deno.readTextFile(filePath)
-    log.write(encoder.encode(`Loading ${path} from cache\n`)).catch(console.error)
+    log
+      .write(encoder.encode(`Loading ${path} from cache\n`))
+      .catch(console.error)
     return type === 'html' ? file : JSON.parse(file)
   } catch {
     const response = await fetch(root + path, options)
@@ -30,7 +35,7 @@ export async function cachePath (path: string, type: CacheType = 'json'): Promis
     await ensureFile(filePath)
     await Deno.writeTextFile(
       filePath,
-      type === 'html' ? json : JSON.stringify(json, null, '\t')
+      type === 'html' ? json : JSON.stringify(json, null, '\t'),
     )
     return json
   }
