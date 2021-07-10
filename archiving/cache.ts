@@ -12,6 +12,7 @@ type CacheType = 'json' | 'html'
 export async function cachePath (
   path: string,
   type: CacheType = 'json',
+// deno-lint-ignore no-explicit-any
 ): Promise<any> {
   if (path === '') {
     throw new Error('Path is empty.')

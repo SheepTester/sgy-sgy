@@ -1,3 +1,5 @@
+// deno-lint-ignore-file camelcase
+
 import { cachePath } from './cache.ts'
 
 // Idk which of these can be null
