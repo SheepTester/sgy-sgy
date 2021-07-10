@@ -113,6 +113,7 @@ export const details = element('details')
 export const summary = element('summary')
 export const style = element('style')
 export const body = element('body')
+export const img = selfClosingElement('img')
 export const base = selfClosingElement('base')
 
 export function raw (html: string): Html {

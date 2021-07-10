@@ -57,13 +57,11 @@ export function stringToPath (
           case ' ':
             return '_'
           default:
-            return `{${charNames[char] ??
+            return `{${
+              charNames[char] ??
               'u+' +
-                char
-                  .charCodeAt(0)
-                  .toString(16)
-                  .padStart(4, '0')
-                  .toUpperCase()}}`
+                char.charCodeAt(0).toString(16).padStart(4, '0').toUpperCase()
+            }}`
         }
       },
     ) || '{empty}'
