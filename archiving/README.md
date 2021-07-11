@@ -17,12 +17,21 @@ echo "SESS=<cookie value here>"
 Then, run
 
 ```sh
+# Get courses
 deno run \
   --allow-read=cache,output,.env,.env.example,.env.defaults \
   --allow-write=cache,output \
   --allow-net=pausd.schoology.com \
   --allow-env \
   https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/courses.ts
+
+# Get messages
+deno run \
+  --allow-read=cache,output,.env,.env.example,.env.defaults \
+  --allow-write=cache,output \
+  --allow-net=pausd.schoology.com \
+  --allow-env \
+  https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/messages.ts
 ```
 
 Deno is secure by default, so I've explicitly listed its permissions here. It
