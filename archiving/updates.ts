@@ -3,6 +3,7 @@
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
 import { cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
+import { User } from './user.ts'
 import { expect, parseHtml, shouldBeElement } from './utilts.ts'
 
 type Feed = {
@@ -105,20 +106,23 @@ type ApiLikeList = {
     self: string
   }
   total: number
-  users: {
-    id: number
-    uid: string
-    // Among others (it's a user object)
-  }[]
+  users: User[]
 }
 
 type Comment = {
-  likers: number[]
+  id: number
+  likers: {
+    id: number
+    name: string
+    pfp: string
+    email: string
+  }[]
   content: string
   created: Date
 }
 
 type Update = {
+  id: number
   authorId: number
   /** In HTML */
   content: string
@@ -146,9 +150,9 @@ async function getUpdates (
         `/v1/${realm}/${id}/updates/${update.id}/comments`,
       )
       const updateObj = {
+        id: update.id,
         authorId: update.uid,
         content: update.body,
-        // HACK: Put ID in likers list because am lazy
         likers: [update.id],
         created: new Date(update.created * 1000),
         edited:
@@ -156,7 +160,8 @@ async function getUpdates (
             ? new Date(+update.last_updated * 1000)
             : undefined,
         comments: comments.map(comment => ({
-          likers: [comment.id],
+          id: comment.id,
+          likers: [],
           content: comment.comment,
           created: new Date(comment.created * 1000),
         })),
@@ -200,16 +205,21 @@ async function getUpdates (
 
   // Get likers from API
   for (const update of updates) {
-    const updateId = update.likers[0]
-    const { users }: ApiLikeList = await cachePath(`/v1/like/${updateId}`)
-    update.likers = users.map(user => user.id)
+    const { users }: ApiLikeList = await cachePath(`/v1/like/${update.id}`)
+    update.likers = users.map(user => expect(user.id))
 
     for (const comment of update.comments) {
-      const commentId = comment.likers[0]
       const { users }: ApiLikeList = await cachePath(
-        `/v1/like/${updateId}/comment/${commentId}`,
+        `/v1/like/${update.id}/comment/${comment.id}`,
       )
-      comment.likers = users.map(user => user.id)
+      comment.likers = users.map(
+        ({ id, name_display, picture_url, primary_email }) => ({
+          id: expect(id),
+          name: expect(name_display),
+          pfp: expect(picture_url),
+          email: expect(primary_email),
+        }),
+      )
     }
   }
 

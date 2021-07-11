@@ -3,7 +3,7 @@
 import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
 import * as oauth from 'https://raw.githubusercontent.com/snsinfu/deno-oauth-1.0a/42155ce5fcefc89265353c579d07229cb3acddc9/mod.ts'
 import { options, root } from './init.ts'
-import { stringToPath } from './utilts.ts'
+import { stringToPath, delay } from './utilts.ts'
 
 await ensureFile('./cache/log.txt')
 await Deno.writeTextFile('./cache/log.txt', '')
@@ -21,6 +21,7 @@ function getFilePath (path: string, type: CacheType): string {
 export async function cachePath (
   path: string,
   type: CacheType = 'json',
+  retry = true,
 ): Promise<any> {
   if (path === '') {
     throw new Error('Path is empty.')
@@ -36,6 +37,18 @@ export async function cachePath (
     log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
     const response = await fetch(root + path, options)
     if (!response.ok) {
+      if (response.status === 429 && retry) {
+        // Too many requests, try again after some time
+        log
+          .write(
+            encoder.encode(
+              `Received 429 error; waiting 5 seconds before retrying\n`,
+            ),
+          )
+          .catch(console.error)
+        await delay(5000)
+        return cachePath(path, type, false)
+      }
       throw new Error(`HTTP ${response.status} for ${response.url}`)
     }
     const json = await (type === 'html' ? response.text() : response.json())
