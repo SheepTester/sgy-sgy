@@ -38,17 +38,20 @@ type ShowMore = {
 }
 
 type ApiAttachmentFile = {
+  /** The Unique ID of the document */
+  id: number
+  /** For updates with attachments, the type of the attachment */
+  type: 'file'
+  /** The display value of the link to the attachment */
+  title: string
   download_path: string
   extension: string
   fid: number
   filemime: string
   filename: string
   filesize: number
-  id: number
   md5_checksum: string
   timestamp: number
-  title: string
-  type: 'file'
 }
 
 interface ApiAttachmentConvertedFile extends ApiAttachmentFile {
@@ -63,15 +66,42 @@ interface ApiAttachmentConvertedFile extends ApiAttachmentFile {
 }
 
 type ApiAttachmentLink = {
-  display_inline: 0 | 1
+  /** The Unique ID of the document */
   id: number
-  summary: string // Is this always empty?
-  title: string
+  /** For updates with attachments, the type of the attachment */
   type: 'link'
+  /** The display value of the link to the attachment */
+  title: string
+  /** The absolute URL of the attachment */
   url: string
+  /**
+   * For attachments of type 'link', a thumbnail screenshot of the linked page
+   */
+  thumbnail?: string
+  /**
+   * For creating documents with links, this field determines whether the link
+   * will open in an iframe (1) or a new tab (0)
+   */
+  display_inline: 0 | 1
+
+  // Undocumented
+  summary: string // Is this always empty?
 }
 
 type ApiUpdate = {
+  /**
+   * The body text of the update
+   *
+   * NOTE: Not in HTML, so formatting is lost.
+   */
+  body: string
+  /** The user ID of the user who posted the update. */
+  uid?: number
+  /** The display name of the user who posted the update. */
+  display_name?: string
+  /** The unix timestamp of the most recent time the post was created/modified. */
+  last_updated?: string
+
   /** Only with `?with_attachments=1` in request */
   attachments?: {
     files?: {
@@ -81,15 +111,32 @@ type ApiUpdate = {
       link: ApiAttachmentLink[]
     }
   }
-  /** Not in HTML, so formatting is lost */
-  body: string
+
+  poll?: {
+    /**
+     * For updates with polls attached to them, this array will hold all of the
+     * poll's options.
+     */
+    options: {
+      /** The title and displayable name of the given poll option */
+      title: string
+      /** The number of users who have selected this option in the poll */
+      count: number
+      /** This variable is true if the current user selected this poll item */
+      selected: boolean
+
+      // Undocumented
+      id: number
+      status: '0' | '1' // unsure what this is; only have observed '1'
+    }[]
+  }
+
+  // Undocumented
   created: number
   id: number
-  last_updated: string
   likes: number
   num_comments: number
   realm: 'user'
-  uid: number
   user_id: number
   user_like_action: boolean
 }
@@ -166,6 +213,22 @@ type Update = {
   created: Date
   edited?: Date
   comments: Comment[]
+  poll: {
+    label: string
+    votes: number
+    selected: boolean
+  }[]
+  files: {
+    displayName: string
+    fileName: string
+    downloadUrl: string
+    /** In bytes */
+    size: number
+  }[]
+  links: {
+    displayName: string
+    url: string
+  }[]
 }
 
 async function getUpdates (
@@ -179,20 +242,20 @@ async function getUpdates (
   let index = 0
   do {
     response = await cachePath(
-      `/v1/${realm}/${id}/updates?start=${index}&limit=200`,
+      `/v1/${realm}/${id}/updates?start=${index}&limit=200&with_attachments=1`,
     )
     for (const update of response.update) {
       const { comment: comments }: ApiCommentList = await cachePath(
         `/v1/${realm}/${id}/updates/${update.id}/comments`,
       )
-      const updateObj = {
+      const updateObj: Update = {
         id: update.id,
-        authorId: update.uid,
+        authorId: expect(update.uid),
         content: update.body,
         likers: [],
         created: new Date(update.created * 1000),
         edited:
-          update.created !== +update.last_updated
+          update.last_updated && update.created !== +update.last_updated
             ? new Date(+update.last_updated * 1000)
             : undefined,
         comments: comments.map(comment => ({
@@ -202,6 +265,29 @@ async function getUpdates (
           content: comment.comment,
           created: new Date(comment.created * 1000),
         })),
+        poll: update.poll
+          ? update.poll.options.map(({ title, count, selected }) => ({
+              label: title,
+              votes: count,
+              selected,
+            }))
+          : [],
+        files: update.attachments?.files
+          ? update.attachments?.files.file.map(
+              ({ filename, filesize, download_path, title }) => ({
+                displayName: title,
+                fileName: filename,
+                downloadUrl: download_path,
+                size: filesize,
+              }),
+            )
+          : [],
+        links: update.attachments?.links
+          ? update.attachments?.links.link.map(({ title, url }) => ({
+              displayName: title,
+              url,
+            }))
+          : [],
       }
       updates.push(updateObj)
       // The `timestamp` attribute in the HTML can be off by 1 compared to
@@ -217,7 +303,7 @@ async function getUpdates (
   while (true) {
     // NOTE: The "Show more" links have a hash that apparently expire after some
     // time. :/ May have to clear cache occasionally.
-    const { output } = await cachePath(
+    const { output }: Feed = await cachePath(
       `/${realm}/${id}/feed?page=${page}`,
       'json',
     )
@@ -246,7 +332,7 @@ async function getUpdates (
         postWrapper,
       )
       if (showMoreLink) {
-        const { update: updateHtml } = await cachePath(
+        const { update: updateHtml }: ShowMore = await cachePath(
           expect(showMoreLink.getAttribute('href')),
         )
         update.content = updateHtml
@@ -320,6 +406,60 @@ async function updatesToHtml (updates: Update[]): Promise<html.Html> {
           ),
         ),
         html.div(html.raw(update.content)),
+        update.poll.length > 0 &&
+          html.ul(
+            update.poll.map(option =>
+              html.li(
+                {
+                  style: {
+                    'font-weight': option.selected && 'bold',
+                  },
+                },
+                html.span(
+                  {
+                    style: {
+                      'margin-right': '20px',
+                    },
+                  },
+                  option.votes.toString(),
+                ),
+                ' ',
+                option.label,
+              ),
+            ),
+          ),
+        update.links.length > 0 &&
+          html.ul(
+            update.links.map(link =>
+              html.li(
+                html.a(
+                  {
+                    href: link.url,
+                  },
+                  link.displayName,
+                ),
+              ),
+            ),
+          ),
+        update.files.length > 0 &&
+          html.ul(
+            update.files.map(file =>
+              html.li(
+                html.a(
+                  {
+                    download: file.fileName,
+                    // From scraper/app.js
+                    href: file.downloadUrl
+                      .replace('api.', '')
+                      .replace('/v1', ''),
+                  },
+                  file.displayName,
+                ),
+                ' ',
+                `${file.size} bytes`,
+              ),
+            ),
+          ),
         html.em(
           update.likers.length > 0
             ? [
