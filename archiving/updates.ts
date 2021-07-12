@@ -1,10 +1,29 @@
 // deno-lint-ignore-file camelcase
 
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
+import { Element } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
 import { cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
-import { User } from './user.ts'
+import { getUsers, User } from './user.ts'
 import { expect, parseHtml, shouldBeElement } from './utilts.ts'
+
+/**
+ * Get the first element that matches a selector that is not inside
+ * `update-body`.
+ *
+ *  This is because `class` is on Schoology's attribute whitelist, so it's
+ *  possible for a post to contain an element with a given class name. 😳 (Yes,
+ *  one of my posts had all the possible Schoology classes in it.)
+ */
+function nextElementNotInUpdateBody (
+  selector: string,
+  parent: Element,
+): Element | null {
+  const matches = [...parent.querySelectorAll(selector)]
+  const inUpdateBody = [...parent.querySelectorAll(`.update-body ${selector}`)]
+  const match = matches.find(match => !inUpdateBody.includes(match))
+  return match ? shouldBeElement(match) : null
+}
 
 type Feed = {
   css: unknown
@@ -109,14 +128,31 @@ type ApiLikeList = {
   users: User[]
 }
 
+type Liker = {
+  id: number
+  name: string
+  pfp: string
+  email: string
+}
+
+function userToLiker ({
+  id,
+  name_display,
+  picture_url,
+  primary_email,
+}: User): Liker {
+  return {
+    id: expect(id),
+    name: expect(name_display),
+    pfp: expect(picture_url),
+    email: expect(primary_email),
+  }
+}
+
 type Comment = {
   id: number
-  likers: {
-    id: number
-    name: string
-    pfp: string
-    email: string
-  }[]
+  authorId: number
+  likers: Liker[]
   content: string
   created: Date
 }
@@ -126,7 +162,7 @@ type Update = {
   authorId: number
   /** In HTML */
   content: string
-  likers: number[]
+  likers: Liker[]
   created: Date
   edited?: Date
   comments: Comment[]
@@ -153,7 +189,7 @@ async function getUpdates (
         id: update.id,
         authorId: update.uid,
         content: update.body,
-        likers: [update.id],
+        likers: [],
         created: new Date(update.created * 1000),
         edited:
           update.created !== +update.last_updated
@@ -161,13 +197,17 @@ async function getUpdates (
             : undefined,
         comments: comments.map(comment => ({
           id: comment.id,
+          authorId: comment.uid,
           likers: [],
           content: comment.comment,
           created: new Date(comment.created * 1000),
         })),
       }
       updates.push(updateObj)
+      // The `timestamp` attribute in the HTML can be off by 1 compared to
+      // `created` from the API ¯\_(ツ)_/¯
       timestampToUpdate[update.created] = updateObj
+      timestampToUpdate[update.created + 1] = updateObj
     }
     index += 200
   } while (response.links.next)
@@ -175,20 +215,36 @@ async function getUpdates (
   // Get content HTML from website
   let page = 0
   while (true) {
-    const document = await cachePath(`/${realm}/${id}/feed?page=${page}`).then(
-      parseHtml,
+    // NOTE: The "Show more" links have a hash that apparently expire after some
+    // time. :/ May have to clear cache occasionally.
+    const { output } = await cachePath(
+      `/${realm}/${id}/feed?page=${page}`,
+      'json',
     )
+    const document = parseHtml(output)
     const postWrappers = document.querySelectorAll('.own-edge-post')
     if (postWrappers.length === 0) {
       break
     }
+    // Exclude elements with class `own-edge-post` inside update bodies (because
+    // `class` is on Schoology's attribute whitelist)
+    const postWrappersInUpdates = [
+      ...document.querySelectorAll('.update-body .own-edge-post'),
+    ]
     for (const postWrapperNode of postWrappers) {
+      if (postWrappersInUpdates.includes(postWrapperNode)) continue
       const postWrapper = shouldBeElement(postWrapperNode)
-      const update =
-        timestampToUpdate[expect(postWrapper.getAttribute('timestamp'))]
-      // Note: `class` is on Schoology's attribute whitelist, so it's possible
-      // for this to match a link inside a post. 😳
-      const showMoreLink = postWrapper.querySelector('.show-more-link')
+      const timestamp = expect(postWrapper.getAttribute('timestamp'))
+      const update = timestampToUpdate[timestamp]
+      if (!update) {
+        throw new ReferenceError(
+          `${timestamp} is not in the timestampToUpdate map`,
+        )
+      }
+      const showMoreLink = nextElementNotInUpdateBody(
+        '.show-more-link',
+        postWrapper,
+      )
       if (showMoreLink) {
         const { update: updateHtml } = await cachePath(
           expect(showMoreLink.getAttribute('href')),
@@ -196,7 +252,7 @@ async function getUpdates (
         update.content = updateHtml
       } else {
         update.content = expect(
-          postWrapper.querySelector('.update-body'),
+          nextElementNotInUpdateBody('.update-body', postWrapper),
         ).innerHTML
       }
     }
@@ -206,26 +262,125 @@ async function getUpdates (
   // Get likers from API
   for (const update of updates) {
     const { users }: ApiLikeList = await cachePath(`/v1/like/${update.id}`)
-    update.likers = users.map(user => expect(user.id))
+    update.likers = users.map(userToLiker)
 
     for (const comment of update.comments) {
       const { users }: ApiLikeList = await cachePath(
         `/v1/like/${update.id}/comment/${comment.id}`,
       )
-      comment.likers = users.map(
-        ({ id, name_display, picture_url, primary_email }) => ({
-          id: expect(id),
-          name: expect(name_display),
-          pfp: expect(picture_url),
-          email: expect(primary_email),
-        }),
-      )
+      comment.likers = users.map(userToLiker)
     }
   }
 
   return updates
 }
 
+function likerToHtml ({ id, name, pfp, email }: Liker): html.Html {
+  return html.span(
+    {
+      title: email,
+      'data-id': id.toString(),
+    },
+    html.img({
+      src: pfp,
+      style: {
+        height: '1em',
+      },
+    }),
+    name,
+  )
+}
+async function updatesToHtml (updates: Update[]): Promise<html.Html> {
+  const authors = await getUsers(
+    updates.flatMap(update => [
+      update.authorId,
+      ...update.comments.map(comment => comment.authorId),
+    ]),
+  )
+  return html.ul(
+    updates.map(update =>
+      html.li(
+        html.h2(
+          {
+            style: {
+              'font-size': 'inherit',
+            },
+          },
+          likerToHtml(userToLiker(authors[update.authorId])),
+          ' ',
+          html.em(
+            {
+              style: {
+                color: 'grey',
+              },
+            },
+            update.created.toLocaleString('en-CA'),
+            update.edited &&
+              ` (edited ${update.edited.toLocaleString('en-CA')})`,
+          ),
+        ),
+        html.div(html.raw(update.content)),
+        html.em(
+          update.likers.length > 0
+            ? [
+                'Liked by ',
+                update.likers.map((liker, i) => [
+                  i !== 0 && ', ',
+                  likerToHtml(liker),
+                ]),
+              ]
+            : 'No likes',
+        ),
+        html.ul(
+          update.comments.map(comment =>
+            html.li(
+              html.h3(
+                {
+                  style: {
+                    'font-size': 'inherit',
+                  },
+                },
+                likerToHtml(userToLiker(authors[comment.authorId])),
+                ' ',
+                html.em(
+                  {
+                    style: {
+                      color: 'grey',
+                    },
+                  },
+                  update.created.toLocaleString('en-CA'),
+                ),
+              ),
+              html.p(
+                {
+                  style: {
+                    'white-space': 'pre-wrap',
+                  },
+                },
+                comment.content,
+              ),
+              html.em(
+                comment.likers.length > 0
+                  ? [
+                      'Liked by ',
+                      comment.likers.map((liker, i) => [
+                        i !== 0 && ', ',
+                        likerToHtml(liker),
+                      ]),
+                    ]
+                  : 'No likes',
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+  )
+}
+
 if (import.meta.main) {
-  console.log(await getUpdates('user', '2017219'))
+  await Deno.writeTextFile(
+    './output/test.html',
+    (await getUpdates('user', '2017219').then(updatesToHtml)).html,
+  )
 }

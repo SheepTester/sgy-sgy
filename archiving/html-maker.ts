@@ -32,17 +32,14 @@ function escape (
   )
 }
 
+type Falsy = false | null | undefined
+
 type Attributes = Record<
   string,
-  | string
-  | boolean
-  | (string | false | null | undefined)[]
-  | Record<string, string | false | null | undefined>
-  | null
-  | undefined
+  string | boolean | (string | Falsy)[] | Record<string, string | Falsy> | Falsy
 >
 
-type Child = string | Html | Attributes | Child[] | null | undefined
+type Child = string | Html | Attributes | Child[] | Falsy
 
 function attributes (attributes: Attributes = {}): string {
   let str = ''

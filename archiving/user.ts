@@ -190,7 +190,7 @@ export async function getUsers (
   userIds: number[],
 ): Promise<Record<number, ExtendedUser>> {
   const responses = await multiGet(
-    userIds.map(id => `/v1/like/${id}?extended=TRUE`),
+    userIds.map(id => `/v1/users/${id}?extended=TRUE`),
   )
   return Object.fromEntries(
     Array.from(responses, ([path, response]) => [
