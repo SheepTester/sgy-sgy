@@ -49,7 +49,9 @@ export async function cachePath (
         await delay(5000)
         return cachePath(path, type, false)
       }
-      throw new Error(`HTTP ${response.status} for ${response.url}`)
+      throw new Error(
+        `HTTP ${response.status} for ${response.url}: ${await response.text()}`,
+      )
     }
     const json = await (type === 'html' ? response.text() : response.json())
     await ensureFile(filePath)
@@ -109,13 +111,15 @@ async function actuallyMultiGet (
     body,
   })
   if (!response.ok) {
-    throw new Error(`HTTP ${response.status} for ${response.url}`)
+    throw new Error(
+      `HTTP ${response.status} for ${response.url}: ${await response.text()}`,
+    )
   }
   const { response: responses }: MultiGetApiResponse = await response.json()
   for (let i = 0; i < paths.length; i++) {
     const { location, response_code: status, body } = responses[i]
     if (Math.floor(status / 100) !== 2) {
-      throw new Error(`HTTP ${status} for ${location}`)
+      throw new Error(`HTTP ${status} for ${location}: ${body}`)
     }
     const path = paths[i]
     const filePath = getFilePath(path, 'json')

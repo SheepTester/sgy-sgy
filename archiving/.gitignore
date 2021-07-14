@@ -1,3 +1,13 @@
+# Cache for Schoology API requests
 cache
+
+# Formatted HTML files
 output
+
+# JSON from get-assessments.user.js copypasted into this file
 userscript-output.json
+
+# JSON from
+# https://github.com/SheepTester/hello-world/blob/master/test/schoology-get-seniors.js
+# copypasted into this file
+students.json

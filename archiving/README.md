@@ -37,3 +37,28 @@ deno run \
 Deno is secure by default, so I've explicitly listed its permissions here. It
 can only read and write to the listed directories and make network requests to
 the listed domain. It can also access and modify your environment variables.
+
+### WSL quirk
+
+You might get a 401 HTTP error for multi-get:
+
+> Timestamp is out of bounds (3600 seconds before or after current time). Given
+> timestamp is 1626263098, current timestamp is 1626293166.
+
+This is because Windows Subsystem for Linux (WSL)'s time can get desynched from
+the computer time. See [Time not synced in WSL2 - causing TLS
+issues](https://github.com/microsoft/WSL/issues/4149).
+
+There are two solutions. Either [update the time
+manually](https://github.com/microsoft/WSL/issues/4149#issuecomment-521877012)
+or [restart
+WSL](https://github.com/microsoft/WSL/issues/4149#issuecomment-502446496).
+
+```sh
+sudo apt install ntpdate
+sudo ntpdate -sb time.nist.gov
+```
+
+```sh
+wsl --shutdown
+```

@@ -91,7 +91,7 @@ export async function getMessages (type: 'inbox' | 'sent'): Promise<Thread[]> {
   return threads
 }
 
-const outPath = `./output/courses/messages/`
+const outPath = `./output/messages/`
 await ensureDir(outPath)
 
 for (const type of ['inbox', 'sent'] as const) {

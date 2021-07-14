@@ -186,6 +186,8 @@ export interface ExtendedUser extends User {
   profile_info: DetailedProfile
 }
 
+// NOTE: Apparently the extended profile info only shows for the current user
+// (eg me)
 export async function getUsers (
   userIds: number[],
 ): Promise<Record<number, ExtendedUser>> {

@@ -1,6 +1,5 @@
 // deno-lint-ignore-file camelcase
 
-import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
 import { Element } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
 import { cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
@@ -520,7 +519,7 @@ async function updatesToHtml (updates: Update[]): Promise<html.Html> {
 
 if (import.meta.main) {
   await Deno.writeTextFile(
-    './output/test.html',
+    './output/updates-test.html',
     (await getUpdates('user', '2017219').then(updatesToHtml)).html,
   )
 }
