@@ -18,10 +18,14 @@ function getFilePath (path: string, type: CacheType): string {
   })}.${type}`
 }
 
+export class Http403 extends Error {
+  name = this.constructor.name
+}
+
 export async function cachePath (
   path: string,
   type: CacheType = 'json',
-  retry = true,
+  { allow403 = false, retry = true } = {},
 ): Promise<any> {
   if (path === '') {
     throw new Error('Path is empty.')
@@ -29,6 +33,9 @@ export async function cachePath (
   const filePath = getFilePath(path, type)
   try {
     const file = await Deno.readTextFile(filePath)
+    if (allow403 && file === '403') {
+      throw new Http403('HTTP 403 error')
+    }
     log
       .write(encoder.encode(`Loading ${path} from cache\n`))
       .catch(console.error)
@@ -37,7 +44,11 @@ export async function cachePath (
     log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
     const response = await fetch(root + path, options)
     if (!response.ok) {
-      if (response.status === 429 && retry) {
+      if (response.status === 403 && allow403) {
+        await ensureFile(filePath)
+        await Deno.writeTextFile(filePath, '403')
+        throw new Http403('HTTP 403 error')
+      } else if (response.status === 429 && retry) {
         // Too many requests, try again after some time
         log
           .write(
@@ -47,7 +58,7 @@ export async function cachePath (
           )
           .catch(console.error)
         await delay(5000)
-        return cachePath(path, type, false)
+        return cachePath(path, type, { allow403, retry: false })
       }
       throw new Error(
         `HTTP ${response.status} for ${response.url}: ${await response.text()}`,
