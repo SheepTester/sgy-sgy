@@ -383,8 +383,12 @@ async function updatesToHtml (updates: Update[]): Promise<html.Html> {
     ]),
   )
   return html.ul(
-    updates.map(update =>
-      html.li(
+    updates.map(update => {
+      const maxVotes =
+        update.poll.length > 0
+          ? Math.max(...update.poll.map(option => option.votes))
+          : 0
+      return html.li(
         html.h2(
           {
             style: {
@@ -411,10 +415,14 @@ async function updatesToHtml (updates: Update[]): Promise<html.Html> {
               html.li(
                 {
                   style: {
+                    'background-image': `linear-gradient(90deg, rgba(0, 0, 0, 0.3) ${(option.votes /
+                      maxVotes || 0) *
+                      100}%, rgba(0, 0, 0, 0.05) ${(option.votes / maxVotes ||
+                      0) * 100}%)`,
                     'font-weight': option.selected && 'bold',
                   },
                 },
-                html.span(
+                html.strong(
                   {
                     style: {
                       'margin-right': '20px',
@@ -512,8 +520,8 @@ async function updatesToHtml (updates: Update[]): Promise<html.Html> {
             ),
           ),
         ),
-      ),
-    ),
+      )
+    }),
   )
 }
 

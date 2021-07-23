@@ -30,20 +30,16 @@ type Student = {
   pfp: string
 }
 
-const students: Student[] = await Deno.readTextFile(
-  new URL('./students.json', import.meta.url),
-).then(JSON.parse)
-
-const rows: html.Html[] = []
-
-for (const { id, name, pfp } of students.sort((a, b) => a.id - b.id)) {
+export async function getStudentInfo (
+  id: number,
+): Promise<Record<string, string | { url: string; text: string }[]> | null> {
   const profile = await cachePath(`/user/${id}/info`, 'html', {
     allow403: true,
   })
     .then(parseHtml)
     .catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
-  const data: html.Html[] = []
   if (profile) {
+    const data: Record<string, string | { url: string; text: string }[]> = {}
     for (const rowNode of profile.querySelectorAll('.info-tab tr')) {
       const row = shouldBeElement(rowNode)
       if (row.querySelector('.profile-header')) {
@@ -52,119 +48,155 @@ for (const { id, name, pfp } of students.sort((a, b) => a.id - b.id)) {
       }
       const [infoTypeTh, infoBody] = row.children
       const infoType = infoTypeTh.textContent
-      data.push(html.dt(infoType))
       if (infoType in infoTypes) {
-        if (infoTypes[infoType] === null) {
-          data.push(html.dd(infoBody.textContent))
+        const protocol = infoTypes[infoType]
+        if (protocol === null) {
+          data[infoType] = infoBody.textContent
         } else {
+          const links = []
           for (const a of infoBody.querySelectorAll('a')) {
             const link = shouldBeElement(a).textContent
-            data.push(
-              html.dd(html.a({ href: infoTypes[infoType] + link }, link)),
-            )
+            links.push({ url: protocol + link, text: link })
           }
+          data[infoType] = links
         }
       } else {
         console.warn(`What is ${infoType}?`)
       }
     }
+    return data
+  } else {
+    return null
   }
-  rows.push(
-    html.tr(
-      html.th(
-        { scope: 'row' },
-        html.h2(
-          html.a({ href: `https://pausd.schoology.com/user/${id}/info` }, name),
-        ),
-        pfp
-          ? html.img({
-              src: `https://asset-cdn.schoology.com/system/files/imagecache/profile_big/pictures/picture-${pfp.replace(
-                '_sq',
-                '',
-              )}`,
-            })
-          : html.div({ class: 'square' }),
-      ),
-      html.td(
-        profile
-          ? html.dl(data)
-          : html.p(html.em('Profile is private. Cringe.')),
-      ),
-    ),
-  )
 }
 
-await Deno.writeTextFile(
-  './output/students.html',
-  html
-    .body(
-      html.style(
-        html.raw(
-          [
-            'table {',
-            'border-collapse: collapse;',
-            'white-space: pre-wrap;',
-            'word-break: break-word;',
-            '}',
-            'th, td {',
-            'border: 1px solid black;',
-            'padding: 5px;',
-            '}',
-            'th h2 {',
-            'margin: 0;',
-            '}',
-            'th a {',
-            'color: black;',
-            'text-decoration: none;',
-            '}',
-            'dt {',
-            'font-weight: bold;',
-            '}',
-            'dd {',
-            'margin-left: 40px;',
-            '}',
-            'img {',
-            'height: 100px;',
-            '}',
-            '.square {',
-            'width: 100px;',
-            'height: 100px;',
-            'background-color: #0677ba;',
-            'margin: 0 auto;',
-            '}',
-          ].join(''),
+if (import.meta.main) {
+  const students: Student[] = await Deno.readTextFile(
+    new URL('./students.json', import.meta.url),
+  ).then(JSON.parse)
+
+  if (Deno.args[0] === 'sort') {
+    console.log(
+      students
+        .sort((a, b) => a.id - b.id)
+        .map(({ id, name }) => `${id.toString().padStart(9, ' ')} ${name}`)
+        .join('\n'),
+    )
+    Deno.exit()
+  }
+
+  const rows: html.Html[] = []
+
+  for (const { id, name, pfp } of students) {
+    const info = await getStudentInfo(id)
+    const data: html.Html[] = info
+      ? Object.entries(info).flatMap(([infoType, datum]) => [
+          html.dt(infoType),
+          ...(Array.isArray(datum)
+            ? datum.map(({ url, text }) => html.dd(html.a({ href: url }, text)))
+            : [html.dd(datum)]),
+        ])
+      : []
+    rows.push(
+      html.tr(
+        html.th(
+          { scope: 'row' },
+          html.h2(
+            html.a(
+              { href: `https://pausd.schoology.com/user/${id}/info` },
+              name,
+            ),
+          ),
+          pfp
+            ? html.img({
+                src: `https://asset-cdn.schoology.com/system/files/imagecache/profile_big/pictures/picture-${pfp.replace(
+                  '_sq',
+                  '',
+                )}`,
+              })
+            : html.div({ class: 'square' }),
         ),
-      ),
-      html.h1('Seniors'),
-      html.p(
-        'Students obtained from the “Awaiting Reply” list on ',
-        html.a(
-          { href: 'https://pausd.schoology.com/user/1568031' },
-          'Rachael Kaci',
-        ),
-        '’s ',
-        html.a(
-          { href: 'https://pausd.schoology.com/event/5116716079/profile' },
-          'Summer Career Speaker: Jasmine Wong: The Art and Science of Nursing',
-        ),
-        '.',
-      ),
-      html.table(rows),
-      html.script(
-        html.raw(
-          [
-            "window.addEventListener('load', () => {",
-            'const promise = new Promise(window.requestAnimationFrame)',
-            "for (const img of document.querySelectorAll('img')) {",
-            'const rect = img.getBoundingClientRect()',
-            'promise.then(() => {',
-            "img.style.width = rect.width + 'px'",
-            '})',
-            '}',
-            '})',
-          ].join(';'),
+        html.td(
+          data.length === 0
+            ? html.dl(data)
+            : html.p(html.em('Profile is private. Cringe.')),
         ),
       ),
     )
-    .html.replace(/&nbsp;/g, ' '),
-)
+  }
+
+  await Deno.writeTextFile(
+    './output/students.html',
+    html
+      .body(
+        html.style(
+          html.raw(
+            [
+              'table {',
+              'border-collapse: collapse;',
+              'white-space: pre-wrap;',
+              'word-break: break-word;',
+              '}',
+              'th, td {',
+              'border: 1px solid black;',
+              'padding: 5px;',
+              '}',
+              'th h2 {',
+              'margin: 0;',
+              '}',
+              'th a {',
+              'color: black;',
+              'text-decoration: none;',
+              '}',
+              'dt {',
+              'font-weight: bold;',
+              '}',
+              'dd {',
+              'margin-left: 40px;',
+              '}',
+              'img {',
+              'height: 100px;',
+              '}',
+              '.square {',
+              'width: 100px;',
+              'height: 100px;',
+              'background-color: #0677ba;',
+              'margin: 0 auto;',
+              '}',
+            ].join(''),
+          ),
+        ),
+        html.h1('Seniors'),
+        html.p(
+          'Students obtained from the “Awaiting Reply” list on ',
+          html.a(
+            { href: 'https://pausd.schoology.com/user/1568031' },
+            'Rachael Kaci',
+          ),
+          '’s ',
+          html.a(
+            { href: 'https://pausd.schoology.com/event/5116716079/profile' },
+            'Summer Career Speaker: Jasmine Wong: The Art and Science of Nursing',
+          ),
+          '.',
+        ),
+        html.table(rows),
+        html.script(
+          html.raw(
+            [
+              "window.addEventListener('load', () => {",
+              'const promise = new Promise(window.requestAnimationFrame)',
+              "for (const img of document.querySelectorAll('img')) {",
+              'const rect = img.getBoundingClientRect()',
+              'promise.then(() => {',
+              "img.style.width = rect.width + 'px'",
+              '})',
+              '}',
+              '})',
+            ].join(';'),
+          ),
+        ),
+      )
+      .html.replace(/&nbsp;/g, ' '),
+  )
+}
