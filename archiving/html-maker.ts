@@ -70,7 +70,7 @@ function childrenToHtml (children: Child[], attrTarget: Attributes): string {
   let innerHtml = ''
   for (const child of children) {
     if (typeof child === 'string') {
-      innerHtml += escape(child, { useBr: true, useNbsp: true })
+      innerHtml += escape(child, { useBr: true })
     } else if (child instanceof Html) {
       innerHtml += child.html
     } else if (Array.isArray(child)) {
@@ -123,4 +123,26 @@ export const base = selfClosingElement('base')
 
 export function raw (html: string): Html {
   return new Html(html)
+}
+
+export function page (...children: Child[]): string {
+  return [
+    '<!doctype html>',
+    '<html>',
+    '<head>',
+    '<meta name="viewport" content="width=device-width, initial-scale=1" />',
+    '<style>',
+    'body {',
+    'white-space: pre-wrap;',
+    '}',
+    '@media (prefers-color-scheme: dark) {',
+    ':root {',
+    'color-scheme: dark;',
+    '}',
+    '}',
+    '</style>',
+    '</head>',
+    body(children).html,
+    '</html>',
+  ].join('')
 }

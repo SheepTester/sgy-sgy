@@ -230,7 +230,7 @@ type Update = {
   }[]
 }
 
-async function getUpdates (
+export async function getUpdates (
   realm: 'user' | 'course' | 'group',
   id: number | string,
 ): Promise<Update[]> {
@@ -375,7 +375,7 @@ function likerToHtml ({ id, name, pfp, email }: Liker): html.Html {
     name,
   )
 }
-async function updatesToHtml (updates: Update[]): Promise<html.Html> {
+export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
   const authors = await getUsers(
     updates.flatMap(update => [
       update.authorId,

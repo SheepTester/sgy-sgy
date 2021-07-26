@@ -1,9 +1,12 @@
 // deno-lint-ignore-file camelcase
 
-import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
-import { cachePath, multiGet } from './cache.ts'
+import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
+import { cachePath, Http403, multiGet } from './cache.ts'
+import { getStudentInfo } from './get-students.ts'
 import * as html from './html-maker.ts'
-import { expect, parseHtml, shouldBeElement } from './utilts.ts'
+import { me } from './me.ts'
+import { getUpdates, updatesToHtml } from './updates.ts'
+import { expect, parseHtml, shouldBeElement, stringToPath } from './utilts.ts'
 
 /**
  * Users objects are the accounts on the system.
@@ -200,4 +203,145 @@ export async function getUsers (
       response,
     ]),
   )
+}
+
+type Group = {
+  iconUrl: string
+  name: string
+  id: string | null
+}
+type Badge = {
+  /**
+   * Could be an absolute path relative to https://pausd.schoology.com/, such as
+   * `/sites/all/themes/schoology_theme/images/badges/star_performer_50.png`.
+   */
+  iconUrl: string
+  name: string
+  description: string
+  classDate: string
+}
+type GroupsAndBadges = {
+  groups: Group[]
+  badges: Badge[]
+}
+
+async function getGroupsAndBadges (
+  id: number,
+): Promise<GroupsAndBadges | null> {
+  const groups: Group[] = []
+  const groupsDoc = await cachePath(`/user/${id}/groups/list`, 'html', {
+    allow403: true,
+  })
+    .then(parseHtml)
+    .catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
+  if (!groupsDoc) {
+    return null
+  }
+  for (const groupItemNode of groupsDoc.querySelectorAll('.group-item')) {
+    const group = shouldBeElement(groupItemNode)
+    groups.push({
+      iconUrl: expect(
+        group.querySelector('.profile-picture img')?.getAttribute('src'),
+      ),
+      name: expect(
+        group.querySelector('.group-item-right a, .group-name')?.textContent,
+      ),
+      id:
+        group
+          .querySelector('.group-item-right a')
+          ?.getAttribute('href')
+          ?.replace('/group/', '') ?? null,
+    })
+  }
+
+  const badges: Badge[] = []
+  const badgesDoc = await cachePath(`/user/${id}/badges`, 'html').then(
+    parseHtml,
+  )
+  for (const userBadgeNode of badgesDoc.querySelectorAll('.user-badge-row')) {
+    const badge = shouldBeElement(userBadgeNode)
+    badges.push({
+      iconUrl: expect(badge.querySelector('.badge-image')?.getAttribute('src')),
+      name: expect(badge.querySelector('.badge-title-link a')?.textContent),
+      description: expect(badge.querySelector('.badge-message')?.textContent),
+      classDate: expect(
+        badge.querySelector('.badge-award-details')?.textContent,
+      ),
+    })
+  }
+
+  return { groups, badges }
+}
+
+async function archiveUser (id: number): Promise<void> {
+  const profileInfo = await getStudentInfo(id)
+  const groupsAndBadges = profileInfo && (await getGroupsAndBadges(id))
+  const outPath = profileInfo
+    ? `./output/users/${id}_${stringToPath(profileInfo.name)}.html`
+    : `./output/users/${id}.html`
+  await ensureFile(outPath)
+  if (profileInfo && groupsAndBadges) {
+    const { name, schools, info } = profileInfo
+    const { groups, badges } = groupsAndBadges
+    await Deno.writeTextFile(
+      outPath,
+      html.page(
+        html.style(html.raw(['img {', 'height: 100px;', '}'].join(''))),
+        html.h1(name),
+        html.p(`Goes to ${schools.join(', ')}.`),
+        Object.entries(info).flatMap(([infoType, datum]) => [
+          html.dt(infoType),
+          ...(Array.isArray(datum)
+            ? datum.map(({ url, text }) => html.dd(html.a({ href: url }, text)))
+            : [html.dd(datum)]),
+        ]),
+        badges.length > 0 && html.h2('Badges'),
+        badges.map(badge =>
+          html.li(
+            html.img({
+              style: { 'vertical-align': 'top' },
+              src: new URL(
+                badge.iconUrl,
+                'https://app.schoology.com/',
+              ).toString(),
+            }),
+            html.div(
+              { style: { display: 'inline-block', 'vertical-align': 'top' } },
+              html.h3(badge.name),
+              html.p(badge.description),
+              html.p(html.em(badge.classDate)),
+            ),
+          ),
+        ),
+        groups.length > 0 && html.h2('Groups'),
+        groups.map(group =>
+          html.li(
+            html.div(
+              { style: { display: 'inline-block', 'vertical-align': 'top' } },
+              html.img({ src: group.iconUrl }),
+              html.p(
+                group.id
+                  ? html.a(
+                      { href: `https://pausd.schoology.com/group/${group.id}` },
+                      group.name,
+                    )
+                  : html.strong(group.name),
+              ),
+            ),
+          ),
+        ),
+        html.h2('Updates'),
+        await getUpdates('user', '2017219').then(updatesToHtml),
+      ),
+    )
+  } else {
+    await Deno.writeTextFile(
+      outPath,
+      html.page(html.p("This user's profile is private. Cringe.")),
+    )
+  }
+}
+
+if (import.meta.main) {
+  await archiveUser(me.id)
 }

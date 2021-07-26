@@ -3,7 +3,7 @@
 
 import { cachePath, Http403 } from './cache.ts'
 import * as html from './html-maker.ts'
-import { parseHtml, shouldBeElement } from './utilts.ts'
+import { expect, parseHtml, shouldBeElement } from './utilts.ts'
 
 // `null` if plain text, a string prefix for links
 const infoTypes: Record<string, string | null> = {
@@ -30,9 +30,13 @@ type Student = {
   pfp: string
 }
 
-export async function getStudentInfo (
-  id: number,
-): Promise<Record<string, string | { url: string; text: string }[]> | null> {
+export type StudentInfo = {
+  name: string
+  schools: string[]
+  info: Record<string, string | { url: string; text: string }[]>
+}
+
+export async function getStudentInfo (id: number): Promise<StudentInfo | null> {
   const profile = await cachePath(`/user/${id}/info`, 'html', {
     allow403: true,
   })
@@ -64,7 +68,14 @@ export async function getStudentInfo (
         console.warn(`What is ${infoType}?`)
       }
     }
-    return data
+    return {
+      name: expect(profile.querySelector('.page-title')).textContent,
+      schools: Array.from(
+        profile.querySelectorAll('.school-name'),
+        name => name.textContent,
+      ),
+      info: data,
+    }
   } else {
     return null
   }
@@ -90,7 +101,7 @@ if (import.meta.main) {
   for (const { id, name, pfp } of students) {
     const info = await getStudentInfo(id)
     const data: html.Html[] = info
-      ? Object.entries(info).flatMap(([infoType, datum]) => [
+      ? Object.entries(info.info).flatMap(([infoType, datum]) => [
           html.dt(infoType),
           ...(Array.isArray(datum)
             ? datum.map(({ url, text }) => html.dd(html.a({ href: url }, text)))

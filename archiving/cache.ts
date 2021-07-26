@@ -43,6 +43,11 @@ export async function cachePath (
   } catch {
     log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
     const response = await fetch(root + path, options)
+    if (!response.url.startsWith(root)) {
+      throw new Error(
+        `${path} redirected to ${response.url}, which is outside the Schoology domain.`,
+      )
+    }
     if (!response.ok) {
       if (response.status === 403 && allow403) {
         await ensureFile(filePath)
