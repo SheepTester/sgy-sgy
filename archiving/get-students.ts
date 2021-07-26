@@ -32,6 +32,7 @@ type Student = {
 
 export type StudentInfo = {
   name: string
+  pfpUrl: string
   schools: string[]
   info: Record<string, string | { url: string; text: string }[]>
 }
@@ -70,6 +71,9 @@ export async function getStudentInfo (id: number): Promise<StudentInfo | null> {
     }
     return {
       name: expect(profile.querySelector('.page-title')).textContent,
+      pfpUrl: expect(
+        profile.querySelector('.profile-picture img')?.getAttribute('src'),
+      ),
       schools: Array.from(
         profile.querySelectorAll('.school-name'),
         name => name.textContent,

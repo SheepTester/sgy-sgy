@@ -1,5 +1,3 @@
-// deno-lint-ignore-file no-explicit-any
-
 import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
 import * as oauth from 'https://raw.githubusercontent.com/snsinfu/deno-oauth-1.0a/42155ce5fcefc89265353c579d07229cb3acddc9/mod.ts'
 import { options, root } from './init.ts'
@@ -10,36 +8,75 @@ await Deno.writeTextFile('./cache/log.txt', '')
 const log = await Deno.open('./cache/log.txt', { append: true })
 const encoder = new TextEncoder()
 
-type CacheType = 'json' | 'html'
+type CacheResult = {
+  // deno-lint-ignore no-explicit-any
+  json: any
+  html: string
+  file: Uint8Array
+}
+type CacheType = keyof CacheResult
 
-function getFilePath (path: string, type: CacheType): string {
+function getFilePath (path: string, extension = ''): string {
   return `./cache/${stringToPath(path.replace(/^\//, ''), {
     allowSlash: true,
-  })}.${type}`
+  })}${extension ? '.' + extension : ''}`
 }
 
 export class Http403 extends Error {
   name = this.constructor.name
 }
 
-export async function cachePath (
+type CacheOptions = {
+  /**
+   * Whether to cache the 403 error and throw a `Http403` error on encountering
+   * a 403 HTTP error.
+   */
+  allow403?: boolean
+
+  /**
+   * Whether to reattempt the request after a while if Schoology ratelimits you.
+   * You should leave this as default (true).
+   */
+  retry?: boolean
+
+  /**
+   * The path to store the cached result in.
+   */
+  cachePath?: string
+}
+
+export async function cachePath<T extends CacheType = 'json'> (
   path: string,
-  type: CacheType = 'json',
-  { allow403 = false, retry = true } = {},
-): Promise<any> {
+  type?: T,
+  {
+    allow403 = false,
+    retry = true,
+    cachePath: filePath = getFilePath(
+      path,
+      type === 'file' ? '' : type || 'json',
+    ),
+  }: CacheOptions = {},
+): Promise<CacheResult[T]> {
   if (path === '') {
     throw new Error('Path is empty.')
   }
-  const filePath = getFilePath(path, type)
   try {
-    const file = await Deno.readTextFile(filePath)
-    if (allow403 && file === '403') {
-      throw new Http403('HTTP 403 error')
+    if (type === 'file') {
+      const file = await Deno.readFile(filePath)
+      log
+        .write(encoder.encode(`Loaded ${path} from cache\n`))
+        .catch(console.error)
+      return file
+    } else {
+      const file = await Deno.readTextFile(filePath)
+      if (allow403 && file === '403') {
+        throw new Http403('HTTP 403 error')
+      }
+      log
+        .write(encoder.encode(`Loaded ${path} from cache\n`))
+        .catch(console.error)
+      return type === 'html' ? file : JSON.parse(file)
     }
-    log
-      .write(encoder.encode(`Loading ${path} from cache\n`))
-      .catch(console.error)
-    return type === 'html' ? file : JSON.parse(file)
   } catch {
     log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
     const response = await fetch(root + path, options)
@@ -63,19 +100,29 @@ export async function cachePath (
           )
           .catch(console.error)
         await delay(5000)
-        return cachePath(path, type, { allow403, retry: false })
+        return cachePath(path, type, {
+          allow403,
+          retry: false,
+          cachePath: filePath,
+        })
       }
       throw new Error(
         `HTTP ${response.status} for ${response.url}: ${await response.text()}`,
       )
     }
-    const json = await (type === 'html' ? response.text() : response.json())
     await ensureFile(filePath)
-    await Deno.writeTextFile(
-      filePath,
-      type === 'html' ? json : JSON.stringify(json, null, '\t'),
-    )
-    return json
+    if (type === 'file') {
+      const bytes = new Uint8Array(await response.arrayBuffer())
+      await Deno.writeFile(filePath, bytes)
+      return bytes
+    } else {
+      const json = await (type === 'html' ? response.text() : response.json())
+      await Deno.writeTextFile(
+        filePath,
+        type === 'html' ? json : JSON.stringify(json, null, '\t'),
+      )
+      return json
+    }
   }
 }
 

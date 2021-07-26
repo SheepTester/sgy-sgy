@@ -281,14 +281,27 @@ async function archiveUser (id: number): Promise<void> {
     : `./output/users/${id}.html`
   await ensureFile(outPath)
   if (profileInfo && groupsAndBadges) {
-    const { name, schools, info } = profileInfo
+    const { name, pfpUrl, schools, info } = profileInfo
     const { groups, badges } = groupsAndBadges
+    const bigPfp = new URL(pfpUrl).pathname.replace(
+      'profile_reg',
+      'profile_big',
+    )
+    const pfpFileName = id + bigPfp.slice(bigPfp.lastIndexOf('.'))
+    const outputPfp = `./output/users/${pfpFileName}`
+    await cachePath(bigPfp, 'file', { cachePath: outputPfp })
     await Deno.writeTextFile(
       outPath,
       html.page(
         html.style(html.raw(['img {', 'height: 100px;', '}'].join(''))),
-        html.h1(name),
-        html.p(`Goes to ${schools.join(', ')}.`),
+        html.div(
+          html.img({ src: pfpFileName }),
+          html.div(
+            { style: { display: 'inline-block' } },
+            html.h1(name),
+            html.p(`Goes to ${schools.join(', ')}.`),
+          ),
+        ),
         Object.entries(info).flatMap(([infoType, datum]) => [
           html.dt(infoType),
           ...(Array.isArray(datum)
