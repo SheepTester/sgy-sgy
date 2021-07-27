@@ -61,7 +61,7 @@ export type User = {
    * The user's primary email address (either a username or email address is
    * required for each user)
    */
-  primary_email?: string
+  primary_email?: string | null
   /** The user's position in the school/company. */
   position?: string
   /** The user's gender */
@@ -193,9 +193,10 @@ export interface ExtendedUser extends User {
 // (eg me)
 export async function getUsers (
   userIds: number[],
-): Promise<Record<number, ExtendedUser>> {
+): Promise<Record<number, User | null>> {
   const responses = await multiGet(
     userIds.map(id => `/v1/users/${id}?extended=TRUE`),
+    { allow403: true }
   )
   return Object.fromEntries(
     Array.from(responses, ([path, response]) => [

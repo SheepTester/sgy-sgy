@@ -1,3 +1,4 @@
+// deno-lint-ignore-file
 import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
 import * as oauth from 'https://raw.githubusercontent.com/snsinfu/deno-oauth-1.0a/42155ce5fcefc89265353c579d07229cb3acddc9/mod.ts'
 import { options, root } from './init.ts'
@@ -9,7 +10,6 @@ const log = await Deno.open('./cache/log.txt', { append: true })
 const encoder = new TextEncoder()
 
 type CacheResult = {
-  // deno-lint-ignore no-explicit-any
   json: any
   html: string
   file: Uint8Array
@@ -69,7 +69,7 @@ export async function cachePath<T extends CacheType = 'json'> (
       return file
     } else {
       const file = await Deno.readTextFile(filePath)
-      if (allow403 && file === '403') {
+      if (allow403 && (file === '403' || file === '403\n')) {
         throw new Http403('HTTP 403 error')
       }
       log
@@ -88,7 +88,7 @@ export async function cachePath<T extends CacheType = 'json'> (
     if (!response.ok) {
       if (response.status === 403 && allow403) {
         await ensureFile(filePath)
-        await Deno.writeTextFile(filePath, '403')
+        await Deno.writeTextFile(filePath, '403\n')
         throw new Http403('HTTP 403 error')
       } else if (response.status === 429 && retry) {
         // Too many requests, try again after some time
@@ -147,6 +147,7 @@ let oauthClient: Promise<oauth.OAuthClient> | undefined
 async function actuallyMultiGet (
   paths: string[],
   target: Map<string, any>,
+  allow403 = false,
 ): Promise<void> {
   if (!oauthClient) {
     oauthClient = Deno.readTextFile(
@@ -181,33 +182,44 @@ async function actuallyMultiGet (
   const { response: responses }: MultiGetApiResponse = await response.json()
   for (let i = 0; i < paths.length; i++) {
     const { location, response_code: status, body } = responses[i]
-    if (Math.floor(status / 100) !== 2) {
-      throw new Error(`HTTP ${status} for ${location}: ${body}`)
-    }
     const path = paths[i]
     const filePath = getFilePath(path, 'json')
     await ensureFile(filePath)
-    await Deno.writeTextFile(filePath, JSON.stringify(body, null, '\t'))
-    target.set(path, body)
+    if (allow403 && status === 403) {
+      await Deno.writeTextFile(filePath, '403\n')
+      target.set(path, null)
+    } else if (Math.floor(status / 100) !== 2) {
+      throw new Error(`HTTP ${status} for ${location}: ${body}`)
+    } else {
+      await Deno.writeTextFile(filePath, JSON.stringify(body, null, '\t'))
+      target.set(path, body)
+    }
   }
 }
 
 // Multi-get is only available on api.schoology.com, annoyingly
-export async function multiGet (paths: string[]): Promise<Map<string, any>> {
+export async function multiGet (
+  paths: string[],
+  { allow403 = false } = {},
+): Promise<Map<string, any>> {
   const responses = new Map()
   const needFetch: string[] = []
   for (const path of paths) {
     const filePath = getFilePath(path, 'json')
     try {
       const file = await Deno.readTextFile(filePath)
-      responses.set(path, JSON.parse(file))
+      if (allow403 && file === '403\n') {
+        responses.set(path, null)
+      } else {
+        responses.set(path, JSON.parse(file))
+      }
     } catch {
       needFetch.push(path)
     }
   }
   for (let i = 0; i < needFetch.length; i += 50) {
     // Maximum 50 requests per multi-get
-    await actuallyMultiGet(needFetch.slice(i, i + 50), responses)
+    await actuallyMultiGet(needFetch.slice(i, i + 50), responses, allow403)
   }
   return responses
 }

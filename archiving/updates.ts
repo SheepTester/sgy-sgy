@@ -178,7 +178,7 @@ type Liker = {
   id: number
   name: string
   pfp: string
-  email: string
+  email: string | null
 }
 
 function userToLiker ({
@@ -191,13 +191,14 @@ function userToLiker ({
     id: expect(id),
     name: expect(name_display),
     pfp: expect(picture_url),
-    email: expect(primary_email),
+    email: primary_email ?? null,
   }
 }
 
 type Comment = {
   id: number
   authorId: number
+  likeCount: number
   likers: Liker[]
   content: string
   created: Date
@@ -206,8 +207,10 @@ type Comment = {
 type Update = {
   id: number
   authorId: number
+  author?: Liker
   /** In HTML */
   content: string
+  likeCount: number
   likers: Liker[]
   created: Date
   edited?: Date
@@ -236,7 +239,6 @@ export async function getUpdates (
 ): Promise<Update[]> {
   // Get updates from API
   const updates: Update[] = []
-  const timestampToUpdate: Record<string, Update> = {}
   let response: ApiUpdateList
   let index = 0
   do {
@@ -251,6 +253,7 @@ export async function getUpdates (
         id: update.id,
         authorId: expect(update.uid),
         content: update.body,
+        likeCount: update.likes,
         likers: [],
         created: new Date(update.created * 1000),
         edited:
@@ -260,6 +263,7 @@ export async function getUpdates (
         comments: comments.map(comment => ({
           id: comment.id,
           authorId: comment.uid,
+          likeCount: comment.likes,
           likers: [],
           content: comment.comment,
           created: new Date(comment.created * 1000),
@@ -289,16 +293,13 @@ export async function getUpdates (
           : [],
       }
       updates.push(updateObj)
-      // The `timestamp` attribute in the HTML can be off by 1 compared to
-      // `created` from the API ¯\_(ツ)_/¯
-      timestampToUpdate[update.created] = updateObj
-      timestampToUpdate[update.created + 1] = updateObj
     }
     index += 200
   } while (response.links.next)
 
   // Get content HTML from website
   let page = 0
+  let updateIndex = 0
   while (true) {
     // NOTE: The "Show more" links have a hash that apparently expire after some
     // time. :/ May have to clear cache occasionally.
@@ -307,23 +308,28 @@ export async function getUpdates (
       'json',
     )
     const document = parseHtml(output)
-    const postWrappers = document.querySelectorAll('.own-edge-post')
+    const postWrappers = document.querySelectorAll(
+      '.s-edge-feed > li[timestamp]',
+    )
     if (postWrappers.length === 0) {
       break
     }
-    // Exclude elements with class `own-edge-post` inside update bodies (because
+    // Exclude elements with class `s-edge-feed` inside update bodies (because
     // `class` is on Schoology's attribute whitelist)
     const postWrappersInUpdates = [
-      ...document.querySelectorAll('.update-body .own-edge-post'),
+      ...document.querySelectorAll('.update-body .s-edge-feed > li[timestamp]'),
     ]
     for (const postWrapperNode of postWrappers) {
       if (postWrappersInUpdates.includes(postWrapperNode)) continue
       const postWrapper = shouldBeElement(postWrapperNode)
-      const timestamp = expect(postWrapper.getAttribute('timestamp'))
-      const update = timestampToUpdate[timestamp]
-      if (!update) {
+      const update = updates[updateIndex]
+      // Ensure that the indices are synched. The timestamp is a bit off (up to
+      // 3 seconds after, it seems), so allow some wiggle room.
+      const timestamp = +expect(postWrapper.getAttribute('timestamp'))
+      const created = update.created.getTime() / 1000
+      if (timestamp - created > 5) {
         throw new ReferenceError(
-          `${timestamp} is not in the timestampToUpdate map`,
+          `Update ${updateIndex} timestamps are different: the array has ${created}, but the HTML has ${timestamp}.`,
         )
       }
       const showMoreLink = nextElementNotInUpdateBody(
@@ -340,20 +346,37 @@ export async function getUpdates (
           nextElementNotInUpdateBody('.update-body', postWrapper),
         ).innerHTML
       }
+      update.author = {
+        id: update.authorId,
+        name: expect(
+          nextElementNotInUpdateBody('.update-sentence-inner > a', postWrapper),
+        ).textContent,
+        pfp: expect(
+          nextElementNotInUpdateBody('.profile-picture img', postWrapper)
+            ?.getAttribute('src')
+            ?.replace('profile_sm', 'profile_big'),
+        ),
+        email: null,
+      }
+      updateIndex++
     }
     page++
   }
 
   // Get likers from API
   for (const update of updates) {
-    const { users }: ApiLikeList = await cachePath(`/v1/like/${update.id}`)
-    update.likers = users.map(userToLiker)
+    if (update.likeCount > 0) {
+      const { users }: ApiLikeList = await cachePath(`/v1/like/${update.id}`)
+      update.likers = users.map(userToLiker)
+    }
 
     for (const comment of update.comments) {
-      const { users }: ApiLikeList = await cachePath(
-        `/v1/like/${update.id}/comment/${comment.id}`,
-      )
-      comment.likers = users.map(userToLiker)
+      if (comment.likeCount > 0) {
+        const { users }: ApiLikeList = await cachePath(
+          `/v1/like/${update.id}/comment/${comment.id}`,
+        )
+        comment.likers = users.map(userToLiker)
+      }
     }
   }
 
@@ -363,7 +386,7 @@ export async function getUpdates (
 function likerToHtml ({ id, name, pfp, email }: Liker): html.Html {
   return html.span(
     {
-      title: email,
+      title: email ? `Email: ${email}; user ID: ${id}` : `User ID: ${id}`,
       'data-id': id.toString(),
     },
     html.img({
@@ -388,21 +411,16 @@ export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
         update.poll.length > 0
           ? Math.max(...update.poll.map(option => option.votes))
           : 0
+      const author = authors[update.authorId]
       return html.li(
         html.h2(
-          {
-            style: {
-              'font-size': 'inherit',
-            },
-          },
-          likerToHtml(userToLiker(authors[update.authorId])),
+          { style: { 'font-size': 'inherit' } },
+          author
+            ? likerToHtml(userToLiker(author))
+            : likerToHtml(expect(update.author)),
           ' ',
           html.em(
-            {
-              style: {
-                color: 'grey',
-              },
-            },
+            { style: { color: 'grey' } },
             update.created.toLocaleString('en-CA'),
             update.edited &&
               ` (edited ${update.edited.toLocaleString('en-CA')})`,
@@ -423,11 +441,7 @@ export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
                   },
                 },
                 html.strong(
-                  {
-                    style: {
-                      'margin-right': '20px',
-                    },
-                  },
+                  { style: { 'margin-right': '20px' } },
                   option.votes.toString(),
                 ),
                 ' ',
@@ -479,15 +493,21 @@ export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
             : 'No likes',
         ),
         html.ul(
-          update.comments.map(comment =>
-            html.li(
+          update.comments.map(comment => {
+            const author = authors[comment.authorId]
+            return html.li(
               html.h3(
                 {
                   style: {
                     'font-size': 'inherit',
                   },
                 },
-                likerToHtml(userToLiker(authors[comment.authorId])),
+                author
+                  ? likerToHtml(userToLiker(author))
+                  : html.span(
+                      { title: `User ID: ${comment.authorId}` },
+                      '[private user, cringe]',
+                    ),
                 ' ',
                 html.em(
                   {
@@ -517,8 +537,8 @@ export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
                     ]
                   : 'No likes',
               ),
-            ),
-          ),
+            )
+          }),
         ),
       )
     }),
@@ -528,6 +548,6 @@ export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
 if (import.meta.main) {
   await Deno.writeTextFile(
     './output/updates-test.html',
-    (await getUpdates('user', '2017219').then(updatesToHtml)).html,
+    (await getUpdates('group', '256792634').then(updatesToHtml)).html,
   )
 }
