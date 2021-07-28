@@ -1,4 +1,4 @@
-// deno-lint-ignore-file
+// deno-lint-ignore-file no-explicit-any
 import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
 import * as oauth from 'https://raw.githubusercontent.com/snsinfu/deno-oauth-1.0a/42155ce5fcefc89265353c579d07229cb3acddc9/mod.ts'
 import { options, root } from './init.ts'
@@ -80,7 +80,11 @@ export async function cachePath<T extends CacheType = 'json'> (
   } catch {
     log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
     const response = await fetch(root + path, options)
-    if (!response.url.startsWith(root)) {
+    // When the SESS cookie is invalid, it redirects to id.pausd.org
+    if (
+      !response.url.startsWith(root) &&
+      !new URL(response.url).hostname.endsWith('schoology.com')
+    ) {
       throw new Error(
         `${path} redirected to ${response.url}, which is outside the Schoology domain.`,
       )

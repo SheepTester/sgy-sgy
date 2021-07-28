@@ -36,7 +36,7 @@ type ShowMore = {
   update: string
 }
 
-type ApiAttachmentFile = {
+export type ApiAttachmentFile = {
   /** The Unique ID of the document */
   id: number
   /** For updates with attachments, the type of the attachment */
@@ -53,7 +53,7 @@ type ApiAttachmentFile = {
   timestamp: number
 }
 
-interface ApiAttachmentConvertedFile extends ApiAttachmentFile {
+export interface ApiAttachmentConvertedFile extends ApiAttachmentFile {
   converted_download_path?: string
   converted_extension?: string
   converted_filemime?: string
@@ -64,7 +64,7 @@ interface ApiAttachmentConvertedFile extends ApiAttachmentFile {
   converted_type: number // 3 or 4 at least
 }
 
-type ApiAttachmentLink = {
+export type ApiAttachmentLink = {
   /** The Unique ID of the document */
   id: number
   /** For updates with attachments, the type of the attachment */

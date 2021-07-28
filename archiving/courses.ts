@@ -74,7 +74,7 @@ interface SgyUserSections {
   }[]
 }
 
-const colours: Record<string, { background: string; border: string }> = {
+export const colours: Record<string, { background: string; border: string }> = {
   red: { background: 'F1567B', border: 'C11E45' },
   orange: { background: 'F79060', border: 'C84E22' },
   yellow: { background: 'EFD962', border: 'BB9300' },
@@ -85,15 +85,6 @@ const colours: Record<string, { background: string; border: string }> = {
   black: { background: '6D6D6D', border: '333333' },
   gray: { background: 'F1F1F2', border: 'BBBDBF' },
 }
-
-const sections: SgyUserSections = await cachePath(`/v1/users/${me.id}/sections`)
-// console.log(sections.section.map(({ id, course_title, weight, course_code }) => ({ id, course_title, weight, course_code })))
-const courseIds = sections.section
-  .sort((a, b) => +b.weight - +a.weight)
-  .map(section => ({
-    id: section.id,
-    name: `${section.course_title}: ${section.section_title}`,
-  }))
 
 async function getFolderContents (document: HTMLDocument): Promise<html.Html> {
   const items = document.querySelectorAll('.item-info')
@@ -334,8 +325,21 @@ async function getCourseMaterials (courseId: string, courseName: string) {
   }
 }
 
-// await cachePath(`/home/notifications`, 'html')
-// await cachePath(`/v1/users/${me.id}/grades`)
-for (const { id, name } of courseIds) {
-  await getCourseMaterials(id, name)
+if (import.meta.main) {
+  const sections: SgyUserSections = await cachePath(
+    `/v1/users/${me.id}/sections`,
+  )
+  // console.log(sections.section.map(({ id, course_title, weight, course_code }) => ({ id, course_title, weight, course_code })))
+  const courseIds = sections.section
+    .sort((a, b) => +b.weight - +a.weight)
+    .map(section => ({
+      id: section.id,
+      name: `${section.course_title}: ${section.section_title}`,
+    }))
+
+  // await cachePath(`/home/notifications`, 'html')
+  // await cachePath(`/v1/users/${me.id}/grades`)
+  for (const { id, name } of courseIds) {
+    await getCourseMaterials(id, name)
+  }
 }
