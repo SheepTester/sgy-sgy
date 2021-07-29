@@ -17,26 +17,30 @@ echo "SESS=<cookie value here>"
 Then, run
 
 ```sh
-# Get courses
 deno run \
   --allow-read=cache,output,.env,.env.example,.env.defaults \
   --allow-write=cache,output \
   --allow-net=pausd.schoology.com \
   --allow-env \
-  https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/courses.ts
-
-# Get messages
-deno run \
-  --allow-read=cache,output,.env,.env.example,.env.defaults \
-  --allow-write=cache,output \
-  --allow-net=pausd.schoology.com \
-  --allow-env \
-  https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/messages.ts
+  <SCRIPT URL>
 ```
 
+Here's a list of `<SCRIPT URL>`s you can use.
+
+| `<SCRIPT URL>`                                                                         | Description                                                                              |
+| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/courses.ts      | Get all your course materials                                                            |
+| https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/messages.ts     | Get Schoology messages                                                                   |
+| https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/user.ts         | Get your user profile and updates                                                        |
+| https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/resources.ts    | Get all personal and group resources                                                     |
+| https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/groups.ts       | Get all groups available in the district as well as the updates of the groups you're in  |
+| https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/get-students.ts | Compile a bunch of user profiles together given a students.json (meant for personal use) |
+
 Deno is secure by default, so I've explicitly listed its permissions here. It
-can only read and write to the listed directories and make network requests to
-the listed domain. It can also access and modify your environment variables.
+can only read and write to the listed directories (`cache` for caching Schoology
+requests, and `output` where resulting archive is stored) and make network
+requests to the listed domain (https://pausd.schoology.com/). It can also access
+and modify your environment variables to get the Schoology session cookie.
 
 ### WSL quirk
 

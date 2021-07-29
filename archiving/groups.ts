@@ -3,6 +3,9 @@ import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
 import { cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
 import { root } from './init.ts'
+import { me } from './me.ts'
+import { getUpdates, updatesToHtml } from './updates.ts'
+import { stringToPath } from './utilts.ts'
 
 type ApiGroup = {
   /** The internal Schoology ID of the group */
@@ -96,13 +99,16 @@ type ApiGroup = {
   links: { self: string }
 }
 
-type ApiGroupsResponse = {
+type ApiMyGroupsResponse = {
   group: ApiGroup[]
-  total: number
   links: {
     self: string
     next?: string
   }
+}
+
+interface ApiGroupsResponse extends ApiMyGroupsResponse {
+  total: number
 }
 
 type ApiCategoriesResponse = {
@@ -112,8 +118,11 @@ type ApiCategoriesResponse = {
   }[]
 }
 
-async function archiveGroup (id: number): Promise<void> {
-  //
+async function archiveGroup (id: string, name: string): Promise<void> {
+  await Deno.writeTextFile(
+    `./output/groups/${stringToPath(name)}.html`,
+    html.page(html.h1(name), await getUpdates('group', id).then(updatesToHtml)),
+  )
 }
 
 async function archiveAllGroups (): Promise<void> {
@@ -228,4 +237,11 @@ async function archiveAllGroups (): Promise<void> {
 if (import.meta.main) {
   await ensureDir('./output/groups/')
   await archiveAllGroups()
+
+  const myGroups: ApiMyGroupsResponse = await cachePath(
+    `/v1/users/${me.id}/groups`,
+  )
+  for (const group of myGroups.group) {
+    await archiveGroup(group.id, group.title)
+  }
 }

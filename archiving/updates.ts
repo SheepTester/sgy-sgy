@@ -322,15 +322,23 @@ export async function getUpdates (
     for (const postWrapperNode of postWrappers) {
       if (postWrappersInUpdates.includes(postWrapperNode)) continue
       const postWrapper = shouldBeElement(postWrapperNode)
-      const update = updates[updateIndex]
-      // Ensure that the indices are synched. The timestamp is a bit off (up to
-      // 3 seconds after, it seems), so allow some wiggle room.
-      const timestamp = +expect(postWrapper.getAttribute('timestamp'))
-      const created = update.created.getTime() / 1000
-      if (timestamp - created > 5) {
-        throw new ReferenceError(
-          `Update ${updateIndex} timestamps are different: the array has ${created}, but the HTML has ${timestamp}.`,
-        )
+      let update
+      const likeBtn = nextElementNotInUpdateBody('.like-btn', postWrapper)
+      if (likeBtn) {
+        const id = +likeBtn.id.replace('s-like-n-', '')
+        update = expect(updates.find(update => update.id === id))
+      } else {
+        update = updates[updateIndex]
+        // Ensure that the indices are synched. The timestamp is a bit off (up to
+        // 3 seconds after, it seems), so allow some wiggle room.
+        const timestamp = +expect(postWrapper.getAttribute('timestamp'))
+        const created = update.created.getTime() / 1000
+        if (timestamp - created > 5) {
+          // console.log(postWrapper.outerHTML, update)
+          throw new ReferenceError(
+            `Update ${updateIndex} timestamps are different: the array has ${created}, but the HTML has ${timestamp}.`,
+          )
+        }
       }
       const showMoreLink = nextElementNotInUpdateBody(
         '.show-more-link',
