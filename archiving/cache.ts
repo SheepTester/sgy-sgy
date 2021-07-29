@@ -1,7 +1,7 @@
 // deno-lint-ignore-file no-explicit-any
 import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
 import * as oauth from 'https://raw.githubusercontent.com/snsinfu/deno-oauth-1.0a/42155ce5fcefc89265353c579d07229cb3acddc9/mod.ts'
-import { options, root } from './init.ts'
+import { cookie, root } from './init.ts'
 import { stringToPath, delay } from './utilts.ts'
 
 await ensureFile('./cache/log.txt')
@@ -43,6 +43,9 @@ type CacheOptions = {
    * The path to store the cached result in.
    */
   cachePath?: string
+
+  /** Headers. */
+  headers?: Record<string, string>
 }
 
 export async function cachePath<T extends CacheType = 'json'> (
@@ -55,6 +58,7 @@ export async function cachePath<T extends CacheType = 'json'> (
       path,
       type === 'file' ? '' : type || 'json',
     ),
+    headers = {},
   }: CacheOptions = {},
 ): Promise<CacheResult[T]> {
   if (path === '') {
@@ -79,7 +83,9 @@ export async function cachePath<T extends CacheType = 'json'> (
     }
   } catch {
     log.write(encoder.encode(`Saving ${path} to cache\n`)).catch(console.error)
-    const response = await fetch(root + path, options)
+    const response = await fetch(root + path, {
+      headers: { ...headers, cookie },
+    })
     // When the SESS cookie is invalid, it redirects to id.pausd.org
     if (
       !response.url.startsWith(root) &&
@@ -131,9 +137,7 @@ export async function cachePath<T extends CacheType = 'json'> (
 }
 
 export function external (url: string): string {
-  const params = new URLSearchParams()
-  params.set('path', url)
-  return `/link?${params}`
+  return `/link?${new URLSearchParams({ path: url })}`
 }
 
 type MultiGetApiResponse = {

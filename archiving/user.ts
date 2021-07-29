@@ -278,8 +278,8 @@ async function archiveUser (id: number): Promise<void> {
   const profileInfo = await getStudentInfo(id)
   const groupsAndBadges = profileInfo && (await getGroupsAndBadges(id))
   const outPath = profileInfo
-    ? `./output/users/${id}_${stringToPath(profileInfo.name)}.html`
-    : `./output/users/${id}.html`
+    ? `./output/users/${id}_${stringToPath(profileInfo.name)}/index.html`
+    : `./output/users/${id}/index.html`
   await ensureFile(outPath)
   if (profileInfo && groupsAndBadges) {
     const { name, pfpUrl, schools, info } = profileInfo
