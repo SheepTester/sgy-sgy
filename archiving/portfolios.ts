@@ -2,7 +2,6 @@
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
 import { cachePath, external } from './cache.ts'
 import * as html from './html-maker.ts'
-import { root } from './init.ts'
 import { me } from './me.ts'
 import { stringToPath } from './utilts.ts'
 
@@ -246,5 +245,5 @@ async function archivePortfolios (
 }
 
 if (import.meta.main) {
-  await archivePortfolios(me.id)
+  await archivePortfolios(me.id, '2017219_Sean_Yen')
 }

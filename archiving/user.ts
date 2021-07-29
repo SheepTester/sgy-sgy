@@ -1,9 +1,11 @@
 // deno-lint-ignore-file camelcase
 
+import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
 import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
 import { cachePath, Http403, multiGet } from './cache.ts'
 import { getStudentInfo } from './get-students.ts'
 import * as html from './html-maker.ts'
+import { root } from './init.ts'
 import { me } from './me.ts'
 import { getUpdates, updatesToHtml } from './updates.ts'
 import { expect, parseHtml, shouldBeElement, stringToPath } from './utilts.ts'
@@ -189,6 +191,16 @@ export interface ExtendedUser extends User {
   profile_info: DetailedProfile
 }
 
+type ApiBlogResponse = {
+  post: {
+    id: string
+    title: string
+    body: string
+    created: number
+    links: { self: string }
+  }[]
+}
+
 // NOTE: Apparently the extended profile info only shows for the current user
 // (eg me)
 export async function getUsers (
@@ -196,7 +208,7 @@ export async function getUsers (
 ): Promise<Record<number, User | null>> {
   const responses = await multiGet(
     userIds.map(id => `/v1/users/${id}?extended=TRUE`),
-    { allow403: true }
+    { allow403: true },
   )
   return Object.fromEntries(
     Array.from(responses, ([path, response]) => [
@@ -274,13 +286,31 @@ async function getGroupsAndBadges (
   return { groups, badges }
 }
 
+async function archiveUserBlog (id: number, path: string) {
+  const { post: blog }: ApiBlogResponse = await cachePath(
+    `/v1/users/${id}/posts`,
+  )
+  await Deno.writeTextFile(
+    path + 'blog.html',
+    html.page(
+      html.base({ href: root }),
+      html.h1('Blog'),
+      blog.map(({ title, body, created }) => [
+        html.h2(title),
+        html.p(html.em(`Posted ${new Date(created * 1000).toLocaleString()}`)),
+        html.div(html.raw(body)),
+      ]),
+    ),
+  )
+}
+
 async function archiveUser (id: number): Promise<void> {
   const profileInfo = await getStudentInfo(id)
   const groupsAndBadges = profileInfo && (await getGroupsAndBadges(id))
   const outPath = profileInfo
-    ? `./output/users/${id}_${stringToPath(profileInfo.name)}/index.html`
-    : `./output/users/${id}/index.html`
-  await ensureFile(outPath)
+    ? `./output/users/${id}_${stringToPath(profileInfo.name)}/`
+    : `./output/users/${id}/`
+  await ensureDir(outPath)
   if (profileInfo && groupsAndBadges) {
     const { name, pfpUrl, schools, info } = profileInfo
     const { groups, badges } = groupsAndBadges
@@ -292,7 +322,7 @@ async function archiveUser (id: number): Promise<void> {
     const outputPfp = `./output/users/${pfpFileName}`
     await cachePath(bigPfp, 'file', { cachePath: outputPfp })
     await Deno.writeTextFile(
-      outPath,
+      outPath + 'index.html',
       html.page(
         html.style(html.raw(['img {', 'height: 100px;', '}'].join(''))),
         html.div(
@@ -350,10 +380,11 @@ async function archiveUser (id: number): Promise<void> {
     )
   } else {
     await Deno.writeTextFile(
-      outPath,
+      outPath + 'index.html',
       html.page(html.p("This user's profile is private. Cringe.")),
     )
   }
+  await archiveUserBlog(id, outPath)
 }
 
 if (import.meta.main) {
