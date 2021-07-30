@@ -16,7 +16,7 @@ type CacheResult = {
 }
 type CacheType = keyof CacheResult
 
-function getFilePath (path: string, extension = ''): string {
+export function getFilePath (path: string, extension = ''): string {
   return `./cache/${stringToPath(path.replace(/^\//, ''), {
     allowSlash: true,
   })}${extension ? '.' + extension : ''}`
@@ -40,6 +40,13 @@ type CacheOptions = {
   allow404?: boolean
 
   /**
+   * Whether to retry on receiving a 404 or 500 error. For some reason, for
+   * Schoology portfolios, Schoology feels like returning a 404 or 500 error
+   * instead of a 429 error when it gets overworked.
+   */
+  retryOn404Or500?: boolean
+
+  /**
    * Whether to reattempt the request after a while if Schoology ratelimits you.
    * You should leave this as default (true).
    */
@@ -60,6 +67,7 @@ export async function cachePath<T extends CacheType = 'json'> (
   {
     allow403 = false,
     allow404 = false,
+    retryOn404Or500 = false,
     retry = true,
     cachePath: filePath = getFilePath(
       path,
@@ -81,9 +89,9 @@ export async function cachePath<T extends CacheType = 'json'> (
     } else {
       const file = await Deno.readTextFile(filePath)
       if (allow403 && (file === '403' || file === '403\n')) {
-        throw new AnticipatedHttpError('HTTP 403 error')
+        return Promise.reject(new AnticipatedHttpError('HTTP 403 error'))
       } else if (allow404 && file === '404\n') {
-        throw new AnticipatedHttpError('HTTP 404 error')
+        return Promise.reject(new AnticipatedHttpError('HTTP 404 error'))
       }
       log
         .write(encoder.encode(`Loaded ${path} from cache\n`))
@@ -112,12 +120,16 @@ export async function cachePath<T extends CacheType = 'json'> (
         await ensureFile(filePath)
         await Deno.writeTextFile(filePath, response.status + '\n')
         throw new AnticipatedHttpError(`HTTP ${response.status} error`)
-      } else if (response.status === 429 && retry) {
+      } else if (
+        (response.status === 429 ||
+          (retryOn404Or500 && response.status === 500)) &&
+        retry
+      ) {
         // Too many requests, try again after some time
         log
           .write(
             encoder.encode(
-              `Received 429 error; waiting 5 seconds before retrying\n`,
+              `Received ${response.status} error; waiting 5 seconds before retrying\n`,
             ),
           )
           .catch(console.error)
@@ -127,10 +139,14 @@ export async function cachePath<T extends CacheType = 'json'> (
           allow404,
           retry: false,
           cachePath: filePath,
+          headers,
         })
       }
+      const text = await response.text()
       throw new Error(
-        `HTTP ${response.status} for ${response.url}: ${await response.text()}`,
+        `HTTP ${response.status} for ${response.url}: ${
+          text.length > 1000 ? text.slice(0, 999) + '…' : text
+        }`,
       )
     }
     await ensureFile(filePath)

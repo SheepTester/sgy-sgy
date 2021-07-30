@@ -1,11 +1,15 @@
 // deno-lint-ignore-file camelcase
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
 import { exists } from 'https://deno.land/std@0.103.0/fs/exists.ts'
-import { AnticipatedHttpError, cachePath, external } from './cache.ts'
+import {
+  AnticipatedHttpError,
+  cachePath,
+  external,
+  getFilePath,
+} from './cache.ts'
 import * as html from './html-maker.ts'
-import { cookie, root } from './init.ts'
 import { me } from './me.ts'
-import { delay, stringToPath } from './utilts.ts'
+import { stringToPath } from './utilts.ts'
 
 type ApiPortfoliosInitResponse = {
   data: {
@@ -140,39 +144,6 @@ type ApiPortfolioResponse = {
   }
 }
 
-async function attemptUrlNoCache (
-  url: string,
-  csrfToken: string,
-): Promise<ApiPortfolioResponse> {
-  // Schoology is quite unreliable and inconsistent. It sometimes gives 404
-  // errors, but not always.
-  const response1: ApiPortfolioResponse | null = await fetch(url, {
-    headers: { 'X-Csrf-Token': csrfToken, cookie },
-  }).then(async r => {
-    if (r.ok) {
-      return r.json()
-    } else if (r.status === 429 || r.status === 500) {
-      console.log(
-        `${url} gave a HTTP ${r.status} error, so I will wait 5 seconds and try again.`,
-      )
-      return null
-    } else {
-      throw new Error(`HTTP ${r.status} error for ${r.url}: ${await r.text()}`)
-    }
-  })
-  if (response1) {
-    return response1
-  }
-  // Wait 5 seconds just in case
-  await delay(5000)
-  const response2: ApiPortfolioResponse = await fetch(url, {
-    headers: { 'X-Csrf-Token': csrfToken, cookie },
-  }).then(r =>
-    r.ok ? r.json() : Promise.reject(`HTTP ${r.status} error for ${r.url}`),
-  )
-  return response2
-}
-
 /** Get portfolios for a user ID */
 export async function archivePortfolios (
   userId: number,
@@ -213,10 +184,15 @@ export async function archivePortfolios (
       }
     }
     if (needDownload) {
-      // Try to get unstale download links
-      const { data: portfolio } = await attemptUrlNoCache(
-        `${root}/portfolios/users/${userId}/portfolios/${id}`,
-        csrfToken,
+      // Try to get new, unstale download links by clearing the cache and
+      // re-fetching it
+      const reqPath = `/portfolios/users/${userId}/portfolios/${id}`
+      const oldCachePath = getFilePath(reqPath, 'json')
+      await Deno.remove(oldCachePath)
+      const { data: portfolio }: ApiPortfolioResponse = await cachePath(
+        `/portfolios/users/${userId}/portfolios/${id}`,
+        'json',
+        { headers: { 'X-Csrf-Token': csrfToken }, retryOn404Or500: true },
       )
       for (const item of portfolio.items) {
         for (const fileInfo of [item.file_info, item.metadata.file_info]) {
@@ -260,6 +236,27 @@ export async function archivePortfolios (
         html.table(
           html.tr(html.th('Name and description'), html.th('Content')),
           portfolio.items.map(item => {
+            const fileInfo = item.file_info || item.metadata.file_info
+            let fileInfoHtml = null
+            if (fileInfo) {
+              const path = `./${item.id}_${stringToPath(
+                fileInfo.filename.slice(0, fileInfo.filename.lastIndexOf('.')),
+              )}${fileInfo.filename.slice(fileInfo.filename.lastIndexOf('.'))}`
+              fileInfoHtml = [
+                html.a({ href: path }, fileInfo.filename),
+                '\n',
+                fileInfo.filemime.startsWith('image/')
+                  ? html.img({ src: path, style: { 'max-width': '60vw' } })
+                  : fileInfo.filemime.startsWith('audio/')
+                  ? html.audio({ src: path, controls: true })
+                  : fileInfo.filemime === 'application/pdf'
+                  ? html.iframe({
+                      src: path,
+                      style: { width: '60vw', height: '40vw' },
+                    })
+                  : null,
+              ]
+            }
             return html.tr(
               html.td(
                 html.strong(item.title),
@@ -281,34 +278,7 @@ export async function archivePortfolios (
                       html.strong('Link'),
                     )
                   : null,
-                item.file_info &&
-                  html.a(
-                    {
-                      href: `${item.id}_${stringToPath(
-                        item.file_info.filename.slice(
-                          0,
-                          item.file_info.filename.lastIndexOf('.'),
-                        ),
-                      )}${item.file_info.filename.slice(
-                        item.file_info.filename.lastIndexOf('.'),
-                      )}`,
-                    },
-                    item.file_info.filename,
-                  ),
-                item.metadata.file_info &&
-                  html.a(
-                    {
-                      href: `${item.id}_${stringToPath(
-                        item.metadata.file_info.filename.slice(
-                          0,
-                          item.metadata.file_info.filename.lastIndexOf('.'),
-                        ),
-                      )}${item.metadata.file_info.filename.slice(
-                        item.metadata.file_info.filename.lastIndexOf('.'),
-                      )}`,
-                    },
-                    item.metadata.file_info.filename,
-                  ),
+                fileInfoHtml,
               ),
             )
           }),
