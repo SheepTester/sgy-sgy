@@ -1,7 +1,7 @@
 // deno-lint-ignore-file camelcase
 
 import { Element } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
-import { cachePath } from './cache.ts'
+import { AnticipatedHttpError, cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
 import { getUsers, User } from './user.ts'
 import { expect, parseHtml, shouldBeElement } from './utilts.ts'
@@ -345,15 +345,22 @@ export async function getUpdates (
         '.show-more-link',
         postWrapper,
       )
+      update.content = expect(
+        nextElementNotInUpdateBody('.update-body', postWrapper),
+      ).innerHTML
       if (showMoreLink) {
-        const { update: updateHtml }: ShowMore = await cachePath(
+        // The show more link will return a 403 error if the course expired. I'm
+        // getting updates after the courses expired, so this should be fine.
+        const response: ShowMore | null = await cachePath(
           expect(showMoreLink.getAttribute('href')),
+          'json',
+          { allow403: true },
+        ).catch(err =>
+          err instanceof AnticipatedHttpError ? null : Promise.reject(err),
         )
-        update.content = updateHtml
-      } else {
-        update.content = expect(
-          nextElementNotInUpdateBody('.update-body', postWrapper),
-        ).innerHTML
+        if (response) {
+          update.content = response.update
+        }
       }
       update.author = {
         id: update.authorId,
@@ -375,14 +382,22 @@ export async function getUpdates (
   // Get likers from API
   for (const update of updates) {
     if (update.likeCount > 0) {
-      const { users }: ApiLikeList = await cachePath(`/v1/like/${update.id}`)
+      const { users }: ApiLikeList = await cachePath(
+        // Only add ?limit=200 if there's more than 20 likes to avoid having to
+        // refetch existing likes in cache
+        update.likeCount > 20
+          ? `/v1/like/${update.id}?limit=200`
+          : `/v1/like/${update.id}`,
+      )
       update.likers = users.map(userToLiker)
     }
 
     for (const comment of update.comments) {
       if (comment.likeCount > 0) {
         const { users }: ApiLikeList = await cachePath(
-          `/v1/like/${update.id}/comment/${comment.id}`,
+          update.likeCount > 20
+            ? `/v1/like/${update.id}/comment/${comment.id}?limit=200`
+            : `/v1/like/${update.id}/comment/${comment.id}`,
         )
         comment.likers = users.map(userToLiker)
       }
@@ -498,6 +513,8 @@ export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
                   i !== 0 && ', ',
                   likerToHtml(liker),
                 ]),
+                update.likeCount > 200 && ' and more',
+                ` (${update.likeCount} total)`,
               ]
             : 'No likes',
         ),
@@ -543,6 +560,9 @@ export async function updatesToHtml (updates: Update[]): Promise<html.Html> {
                         i !== 0 && ', ',
                         likerToHtml(liker),
                       ]),
+                      ,
+                      comment.likeCount > 200 && ' and more',
+                      ` (${comment.likeCount} total)`,
                     ]
                   : 'No likes',
               ),

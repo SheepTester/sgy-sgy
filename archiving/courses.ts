@@ -7,6 +7,7 @@ import { cachePath } from './cache.ts'
 import * as html from './html-maker.ts'
 import { root } from './init.ts'
 import { me } from './me.ts'
+import { getUpdates, updatesToHtml } from './updates.ts'
 import {
   expect,
   asyncMap,
@@ -309,19 +310,12 @@ async function getCourseMaterials (courseId: string, courseName: string) {
     ).html,
   )
 
-  let page = 0
-  while (true) {
-    const { output } = await cachePath(`/course/${courseId}/feed?page=${page}`)
-    if (
-      output ===
-      '<div class="item-list"><ul class="s-edge-feed feed-no-realm"><li id="feed-empty-message" class="first last"><div class="small gray">There are no posts</div></li>\n</ul></div>'
-    ) {
-      break
-    }
-    page++
-    if (page > 100) {
-      throw new RangeError("That's a lot of pages! Uhh")
-    }
+  const updates = await getUpdates('course', courseId)
+  if (updates.length > 0) {
+    await Deno.writeTextFile(
+      outPath + '/updates.html',
+      html.page(html.h1('Updates'), await updatesToHtml(updates)),
+    )
   }
 }
 
