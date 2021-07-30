@@ -246,9 +246,10 @@ export async function getUpdates (
       `/v1/${realm}/${id}/updates?start=${index}&limit=200&with_attachments=1`,
     )
     for (const update of response.update) {
-      const { comment: comments }: ApiCommentList = await cachePath(
-        `/v1/${realm}/${id}/updates/${update.id}/comments`,
-      )
+      const { comment: comments }: ApiCommentList =
+        update.num_comments > 0
+          ? await cachePath(`/v1/${realm}/${id}/updates/${update.id}/comments`)
+          : { comment: [] }
       const updateObj: Update = {
         id: update.id,
         authorId: expect(update.uid),

@@ -1,7 +1,6 @@
 // deno-lint-ignore-file camelcase
 
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
-import { ensureFile } from 'https://deno.land/std@0.97.0/fs/ensure_file.ts'
 import { cachePath, Http403, multiGet } from './cache.ts'
 import { getStudentInfo } from './get-students.ts'
 import * as html from './html-maker.ts'
@@ -268,40 +267,55 @@ async function getGroupsAndBadges (
   }
 
   const badges: Badge[] = []
-  const badgesDoc = await cachePath(`/user/${id}/badges`, 'html').then(
-    parseHtml,
-  )
-  for (const userBadgeNode of badgesDoc.querySelectorAll('.user-badge-row')) {
-    const badge = shouldBeElement(userBadgeNode)
-    badges.push({
-      iconUrl: expect(badge.querySelector('.badge-image')?.getAttribute('src')),
-      name: expect(badge.querySelector('.badge-title-link a')?.textContent),
-      description: expect(badge.querySelector('.badge-message')?.textContent),
-      classDate: expect(
-        badge.querySelector('.badge-award-details')?.textContent,
-      ),
-    })
+  const badgesDoc = await cachePath(`/user/${id}/badges`, 'html', {
+    allow403: true,
+  })
+    .then(parseHtml)
+    .catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
+  // I'm assuming the badges page 403's if the user has no badges
+  if (badgesDoc) {
+    for (const userBadgeNode of badgesDoc.querySelectorAll('.user-badge-row')) {
+      const badge = shouldBeElement(userBadgeNode)
+      badges.push({
+        iconUrl: expect(
+          badge.querySelector('.badge-image')?.getAttribute('src'),
+        ),
+        name: expect(badge.querySelector('.badge-title-link a')?.textContent),
+        description: expect(badge.querySelector('.badge-message')?.textContent),
+        classDate: expect(
+          badge.querySelector('.badge-award-details')?.textContent,
+        ),
+      })
+    }
   }
 
   return { groups, badges }
 }
 
 async function archiveUserBlog (id: number, path: string) {
-  const { post: blog }: ApiBlogResponse = await cachePath(
+  // I'm guessing it also 403's here if the user has no blog (was never able to
+  // create)
+  const response: ApiBlogResponse | null = await cachePath(
     `/v1/users/${id}/posts`,
-  )
-  await Deno.writeTextFile(
-    path + 'blog.html',
-    html.page(
-      html.base({ href: root }),
-      html.h1('Blog'),
-      blog.map(({ title, body, created }) => [
-        html.h2(title),
-        html.p(html.em(`Posted ${new Date(created * 1000).toLocaleString()}`)),
-        html.div(html.raw(body)),
-      ]),
-    ),
-  )
+    'json',
+    { allow403: true },
+  ).catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
+  if (response && response.post.length > 0) {
+    await Deno.writeTextFile(
+      path + 'blog.html',
+      html.page(
+        html.base({ href: root }),
+        html.h1('Blog'),
+        response.post.map(({ title, body, created }) => [
+          html.h2(title),
+          html.p(
+            html.em(`Posted ${new Date(created * 1000).toLocaleString()}`),
+          ),
+          html.div(html.raw(body)),
+        ]),
+      ),
+    )
+  }
 }
 
 async function archiveUser (id: number): Promise<void> {
@@ -318,15 +332,14 @@ async function archiveUser (id: number): Promise<void> {
       'profile_reg',
       'profile_big',
     )
-    const pfpFileName = id + bigPfp.slice(bigPfp.lastIndexOf('.'))
-    const outputPfp = `./output/users/${pfpFileName}`
-    await cachePath(bigPfp, 'file', { cachePath: outputPfp })
+    await cachePath(bigPfp, 'file', { cachePath: outPath + 'pfp.png' })
+    const updates = await getUpdates('user', id)
     await Deno.writeTextFile(
       outPath + 'index.html',
       html.page(
         html.style(html.raw(['img {', 'height: 100px;', '}'].join(''))),
         html.div(
-          html.img({ src: pfpFileName }),
+          html.img({ src: './pfp.png' }),
           html.div(
             { style: { display: 'inline-block' } },
             html.h1(name),
@@ -375,7 +388,9 @@ async function archiveUser (id: number): Promise<void> {
           ),
         ),
         html.h2('Updates'),
-        await getUpdates('user', '2017219').then(updatesToHtml),
+        updates.length > 0
+          ? await updatesToHtml(updates)
+          : html.p(html.em('No updates.')),
       ),
     )
   } else {
@@ -388,5 +403,14 @@ async function archiveUser (id: number): Promise<void> {
 }
 
 if (import.meta.main) {
+  // const students = [
+  //   ...new Set([
+  //     // ...
+  //   ]),
+  // ]
+  // for (const id of students) {
+  //   console.log(id)
+  //   await archiveUser(+id)
+  // }
   await archiveUser(me.id)
 }
