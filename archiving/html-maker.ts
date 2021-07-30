@@ -39,7 +39,7 @@ type Attributes = Record<
   string | boolean | (string | Falsy)[] | Record<string, string | Falsy> | Falsy
 >
 
-type Child = string | Html | Attributes | Child[] | Falsy
+export type Child = string | Html | Attributes | Child[] | Falsy
 
 function attributes (attributes: Attributes = {}): string {
   let str = ''

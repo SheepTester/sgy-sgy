@@ -1,6 +1,7 @@
 // deno-lint-ignore-file camelcase
 
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
+import { Element } from 'https://deno.land/x/deno_dom@v0.1.12-alpha/deno-dom-wasm.ts'
 import { cachePath, AnticipatedHttpError, multiGet } from './cache.ts'
 import { getStudentInfo } from './get-students.ts'
 import * as html from './html-maker.ts'
@@ -297,6 +298,50 @@ async function getGroupsAndBadges (
   return { groups, badges }
 }
 
+type BlogComment = {
+  authorId: string
+  name: string
+  pfp: string
+  content: string
+  time: string
+  likes: number
+}
+
+function parseComments (comment: Element): BlogComment {
+  const author = expect(comment.querySelector('.comment-author a'))
+  return {
+    authorId: expect(author.getAttribute('href')?.match(/\d+/)?.[0]),
+    name: author.textContent,
+    pfp: expect(
+      comment
+        .querySelector('.profile-picture img')
+        ?.getAttribute('src')
+        ?.replace('profile_tiny', 'profile_big'),
+    ),
+    content: expect(
+      comment.querySelector('.comment-body-wrapper')?.textContent,
+    ),
+    time: expect(comment.querySelector('.comment-time span')?.textContent),
+    likes: +(comment.querySelector('.s-like-comment-icon')?.textContent ?? '0'),
+  }
+}
+
+function commentToHtml (comment: BlogComment): html.Child {
+  return [
+    html.strong(
+      { title: comment.authorId },
+      html.img({ src: comment.pfp, style: { 'max-height': '1em' } }),
+      comment.name,
+    ),
+    html.p({ style: { margin: '0.5em 0' } }, comment.content),
+    html.em(
+      comment.time,
+      ' · ',
+      `${comment.likes} like${comment.likes === 1 ? '' : 's'}`,
+    ),
+  ]
+}
+
 async function archiveUserBlog (id: number, path: string) {
   // I'm guessing it also 403's here if the user has no blog (was never able to
   // create)
@@ -308,17 +353,72 @@ async function archiveUserBlog (id: number, path: string) {
     err instanceof AnticipatedHttpError ? null : Promise.reject(err),
   )
   if (response && response.post.length > 0) {
+    // The REST API for blog comments seems to have better security than blogs
+    // themselves? So I'll have to scrape the Schoology website
+    const comments: Record<
+      string,
+      (BlogComment & { replies: BlogComment[] })[]
+    > = {}
+    const likes: Record<string, number> = {}
+    for (const { id: postId } of response.post) {
+      const document = await cachePath(
+        `/user/${id}/blog/post/${postId}`,
+        'html',
+      ).then(parseHtml)
+      likes[postId] = +(
+        document
+          .querySelector('.blog-like-wrapper span')
+          ?.textContent.split(' ')[0] ?? '0'
+      )
+      comments[postId] = []
+      for (const topCommentNode of document.querySelectorAll(
+        '.discussion-card',
+      )) {
+        const topComment = shouldBeElement(topCommentNode)
+        const comment = parseComments(topComment.children[0])
+        comments[postId].push({
+          ...comment,
+          replies: [
+            ...topComment.querySelectorAll('.s_comments_level > .comment'),
+          ]
+            .map(shouldBeElement)
+            .map(parseComments),
+        })
+      }
+    }
     await Deno.writeTextFile(
       path + 'blog.html',
       html.page(
         html.base({ href: root }),
         html.h1('Blog'),
-        response.post.map(({ title, body, created }) => [
+        response.post.map(({ id, title, body, created }) => [
           html.h2(title),
           html.p(
-            html.em(`Posted ${new Date(created * 1000).toLocaleString()}`),
+            html.em(
+              `Posted ${new Date(created * 1000).toLocaleString()} · ${
+                likes[id]
+              } like${likes[id] === 1 ? '' : 's'}`,
+            ),
           ),
           html.div(html.raw(body)),
+          comments[id].length > 0 &&
+            html.ul(
+              comments[id].map(comment =>
+                html.li(
+                  { style: { margin: '1em 0' } },
+                  commentToHtml(comment),
+                  comment.replies.length > 0 &&
+                    html.ul(
+                      comment.replies.map(reply =>
+                        html.li(
+                          { style: { margin: '1em 0' } },
+                          commentToHtml(reply),
+                        ),
+                      ),
+                    ),
+                ),
+              ),
+            ),
         ]),
       ),
     )
