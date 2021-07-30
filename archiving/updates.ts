@@ -234,7 +234,7 @@ type Update = {
 }
 
 export async function getUpdates (
-  realm: 'user' | 'course' | 'group',
+  realm: 'user' | 'course' | 'group' | 'school',
   id: number | string,
 ): Promise<Update[]> {
   // Get updates from API
@@ -247,7 +247,7 @@ export async function getUpdates (
     )
     for (const update of response.update) {
       const { comment: comments }: ApiCommentList =
-        update.num_comments > 0
+        update.num_comments > 0 && realm !== 'school'
           ? await cachePath(`/v1/${realm}/${id}/updates/${update.id}/comments`)
           : { comment: [] }
       const updateObj: Update = {
