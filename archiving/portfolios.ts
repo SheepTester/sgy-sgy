@@ -1,6 +1,6 @@
 // deno-lint-ignore-file camelcase
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
-import { cachePath, external } from './cache.ts'
+import { AnticipatedHttpError, cachePath, external } from './cache.ts'
 import * as html from './html-maker.ts'
 import { me } from './me.ts'
 import { stringToPath } from './utilts.ts'
@@ -139,35 +139,44 @@ type ApiPortfolioResponse = {
 }
 
 /** Get portfolios for a user ID */
-async function archivePortfolios (
+export async function archivePortfolios (
   userId: number,
-  userDirName = userId.toString(),
+  path = `./output/users/${userId}/`,
 ): Promise<void> {
   const {
     data: { csrfToken },
   }: ApiPortfoliosInitResponse = await cachePath('/portfolios/init')
 
-  const portfolios: ApiUserPortfoliosResponse = await cachePath(
+  const portfolios: ApiUserPortfoliosResponse | null = await cachePath(
     `/portfolios/users/${userId}/portfolios`,
     'json',
-    { headers: { 'X-Csrf-Token': csrfToken } },
+    { headers: { 'X-Csrf-Token': csrfToken }, allow404: true },
+  ).catch(err =>
+    err instanceof AnticipatedHttpError ? null : Promise.reject(err),
   )
+  if (!portfolios) return
   for (const { id, title, description } of portfolios.data.portfolios) {
-    const outPath = `./output/users/${userDirName}/portfolios/${id}_${stringToPath(
-      title,
-    )}/`
+    const outPath = `${path}portfolios/${id}_${stringToPath(title)}/`
     const { data: portfolio }: ApiPortfolioResponse = await cachePath(
       `/portfolios/users/${userId}/portfolios/${id}`,
       'json',
       { headers: { 'X-Csrf-Token': csrfToken } },
     )
     await ensureDir(outPath)
-    for (const { file_info, id } of portfolio.items) {
-      if (file_info) {
-        await cachePath(external(file_info.tempURI), 'file', {
+    for (const { file_info: fileInfo, metadata, id } of portfolio.items) {
+      if (fileInfo) {
+        await cachePath(external(fileInfo.tempURI), 'file', {
           cachePath: `${outPath}${id}_${stringToPath(
-            file_info.filename.slice(0, file_info.filename.lastIndexOf('.')),
-          )}${file_info.filename.slice(file_info.filename.lastIndexOf('.'))}`,
+            fileInfo.filename.slice(0, fileInfo.filename.lastIndexOf('.')),
+          )}${fileInfo.filename.slice(fileInfo.filename.lastIndexOf('.'))}`,
+        })
+      }
+      if (metadata.file_info) {
+        const fileInfo = metadata.file_info
+        await cachePath(external(fileInfo.tempURI), 'file', {
+          cachePath: `${outPath}${id}_${stringToPath(
+            fileInfo.filename.slice(0, fileInfo.filename.lastIndexOf('.')),
+          )}${fileInfo.filename.slice(fileInfo.filename.lastIndexOf('.'))}`,
         })
       }
     }
@@ -235,6 +244,20 @@ async function archivePortfolios (
                     },
                     item.file_info.filename,
                   ),
+                item.metadata.file_info &&
+                  html.a(
+                    {
+                      href: `${item.id}_${stringToPath(
+                        item.metadata.file_info.filename.slice(
+                          0,
+                          item.metadata.file_info.filename.lastIndexOf('.'),
+                        ),
+                      )}${item.metadata.file_info.filename.slice(
+                        item.metadata.file_info.filename.lastIndexOf('.'),
+                      )}`,
+                    },
+                    item.metadata.file_info.filename,
+                  ),
               ),
             )
           }),
@@ -245,5 +268,5 @@ async function archivePortfolios (
 }
 
 if (import.meta.main) {
-  await archivePortfolios(me.id, '2017219_Sean_Yen')
+  await archivePortfolios(me.id, './output/users/2017219_Sean_Yen/')
 }

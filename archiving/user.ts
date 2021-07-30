@@ -1,11 +1,12 @@
 // deno-lint-ignore-file camelcase
 
 import { ensureDir } from 'https://deno.land/std@0.97.0/fs/ensure_dir.ts'
-import { cachePath, Http403, multiGet } from './cache.ts'
+import { cachePath, AnticipatedHttpError, multiGet } from './cache.ts'
 import { getStudentInfo } from './get-students.ts'
 import * as html from './html-maker.ts'
 import { root } from './init.ts'
 import { me } from './me.ts'
+import { archivePortfolios } from './portfolios.ts'
 import { getUpdates, updatesToHtml } from './updates.ts'
 import { expect, parseHtml, shouldBeElement, stringToPath } from './utilts.ts'
 
@@ -245,7 +246,9 @@ async function getGroupsAndBadges (
     allow403: true,
   })
     .then(parseHtml)
-    .catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
+    .catch(err =>
+      err instanceof AnticipatedHttpError ? null : Promise.reject(err),
+    )
   if (!groupsDoc) {
     return null
   }
@@ -271,7 +274,9 @@ async function getGroupsAndBadges (
     allow403: true,
   })
     .then(parseHtml)
-    .catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
+    .catch(err =>
+      err instanceof AnticipatedHttpError ? null : Promise.reject(err),
+    )
   // I'm assuming the badges page 403's if the user has no badges
   if (badgesDoc) {
     for (const userBadgeNode of badgesDoc.querySelectorAll('.user-badge-row')) {
@@ -299,7 +304,9 @@ async function archiveUserBlog (id: number, path: string) {
     `/v1/users/${id}/posts`,
     'json',
     { allow403: true },
-  ).catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
+  ).catch(err =>
+    err instanceof AnticipatedHttpError ? null : Promise.reject(err),
+  )
   if (response && response.post.length > 0) {
     await Deno.writeTextFile(
       path + 'blog.html',
@@ -325,6 +332,7 @@ async function archiveUser (id: number): Promise<void> {
     ? `./output/users/${id}_${stringToPath(profileInfo.name)}/`
     : `./output/users/${id}/`
   await ensureDir(outPath)
+  await archivePortfolios(id, outPath)
   if (profileInfo && groupsAndBadges) {
     const { name, pfpUrl, schools, info } = profileInfo
     const { groups, badges } = groupsAndBadges

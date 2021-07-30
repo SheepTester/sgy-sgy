@@ -22,16 +22,22 @@ function getFilePath (path: string, extension = ''): string {
   })}${extension ? '.' + extension : ''}`
 }
 
-export class Http403 extends Error {
+export class AnticipatedHttpError extends Error {
   name = this.constructor.name
 }
 
 type CacheOptions = {
   /**
-   * Whether to cache the 403 error and throw a `Http403` error on encountering
-   * a 403 HTTP error.
+   * Whether to cache the 403 error and throw a `AnticipatedHttpError` error on
+   * encountering a 403 HTTP error.
    */
   allow403?: boolean
+
+  /**
+   * Whether to cache the 404 error and throw a `AnticipatedHttpError` error on
+   * encountering a 404 HTTP error.
+   */
+  allow404?: boolean
 
   /**
    * Whether to reattempt the request after a while if Schoology ratelimits you.
@@ -53,6 +59,7 @@ export async function cachePath<T extends CacheType = 'json'> (
   type?: T,
   {
     allow403 = false,
+    allow404 = false,
     retry = true,
     cachePath: filePath = getFilePath(
       path,
@@ -74,7 +81,9 @@ export async function cachePath<T extends CacheType = 'json'> (
     } else {
       const file = await Deno.readTextFile(filePath)
       if (allow403 && (file === '403' || file === '403\n')) {
-        throw new Http403('HTTP 403 error')
+        throw new AnticipatedHttpError('HTTP 403 error')
+      } else if (allow404 && file === '404\n') {
+        throw new AnticipatedHttpError('HTTP 404 error')
       }
       log
         .write(encoder.encode(`Loaded ${path} from cache\n`))
@@ -96,10 +105,13 @@ export async function cachePath<T extends CacheType = 'json'> (
       )
     }
     if (!response.ok) {
-      if (response.status === 403 && allow403) {
+      if (
+        (response.status === 403 && allow403) ||
+        (response.status === 404 && allow404)
+      ) {
         await ensureFile(filePath)
-        await Deno.writeTextFile(filePath, '403\n')
-        throw new Http403('HTTP 403 error')
+        await Deno.writeTextFile(filePath, response.status + '\n')
+        throw new AnticipatedHttpError(`HTTP ${response.status} error`)
       } else if (response.status === 429 && retry) {
         // Too many requests, try again after some time
         log
@@ -112,6 +124,7 @@ export async function cachePath<T extends CacheType = 'json'> (
         await delay(5000)
         return cachePath(path, type, {
           allow403,
+          allow404,
           retry: false,
           cachePath: filePath,
         })

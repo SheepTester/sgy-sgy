@@ -34,7 +34,6 @@ Here's a list of `<SCRIPT URL>`s you can use.
 | https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/user.ts         | Get your user profile, updates, and blogs. You can also provide a list of Schoology user IDs to fetch other users. |
 | https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/resources.ts    | Get all personal and group resources.                                                                              |
 | https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/groups.ts       | Get all groups available in the district as well as the updates of the groups you're in.                           |
-| https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/portfolios.ts   | Get your portfolios.                                                                                               |
 | https://raw.githubusercontent.com/SheepTester/sgy-sgy/master/archiving/get-students.ts | Compile a bunch of user profiles together given a students.json (meant for personal use).                          |
 
 Deno is secure by default, so I've explicitly listed its permissions here. It

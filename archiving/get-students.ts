@@ -1,7 +1,7 @@
 // Requires students.json from
 // https://github.com/SheepTester/hello-world/blob/master/test/schoology-get-seniors.js
 
-import { cachePath, Http403 } from './cache.ts'
+import { cachePath, AnticipatedHttpError } from './cache.ts'
 import * as html from './html-maker.ts'
 import { expect, parseHtml, shouldBeElement } from './utilts.ts'
 
@@ -42,7 +42,9 @@ export async function getStudentInfo (id: number): Promise<StudentInfo | null> {
     allow403: true,
   })
     .then(parseHtml)
-    .catch(err => (err instanceof Http403 ? null : Promise.reject(err)))
+    .catch(err =>
+      err instanceof AnticipatedHttpError ? null : Promise.reject(err),
+    )
   if (profile) {
     const data: Record<string, string | { url: string; text: string }[]> = {}
     for (const rowNode of profile.querySelectorAll('.info-tab tr')) {
