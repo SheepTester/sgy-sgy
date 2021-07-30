@@ -403,14 +403,14 @@ async function archiveUser (id: number): Promise<void> {
 }
 
 if (import.meta.main) {
-  // const students = [
-  //   ...new Set([
-  //     // ...
-  //   ]),
-  // ]
-  // for (const id of students) {
-  //   console.log(id)
-  //   await archiveUser(+id)
-  // }
+  const students = [
+    ...new Set([
+      // Put Schoology IDs here
+    ]),
+  ]
+  for (const id of students) {
+    console.log(id)
+    await archiveUser(+id)
+  }
   await archiveUser(me.id)
 }

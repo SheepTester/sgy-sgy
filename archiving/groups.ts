@@ -118,10 +118,82 @@ type ApiCategoriesResponse = {
   }[]
 }
 
+/** Enrollments associate users to courses or groups. */
+type ApiEnrolment = {
+  /** The Schoology assigned ID of the enrollment record. */
+  id: string
+
+  /** The Schoology ID of the user. */
+  uid: string
+
+  school_uid: string
+  name_title: string
+  name_title_show: '0' | '1'
+  name_first: string
+  name_first_preferred: string // Can be an empty string
+  use_preferred_first_name: '0' | '1'
+  name_middle: string
+  name_middle_show: '0' | '1'
+  name_list: string
+  name_display: string
+
+  /**
+   * Whether this user is an administrator (e.g. teacher) as opposed to a
+   * regular member (e.g. student)
+   */
+  admin: 0 | 1
+
+  /**
+   * The current status of the enrollment.
+   * 1: Active
+   * 2: Expired (i.e. past course)
+   * 3: Invite pending
+   * 4: Request Pending
+   * 5: Archived (Course specific status members can be placed in before being fully unenrolled)
+   */
+  status: 1 | 2 | 3 | 4 | 5
+
+  picture_url: string
+  links: { self: string }
+}
+
+type ApiEnrolmentsResponse = {
+  enrollment: ApiEnrolment[]
+  total: string
+  links: { self: string; next?: string }
+}
+
 async function archiveGroup (id: string, name: string): Promise<void> {
+  const members: ApiEnrolment[] = []
+  let enrolmentResponse: ApiEnrolmentsResponse
+  let start = 0
+  do {
+    enrolmentResponse = await cachePath(
+      `/v1/groups/${id}/enrollments?picture_size=big&limit=200&start=${start}`,
+    )
+    members.push(...enrolmentResponse.enrollment)
+    start += 200
+  } while (enrolmentResponse.links.next)
   await Deno.writeTextFile(
     `./output/groups/${stringToPath(name)}.html`,
-    html.page(html.h1(name), await getUpdates('group', id).then(updatesToHtml)),
+    html.page(
+      html.h1(name),
+      await getUpdates('group', id).then(updatesToHtml),
+      html.h2('Members'),
+      html.ul(
+        members.map(member =>
+          html.li(
+            { title: member.uid },
+            html.img({
+              src: member.picture_url,
+              style: { 'max-height': '24px' },
+            }),
+            ' ',
+            member.name_display,
+          ),
+        ),
+      ),
+    ),
   )
 }
 
