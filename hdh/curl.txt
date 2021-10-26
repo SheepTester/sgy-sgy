@@ -1,0 +1,18 @@
+```sh
+curl 'https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants/MenuItem/24' \
+  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+    > test.html
+```
+
+```sh
+curl 'https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants/GetRestruantMenus?id=2&loc=24' \
+    > test.html
+```
+
+```sh
+curl 'https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants/changeMenuOption' \
+  -H 'cookie: ASP.NET_SessionId=i4eowkzttda3hyocea2ntqhp' \
+  --data-raw 'sel=Dinner' \
+  -L \
+    > test.html
+```
