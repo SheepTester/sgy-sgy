@@ -120,7 +120,9 @@ type Restaurant = {
   name: string
   description: string
   schedule: {
-    [stationName: string]: [number, number][]
+    [stationName: string]: {
+      [day in Day]?: [number, number]
+    }
   }
 }
 
@@ -139,13 +141,56 @@ type MenuResults = {
   }
 }
 
+const dayNames = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+function parseTime (hour: string, minute: string, half: string): number {
+  return (
+    ((half === 'a' ? +hour : hour === '12' ? 12 : +hour + 12) % 24) * 60 +
+    +minute
+  )
+}
 function parseRestaurant (document: HTMLDocument): Restaurant {
   const name = document.getElementById('facility')?.textContent ?? unwrap()
   const description = document.getElementById('teaser')?.textContent ?? unwrap()
+  const schedule: Restaurant['schedule'] = {}
+  for (const scheduleWrapper of document.querySelectorAll('#hours-standard')) {
+    const [lh, li] = scheduleWrapper.children
+    const name = lh.childNodes[0].nodeValue ?? unwrap()
+    schedule[name] = {}
+    for (const [i, day] of days.entries()) {
+      // / +/ is needed because "Mon 7:00 am  - 9:00 pm" has a double space
+      const match = li.children[i].textContent.match(
+        /(Mon|Tue|Wed|Thu|Fri|Sat|Sun) +(Closed|(1?\d+):(\d\d) +([ap])m +- +(1?\d+):(\d\d) +([ap])m)/
+      )
+      if (!match) {
+        console.error(li.children[i].textContent.trim())
+        throw new Error('regex no match')
+      }
+      const [
+        ,
+        dayName,
+        isClosed,
+        openHour,
+        openMinute,
+        openHalf,
+        closeHour,
+        closeMinute,
+        closeHalf
+      ] = match
+      if (dayNames[day] !== dayName) {
+        throw new Error(`${dayName} vs ${day}`)
+      }
+      if (isClosed !== 'Closed') {
+        schedule[name][day] = [
+          parseTime(openHour, openMinute, openHalf),
+          parseTime(closeHour, closeMinute, closeHalf)
+        ]
+      }
+    }
+  }
   return {
     name,
     description,
-    schedule: {}
+    schedule
   }
 }
 
