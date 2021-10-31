@@ -112,6 +112,11 @@ const iconKey: {
 
 const meals = ['Breakfast', 'Lunch', 'Dinner'] as const
 type Meal = typeof meals[number]
+const bitfield = {
+  Breakfast: 0b100,
+  Lunch: 0b010,
+  Dinner: 0b001
+}
 
 const days = [1, 2, 3, 4, 5, 6, 7] as const
 type Day = typeof days[number]
@@ -129,7 +134,16 @@ type Restaurant = {
 type MenuItem = {
   price?: number
   icons: typeof iconKeySource[keyof typeof iconKeySource][]
-  times: [Day, Meal][]
+  times:
+    | { [day in Day]: number }
+    | 'all-days'
+    | 'breakfast'
+    | 'lunch'
+    | 'dinner'
+    | 'weekdays'
+    | 'breakfast-weekdays'
+    | 'lunch-weekdays'
+    | 'dinner-weekdays'
 }
 
 type MenuResults = {
@@ -240,14 +254,14 @@ async function scrapeMenu (
           ] = menuItem.children[0].textContent
             .split('$')
             .map(part => part.trim())
-          const datum: MenuItem = {
+          let datum: MenuItem = {
             icons: [...menuItem.children]
               .filter(child => child.tagName === 'IMG')
               .map(
                 image =>
                   iconKey[image.getAttribute('alt') ?? unwrap()] ?? unwrap()
               ),
-            times: []
+            times: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 }
           }
           if (price !== null) {
             datum.price = +price
@@ -261,10 +275,13 @@ async function scrapeMenu (
               console.error(results.menu[menuName][itemName], datum)
               throw new Error('Menu item info does not match')
             }
+            datum = results.menu[menuName][itemName]
           } else {
             results.menu[menuName][itemName] = datum
           }
-          results.menu[menuName][itemName].times.push([day, meal])
+          if (typeof datum.times !== 'string') {
+            datum.times[day] |= bitfield[meal]
+          }
         }
       }
     }
@@ -283,7 +300,53 @@ for (const locationId of locationIds) {
     await setMeal(meal)
     await scrapeMenu(locationId, meal, results)
   }
-  console.log(results)
+  for (const items of Object.values(results.menu)) {
+    for (const item of Object.values(items)) {
+      if (typeof item.times === 'string') continue
+
+      let weekDaysMatch = true
+      for (const weekDay of [2, 3, 4, 5] as const) {
+        weekDaysMatch = weekDaysMatch && item.times[1] === item.times[weekDay]
+      }
+      const allDaysMatch =
+        weekDaysMatch &&
+        item.times[1] === item.times[6] &&
+        item.times[1] === item.times[7]
+      const meals = item.times[1]
+      if (allDaysMatch) {
+        if (meals === 0b111) {
+          item.times = 'all-days'
+        } else if (meals === bitfield.Breakfast) {
+          item.times = 'breakfast'
+        } else if (meals === bitfield.Lunch) {
+          item.times = 'lunch'
+        } else if (meals === bitfield.Dinner) {
+          item.times = 'dinner'
+        }
+      } else if (weekDaysMatch) {
+        if (meals === 0b111) {
+          item.times = 'weekdays'
+        } else if (meals === bitfield.Breakfast) {
+          item.times = 'breakfast-weekdays'
+        } else if (meals === bitfield.Lunch) {
+          item.times = 'lunch-weekdays'
+        } else if (meals === bitfield.Dinner) {
+          item.times = 'dinner-weekdays'
+        }
+      }
+      if (
+        typeof item.times === 'string' &&
+        item.times !== 'all-days' &&
+        item.times !== 'weekdays'
+      ) {
+        console.log(item.times)
+      }
+    }
+  }
+  await Deno.writeTextFile(
+    `./${results.restaurant.name}.json`,
+    JSON.stringify(results, null, 2)
+  )
 
   break
 }
