@@ -4,6 +4,11 @@ import {
   DOMParser,
   HTMLDocument
 } from 'https://deno.land/x/deno_dom@v0.1.15-alpha/deno-dom-wasm.ts'
+import { ensureDir } from 'https://deno.land/std@0.101.0/fs/ensure_dir.ts'
+import { assertEquals } from 'https://deno.land/std@0.113.0/testing/asserts.ts'
+
+await ensureDir('./.cache/')
+await ensureDir('./dining/')
 
 function unwrap (): never {
   throw new Error(
@@ -47,27 +52,31 @@ async function request (
   path: string,
   { body, cache = true }: { body?: string; cache?: boolean } = {}
 ) {
-  const key = `sgy-sgy/hdh/dining/${path}`
-  const value = localStorage.getItem(key)
-  if (cache && body === undefined && value !== null) {
-    return value
-  } else {
-    const html = await fetch(
-      'https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants' + path,
-      {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-          cookie
-        },
-        body,
-        method: body !== undefined ? 'POST' : 'GET'
-      }
-    )
-      .then(assertOk)
-      .then(r => r.text())
-    localStorage.setItem(key, html)
-    return html
-  }
+  cache = false // Cache just doesn't work well with how HDH does their thing
+  const cachePath = `./.cache/sgy-sgy_hdh_dining_${path.replaceAll(
+    '/',
+    '_'
+  )}_${body ?? 'GET'}.html`
+  return await (cache ? Deno.readTextFile(cachePath) : Promise.reject()).catch(
+    async () => {
+      const html = await fetch(
+        'https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants' +
+          path,
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            cookie
+          },
+          body,
+          method: body !== undefined ? 'POST' : 'GET'
+        }
+      )
+        .then(assertOk)
+        .then(r => r.text())
+      Deno.writeTextFile(cachePath, html)
+      return html
+    }
+  )
 }
 
 // Funnily, 64°'s ID is fixed at 64
@@ -85,11 +94,18 @@ const locationIds = await homePageResponse
       )
   )
 
-function setMeal (meal: Meal) {
-  return request('/changeMenuOption', { body: `sel=${meal}` }).then(parseHtml)
+async function setMeal (meal: Meal) {
+  return parseHtml(
+    await request('/changeMenuOption', {
+      body: `sel=${meal}`,
+      cache: false
+    })
+  )
 }
-function getMenu (location: string, day: number) {
-  return request(`/GetRestruantMenus?id=${day}&loc=${location}`).then(parseHtml)
+async function getMenu (location: string, day: number) {
+  return parseHtml(
+    await request(`/GetRestruantMenus?id=${day}&loc=${location}`)
+  )
 }
 
 const iconKeySource = {
@@ -120,13 +136,24 @@ const bitfield = {
 
 const days = [1, 2, 3, 4, 5, 6, 7] as const
 type Day = typeof days[number]
+function createDayMap<T> (defaultValue: T): { [day in Day]: T } {
+  return {
+    1: defaultValue,
+    2: defaultValue,
+    3: defaultValue,
+    4: defaultValue,
+    5: defaultValue,
+    6: defaultValue,
+    7: defaultValue
+  }
+}
 
 type Restaurant = {
   name: string
   description: string
   schedule: {
     [stationName: string]: {
-      [day in Day]?: [number, number]
+      [day in Day]: [number, number] | null
     }
   }
 }
@@ -163,13 +190,15 @@ function parseTime (hour: string, minute: string, half: string): number {
   )
 }
 function parseRestaurant (document: HTMLDocument): Restaurant {
-  const name = document.getElementById('facility')?.textContent ?? unwrap()
-  const description = document.getElementById('teaser')?.textContent ?? unwrap()
+  const name =
+    document.getElementById('facility')?.textContent.trim() ?? unwrap()
+  const description =
+    document.getElementById('teaser')?.textContent.trim() ?? unwrap()
   const schedule: Restaurant['schedule'] = {}
   for (const scheduleWrapper of document.querySelectorAll('#hours-standard')) {
     const [lh, li] = scheduleWrapper.children
-    const name = lh.childNodes[0].nodeValue ?? unwrap()
-    schedule[name] = {}
+    const name = lh.childNodes[0].nodeValue?.trim() ?? unwrap()
+    schedule[name] = createDayMap(null)
     for (const [i, day] of days.entries()) {
       // / +/ is needed because "Mon 7:00 am  - 9:00 pm" has a double space
       const match = li.children[i].textContent.match(
@@ -220,6 +249,29 @@ async function scrapeMenu (
     const offset = (day + 7 - today) % 7
     const document = await getMenu(locationId, offset)
 
+    // Sanity check: ensure meal and date are correct
+    // AIYA don't forget that WSL's clock can desync!
+    assertEquals(
+      document.getElementById('mySelect')?.querySelector('option[selected]')
+        ?.textContent,
+      meal
+      // 'Dropdown does not have correct meal'
+    )
+    assertEquals(
+      document.querySelector('.datenow')?.textContent.split(',')[0],
+      [
+        '',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday'
+      ][day]
+      // 'Incorrect day selected'
+    )
+
     const restaurant = parseRestaurant(document)
     if (
       results.restaurant.name !== '' &&
@@ -261,19 +313,42 @@ async function scrapeMenu (
                 image =>
                   iconKey[image.getAttribute('alt') ?? unwrap()] ?? unwrap()
               ),
-            times: { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0 }
+            times: createDayMap(0)
           }
           if (price !== null) {
             datum.price = +price
           }
           if (results.menu[menuName][itemName]) {
             if (
-              results.menu[menuName][itemName].price !== datum.price ||
               results.menu[menuName][itemName].icons.join(' ') !==
-                datum.icons.join(' ')
+              datum.icons.join(' ')
             ) {
-              console.error(results.menu[menuName][itemName], datum)
+              console.error(
+                results,
+                menuName,
+                itemName,
+                results.menu[menuName][itemName],
+                datum
+              )
               throw new Error('Menu item info does not match')
+            } else if (results.menu[menuName][itemName].price !== datum.price) {
+              // Mistakes from HDH? 😔
+              // - Wolftown Shrimp Asada is $5 Tuesday lunch and $0.75 Wednesday
+              //   lunch
+              // - 64° lists a $1 and $5 Marinated Chicken Breast in the same
+              //   menu
+              console.warn(
+                results.restaurant.name,
+                day,
+                meal,
+                menuName,
+                itemName,
+                'Prices do not match',
+                results.menu[menuName][itemName].price,
+                datum.price
+              )
+              results.menu[menuName][itemName].price =
+                results.menu[menuName][itemName].price ?? datum.price
             }
             datum = results.menu[menuName][itemName]
           } else {
@@ -288,14 +363,13 @@ async function scrapeMenu (
   }
 }
 
-// Necessary for setting the meal to work
-await request('/MenuItem/24', { cache: false })
-
 for (const locationId of locationIds) {
   const results: MenuResults = {
     restaurant: { name: '', description: '', schedule: {} },
     menu: {}
   }
+  // Necessary for setting the meal to work
+  await request('/MenuItem/' + locationId, { cache: false })
   for (const meal of meals) {
     await setMeal(meal)
     await scrapeMenu(locationId, meal, results)
@@ -344,9 +418,7 @@ for (const locationId of locationIds) {
     }
   }
   await Deno.writeTextFile(
-    `./${results.restaurant.name}.json`,
+    `./dining/${locationId} ${results.restaurant.name}.json`,
     JSON.stringify(results, null, 2)
   )
-
-  break
 }
