@@ -1,0 +1,494 @@
+{
+  "restaurant": {
+    "name": "Club Med",
+    "description": "Located in the heart of the School of Medicine, Club Med offers salads, sandwiches, pizzas, soups, and tasty desserts.",
+    "schedule": {
+      "Club Med": {
+        "1": [
+          420,
+          870
+        ],
+        "2": [
+          420,
+          870
+        ],
+        "3": [
+          420,
+          870
+        ],
+        "4": [
+          420,
+          870
+        ],
+        "5": [
+          420,
+          870
+        ],
+        "6": null,
+        "7": null
+      }
+    }
+  },
+  "menu": {
+    "Turbo Sandwich Specials": {
+      "Chicken Club Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "fish",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 8.5
+      },
+      "City Slicker Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 8.5
+      },
+      "Pesto Turkey Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 8.5
+      },
+      "Roasted Vegetable Sandwich": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 7.5
+      },
+      "Santa Fe Chicken Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 8.5
+      },
+      "Toasted Cheese Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 6.5
+      },
+      "Turkey Melt": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 8.5
+      }
+    },
+    "Breakfast": {
+      "Avocado Toast": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 4
+      },
+      "Bacon": {
+        "icons": [],
+        "times": "weekdays",
+        "price": 1.5
+      },
+      "Bacon Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 6.75
+      },
+      "Bacon Breakfast Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 4.75
+      },
+      "Bacon Egg Bowl": {
+        "icons": [
+          "dairy",
+          "soy",
+          "eggs"
+        ],
+        "times": "weekdays",
+        "price": 6.5
+      },
+      "Breakfast Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 5.25
+      },
+      "Egg Bowl": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "eggs"
+        ],
+        "times": "weekdays",
+        "price": 5
+      },
+      "Pico de Gallo": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": "weekdays"
+      },
+      "Refried Beans": {
+        "icons": [
+          "vegan",
+          "soy"
+        ],
+        "times": "weekdays",
+        "price": 1.5
+      },
+      "Sausage Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 6.75
+      },
+      "Sausage Breakfast Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 4.75
+      },
+      "Sausage Egg Bowl": {
+        "icons": [
+          "dairy",
+          "soy",
+          "eggs"
+        ],
+        "times": "weekdays",
+        "price": 6.5
+      },
+      "Scrambled Eggs": {
+        "icons": [
+          "vegetarian",
+          "eggs"
+        ],
+        "times": "weekdays",
+        "price": 2
+      },
+      "Tater Tots": {
+        "icons": [
+          "vegan",
+          "soy"
+        ],
+        "times": "weekdays",
+        "price": 2
+      },
+      "Turkey Sausage Patty (1)": {
+        "icons": [],
+        "times": "weekdays",
+        "price": 1.5
+      },
+      "Veggie Sausage (1)": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 1.5
+      },
+      "Veggie Sausage Breakfast Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 6.75
+      },
+      "Veggie Sausage Egg Bowl": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "eggs"
+        ],
+        "times": "weekdays",
+        "price": 6.5
+      },
+      "Veggie Sausage Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 4.75
+      }
+    },
+    "Pizza": {
+      "Cheese Pizza": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 6
+      },
+      "Margherita Pizza": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 6.5
+      },
+      "Mediterranean Hummus Pizza": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 7
+      },
+      "Pepperoni": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 7
+      },
+      "Pesto Chicken Personal Pizza": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 7.5
+      },
+      "Soyrizo Personal Pizza": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 7
+      }
+    },
+    "Signature Salads": {
+      "Ahi Poke": {
+        "icons": [
+          "wellness",
+          "soy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 9
+      },
+      "Autumn Grain Salad": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 6.75
+      },
+      "Mediterranean Salad": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": "weekdays",
+        "price": 6.75
+      },
+      "Spinach & Red Rice Salad": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": "weekdays",
+        "price": 6.25
+      },
+      "Tofu Poke": {
+        "icons": [
+          "wellness",
+          "soy",
+          "shellfish"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 7,
+          "4": 7,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6
+      }
+    },
+    "Soups": {
+      "Chicken Noodle Soup": {
+        "icons": [
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "weekdays",
+        "price": 4
+      },
+      "New England Clam Chowder": {
+        "icons": [
+          "dairy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 7,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Potato Bacon Soup": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      }
+    },
+    "Add-Ons": {
+      "1/4 Avocado": {
+        "icons": [],
+        "times": "weekdays",
+        "price": 1.25
+      },
+      "Diced Chicken Breast": {
+        "icons": [],
+        "times": "weekdays",
+        "price": 3
+      },
+      "Roasted Garlic Hummus": {
+        "icons": [
+          "vegan"
+        ],
+        "times": "weekdays",
+        "price": 1
+      },
+      "Tuna Salad": {
+        "icons": [
+          "soy",
+          "fish"
+        ],
+        "times": "weekdays",
+        "price": 3.5
+      }
+    }
+  }
+}

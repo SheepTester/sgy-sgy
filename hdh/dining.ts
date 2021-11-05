@@ -332,21 +332,23 @@ async function scrapeMenu (
               )
               throw new Error('Menu item info does not match')
             } else if (results.menu[menuName][itemName].price !== datum.price) {
-              // Mistakes from HDH? 😔
-              // - Wolftown Shrimp Asada is $5 Tuesday lunch and $0.75 Wednesday
-              //   lunch
-              // - 64° lists a $1 and $5 Marinated Chicken Breast in the same
-              //   menu
-              console.warn(
-                results.restaurant.name,
-                day,
-                meal,
-                menuName,
-                itemName,
-                'Prices do not match',
-                results.menu[menuName][itemName].price,
-                datum.price
-              )
+              if (results.menu[menuName][itemName].price && datum.price) {
+                // Mistakes from HDH? 😔
+                // - Wolftown Shrimp Asada is $5 Tuesday lunch and $0.75 Wednesday
+                //   lunch
+                // - 64° lists a $1 and $5 Marinated Chicken Breast in the same
+                //   menu
+                console.warn(
+                  results.restaurant.name,
+                  day,
+                  meal,
+                  menuName,
+                  itemName,
+                  'Prices do not match',
+                  results.menu[menuName][itemName].price,
+                  datum.price
+                )
+              }
               results.menu[menuName][itemName].price =
                 results.menu[menuName][itemName].price ?? datum.price
             }
@@ -362,6 +364,8 @@ async function scrapeMenu (
     }
   }
 }
+
+let list = 'ID | Dining hall name\n--- | ---\n'
 
 for (const locationId of locationIds) {
   const results: MenuResults = {
@@ -410,15 +414,18 @@ for (const locationId of locationIds) {
       }
       if (
         typeof item.times === 'string' &&
-        item.times !== 'all-days' &&
-        item.times !== 'weekdays'
+        !['all-days', 'weekdays', 'breakfast', 'breakfast-weekdays'].includes(
+          item.times
+        )
       ) {
         console.log(item.times)
       }
     }
   }
   await Deno.writeTextFile(
-    `./dining/${locationId} ${results.restaurant.name}.json`,
+    `./dining/${locationId}.json`,
     JSON.stringify(results, null, 2)
   )
+  list += `${locationId} | ${results.restaurant.name}\n`
 }
+await Deno.writeTextFile('./dining/README.md', list)

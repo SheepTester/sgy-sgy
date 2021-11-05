@@ -1,0 +1,2407 @@
+{
+  "restaurant": {
+    "name": "Canyon Vista Marketplace",
+    "description": "Canyon Vista Marketplace is the largest halal-certified residential dining facility in the nation.  Their menu features  healthy, sustainable menu offerings and groceries. Stations include Fusion Grill, Fresh, Three-Sixty and Earl's Coffee House.",
+    "schedule": {
+      "Canyon Vista Marketplace": {
+        "1": [
+          420,
+          1260
+        ],
+        "2": [
+          420,
+          1260
+        ],
+        "3": [
+          420,
+          1260
+        ],
+        "4": [
+          420,
+          1260
+        ],
+        "5": [
+          420,
+          1260
+        ],
+        "6": [
+          540,
+          1200
+        ],
+        "7": [
+          540,
+          1200
+        ]
+      }
+    }
+  },
+  "menu": {
+    "Cold Breakfast": {
+      "Chocolate Banana Overnight Oats": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "soy",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 3
+      },
+      "Stawberry Matcha Overnight Oats": {
+        "icons": [
+          "vegetarian"
+        ],
+        "times": "breakfast",
+        "price": 3
+      }
+    },
+    "Fusion Breakfast a la Carte": {
+      "Chicken Sausage (1)": {
+        "icons": [],
+        "times": "breakfast",
+        "price": 2
+      },
+      "Fresh Fruit Salad": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 2.5
+      },
+      "Fried Egg": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "eggs"
+        ],
+        "times": "breakfast",
+        "price": 1
+      },
+      "Just Scrambled Vegan Eggs": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 2
+      },
+      "Scrambled Egg Whites": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "eggs"
+        ],
+        "times": "breakfast",
+        "price": 2
+      },
+      "Scrambled Eggs": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "eggs"
+        ],
+        "times": "breakfast",
+        "price": 2
+      },
+      "Tater Tots": {
+        "icons": [
+          "vegan",
+          "soy"
+        ],
+        "times": "breakfast",
+        "price": 2
+      },
+      "Toast": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 1
+      },
+      "Veggie Sausage (1)": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 1.5
+      },
+      "House Potatoes": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2
+      },
+      "Avocado Spread": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 1.25
+      },
+      "Buttermilk Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3
+      }
+    },
+    "Fusion Breakfast Specials": {
+      "Buttermilk Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 3
+      },
+      "Cafe Breakfast Combo": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7.25
+      },
+      "La Jolla Breakfast Combo": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7.25
+      },
+      "Triton Breakfast Combo": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 7.25
+      },
+      "Blueberry Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.25
+      },
+      "Chicken Sausage Scramble": {
+        "icons": [
+          "dairy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      },
+      "South of the Border Scramble": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      },
+      "Vegan Sausage Scramble": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      },
+      "Banana Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.25
+      }
+    },
+    "Fusion Breakfast to Order": {
+      "Avocado Toast": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 4
+      },
+      "Greek Hash & Eggs": {
+        "icons": [
+          "vegetarian",
+          "eggs"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      },
+      "Red Pepper Hummus Toast": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 4
+      },
+      "Loco Moco Island Plate": {
+        "icons": [
+          "wellness",
+          "dairy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5.75
+      }
+    },
+    "Breakfast Burritos & Sandwiches": {
+      "Breakfast Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 5.5
+      },
+      "CV Breakfast Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3.25
+      },
+      "Chicken Sausage Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 7
+      },
+      "Chicken Sausage Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 4.75
+      },
+      "Egg & Veggie Sausage Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 4.75
+      },
+      "Sausage, Spinach & Egg White Sandwich": {
+        "icons": [
+          "dairy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4.75
+      },
+      "Spinach & Egg White Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.25
+      },
+      "Veg Sausage,Spinach & Egg White Sandwich": {
+        "icons": [
+          "vegetarian",
+          "treenuts",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4.75
+      },
+      "Veggie Sausage Breakfast Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 7
+      },
+      "Breakfast Smashburger": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.75
+      }
+    },
+    "Breakfast Hot Grains": {
+      "Steel Cut Oatmeal": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2
+      },
+      "Sweet Congee": {
+        "icons": [
+          "vegan",
+          "treenuts"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      }
+    },
+    "Breakfast": {
+      "Banana Sunbutter Toast": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5.5
+      },
+      "Blueberry Ricotta Toast": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5.5
+      },
+      "Huevocado Toast": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5.5
+      },
+      "Smoked Salmon Eggs Benedict": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "fish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      }
+    },
+    "Fusion Grill": {
+      "Carne Asada Bowl": {
+        "icons": [
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Carne Asada Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Carne Asada Loaded Fries": {
+        "icons": [
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Chicken Asada Bowl": {
+        "icons": [
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Chicken Asada Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Chicken Loaded French Fries": {
+        "icons": [
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Chicken Tender Basket": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.5
+      },
+      "Crispy Halal Chicken Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.75
+      },
+      "Fish and Chips": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 1,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.5
+      },
+      "Garden Veggie Bowl": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Garden Veggie Burrito": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Garden Veggie Loaded Fries": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7.5
+      },
+      "Gourmet Grilled Cheese": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4.75
+      },
+      "Grilled Cheese Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Salmon Sandwich": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Shrimp Asada Bowl": {
+        "icons": [
+          "dairy",
+          "soy",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Shrimp Asada Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "shellfish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 1,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Vegan Fish and Chips": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 1,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Chicken Wings & Fries": {
+        "icons": [
+          "dairy",
+          "soy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      }
+    },
+    "Fusion Grill Styles": {
+      "California Style": {
+        "icons": [
+          "vegan",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 1,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7.25
+      },
+      "Greek Row Style": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 1,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7.75
+      },
+      "Triton Style": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.25
+      },
+      "Breakfast Smashburger": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.75
+      }
+    },
+    "Fusion Grill Burger Patty": {
+      "Chipotle Black Bean": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Halal Beef Burger Patty": {
+        "icons": [],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Marinated Chicken Breast": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1
+      },
+      "Plant Based Burger": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        }
+      }
+    },
+    "Fusion Grill Add ons": {
+      "Avocado Spread": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.25
+      },
+      "Cheddar Cheese": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1
+      },
+      "Provolone Cheese": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1
+      },
+      "Swiss Cheese": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1
+      }
+    },
+    "Fusion Sides": {
+      "Chicken Tenders": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6
+      },
+      "French Fries": {
+        "icons": [
+          "vegan",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.25
+      },
+      "Fresh Fruit Salad": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Jalapeno Coleslaw": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "CV Side Salad": {
+        "icons": [
+          "vegetarian",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Elote": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Grilled Acorn Squash": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      }
+    },
+    "THREE-SIXTY Bowls": {
+      "Mongolian Bowl with Vegetables": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5
+      },
+      "Mongolian Stir Fry with Beef": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 9
+      },
+      "Mongolian Stir Fry with Chicken": {
+        "icons": [
+          "wellness",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Mongolian Stir Fry with Shrimp": {
+        "icons": [
+          "soy",
+          "wheat",
+          "shellfish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 9
+      },
+      "Mongolian Stir Fry with Tofu": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      }
+    },
+    "THREE-SIXTY Base": {
+      "Rice Noodles": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Rice Trio": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Yakisoba Noodle": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      }
+    },
+    "THREE-SIXTY Protein": {
+      "Beef": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Lemongrass Shrimp": {
+        "icons": [
+          "wellness",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Sliced Chicken": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3.5
+      },
+      "Tofu w/ Plum Sauce": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      }
+    },
+    "THREE-SIXTY Vegetables": {
+      "Baby Corn": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Bamboo Shoots": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Bean Sprouts": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Broccoli Florets": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Celery": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Napa Cabbage": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Red Onions": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Sliced Carrots": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Sliced Green Onion": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Sliced Mushrooms": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Sliced Red Bell Pepper": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Water Chestnuts": {
+        "icons": [
+          "vegan",
+          "treenuts"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      }
+    },
+    "THREE-SIXTY Sauces": {
+      "Five spice BBQ Sauce": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 2
+        }
+      },
+      "Soy Ginger Mongolian": {
+        "icons": [],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Spicy Chili Dragon Sauce": {
+        "icons": [],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Thai Coconut Curry Sauce": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Korean BBQ Sauce": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1
+        }
+      },
+      "Wonton Strips": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 1
+        }
+      }
+    },
+    "Fresh Signature Salads": {
+      "Kale Caesar Salad": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "fish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.25
+      },
+      "Labanese Fattoush Salad": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.25
+      },
+      "Power House Salad": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.25
+      },
+      "Strawberry Fields Salad": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "treenuts",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.75
+      }
+    },
+    "Fresh Side Salads": {
+      "Chicken Curry Salad": {
+        "icons": [
+          "dairy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Couscous Cauliflower Salad": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Curried Barley Shrimp Salad": {
+        "icons": [
+          "dairy",
+          "shellfish",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Jalapeno Coleslaw": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Kale Barley Butternut Squash Salad": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Moroccan Carrot Salad": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Sweet & Spicy Cucumbers": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Watermelon Beet Salad": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      }
+    },
+    "Fresh Proteins": {
+      "Albacore Tuna Salad": {
+        "icons": [
+          "soy",
+          "fish"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Marinated Chicken Breast": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 1
+      },
+      "Salmon Salad": {
+        "icons": [
+          "soy",
+          "fish",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Tofu Cubes": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2
+      }
+    },
+    "Fresh Juices": {
+      "ABC Juice": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.75
+      },
+      "Orange Carrot Juice": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.75
+      },
+      "Orange Cucumber Mint Juice": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.75
+      },
+      "Pure Orange Juice": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.75
+      }
+    },
+    "Soup": {
+      "Chana Masala Soup": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Chicken & Wild Rice Soup": {
+        "icons": [
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      }
+    },
+    "Suite Dinner Entree": {
+      "Butter Chicken": {
+        "icons": [
+          "dairy"
+        ],
+        "times": {
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7
+      },
+      "Citrus Sumac Mahi": {
+        "icons": [
+          "fish"
+        ],
+        "times": {
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 9
+      },
+      "Eggplant Chermoula": {
+        "icons": [
+          "vegetarian",
+          "wellness"
+        ],
+        "times": {
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7
+      },
+      "Kashmiri Mahi Mahi": {
+        "icons": [
+          "wellness",
+          "fish"
+        ],
+        "times": {
+          "1": 0,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 9
+      },
+      "Mujadara Lentils": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      },
+      "Orange Saffron Chicken": {
+        "icons": [
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7
+      },
+      "Salmon Vindaloo": {
+        "icons": [
+          "fish"
+        ],
+        "times": {
+          "1": 0,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 9
+      }
+    },
+    "Suite Dinner Sides": {
+      "Biryani Rice": {
+        "icons": [
+          "dairy"
+        ],
+        "times": {
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 1.5
+      },
+      "Harissa Carrots & Turnips": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Saffron Quinoa": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Indian Sweet Potato & Chickpea": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Sauteed Broccolini": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 1,
+          "3": 1,
+          "4": 1,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2.5
+      }
+    },
+    "Desserts": {
+      "Caakiri": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 1,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      }
+    }
+  }
+}

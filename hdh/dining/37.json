@@ -1,0 +1,3383 @@
+{
+  "restaurant": {
+    "name": "Restaurants at Sixth College",
+    "description": "The Restaurants at Sixth College feature five unique platforms, each offering fresh, delicious, and exciting new menus. Check out and enjoy your next meal from Crave, Makai, Noodles, Wolftown, or the Rooftop today!",
+    "schedule": {
+      "Restaurants at Sixth College (Wolftown)": {
+        "1": [
+          420,
+          1200
+        ],
+        "2": [
+          420,
+          1200
+        ],
+        "3": [
+          420,
+          1200
+        ],
+        "4": [
+          420,
+          1200
+        ],
+        "5": [
+          420,
+          1200
+        ],
+        "6": [
+          600,
+          1200
+        ],
+        "7": [
+          600,
+          1200
+        ]
+      }
+    }
+  },
+  "menu": {
+    "Wolftown": {
+      "Bacon Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 7.25
+      },
+      "Pork Belly Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 8
+      },
+      "Sausage Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 7
+      },
+      "Soyrizo Spinach Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 6.5
+      },
+      "Veggie Breakfast Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 6
+      },
+      "Bacon (1)": {
+        "icons": [],
+        "times": "breakfast",
+        "price": 1
+      },
+      "Breakfast Potatoes": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": "breakfast",
+        "price": 2
+      },
+      "Pork Sausage Links (2)": {
+        "icons": [],
+        "times": "breakfast",
+        "price": 1
+      },
+      "Refried Beans": {
+        "icons": [
+          "vegan",
+          "soy"
+        ],
+        "times": "all-days",
+        "price": 1.5
+      },
+      "Sauteed Mixed Vegetables": {
+        "icons": [
+          "vegan"
+        ],
+        "times": "all-days",
+        "price": 2.5
+      },
+      "Scrambled Eggs": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "eggs"
+        ],
+        "times": "breakfast",
+        "price": 2
+      },
+      "Cucumber Agua Fresca": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 7,
+          "2": 0,
+          "3": 0,
+          "4": 7,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      },
+      "Jamaica": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 7,
+          "2": 0,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      },
+      "Carne Asada Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 8
+      },
+      "Almond Milk Horchata": {
+        "icons": [
+          "vegan",
+          "treenuts"
+        ],
+        "times": {
+          "1": 0,
+          "2": 7,
+          "3": 0,
+          "4": 7,
+          "5": 0,
+          "6": 7,
+          "7": 7
+        },
+        "price": 3.5
+      },
+      "Lilikoi Chile Blossom": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 7,
+          "3": 0,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      },
+      "Agua de Sandia": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 7,
+          "4": 0,
+          "5": 0,
+          "6": 7,
+          "7": 7
+        },
+        "price": 3.5
+      },
+      "Bean & Cheese Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5
+      },
+      "Bean Squared Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6
+      },
+      "Carnitas Burrito": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Pollo Asada Burrito": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Shrimp Asada Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "shellfish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Veggie Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Carnitas Taco": {
+        "icons": [
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Pollo Asada Taco": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Shrimp AsadaTaco": {
+        "icons": [
+          "wellness",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Veggie Taco": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Bean & Rice Bowl": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5
+      },
+      "Carnitas Burrito Bowl": {
+        "icons": [
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Pollo Asada Burrito Bowl": {
+        "icons": [
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Shrimp Asada Burrito Bowl": {
+        "icons": [
+          "dairy",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Veggie Burrito Bowl": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Aztec Pinto Beans": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      },
+      "Chips and Guacamole": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Spanish Rice": {
+        "icons": [
+          "vegetarian"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      },
+      "Tortilla  Chips": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      },
+      "Guacamole": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.25
+      },
+      "Lime Crema": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 0.75
+      },
+      "Pollo Asada": {
+        "icons": [],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Pork Carnitas": {
+        "icons": [
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Shrimp Asada": {
+        "icons": [
+          "wellness",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5
+      },
+      "Korean Cauliflower Burrito": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Korean Cauliflower Fries": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7
+      },
+      "Korean Cauliflower Tacos": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      },
+      "Korean Chicken Burrito": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8
+      },
+      "Korean Chicken Fries": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8.5
+      },
+      "Korean Chicken Tacos": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6
+      },
+      "Cotija Cheese": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        }
+      },
+      "Jalapenos": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        }
+      },
+      "Korean Gochujang Sauce": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        }
+      },
+      "Napa Cabbage": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        }
+      },
+      "Pineapple Salsa": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Quick Kimchi Slaw": {
+        "icons": [
+          "vegetarian"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        }
+      },
+      "Steamed Rice": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      },
+      "Korean BBQ Chicken Thigh": {
+        "icons": [
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Korean Cauliflower": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Carne Asada Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Surf & Turf Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "shellfish",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 9.5
+      },
+      "Carne Asada Taco": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Carne Asada Burrito Bowl": {
+        "icons": [
+          "dairy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Surf & Turf Burrito Bowl": {
+        "icons": [
+          "dairy",
+          "shellfish"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 9.5
+      },
+      "Carne Asada": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Korean Beef Burrito": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8
+      },
+      "Korean Beef Fries": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8.5
+      },
+      "Korean Beef Tacos": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6
+      },
+      "Korean Beef": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Huli Huli Chicken Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Huli Huli Chicken Lettuce Wraps": {
+        "icons": [
+          "wellness",
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5
+      },
+      "Huli Huli Chicken Sliders Plate": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Huli Huli Tofu Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.5
+      },
+      "Huli Huli Tofu Lettuce Wraps": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Huli Huli Tofu Sliders Plate": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5.5
+      },
+      "Kalua Pork Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Kalua Pork Lettuce Wraps": {
+        "icons": [
+          "dairy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5
+      },
+      "Kalua Pork Sliders Plate": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Hawaiian Mac Salad": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      },
+      "Hawaiian Slaw": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      },
+      "Spicy Mayo": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Huli Huli Chicken": {
+        "icons": [
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Huli Huli Tofu": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Pulled Pork": {
+        "icons": [],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6
+      }
+    },
+    "Crave": {
+      "Almond Joy Grain Bowl": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 4
+      },
+      "Berry Grain Bowl": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 5
+      },
+      "Harvest Grain Bowl": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 4
+      },
+      "Steelcut Oatmeal": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "treenuts",
+          "soy",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 2
+      },
+      "The Junior Egg Bite": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "eggs"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 2
+      },
+      "The Popeye Egg Bite": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "eggs"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 2
+      },
+      "The Wilbur Egg Bite": {
+        "icons": [
+          "dairy",
+          "eggs"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 2
+      },
+      "Cove Grain Bowl": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Crave Bowl": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Power Bowl": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Torrey Bowl": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Napa Salad": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Nor Cal Salad": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "So Cal Salad": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Tuscan Salad": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "treenuts"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Garden Hummus Lavash Wrap": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Grilled Vegetable Lavash Wrap": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Lemon Basil Lavash Wrap": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Sweet Potato Lavash Wrap": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 6.5
+      },
+      "Falafel Crumble": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2
+      },
+      "Fried Tofu": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2
+      },
+      "Grilled Chicken Breast": {
+        "icons": [
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Grilled Salmon": {
+        "icons": [
+          "fish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 5
+      },
+      "Avocado Spread": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 1.5
+      },
+      "Hummus, Spread": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 2
+      }
+    },
+    "Rooftop": {
+      "Blueberry Stuffed French Toast": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 6.75
+      },
+      "Cinnamon Roll Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3.5
+      },
+      "Citrus Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Croissant Egg Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 6
+      },
+      "Croissant Sandwich Bacon": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 7.25
+      },
+      "Croissant Sandwich Turkey Sausage": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 7.25
+      },
+      "Croissant Sandwich Veg Sausage": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 7.25
+      },
+      "Denver Scramble": {
+        "icons": [
+          "wellness",
+          "dairy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3.5
+      },
+      "Herb & Cheese Scramble": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3
+      },
+      "Meat Lover's Scramble": {
+        "icons": [
+          "dairy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3.5
+      },
+      "Mosaic Brunch Plate": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 8.25
+      },
+      "Pancake Bacon Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 4.5
+      },
+      "Pancake Sandwich": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3
+      },
+      "Pancake Turkey Sausage Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 4.25
+      },
+      "Pancake Veg Sausage Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 4.25
+      },
+      "Scramble Combo": {
+        "icons": [
+          "dairy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 7.25
+      },
+      "Smokehouse Hash & Eggs": {
+        "icons": [
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 6
+      },
+      "Spinach & Mushroom Scramble": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3
+      },
+      "Bacon (1)": {
+        "icons": [],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 1
+      },
+      "Fried Egg": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 0.75
+      },
+      "Hash Brown Potatoes": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 2
+      },
+      "Turkey Sausage Patty (1)": {
+        "icons": [],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 1.5
+      },
+      "Veggie Sausage (1)": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 1.25
+      },
+      "Iced Dalgona Coffee": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 3
+      },
+      "Double Chocolate Chip Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 4
+        },
+        "price": 3.5
+      },
+      "Andouille Sausage Sandwich": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.5
+      },
+      "BBQ Chicken Quarter": {
+        "icons": [],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "BBQ Salmon": {
+        "icons": [
+          "wellness",
+          "fish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 9.5
+      },
+      "Beyond Italian Sausage": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Beyond Spicy Sausage Sandwich": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Pulled Pork": {
+        "icons": [],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6
+      },
+      "Pulled Pork Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.5
+      },
+      "Smoked BBQ Ribs": {
+        "icons": [
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 9
+      },
+      "Baked Beans": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Collard Greens w/ Bacon": {
+        "icons": [
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Green Beans and Tomato": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Smoky Mac and Cheese": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Waffle Fries": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Jalapeno Cheddar Cornbread": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Potato Salad": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "eggs"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Standard Cole Slaw": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy",
+          "eggs"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 2.5
+      },
+      "Kansas City BBQ Sauce": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Mustard Sauce": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        }
+      },
+      "Arnold Palmer": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 0,
+          "4": 3,
+          "5": 0,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Smoked Beef Brisket": {
+        "icons": [],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8
+      },
+      "Smoked Brisket Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Southern Sweet Tea": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 3,
+          "4": 0,
+          "5": 3,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      }
+    },
+    "Makai": {
+      "BYO Poke Bowl": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 3
+        },
+        "price": 10.75
+      },
+      "Kona Poke Bowl": {
+        "icons": [
+          "soy",
+          "fish",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 3
+        },
+        "price": 9.75
+      },
+      "Lava Poke Bowl": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 3
+        },
+        "price": 9.75
+      },
+      "Lilo Poke Bowl": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 3
+        },
+        "price": 8.75
+      },
+      "Makai Poke Bowl": {
+        "icons": [
+          "soy",
+          "fish",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 3
+        },
+        "price": 9.75
+      },
+      "Ohana Poke Bowl": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 3
+        },
+        "price": 9.75
+      },
+      "Mixed Greens\n Base": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Steamed Brown Rice": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Steamed Rice": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Tortilla  Chips": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Makai Ahi Tuna": {
+        "icons": [
+          "wellness",
+          "fish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Salmon Poke": {
+        "icons": [
+          "fish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Shrimp": {
+        "icons": [
+          "wellness",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Spicy Tuna": {
+        "icons": [
+          "fish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 2.5
+      },
+      "Tofu": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 2
+      },
+      "Avocado Spread": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 1.5
+      },
+      "Crispy Onions": {
+        "icons": [
+          "vegan",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Edamame": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Jalapenos": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Krab Mix": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 1.25
+      },
+      "Mango": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Pickled Ginger": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Pickled Red Onion": {
+        "icons": [
+          "vegetarian",
+          "wellness"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Radish": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Seaweed Salad": {
+        "icons": [
+          "vegetarian"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 1.25
+      },
+      "Shredded Carrots": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Shredded Red Cabbage": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Sliced Cucumbers": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Sliced Green Onion": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Spicy Krab Mixture": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        },
+        "price": 1.25
+      },
+      "House Makai Sauce": {
+        "icons": [
+          "soy",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Lava Sauce": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Ponzu Sauce": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Spicy Mayo": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "eggs"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Sriracha": {
+        "icons": [
+          "vegetarian"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Chopped Cilantro": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Nori Strips": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Sesame Seeds": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Wasabi": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      },
+      "Wonton Strips": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 1,
+          "7": 0
+        }
+      }
+    },
+    "Noodles": {
+      "Chicken Ramen Soup Bowl": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 10
+      },
+      "Pork Ramen Bowl": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 10
+      },
+      "Shrimp Ramen Soup Bowl": {
+        "icons": [
+          "soy",
+          "wheat",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 10.5
+      },
+      "Tofu Ramen Bowl": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 9
+      },
+      "Pork Dumpling Soup": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 8
+      },
+      "Veggie Dumpling Soup": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 8
+      },
+      "Citrus Chili Paste": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        }
+      },
+      "Garlic Chili Oil": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        }
+      },
+      "Sriracha": {
+        "icons": [
+          "vegetarian"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        }
+      },
+      "Blanched Shrimp": {
+        "icons": [
+          "wellness",
+          "shellfish"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 4.25
+      },
+      "Char Siu Chicken": {
+        "icons": [
+          "wellness",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 3.25
+      },
+      "Char SiuTofu": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 4.25
+      },
+      "Kamaboko": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 0.5
+      },
+      "Ramen Egg": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "eggs"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 1
+      },
+      "Ramen Noodle": {
+        "icons": [
+          "vegetarian",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 2.25
+      },
+      "Roasted Pork Belly": {
+        "icons": [],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 1
+        },
+        "price": 4.25
+      }
+    }
+  }
+}

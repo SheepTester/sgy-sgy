@@ -1,0 +1,263 @@
+{
+  "restaurant": {
+    "name": "Foodworx",
+    "description": "Known for their personal pizzas, Foodworx also carries fresh salads, sandwiches, and grill specials. Soak up the sun on the patio, or get your food to-go.",
+    "schedule": {
+      "Foodworx": {
+        "1": [
+          420,
+          1200
+        ],
+        "2": [
+          420,
+          1200
+        ],
+        "3": [
+          420,
+          1200
+        ],
+        "4": [
+          420,
+          1200
+        ],
+        "5": [
+          420,
+          1200
+        ],
+        "6": [
+          600,
+          1200
+        ],
+        "7": [
+          600,
+          1200
+        ]
+      }
+    }
+  },
+  "menu": {
+    "Sides": {
+      "Chocolate Chunk Cookie": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      },
+      "Cookie, White Chocolate Macadamia": {
+        "icons": [
+          "vegetarian"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 1.5
+      }
+    },
+    "Pizzeria": {
+      "Cheese Personal Pizza": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 6.5
+      },
+      "City Slicker Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Grilled Vegetable Sandwich": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7.5
+      },
+      "Hot Ham & Cheddar Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Mediterranean Hummus Pizza": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Pepperoni Personal Pizza": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Pesto Chicken Personal Pizza": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7.5
+      },
+      "Pesto Turkey Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      },
+      "Soyrizo Personal Pizza": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 7
+      },
+      "Tuscan Chicken Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 3,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 8.5
+      }
+    }
+  }
+}

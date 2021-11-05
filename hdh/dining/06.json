@@ -1,0 +1,18 @@
+{
+  "restaurant": {
+    "name": "Goody's Place",
+    "description": "Serving signature burritos and bowls all day long, Goody’s offers a variety of proteins to choose from.  Whether you’re getting a breakfast burrito to-go, or fully customizing a burrito bowl and enjoying it on their spacious patio, Goody’s has you covered.",
+    "schedule": {
+      "Goody's Place": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null
+      }
+    }
+  },
+  "menu": {}
+}

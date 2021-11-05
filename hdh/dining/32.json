@@ -1,0 +1,289 @@
+{
+  "restaurant": {
+    "name": "Roots",
+    "description": "Roots is the university's first exclusively vegan eatery and lounge. Located on the Muir College campus below Pines Restaurant, Roots has a clean, modern feel that reflects its menu perfectly. Diners can choose from a delicious variety of hearty entrees, sides, and smoothies.",
+    "schedule": {
+      "Roots": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": null
+      }
+    }
+  },
+  "menu": {
+    "Breakfast All Day": {
+      "Acai Bowl": {
+        "icons": [
+          "vegan",
+          "treenuts"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 8.75
+      },
+      "Black Bean Breakfast Wrap": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 7.25
+      },
+      "Hummus Toast": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 4.5
+      },
+      "JUST Egg Breakfast Wrap": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 7.25
+      },
+      "Overnight Oats - Banana & Berry": {
+        "icons": [
+          "vegan"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 3
+      },
+      "Roots Fruit Almond Dipper": {
+        "icons": [
+          "vegan",
+          "treenuts",
+          "soy"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 6.5
+      },
+      "Roots House Hash": {
+        "icons": [
+          "vegan",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 5
+      },
+      "Roots Sausage Breakfast Plate": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 8.25
+      },
+      "Soyrizo Breakfast Wrap": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 7.25
+      }
+    },
+    "Soup and Chili": {
+      "Vegetable Tortilla Soup": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Corn Chowder": {
+        "icons": [
+          "vegan",
+          "wellness",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      }
+    },
+    "Smoothies & Juices": {
+      "Raspberry Pineapple Chiller": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Watermelon Lemon Lime Chiller": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      },
+      "Raspberry Mango Chiller": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Strawberry Lemonade Chiller": {
+        "icons": [
+          "vegan"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      }
+    },
+    "Desserts": {
+      "Blueberry Mango Cobbler": {
+        "icons": [
+          "vegan",
+          "treenuts",
+          "soy",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Chocolate Chip Cookie": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": "breakfast-weekdays",
+        "price": 1.5
+      },
+      "Sugar Cookie": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 4,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 0,
+          "6": 0,
+          "7": 0
+        },
+        "price": 1.5
+      },
+      "Chocolate Torte": {
+        "icons": [
+          "vegetarian",
+          "treenuts",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 4
+      },
+      "Shortbread Cookie": {
+        "icons": [
+          "vegan",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 1.5
+      }
+    }
+  }
+}
