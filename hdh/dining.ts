@@ -1,4 +1,4 @@
-// deno run --allow-all --location https://example.com/ dining.ts
+// deno run --allow-all dining.ts
 
 import {
   DOMParser,
@@ -6,35 +6,25 @@ import {
 } from 'https://deno.land/x/deno_dom@v0.1.15-alpha/deno-dom-wasm.ts'
 import { ensureDir } from 'https://deno.land/std@0.101.0/fs/ensure_dir.ts'
 import { assertEquals } from 'https://deno.land/std@0.113.0/testing/asserts.ts'
+import {
+  Meal,
+  Restaurant,
+  createDayMap,
+  days,
+  dayNames,
+  parseTime,
+  MenuResults,
+  MenuItem,
+  iconKey,
+  bitfield,
+  meals,
+  assertOk,
+  unwrap
+} from './dining-common.ts'
 
 await ensureDir('./.cache/')
 await ensureDir('./dining/')
 
-function unwrap (): never {
-  throw new Error(
-    "I got a value that is null or undefined, which wasn't what I was expecting."
-  )
-}
-function expect<T> (type: { new (): T }, value: unknown): T {
-  if (value instanceof type) {
-    return value
-  } else {
-    throw new Error(
-      `I expected a ${type.name}, but instead I got a ${
-        typeof value === 'object' && value !== null
-          ? value?.constructor?.name ?? 'object'
-          : typeof value
-      }`
-    )
-  }
-}
-function assertOk (response: Response) {
-  if (response.ok) {
-    return response
-  } else {
-    throw new Error(`HTTP ${response.status} error from ${response.url}`)
-  }
-}
 const parser = new DOMParser()
 function parseHtml (html: string) {
   return parser.parseFromString(html, 'text/html') ?? unwrap()
@@ -108,87 +98,6 @@ async function getMenu (location: string, day: number) {
   )
 }
 
-const iconKeySource = {
-  'Legend: Vegan Icon': 'vegan',
-  'Legend: Vegetarian Icon': 'vegetarian',
-  'Legend: Wellness Icon': 'wellness',
-  'Legend: Contains Dairy Icon': 'dairy',
-  'Legend: Contains TreeNuts Icon': 'treenuts',
-  'Legend: Contains Soy Icon': 'soy',
-  'Legend: Contains Wheat Icon': 'wheat',
-  'Legend: Contains Fish Icon': 'fish',
-  'Legend: Contains Shellfish Icon': 'shellfish',
-  'Legend: Contains Peanuts Icon': 'peanuts',
-  'Legend: Contains Eggs Icon': 'eggs',
-  'Legend: Contains Gluten Icon': 'gluten'
-} as const
-const iconKey: {
-  [alt: string]: typeof iconKeySource[keyof typeof iconKeySource]
-} = iconKeySource
-
-const meals = ['Breakfast', 'Lunch', 'Dinner'] as const
-type Meal = typeof meals[number]
-const bitfield = {
-  Breakfast: 0b100,
-  Lunch: 0b010,
-  Dinner: 0b001
-}
-
-const days = [1, 2, 3, 4, 5, 6, 7] as const
-type Day = typeof days[number]
-function createDayMap<T> (defaultValue: T): { [day in Day]: T } {
-  return {
-    1: defaultValue,
-    2: defaultValue,
-    3: defaultValue,
-    4: defaultValue,
-    5: defaultValue,
-    6: defaultValue,
-    7: defaultValue
-  }
-}
-
-type Restaurant = {
-  name: string
-  description: string
-  schedule: {
-    [stationName: string]: {
-      [day in Day]: [number, number] | null
-    }
-  }
-}
-
-type MenuItem = {
-  price?: number
-  icons: typeof iconKeySource[keyof typeof iconKeySource][]
-  times:
-    | { [day in Day]: number }
-    | 'all-days'
-    | 'breakfast'
-    | 'lunch'
-    | 'dinner'
-    | 'weekdays'
-    | 'breakfast-weekdays'
-    | 'lunch-weekdays'
-    | 'dinner-weekdays'
-}
-
-type MenuResults = {
-  restaurant: Restaurant
-  menu: {
-    [menuName: string]: {
-      [itemName: string]: MenuItem
-    }
-  }
-}
-
-const dayNames = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-function parseTime (hour: string, minute: string, half: string): number {
-  return (
-    ((half === 'a' ? +hour : hour === '12' ? 12 : +hour + 12) % 24) * 60 +
-    +minute
-  )
-}
 function parseRestaurant (document: HTMLDocument): Restaurant {
   const name =
     document.getElementById('facility')?.textContent.trim() ?? unwrap()
