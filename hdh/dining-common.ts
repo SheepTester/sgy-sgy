@@ -65,15 +65,11 @@ export type Restaurant = {
 export type Availability =
   | { [day in Day]: number }
   | 'all-days'
-  | 'breakfast'
-  | 'afternoon'
-  | 'lunch'
-  | 'dinner'
   | 'weekdays'
+  | 'breakfast'
   | 'breakfast-weekdays'
+  | 'afternoon'
   | 'afternoon-weekdays'
-  | 'lunch-weekdays'
-  | 'dinner-weekdays'
 
 export type MenuItem = {
   price?: number

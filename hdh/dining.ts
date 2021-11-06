@@ -305,10 +305,6 @@ for (const locationId of locationIds) {
           item.times = 'all-days'
         } else if (meals === bitfield.Breakfast) {
           item.times = 'breakfast'
-        } else if (meals === bitfield.Lunch) {
-          item.times = 'lunch'
-        } else if (meals === bitfield.Dinner) {
-          item.times = 'dinner'
         } else if (meals === (bitfield.Lunch | bitfield.Dinner)) {
           item.times = 'afternoon'
         }
@@ -317,10 +313,6 @@ for (const locationId of locationIds) {
           item.times = 'weekdays'
         } else if (meals === bitfield.Breakfast) {
           item.times = 'breakfast-weekdays'
-        } else if (meals === bitfield.Lunch) {
-          item.times = 'lunch-weekdays'
-        } else if (meals === bitfield.Dinner) {
-          item.times = 'dinner-weekdays'
         } else if (meals === (bitfield.Lunch | bitfield.Dinner)) {
           item.times = 'afternoon-weekdays'
         }

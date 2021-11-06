@@ -96,13 +96,7 @@ function displayAvailability (availability: Availability) {
       return 'Breakfast every day'
     }
     case 'afternoon': {
-      return 'Lunch and dinner every day'
-    }
-    case 'lunch': {
-      return 'Lunch every day'
-    }
-    case 'dinner': {
-      return 'Dinner every day'
+      return 'Afternoon every day'
     }
     case 'weekdays': {
       return 'All times on weekdays'
@@ -111,13 +105,7 @@ function displayAvailability (availability: Availability) {
       return 'Breakfast on weekdays'
     }
     case 'afternoon-weekdays': {
-      return 'Lunch and dinner on weekdays'
-    }
-    case 'lunch-weekdays': {
-      return 'Lunch on weekdays'
-    }
-    case 'dinner-weekdays': {
-      return 'Dinner on weekdays'
+      return 'Afternoon on weekdays'
     }
     default: {
       // meals -> days
@@ -198,3 +186,4 @@ Deno.writeTextFile(
     el('tbody', output)
   ) + '\n'
 )
+console.log('I wrote an HTML table to ./dining/summary.html')
