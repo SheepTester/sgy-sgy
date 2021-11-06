@@ -44,15 +44,7 @@
           "fish",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 4
-        },
+        "times": "breakfast-weekdays",
         "price": 8
       },
       "Banh Mi Breakfast Bagel": {
@@ -64,15 +56,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 4
-        },
+        "times": "breakfast-weekdays",
         "price": 6
       },
       "Continental Breakfast Bagel": {
@@ -105,15 +89,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 4
-        },
+        "times": "breakfast-weekdays",
         "price": 6
       },
       "Tofu Breakfast Bagel": {
@@ -123,15 +99,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 4
-        },
+        "times": "breakfast-weekdays",
         "price": 6
       },
       "Acai Bowl": {
@@ -168,15 +136,7 @@
           "vegetarian",
           "treenuts"
         ],
-        "times": {
-          "1": 7,
-          "2": 7,
-          "3": 7,
-          "4": 7,
-          "5": 5,
-          "6": 7,
-          "7": 7
-        },
+        "times": "all-days",
         "price": 8.75
       },
       "Raspberry Power Bowl": {
@@ -224,7 +184,7 @@
           "2": 5,
           "3": 5,
           "4": 5,
-          "5": 0,
+          "5": 5,
           "6": 6,
           "7": 4
         }
@@ -239,7 +199,7 @@
           "2": 5,
           "3": 5,
           "4": 5,
-          "5": 4,
+          "5": 5,
           "6": 6,
           "7": 4
         }
@@ -358,15 +318,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Curried Chicken Bagel": {
@@ -376,15 +328,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Fig & Goat Cheese Bagel": {
@@ -394,15 +338,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Tandoori Chicken Bagel": {
@@ -411,15 +347,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Veggin' Bagel": {
@@ -428,15 +356,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 6
       },
       "BYO Ice Cream Sandwich": {
@@ -448,15 +368,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 5
       },
       "Affogato": {
@@ -464,15 +376,7 @@
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 3.5
       },
       "Affogato Double": {
@@ -480,15 +384,7 @@
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 4.5
       },
       "Chocolate Chip Cookie": {
@@ -500,15 +396,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1.5
       },
       "Chocolate Chip Rice Krispy Treats": {
@@ -516,15 +404,7 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3.5
       },
       "Oatmeal Raisin Cookie": {
@@ -535,15 +415,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1.5
       },
       "Raspberry Cheesecake Bar": {
@@ -555,15 +427,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 4
       },
       "Red Velvet Cupcake": {
@@ -575,15 +439,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3.5
       },
       "S'mores Brownie Bar": {
@@ -594,15 +450,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3.5
       },
       "Turtle Cheesecake": {
@@ -615,15 +463,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 4
       }
     },
@@ -636,15 +476,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 6.75
       },
       "Half Caprese Salad": {
@@ -655,15 +487,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 4
       },
       "Half OV Caesar Salad": {
@@ -673,15 +497,7 @@
           "fish",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 4
       },
       "Half Strawberry Panzanella Salad": {
@@ -692,15 +508,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 4
       },
       "OV Caesar Salad": {
@@ -710,15 +518,7 @@
           "fish",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 6.75
       },
       "Strawberry Panzanella Salad": {
@@ -729,15 +529,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 6.75
       },
       "Cheesy Garlic Bread": {
@@ -747,15 +539,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3.75
       },
       "Garlic Cuscinos (Pillows)": {
@@ -765,15 +549,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3.25
       },
       "Baby Spinach": {
@@ -781,15 +557,7 @@
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Balsamic Vinaigrette": {
         "icons": [
@@ -797,15 +565,7 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Buttermilk Ranch Dressing": {
         "icons": [
@@ -814,15 +574,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Caesar Dressing": {
         "icons": [
@@ -831,88 +583,40 @@
           "fish",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Cherry Tomato": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Cooked Red Quinoa": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Dried Cranberries": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Feta Cheese": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Garbanzo Beans": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Homestyle Croutons": {
         "icons": [
@@ -921,211 +625,91 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Marinated Artichoke Hearts": {
         "icons": [],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Parmesan Cheese": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Pepperoncini": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Pumpkin Seeds- Pepitas": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Red Onions": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Red Wine Shallot Vinaigrette": {
         "icons": [
           "vegetarian"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Roasted Butternut Squash": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Shredded Carrots": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Shredded Romaine": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Sliced Cucumbers": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Sliced Red Bell Pepper": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Spring Mix": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Sunflower Seeds": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Blackened Chicken": {
         "icons": [
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 3
       },
       "Blackened Salmon": {
@@ -1133,15 +717,7 @@
           "wellness",
           "fish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 4
       },
       "Cage Free Hard Boiled Egg": {
@@ -1149,15 +725,7 @@
           "vegetarian",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1
       },
       "Roasted Thai Tofu": {
@@ -1166,15 +734,7 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 2
       }
     },
@@ -1186,15 +746,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "Fig & Goat Cheese Pizza": {
@@ -1204,15 +756,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "Margherita": {
@@ -1223,15 +767,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 8.5
       },
       "Maui Ham Pizza": {
@@ -1240,15 +776,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "OV Veggie Pizza": {
@@ -1258,15 +786,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 8.5
       },
       "Pepperoni Pizza": {
@@ -1276,15 +796,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 8.5
       },
       "Pepperoni Sausage Ricotta Pizza": {
@@ -1293,15 +805,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "Quattro Fromage Pizza": {
@@ -1311,15 +815,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "Shrimp Feta Pesto Pizza": {
@@ -1329,15 +825,7 @@
           "shellfish",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "Spicy Meat Lovers": {
@@ -1346,15 +834,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "Teriyaki Chicken Pizza": {
@@ -1364,15 +844,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 9.5
       },
       "Undergrad Cheese Pizza": {
@@ -1383,15 +855,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 7.5
       },
       "Grilled Vegetable Ciabatta": {
@@ -1403,15 +867,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7.5
       },
       "Italian Sausage Sandwich": {
@@ -1421,15 +877,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Italiano Sub Sandwich": {
@@ -1438,15 +886,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 9
       }
     },
@@ -1461,7 +901,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1478,7 +918,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1494,7 +934,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1512,7 +952,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1530,7 +970,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1547,7 +987,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1563,7 +1003,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1579,7 +1019,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1592,7 +1032,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1605,7 +1045,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1621,7 +1061,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1637,7 +1077,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1654,7 +1094,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1671,7 +1111,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1689,7 +1129,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },
@@ -1707,7 +1147,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 2,
           "6": 0,
           "7": 0
         },

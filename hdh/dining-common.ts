@@ -62,19 +62,23 @@ export type Restaurant = {
   }
 }
 
+export type Availability =
+  | { [day in Day]: number }
+  | 'all-days'
+  | 'breakfast'
+  | 'afternoon'
+  | 'lunch'
+  | 'dinner'
+  | 'weekdays'
+  | 'breakfast-weekdays'
+  | 'afternoon-weekdays'
+  | 'lunch-weekdays'
+  | 'dinner-weekdays'
+
 export type MenuItem = {
   price?: number
   icons: Icon[]
-  times:
-    | { [day in Day]: number }
-    | 'all-days'
-    | 'breakfast'
-    | 'lunch'
-    | 'dinner'
-    | 'weekdays'
-    | 'breakfast-weekdays'
-    | 'lunch-weekdays'
-    | 'dinner-weekdays'
+  times: Availability
 }
 
 export type MenuResults = {

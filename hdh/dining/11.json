@@ -45,30 +45,14 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1.5
       },
       "Cookie, White Chocolate Macadamia": {
         "icons": [
           "vegetarian"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1.5
       }
     },
@@ -81,15 +65,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 6.5
       },
       "City Slicker Sandwich": {
@@ -100,15 +76,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 8.5
       },
       "Grilled Vegetable Sandwich": {
@@ -119,15 +87,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 7.5
       },
       "Hot Ham & Cheddar Sandwich": {
@@ -137,15 +97,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 8.5
       },
       "Mediterranean Hummus Pizza": {
@@ -156,15 +108,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 7
       },
       "Pepperoni Personal Pizza": {
@@ -174,15 +118,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 7
       },
       "Pesto Chicken Personal Pizza": {
@@ -192,15 +128,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 7.5
       },
       "Pesto Turkey Sandwich": {
@@ -210,15 +138,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 8.5
       },
       "Soyrizo Personal Pizza": {
@@ -229,15 +149,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 7
       },
       "Tuscan Chicken Sandwich": {
@@ -247,15 +159,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 8.5
       }
     }

@@ -309,6 +309,8 @@ for (const locationId of locationIds) {
           item.times = 'lunch'
         } else if (meals === bitfield.Dinner) {
           item.times = 'dinner'
+        } else if (meals === (bitfield.Lunch | bitfield.Dinner)) {
+          item.times = 'afternoon'
         }
       } else if (weekDaysMatch) {
         if (meals === 0b111) {
@@ -319,13 +321,20 @@ for (const locationId of locationIds) {
           item.times = 'lunch-weekdays'
         } else if (meals === bitfield.Dinner) {
           item.times = 'dinner-weekdays'
+        } else if (meals === (bitfield.Lunch | bitfield.Dinner)) {
+          item.times = 'afternoon-weekdays'
         }
       }
       if (
         typeof item.times === 'string' &&
-        !['all-days', 'weekdays', 'breakfast', 'breakfast-weekdays'].includes(
-          item.times
-        )
+        ![
+          'all-days',
+          'weekdays',
+          'breakfast',
+          'breakfast-weekdays',
+          'afternoon',
+          'afternoon-weekdays'
+        ].includes(item.times)
       ) {
         console.log(item.times)
       }

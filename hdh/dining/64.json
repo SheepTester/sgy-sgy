@@ -45,15 +45,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 7,
-          "2": 7,
-          "3": 7,
-          "4": 7,
-          "5": 5,
-          "6": 3,
-          "7": 3
-        },
+        "times": "weekdays",
         "price": 4.75
       },
       "Spinach & Egg White Sandwich": {
@@ -184,15 +176,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 3.5
       },
       "Avocado Toast": {
@@ -204,15 +188,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 7,
-          "2": 7,
-          "3": 7,
-          "4": 7,
-          "5": 5,
-          "6": 3,
-          "7": 3
-        },
+        "times": "weekdays",
         "price": 4
       },
       "Buttermilk Pancakes": {
@@ -223,15 +199,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 7,
-          "2": 7,
-          "3": 7,
-          "4": 7,
-          "5": 5,
-          "6": 1,
-          "7": 1
-        },
+        "times": "weekdays",
         "price": 3
       },
       "Cream Cheese Almond Butter Toast": {
@@ -243,15 +211,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 4
       },
       "French Toast with Berry Compote": {
@@ -282,15 +242,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 6
       },
       "Mini Egg & Cheese Burrito": {
@@ -302,15 +254,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 3.25
       },
       "Mini Sausage Breakfast Burrito": {
@@ -321,15 +265,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 3.75
       },
       "Red Pepper Hummus Toast": {
@@ -341,15 +277,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 7,
-          "2": 7,
-          "3": 7,
-          "4": 7,
-          "5": 1,
-          "6": 1,
-          "7": 1
-        },
+        "times": "weekdays",
         "price": 4
       },
       "Sweet Potato Bacon Egg Benedict": {
@@ -360,15 +288,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 8
       },
       "Whole Wheat Chia Pancakes": {
@@ -379,15 +299,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 3
       },
       "Bacon, Spinach & Egg White Sandwich": {
@@ -489,22 +401,6 @@
         },
         "price": 4.75
       },
-      "Avocado Spread": {
-        "icons": [
-          "vegan",
-          "wellness"
-        ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 7,
-          "6": 3,
-          "7": 3
-        },
-        "price": 1.25
-      },
       "Chipotle Black Bean": {
         "icons": [
           "vegan",
@@ -513,42 +409,18 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Marinated Chicken Breast": {
         "icons": [
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1
       },
       "Turkey Burger": {
         "icons": [],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "American Cheese": {
         "icons": [
@@ -556,31 +428,23 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1
+      },
+      "Avocado Spread": {
+        "icons": [
+          "vegan",
+          "wellness"
+        ],
+        "times": "afternoon",
+        "price": 1.25
       },
       "Cheddar Cheese": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1
       },
       "Pepper Jack Cheese": {
@@ -589,15 +453,7 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1
       },
       "Provolone Cheese": {
@@ -605,15 +461,7 @@
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1
       },
       "Buffalo Chickpea Sandwich": {
@@ -623,15 +471,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 1,
-          "7": 1
-        },
+        "times": "afternoon-weekdays",
         "price": 5.5
       },
       "Crispy Chicken Sandwich": {
@@ -642,15 +482,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 6.75
       },
       "Grilled Cheese Sandwich": {
@@ -662,15 +494,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 4
       },
       "Grilled Fish Sandwich": {
@@ -714,15 +538,7 @@
           "vegetarian",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 1,
-          "7": 1
-        },
+        "times": "afternoon-weekdays",
         "price": 2.5
       },
       "Chicken Tenders": {
@@ -730,15 +546,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 6
       },
       "Couscous Salad": {
@@ -749,15 +557,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 1,
-          "7": 1
-        },
+        "times": "afternoon-weekdays",
         "price": 2.5
       },
       "Crispy Onion Rings": {
@@ -768,15 +568,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 1,
-          "7": 1
-        },
+        "times": "afternoon-weekdays",
         "price": 3.75
       },
       "French Fries": {
@@ -784,15 +576,7 @@
           "vegan",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 2.5
       },
       "Grilled Vegetables": {
@@ -800,15 +584,7 @@
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 2.5
       },
       "64D Birthday Cake Milkshake": {
@@ -820,15 +596,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 6
       },
       "Mint Chip Milkshake": {
@@ -837,15 +605,7 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 6
       },
       "Beef Mushroom Blended": {
@@ -870,7 +630,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 1,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -908,7 +668,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 3,
           "7": 1
         },
@@ -924,7 +684,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 3,
           "7": 1
         },
@@ -939,15 +699,7 @@
           "treenuts",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 5.5
       },
       "Steel Cut Oatmeal": {
@@ -988,45 +740,21 @@
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Cheddar Jack Cheese": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Cherry Tomato": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Cooked Barley": {
         "icons": [
@@ -1035,30 +763,14 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Cooked Red Quinoa": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Edamame": {
         "icons": [
@@ -1066,241 +778,105 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Feta Cheese": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Garbanzo Beans": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Kale": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Mandarin Oranges": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Red Onions": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Roasted Broccoli": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Roasted Moroccan Cauliflower": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Romaine Lettuce": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Shredded Carrots": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Sliced Cucumbers": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Sliced Mushrooms": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Sliced Red Bell Pepper": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Spinach": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Spring Mix": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Cage Free Hard Boiled Egg": {
         "icons": [
           "vegetarian",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 1
       },
       "Roasted Chicken": {
         "icons": [],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 3
       },
       "Tofu Cubes": {
@@ -1309,15 +885,7 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 2
       },
       "Tuna Salad": {
@@ -1327,30 +895,14 @@
           "fish",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 3.5
       },
       "Dried Cranberries": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Homestyle Croutons": {
         "icons": [
@@ -1359,43 +911,19 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Pumpkin Seeds- Pepitas": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Sunflower Seeds": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Balsamic Vinaigrette": {
         "icons": [
@@ -1403,15 +931,7 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Blue Cheese Dressing": {
         "icons": [
@@ -1420,15 +940,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Buttermilk Ranch Dressing": {
         "icons": [
@@ -1437,15 +949,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Caesar Dressing": {
         "icons": [
@@ -1454,58 +958,26 @@
           "fish",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "La Scala Vinaigrette": {
         "icons": [
           "vegan",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Lemon Shallot Vinaigrette": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Vegan Green Goddess Dressing": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "RC Base Salad": {
         "icons": [
@@ -1514,15 +986,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "RC Bowl Base": {
         "icons": [
@@ -1530,15 +994,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "RC Sandwich Base": {
         "icons": [
@@ -1546,30 +1002,14 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "RC Taco Trio Base": {
         "icons": [
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       }
     },
     "Taqueria": {
@@ -1581,15 +1021,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 7.5
       },
       "Mexican Hash & Eggs": {
@@ -1599,15 +1031,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 6
       },
       "Mexican Hot Chocolate": {
@@ -1619,15 +1043,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 2.5
       },
       "Southwest Scramble": {
@@ -1637,15 +1053,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 5
       },
       "Soyrizo Potato Breakfast Burrito": {
@@ -1662,7 +1070,7 @@
           "2": 4,
           "3": 4,
           "4": 4,
-          "5": 0,
+          "5": 4,
           "6": 0,
           "7": 0
         },
@@ -1674,15 +1082,7 @@
           "soy",
           "shellfish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8.5
       },
       "Acapulco Shrimp Burrito": {
@@ -1693,15 +1093,7 @@
           "shellfish",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8.5
       },
       "Acapulco Shrimp Quesadilla": {
@@ -1712,15 +1104,7 @@
           "shellfish",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Acapulco Shrimp Sopes": {
@@ -1730,15 +1114,7 @@
           "shellfish",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8.5
       },
       "Alcapulco Shrimp Taco": {
@@ -1746,15 +1122,7 @@
           "wellness",
           "shellfish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3
       },
       "Calabacitas Bowl": {
@@ -1763,15 +1131,7 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Calabacitas Burrito": {
@@ -1782,15 +1142,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Calabacitas Quesadilla": {
@@ -1801,15 +1153,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Calabacitas Sopes": {
@@ -1819,15 +1163,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Calabacitas Taco": {
@@ -1836,15 +1172,7 @@
           "wellness",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3
       },
       "Carnitas Bowl": {
@@ -1852,15 +1180,7 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Carnitas Burrito": {
@@ -1870,15 +1190,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Carnitas Quesadilla": {
@@ -1888,15 +1200,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Carnitas Sopes": {
@@ -1905,28 +1209,12 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Carnitas Street Taco": {
         "icons": [],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3
       },
       "Ceviche with Plantains": {
@@ -1950,15 +1238,7 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Chicken Tinga Burrito": {
@@ -1968,15 +1248,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Chicken Tinga Quesadilla": {
@@ -1986,15 +1258,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Chicken Tinga Sopes": {
@@ -2003,15 +1267,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8
       },
       "Chicken Tinga Taco": {
@@ -2019,15 +1275,7 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3
       },
       "Soyrizo Potato Bowl": {
@@ -2036,15 +1284,7 @@
           "dairy",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Soyrizo Potato Quesadilla": {
@@ -2054,15 +1294,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Soyrizo Potato Sopes": {
@@ -2072,15 +1304,7 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7
       },
       "Soyrizo Potato Taco": {
@@ -2088,59 +1312,27 @@
           "vegan",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3
       },
       "Cilantro and Onion Relish": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Cotija Cheese": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Guacamole": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Lime  Cream": {
         "icons": [
@@ -2149,30 +1341,14 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Arroz con Leche": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3
       },
       "Flan": {
@@ -2181,30 +1357,14 @@
           "dairy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 3
       },
       "Arroz Del Sol": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 1.5
       },
       "Aztec Black Beans": {
@@ -2212,30 +1372,14 @@
           "vegetarian",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 1.5
       },
       "Fiesta Fruit Cup": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 4
       },
       "Birria Bowl": {
@@ -2301,7 +1445,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 1,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2316,7 +1460,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 1,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2331,7 +1475,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2351,7 +1495,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2367,7 +1511,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2383,7 +1527,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 1,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2397,15 +1541,7 @@
           "wellness",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 2
-        },
+        "times": "afternoon-weekdays",
         "price": 6.25
       },
       "Chicken Pecan Salad": {
@@ -2413,15 +1549,7 @@
           "wellness",
           "treenuts"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 9.5
       },
       "Garden Quinoa Salad": {
@@ -2429,43 +1557,19 @@
           "vegetarian",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 2,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 6.25
       },
       "64D Rotisserie Chicken Deboned": {
         "icons": [
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7.5
       },
       "Blackened Shrimp": {
         "icons": [],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 8.5
       },
       "Grilled Barramundi": {
@@ -2473,15 +1577,7 @@
           "wellness",
           "fish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 9.5
       },
       "Grilled Rockfish": {
@@ -2489,15 +1585,7 @@
           "wellness",
           "fish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 9.5
       },
       "Seared Ahi Tuna": {
@@ -2505,15 +1593,7 @@
           "wellness",
           "fish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 9.5
       },
       "Seared Herbed Tofu": {
@@ -2522,15 +1602,7 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7.5
       },
       "Avocado Spread": {
@@ -2538,15 +1610,7 @@
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 1.25
       },
       "Buttermilk Ranch Dressing": {
@@ -2556,45 +1620,21 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Citrus Shallot Cream Sauce": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Cole Slaw Dressing": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 1,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Honey Chipotle glaze": {
         "icons": [
@@ -2603,44 +1643,20 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Lemon Shallot Vinaigrette": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Roasted Red Pepper Sauce": {
         "icons": [
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Seafood Chowder": {
         "icons": [
@@ -2650,30 +1666,8 @@
           "shellfish",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 4
-      },
-      "Vegan Green Goddess Dressing": {
-        "icons": [
-          "vegan"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 2,
-          "6": 0,
-          "7": 0
-        }
       }
     },
     "Wok": {
@@ -2682,15 +1676,7 @@
           "vegetarian",
           "dairy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 3.5
       },
       "Roasted Shishito Peppers": {
@@ -2698,15 +1684,7 @@
           "vegan",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 4
       },
       "Summer Roll Salad": {
@@ -2715,15 +1693,7 @@
           "wellness",
           "treenuts"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 2.5
       },
       "Vegetable Springroll": {
@@ -2734,15 +1704,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 2
       },
       "Honey Glazed Chicken Wok": {
@@ -2752,15 +1714,7 @@
           "eggs",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7.75
       },
       "Kung Pao Chicken Wok": {
@@ -2768,15 +1722,7 @@
           "treenuts",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7.75
       },
       "Pad Thai": {
@@ -2786,15 +1732,7 @@
           "treenuts",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon-weekdays",
         "price": 7.75
       },
       "Thai Coconut Chicken Wok": {
@@ -2803,73 +1741,33 @@
           "soy",
           "fish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 7.75
       },
       "Honey Glazed Chicken Sauce": {
         "icons": [],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Kung Pao Sauce": {
         "icons": [
           "vegan",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Pad Thai Sauce": {
         "icons": [
           "vegan",
           "soy"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        }
+        "times": "afternoon-weekdays"
       },
       "Brown Rice": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Fried Rice": {
         "icons": [
@@ -2877,30 +1775,14 @@
           "soy",
           "eggs"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Steamed Jasmine Rice": {
         "icons": [
           "vegan",
           "wellness"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        }
+        "times": "afternoon"
       },
       "Mandarin Chopped Salad": {
         "icons": [
@@ -2910,15 +1792,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
+        "times": "afternoon",
         "price": 6.25
       },
       "Thai Coconut Chicken": {
@@ -2927,15 +1801,7 @@
           "soy",
           "fish"
         ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 3,
-          "4": 3,
-          "5": 3,
-          "6": 1,
-          "7": 1
-        },
+        "times": "afternoon-weekdays",
         "price": 3.5
       },
       "Boba Almond Milk Tea": {
@@ -2948,7 +1814,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2963,7 +1829,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 3,
           "6": 0,
           "7": 0
         },
@@ -2978,7 +1844,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 0,
+          "5": 3,
           "6": 2,
           "7": 0
         },
@@ -2995,7 +1861,7 @@
           "2": 3,
           "3": 3,
           "4": 3,
-          "5": 2,
+          "5": 3,
           "6": 2,
           "7": 2
         },
@@ -3013,9 +1879,26 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 2,
+          "5": 0,
           "6": 2,
           "7": 2
+        },
+        "price": 2.5
+      },
+      "Spicy Thai Side Salad": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "soy"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 3,
+          "7": 1
         },
         "price": 2.5
       },
@@ -3028,7 +1911,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 2,
+          "5": 0,
           "6": 2,
           "7": 2
         },
@@ -3045,7 +1928,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 2,
+          "5": 0,
           "6": 2,
           "7": 2
         },
@@ -3061,7 +1944,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 2,
+          "5": 0,
           "6": 2,
           "7": 2
         },
@@ -3079,7 +1962,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 3,
+          "5": 0,
           "6": 3,
           "7": 3
         }
@@ -3093,27 +1976,10 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 2,
+          "5": 0,
           "6": 2,
           "7": 0
         }
-      },
-      "Spicy Thai Side Salad": {
-        "icons": [
-          "vegetarian",
-          "wellness",
-          "soy"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 1,
-          "6": 3,
-          "7": 1
-        },
-        "price": 2.5
       },
       "Hoisin Shrimp & Vegetables Wok": {
         "icons": [
@@ -3127,7 +1993,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 1,
           "7": 1
         },
@@ -3146,7 +2012,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 1,
           "7": 1
         },
@@ -3161,7 +2027,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 1,
           "7": 1
         },
@@ -3177,7 +2043,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 1,
           "7": 1
         },
@@ -3193,7 +2059,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 1,
           "7": 1
         }
@@ -3208,7 +2074,7 @@
           "2": 0,
           "3": 0,
           "4": 0,
-          "5": 1,
+          "5": 0,
           "6": 1,
           "7": 1
         }

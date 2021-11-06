@@ -107,34 +107,7 @@
           "wellness",
           "soy"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
-        "price": 4
-      },
-      "Corn Chowder": {
-        "icons": [
-          "vegan",
-          "wellness",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 4
       }
     },
@@ -143,61 +116,15 @@
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 4
       },
       "Watermelon Lemon Lime Chiller": {
         "icons": [
           "vegan"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 3.5
-      },
-      "Raspberry Mango Chiller": {
-        "icons": [
-          "vegan"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
-        "price": 4
-      },
-      "Strawberry Lemonade Chiller": {
-        "icons": [
-          "vegan"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
-        "price": 4
       }
     },
     "Desserts": {
@@ -208,15 +135,7 @@
           "soy",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 4
       },
       "Chocolate Chip Cookie": {
@@ -236,52 +155,7 @@
           "wheat",
           "gluten"
         ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 4,
-          "4": 4,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        },
-        "price": 1.5
-      },
-      "Chocolate Torte": {
-        "icons": [
-          "vegetarian",
-          "treenuts",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
-        "price": 4
-      },
-      "Shortbread Cookie": {
-        "icons": [
-          "vegan",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
+        "times": "breakfast-weekdays",
         "price": 1.5
       }
     }
