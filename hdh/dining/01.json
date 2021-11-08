@@ -6,23 +6,23 @@
       "Pines": {
         "1": [
           600,
-          1200
+          1260
         ],
         "2": [
           600,
-          1200
+          1260
         ],
         "3": [
           600,
-          1200
+          1260
         ],
         "4": [
           600,
-          1200
+          1260
         ],
         "5": [
           600,
-          1200
+          1260
         ],
         "6": null,
         "7": null
@@ -279,7 +279,7 @@
         "times": "afternoon-weekdays",
         "price": 1
       },
-      "Avocado Spread": {
+      "Avocado": {
         "icons": [
           "vegan",
           "wellness"

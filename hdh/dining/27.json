@@ -1,0 +1,255 @@
+{
+  "restaurant": {
+    "name": "The Bistro",
+    "description": "A modern eatery featuring an open kitchen, sushi bar, and an exciting Pacific Rim-inspired menu. \nOur chefs draw from various Asian cultures to serve up the freshest seafood,\t\ncrisp greens, local produce inspired vegetarian fare, and noodle dishes. The ideal experience focuses on tasting\n a variety of flavors and sharing plates with friends.",
+    "schedule": {
+      "The Bistro": {
+        "1": [
+          660,
+          1200
+        ],
+        "2": [
+          660,
+          1200
+        ],
+        "3": [
+          660,
+          1200
+        ],
+        "4": [
+          660,
+          1200
+        ],
+        "5": [
+          660,
+          1200
+        ],
+        "6": null,
+        "7": null
+      }
+    }
+  },
+  "menu": {
+    "Starters": {
+      "Miso Soup": {
+        "icons": [
+          "soy",
+          "fish"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      },
+      "Seaweed Salad": {
+        "icons": [
+          "vegetarian",
+          "soy"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      },
+      "Short Rib Bowl": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 9.5
+      },
+      "Steamed Edamame": {
+        "icons": [
+          "vegan",
+          "soy"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3
+      }
+    },
+    "Entrees": {
+      "Stir Fry Chicken Udon": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 12.5
+      },
+      "Stir Fry Tofu Udon": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 11.5
+      }
+    },
+    "Sushi": {
+      "California Roll": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8.5
+      },
+      "Crunchy Roll": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8.5
+      },
+      "Horizon Roll": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 11.5
+      },
+      "Spicy Tuna Roll": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8.5
+      },
+      "Sun God Roll": {
+        "icons": [
+          "soy",
+          "wheat",
+          "fish",
+          "shellfish",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 13.5
+      }
+    },
+    "Beverages": {
+      "Thai Iced Tea": {
+        "icons": [
+          "vegetarian",
+          "dairy"
+        ],
+        "times": {
+          "1": 7,
+          "2": 7,
+          "3": 7,
+          "4": 0,
+          "5": 7,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      }
+    }
+  }
+}

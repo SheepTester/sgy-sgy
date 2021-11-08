@@ -6,23 +6,23 @@
       "Foodworx": {
         "1": [
           420,
-          1200
+          1260
         ],
         "2": [
           420,
-          1200
+          1260
         ],
         "3": [
           420,
-          1200
+          1260
         ],
         "4": [
           420,
-          1200
+          1260
         ],
         "5": [
           420,
-          1200
+          1260
         ],
         "6": [
           600,
@@ -45,14 +45,14 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon",
+        "times": "afternoon-weekdays",
         "price": 1.5
       },
       "Cookie, White Chocolate Macadamia": {
         "icons": [
           "vegetarian"
         ],
-        "times": "afternoon",
+        "times": "afternoon-weekdays",
         "price": 1.5
       }
     },

@@ -191,6 +191,13 @@ async function scrapeMenu (
     }
     results.restaurant = restaurant
 
+    // Get links to dining halls from the navbar at the top because the Bistro
+    // isn't listed on the home page
+    for (const link of document.getElementById('mainNav')?.children ??
+      unwrap()) {
+      locationIds.add(link.getAttribute('href')?.match(/\d+/)?.[0] ?? unwrap())
+    }
+
     const menus = document.getElementById('menuContainer') ?? unwrap()
     for (const menu of menus.children) {
       const ul = menu.querySelector('ul')

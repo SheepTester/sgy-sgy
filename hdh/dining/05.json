@@ -6,23 +6,23 @@
       "OceanView (3rd Kitchen)": {
         "1": [
           630,
-          1200
+          1260
         ],
         "2": [
           630,
-          1200
+          1260
         ],
         "3": [
           630,
-          1200
+          1260
         ],
         "4": [
           630,
-          1200
+          1260
         ],
         "5": [
           630,
-          1200
+          1260
         ],
         "6": [
           660,
@@ -44,7 +44,7 @@
           "fish",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": "breakfast",
         "price": 8
       },
       "Banh Mi Breakfast Bagel": {
@@ -56,7 +56,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": "breakfast",
         "price": 6
       },
       "Continental Breakfast Bagel": {
@@ -67,7 +67,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": "breakfast",
         "price": 7
       },
       "Farmhouse Breakfast Bagel": {
@@ -78,7 +78,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": "breakfast",
         "price": 7
       },
       "Feta Breakfast Bagel": {
@@ -89,7 +89,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": "breakfast",
         "price": 6
       },
       "Tofu Breakfast Bagel": {
@@ -99,7 +99,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": "breakfast",
         "price": 6
       },
       "Acai Bowl": {
@@ -185,8 +185,8 @@
           "3": 5,
           "4": 5,
           "5": 5,
-          "6": 6,
-          "7": 4
+          "6": 7,
+          "7": 7
         }
       },
       "White Bean & Caramelized Onion Spread": {
@@ -200,8 +200,8 @@
           "3": 5,
           "4": 5,
           "5": 5,
-          "6": 6,
-          "7": 4
+          "6": 7,
+          "7": 7
         }
       },
       "Acai Smoothie": {
@@ -318,7 +318,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 7
       },
       "Curried Chicken Bagel": {
@@ -328,7 +328,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 7
       },
       "Fig & Goat Cheese Bagel": {
@@ -338,7 +338,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 7
       },
       "Tandoori Chicken Bagel": {
@@ -347,7 +347,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 7
       },
       "Veggin' Bagel": {
@@ -356,7 +356,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 6
       },
       "BYO Ice Cream Sandwich": {
@@ -404,7 +404,7 @@
           "dairy",
           "soy"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 3.5
       },
       "Oatmeal Raisin Cookie": {
@@ -427,7 +427,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 4
       },
       "Red Velvet Cupcake": {
@@ -439,7 +439,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 3.5
       },
       "S'mores Brownie Bar": {
@@ -450,7 +450,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 3.5
       },
       "Turtle Cheesecake": {
@@ -463,7 +463,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 4
       }
     },
@@ -476,7 +476,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 6.75
       },
       "Half Caprese Salad": {
@@ -487,7 +487,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 4
       },
       "Half OV Caesar Salad": {
@@ -497,7 +497,7 @@
           "fish",
           "eggs"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 4
       },
       "Half Strawberry Panzanella Salad": {
@@ -508,7 +508,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 4
       },
       "OV Caesar Salad": {
@@ -518,7 +518,7 @@
           "fish",
           "eggs"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 6.75
       },
       "Strawberry Panzanella Salad": {
@@ -529,7 +529,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 6.75
       },
       "Cheesy Garlic Bread": {
@@ -539,7 +539,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 3.75
       },
       "Garlic Cuscinos (Pillows)": {
@@ -549,7 +549,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 3.25
       },
       "Baby Spinach": {
@@ -867,7 +867,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 7.5
       },
       "Italian Sausage Sandwich": {
@@ -877,7 +877,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 8
       },
       "Italiano Sub Sandwich": {
@@ -886,7 +886,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 9
       }
     },
@@ -903,7 +903,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 4.5
       },
@@ -920,7 +920,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 3
       },
@@ -936,7 +936,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 1.5
       },
@@ -954,7 +954,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 2.5
       },
@@ -972,7 +972,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 3
       },
@@ -989,7 +989,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 2.5
       },
@@ -1005,7 +1005,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 1.5
       },
@@ -1021,7 +1021,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 2.5
       },
@@ -1034,7 +1034,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 10
       },
@@ -1047,7 +1047,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 9
       },
@@ -1063,7 +1063,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 8
       },
@@ -1079,7 +1079,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 10
       },
@@ -1096,7 +1096,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 9.5
       },
@@ -1113,7 +1113,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 8.5
       },
@@ -1131,7 +1131,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 7.5
       },
@@ -1149,7 +1149,7 @@
           "4": 3,
           "5": 2,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 6
       },
@@ -1165,7 +1165,7 @@
           "4": 1,
           "5": 0,
           "6": 0,
-          "7": 0
+          "7": 1
         },
         "price": 10
       },
@@ -1186,22 +1186,6 @@
           "7": 1
         },
         "price": 9
-      },
-      "Mediterranean Salmon Plate": {
-        "icons": [
-          "wellness",
-          "fish"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 0,
-          "7": 1
-        },
-        "price": 12
       }
     }
   }

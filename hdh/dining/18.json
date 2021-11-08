@@ -6,23 +6,23 @@
       "Cafe Ventanas": {
         "1": [
           420,
-          1200
+          1260
         ],
         "2": [
           420,
-          1200
+          1260
         ],
         "3": [
           420,
-          1200
+          1260
         ],
         "4": [
           420,
-          1200
+          1260
         ],
         "5": [
           420,
-          1200
+          1260
         ],
         "6": [
           600,
@@ -37,17 +37,6 @@
   },
   "menu": {
     "Breakfast Specials": {
-      "Apple Cinnamon Pancakes": {
-        "icons": [
-          "vegetarian",
-          "dairy",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": "breakfast-weekdays",
-        "price": 3.5
-      },
       "Avocado Toast": {
         "icons": [
           "vegetarian",
@@ -81,45 +70,6 @@
         "times": "breakfast-weekdays",
         "price": 3
       },
-      "Cafe Breakfast Combo": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 0,
-          "4": 4,
-          "5": 4,
-          "6": 0,
-          "7": 4
-        },
-        "price": 7.25
-      },
-      "Cream Cheese Almond Butter Toast": {
-        "icons": [
-          "vegetarian",
-          "dairy",
-          "treenuts",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 0,
-          "4": 4,
-          "5": 4,
-          "6": 0,
-          "7": 4
-        },
-        "price": 4
-      },
       "French Toast with Berry Compote": {
         "icons": [
           "vegetarian",
@@ -140,6 +90,75 @@
         "times": "breakfast-weekdays",
         "price": 5
       },
+      "Triton Breakfast Combo": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": "breakfast",
+        "price": 7.25
+      },
+      "Apple Cinnamon Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 3.5
+      },
+      "Cafe Breakfast Combo": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 7.25
+      },
+      "Cream Cheese Almond Butter Toast": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 4
+      },
       "La Jolla Breakfast Combo": {
         "icons": [
           "vegetarian",
@@ -151,12 +170,12 @@
           "gluten"
         ],
         "times": {
-          "1": 4,
+          "1": 0,
           "2": 4,
           "3": 0,
           "4": 4,
           "5": 4,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
         "price": 7.25
@@ -170,7 +189,7 @@
           "gluten"
         ],
         "times": {
-          "1": 4,
+          "1": 0,
           "2": 4,
           "3": 0,
           "4": 4,
@@ -189,7 +208,15 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays"
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        }
       },
       "Mini Sausage Breakfast Burrito": {
         "icons": [
@@ -199,7 +226,15 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays"
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        }
       },
       "Red Pepper Hummus Toast": {
         "icons": [
@@ -211,12 +246,12 @@
           "gluten"
         ],
         "times": {
-          "1": 4,
+          "1": 0,
           "2": 4,
           "3": 0,
           "4": 4,
           "5": 4,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
         "price": 4
@@ -229,19 +264,16 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
         "price": 8
-      },
-      "Triton Breakfast Combo": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": "breakfast",
-        "price": 7.25
       },
       "Whole Wheat Chia Pancakes": {
         "icons": [
@@ -251,10 +283,18 @@
           "eggs",
           "gluten"
         ],
-        "times": "breakfast-weekdays",
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
         "price": 3
       },
-      "Classic Sausage Scramble": {
+      "Bacon Sweet Potato Hash & Eggs": {
         "icons": [
           "dairy",
           "eggs"
@@ -265,10 +305,10 @@
           "3": 0,
           "4": 0,
           "5": 0,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
-        "price": 8
+        "price": 9
       },
       "Deluxe Bacon Breakfast Sandwich": {
         "icons": [
@@ -283,7 +323,43 @@
           "3": 0,
           "4": 0,
           "5": 0,
-          "6": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 7
+      },
+      "Fall Harvest Quiche": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
+          "7": 4
+        },
+        "price": 7.5
+      },
+      "Green Power Scramble": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "eggs"
+        ],
+        "times": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0,
+          "5": 0,
+          "6": 4,
           "7": 4
         },
         "price": 7
@@ -303,7 +379,7 @@
           "3": 0,
           "4": 0,
           "5": 0,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
         "price": 6.75
@@ -322,7 +398,7 @@
           "3": 0,
           "4": 0,
           "5": 0,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
         "price": 4
@@ -342,7 +418,7 @@
           "3": 0,
           "4": 0,
           "5": 0,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
         "price": 4.75
@@ -362,14 +438,15 @@
           "3": 0,
           "4": 0,
           "5": 0,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
         "price": 6
       },
-      "Sausage Vegetable Quiche": {
+      "Traditional Eggs Benedict": {
         "icons": [
           "dairy",
+          "soy",
           "wheat",
           "eggs",
           "gluten"
@@ -380,29 +457,10 @@
           "3": 0,
           "4": 0,
           "5": 0,
-          "6": 0,
+          "6": 4,
           "7": 4
         },
-        "price": 7.5
-      },
-      "Spinach Benedict": {
-        "icons": [
-          "vegetarian",
-          "dairy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 0,
-          "7": 4
-        },
-        "price": 7
+        "price": 8
       }
     },
     "A la Carte Breakfast": {
@@ -510,7 +568,7 @@
         "times": "breakfast",
         "price": 1.5
       },
-      "Avocado Spread": {
+      "Avocado": {
         "icons": [
           "vegan",
           "wellness"
@@ -556,24 +614,6 @@
       }
     },
     "Cold Breakfast": {
-      "Breakfast Power Bowl": {
-        "icons": [
-          "vegetarian",
-          "dairy",
-          "treenuts",
-          "gluten"
-        ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 0,
-          "4": 4,
-          "5": 4,
-          "6": 4,
-          "7": 4
-        },
-        "price": 5.5
-      },
       "Steel Cut Oatmeal": {
         "icons": [
           "vegan",
@@ -606,6 +646,24 @@
         ],
         "times": "breakfast",
         "price": 0.5
+      },
+      "Breakfast Power Bowl": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "treenuts",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 4,
+          "7": 4
+        },
+        "price": 5.5
       }
     },
     "Grill": {
@@ -619,17 +677,6 @@
         ],
         "times": "breakfast-weekdays",
         "price": 5
-      },
-      "Bacon Breakfast Burrito": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": "breakfast-weekdays",
-        "price": 7.25
       },
       "Bacon, Spinach & Egg White Sandwich": {
         "icons": [
@@ -677,25 +724,6 @@
         "times": "breakfast-weekdays",
         "price": 4.75
       },
-      "Ham Breakfast Burrito": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 0,
-          "4": 4,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
-        "price": 7
-      },
       "Ham Spinach & Egg White Sandwich": {
         "icons": [
           "wellness",
@@ -718,25 +746,6 @@
         ],
         "times": "breakfast-weekdays",
         "price": 4.75
-      },
-      "Sausage Breakfast Burrito": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 0,
-          "4": 4,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
-        "price": 7
       },
       "Sausage, Spinach & Egg White Sandwich": {
         "icons": [
@@ -774,26 +783,6 @@
         "times": "breakfast-weekdays",
         "price": 4.75
       },
-      "Veg Sausage Burrito": {
-        "icons": [
-          "vegetarian",
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 4,
-          "2": 4,
-          "3": 0,
-          "4": 4,
-          "5": 4,
-          "6": 0,
-          "7": 0
-        },
-        "price": 7
-      },
       "Veg Sausage, Spinach & Egg White Sandwich": {
         "icons": [
           "wellness",
@@ -806,6 +795,83 @@
         ],
         "times": "breakfast-weekdays",
         "price": 4.75
+      },
+      "Bacon Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 4,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7.25
+      },
+      "Ham Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7
+      },
+      "Sausage Breakfast Burrito": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7
+      },
+      "Veg Sausage Burrito": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 4,
+          "3": 0,
+          "4": 4,
+          "5": 4,
+          "6": 0,
+          "7": 0
+        },
+        "price": 7
       },
       "California Style": {
         "icons": [
@@ -859,62 +925,6 @@
         "price": 8.5
       }
     },
-    "Breakfast All Day": {
-      "Avocado Toast": {
-        "icons": [
-          "vegetarian",
-          "wellness",
-          "dairy",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": "afternoon",
-        "price": 4
-      },
-      "Buttermilk Pancakes": {
-        "icons": [
-          "vegetarian",
-          "dairy",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 0,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
-        "price": 3
-      },
-      "Ham Bobcat Sandwich": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": "afternoon",
-        "price": 4.75
-      },
-      "Red Pepper Hummus Toast": {
-        "icons": [
-          "vegetarian",
-          "wellness",
-          "dairy",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": "afternoon",
-        "price": 4
-      }
-    },
     "Vertz Entrees": {
       "Buffalo Cauliflower Bowl": {
         "icons": [
@@ -962,7 +972,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 8
       },
       "Spicy Eggplant Handheld": {
@@ -971,7 +981,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 8
       },
       "Pork Plate": {
@@ -986,8 +996,8 @@
           "3": 3,
           "4": 3,
           "5": 3,
-          "6": 0,
-          "7": 0
+          "6": 3,
+          "7": 3
         },
         "price": 12
       },
@@ -1004,8 +1014,8 @@
           "3": 3,
           "4": 3,
           "5": 3,
-          "6": 0,
-          "7": 0
+          "6": 3,
+          "7": 3
         },
         "price": 9
       },
@@ -1021,99 +1031,10 @@
           "3": 3,
           "4": 3,
           "5": 3,
-          "6": 0,
-          "7": 0
-        },
-        "price": 9
-      },
-      "Beef Gochujang Bowl": {
-        "icons": [
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
           "6": 3,
           "7": 3
         },
         "price": 9
-      },
-      "Gochujang Beef Handheld": {
-        "icons": [
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 9
-      },
-      "Portobello Bowl": {
-        "icons": [
-          "vegetarian",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 8
-      },
-      "Portobello Handheld": {
-        "icons": [
-          "vegetarian",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 8
-      },
-      "Vertz Med Platter": {
-        "icons": [
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 12
       }
     },
     "Vertz Sides": {
@@ -1131,20 +1052,6 @@
         ],
         "times": "afternoon-weekdays",
         "price": 1.5
-      },
-      "Roasted Quinoa & Veggie Salad": {
-        "icons": [
-          "vegan"
-        ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 0,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        }
       },
       "Roasted Shishito Peppers": {
         "icons": [
@@ -1169,20 +1076,19 @@
         "times": "afternoon-weekdays",
         "price": 2.5
       },
-      "Yuca Fried": {
+      "Roasted Quinoa & Veggie Salad": {
         "icons": [
           "vegan"
         ],
         "times": {
-          "1": 0,
-          "2": 0,
+          "1": 1,
+          "2": 3,
           "3": 0,
-          "4": 0,
-          "5": 0,
+          "4": 3,
+          "5": 3,
           "6": 3,
           "7": 3
-        },
-        "price": 2.5
+        }
       }
     },
     "Vertz Add-Ons": {
@@ -1252,25 +1158,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
-        "price": 7
-      },
-      "Roasted Carrot Melt": {
-        "icons": [
-          "vegan",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 0,
-          "4": 3,
-          "5": 3,
-          "6": 0,
-          "7": 0
-        },
+        "times": "afternoon",
         "price": 7
       },
       "Spicy Ham and Jack Melt": {
@@ -1281,7 +1169,7 @@
           "eggs",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 9
       },
       "Turkey, Apple and Brie Melt": {
@@ -1295,43 +1183,23 @@
         "times": "afternoon-weekdays",
         "price": 9
       },
-      "Melter Skelter": {
+      "Roasted Carrot Melt": {
         "icons": [
-          "dairy",
+          "vegan",
           "soy",
           "wheat",
-          "eggs",
           "gluten"
         ],
         "times": {
-          "1": 0,
-          "2": 0,
+          "1": 1,
+          "2": 3,
           "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
+          "4": 3,
+          "5": 3,
+          "6": 0,
+          "7": 0
         },
-        "price": 9
-      },
-      "The B.A.T. Melt": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 8.5
+        "price": 7
       }
     },
     "Meltz Sides": {
@@ -1442,7 +1310,7 @@
         "times": "afternoon",
         "price": 1
       },
-      "Avocado Spread": {
+      "Avocado": {
         "icons": [
           "vegan",
           "wellness"
@@ -1533,24 +1401,6 @@
       }
     },
     "Grill Specials": {
-      "Buffalo Chickpea Sandwich": {
-        "icons": [
-          "vegetarian",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 3,
-          "2": 3,
-          "3": 0,
-          "4": 3,
-          "5": 3,
-          "6": 3,
-          "7": 3
-        },
-        "price": 5.5
-      },
       "Crispy Chicken Sandwich": {
         "icons": [
           "dairy",
@@ -1585,6 +1435,24 @@
         "times": "afternoon",
         "price": 8.5
       },
+      "Buffalo Chickpea Sandwich": {
+        "icons": [
+          "vegetarian",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 1,
+          "2": 3,
+          "3": 0,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 5.5
+      },
       "Grilled Fish Tacos": {
         "icons": [
           "dairy",
@@ -1592,7 +1460,7 @@
           "fish"
         ],
         "times": {
-          "1": 3,
+          "1": 1,
           "2": 3,
           "3": 0,
           "4": 3,
@@ -1601,23 +1469,6 @@
           "7": 3
         },
         "price": 8
-      },
-      "Miso Portobello Burger": {
-        "icons": [
-          "vegetarian",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 2,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 0,
-          "7": 0
-        }
       }
     },
     "Grill Sides": {
@@ -2345,7 +2196,7 @@
         "icons": [
           "wellness"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 7
       },
       "Shrimp Tallarin": {
@@ -2355,7 +2206,7 @@
           "shellfish",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 8
       },
       "Tofu Tallarin": {
@@ -2365,7 +2216,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 6
       },
       "Beef Tallarin": {
@@ -2380,8 +2231,8 @@
           "3": 3,
           "4": 3,
           "5": 3,
-          "6": 0,
-          "7": 0
+          "6": 3,
+          "7": 3
         },
         "price": 8
       },
@@ -2395,108 +2246,10 @@
           "3": 3,
           "4": 3,
           "5": 3,
-          "6": 0,
-          "7": 0
-        },
-        "price": 8
-      },
-      "Aji de Gallina": {
-        "icons": [
-          "dairy",
-          "treenuts",
-          "soy",
-          "wheat",
-          "eggs",
-          "gluten"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 7
-      },
-      "Peruvian Beef Saltado": {
-        "icons": [
-          "soy"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 7
-      },
-      "Peruvian Chicken Saltado": {
-        "icons": [
-          "soy"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 7
-      },
-      "Peruvian Shrimp Saltado": {
-        "icons": [
-          "soy",
-          "shellfish"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
           "6": 3,
           "7": 3
         },
         "price": 8
-      },
-      "Pescado Escabeche": {
-        "icons": [
-          "soy",
-          "fish"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 8
-      },
-      "Tofu Peruvian Saltado": {
-        "icons": [
-          "vegan",
-          "soy"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 7
       }
     },
     "Global Latin Sides": {
@@ -2506,7 +2259,7 @@
           "wheat",
           "gluten"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 2.5
       },
       "Papa a la Huancaina": {
@@ -2516,7 +2269,7 @@
           "soy",
           "eggs"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 2.5
       },
       "Red Beans & Rice": {
@@ -2524,7 +2277,7 @@
           "vegetarian",
           "wellness"
         ],
-        "times": "afternoon-weekdays",
+        "times": "afternoon",
         "price": 1.5
       },
       "Steamed Rice": {
@@ -2533,52 +2286,6 @@
           "wellness"
         ],
         "times": "afternoon",
-        "price": 2.5
-      },
-      "Arroz con Coco": {
-        "icons": [
-          "vegan"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 2.5
-      },
-      "Brown Rice": {
-        "icons": [
-          "vegan",
-          "wellness"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
-        "price": 1.5
-      },
-      "Mushroom Picadillo": {
-        "icons": [
-          "vegan"
-        ],
-        "times": {
-          "1": 0,
-          "2": 0,
-          "3": 0,
-          "4": 0,
-          "5": 0,
-          "6": 3,
-          "7": 3
-        },
         "price": 2.5
       }
     },
@@ -2620,41 +2327,6 @@
         },
         "price": 8.5
       },
-      "Tarragon Chicken Sandwich": {
-        "icons": [
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 2,
-          "2": 2,
-          "3": 0,
-          "4": 2,
-          "5": 2,
-          "6": 0,
-          "7": 0
-        },
-        "price": 9
-      },
-      "The Gobbler": {
-        "icons": [
-          "dairy",
-          "soy",
-          "wheat",
-          "gluten"
-        ],
-        "times": {
-          "1": 2,
-          "2": 2,
-          "3": 0,
-          "4": 2,
-          "5": 2,
-          "6": 0,
-          "7": 0
-        },
-        "price": 8.5
-      },
       "The Hot P.A.A.T.": {
         "icons": [
           "vegetarian",
@@ -2691,6 +2363,41 @@
           "7": 0
         },
         "price": 7
+      },
+      "Tarragon Chicken Sandwich": {
+        "icons": [
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 2,
+          "3": 0,
+          "4": 2,
+          "5": 2,
+          "6": 0,
+          "7": 0
+        },
+        "price": 9
+      },
+      "The Gobbler": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 0,
+          "2": 2,
+          "3": 0,
+          "4": 2,
+          "5": 2,
+          "6": 0,
+          "7": 0
+        },
+        "price": 8.5
       }
     },
     "Impinger Sides": {
@@ -2829,6 +2536,86 @@
           "7": 0
         },
         "price": 2.5
+      }
+    },
+    "Breakfast All Day": {
+      "Avocado Toast": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 1,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
+      },
+      "Buttermilk Pancakes": {
+        "icons": [
+          "vegetarian",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 1,
+          "2": 3,
+          "3": 0,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 3
+      },
+      "Ham Bobcat Sandwich": {
+        "icons": [
+          "dairy",
+          "soy",
+          "wheat",
+          "eggs",
+          "gluten"
+        ],
+        "times": {
+          "1": 1,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4.75
+      },
+      "Red Pepper Hummus Toast": {
+        "icons": [
+          "vegetarian",
+          "wellness",
+          "dairy",
+          "soy",
+          "wheat",
+          "gluten"
+        ],
+        "times": {
+          "1": 1,
+          "2": 3,
+          "3": 3,
+          "4": 3,
+          "5": 3,
+          "6": 3,
+          "7": 3
+        },
+        "price": 4
       }
     },
     "Global Latin Tuesday Plates": {

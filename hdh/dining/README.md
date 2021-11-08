@@ -10,3 +10,4 @@ ID | Dining hall name
 32 | Roots
 37 | Restaurants at Sixth College
 64 | 64 Degrees
+27 | The Bistro
