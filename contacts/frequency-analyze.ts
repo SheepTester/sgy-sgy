@@ -58,7 +58,7 @@ const MAX_ENTRIES = 10
 const MAX_ENTRIES_IF_UNIQUE = 3
 function displayFrequency (frequencies: Frequency): string[] {
   const counts = [...frequencies.values.values()]
-  const unique = counts.length > 0 && counts.every(count => count === 1)
+  const unique = counts.length > 1 && counts.every(count => count === 1)
   let lines: string[] = []
   const max = unique ? MAX_ENTRIES_IF_UNIQUE : MAX_ENTRIES
   for (const [value, times] of sortMap(frequencies.values)) {
@@ -93,6 +93,12 @@ function displayFrequency (frequencies: Frequency): string[] {
       frequencies.arrayCount} total`
   } else {
     lines[0] += ` # ${valueCount} total`
+  }
+  if (
+    frequencies.values.has(null) &&
+    (frequencies.arrayCount > 0 || frequencies.values.size > 1)
+  ) {
+    lines[0] += ` (${frequencies.values.get(null)} null)`
   }
   if (unique) {
     lines[0] += ' (UNIQUE)'
