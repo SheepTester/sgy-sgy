@@ -1,0 +1,10 @@
+- null: 37 # 400 total
+  'wow': 56
+  'okay': 46
+  false: 3
+  # ... a 294 of 300 variations hidden
+- array: # 3 array, 43 total
+    - 'one': 1 # 3 total
+      'two': 2
+    - 'wow': 1 # 1 total
+  'not array': 40
