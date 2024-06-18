@@ -25,6 +25,12 @@
         "awarded": 259
       },
       { "type": "0", "description": "", "requested": 0, "awarded": 0 }
+    ],
+    "documents": [
+      {
+        "name": "UC San Diego Mail - ECE HBR Reservation Request.pdf",
+        "path": "/Home/DownloadFile?fileId=44148"
+      }
     ]
   },
   {
@@ -70,6 +76,13 @@
         "requested": 24.8,
         "awarded": 24.8
       }
+    ],
+    "documents": [
+      { "name": "hbr bookings.pdf", "path": "/Home/DownloadFile?fileId=44204" },
+      {
+        "name": "Screenshot 2024-01-19 at 11.14.04 PM.png",
+        "path": "/Home/DownloadFile?fileId=44205"
+      }
     ]
   },
   {
@@ -108,6 +121,13 @@
         "description": "sales tax",
         "requested": 39.9,
         "awarded": 39.9
+      }
+    ],
+    "documents": [
+      { "name": "einstine70.png", "path": "/Home/DownloadFile?fileId=44220" },
+      {
+        "name": "mar-5-dib-conf.pdf",
+        "path": "/Home/DownloadFile?fileId=44221"
       }
     ]
   },
@@ -154,6 +174,13 @@
         "requested": 24.8,
         "awarded": 24.8
       }
+    ],
+    "documents": [
+      {
+        "name": "Screenshot 2024-01-19 at 11.14.04 PM.png",
+        "path": "/Home/DownloadFile?fileId=44227"
+      },
+      { "name": "3_5 booking.pdf", "path": "/Home/DownloadFile?fileId=44228" }
     ]
   },
   {
@@ -187,6 +214,10 @@
         "requested": 25.17,
         "awarded": 25.17
       }
+    ],
+    "documents": [
+      { "name": "28chiptole.png", "path": "/Home/DownloadFile?fileId=44231" },
+      { "name": "3_7 booking.pdf", "path": "/Home/DownloadFile?fileId=44232" }
     ]
   },
   {
@@ -232,6 +263,13 @@
         "requested": 24.8,
         "awarded": 24
       }
+    ],
+    "documents": [
+      {
+        "name": "Screenshot 2024-01-19 at 11.14.04 PM.png",
+        "path": "/Home/DownloadFile?fileId=44237"
+      },
+      { "name": "3_8 booking.pdf", "path": "/Home/DownloadFile?fileId=44238" }
     ]
   },
   {
@@ -331,6 +369,42 @@
         "requested": 600,
         "awarded": 600
       }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation.pdf",
+        "path": "/Home/DownloadFile?fileId=44247"
+      },
+      { "name": "Basilleafs.png", "path": "/Home/DownloadFile?fileId=44248" },
+      {
+        "name": "Tinymakesthings.png",
+        "path": "/Home/DownloadFile?fileId=44249"
+      },
+      { "name": "Tech_Fee.pdf", "path": "/Home/DownloadFile?fileId=44250" },
+      { "name": "Taeha_Types.png", "path": "/Home/DownloadFile?fileId=44251" },
+      {
+        "name": "StudioKeebli_Security_MerchandisingFee.pdf",
+        "path": "/Home/DownloadFile?fileId=44252"
+      },
+      { "name": "Sodiepops.png", "path": "/Home/DownloadFile?fileId=44253" },
+      {
+        "name": "Receipt_Marketing.pdf",
+        "path": "/Home/DownloadFile?fileId=44254"
+      },
+      { "name": "Keyzen.png", "path": "/Home/DownloadFile?fileId=44255" },
+      {
+        "name": "Jelly_Caps + Della_Key.png",
+        "path": "/Home/DownloadFile?fileId=44256"
+      },
+      { "name": "Hipyotech.png", "path": "/Home/DownloadFile?fileId=44257" },
+      {
+        "name": "Cardboard Cutout.png",
+        "path": "/Home/DownloadFile?fileId=44258"
+      },
+      {
+        "name": "Bright Event Rentals (30 Tables).pdf",
+        "path": "/Home/DownloadFile?fileId=44259"
+      }
     ]
   },
   {
@@ -358,6 +432,13 @@
         "requested": 350,
         "awarded": 350
       }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation.pdf",
+        "path": "/Home/DownloadFile?fileId=44281"
+      },
+      { "name": "roomcapacity.png", "path": "/Home/DownloadFile?fileId=44282" }
     ]
   },
   {
@@ -385,6 +466,13 @@
         "requested": 350,
         "awarded": 350
       }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation.pdf",
+        "path": "/Home/DownloadFile?fileId=44284"
+      },
+      { "name": "roomcapacity.png", "path": "/Home/DownloadFile?fileId=44285" }
     ]
   },
   {
@@ -412,6 +500,13 @@
         "requested": 350,
         "awarded": 350
       }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation.pdf",
+        "path": "/Home/DownloadFile?fileId=44287"
+      },
+      { "name": "roomcapacity.png", "path": "/Home/DownloadFile?fileId=44288" }
     ]
   },
   {
@@ -457,6 +552,17 @@
         "requested": 2175,
         "awarded": 1262.5
       }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation.pdf",
+        "path": "/Home/DownloadFile?fileId=44292"
+      },
+      { "name": "roomcapacity.png", "path": "/Home/DownloadFile?fileId=44293" },
+      {
+        "name": "promoquote2024.JPG",
+        "path": "/Home/DownloadFile?fileId=44294"
+      }
     ]
   },
   {
@@ -501,6 +607,17 @@
         "description": "tapex sales tax",
         "requested": 143.57,
         "awarded": 143.57
+      }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation.pdf",
+        "path": "/Home/DownloadFile?fileId=44361"
+      },
+      { "name": "390_tapex.png", "path": "/Home/DownloadFile?fileId=44664" },
+      {
+        "name": "200 burrito by box.png",
+        "path": "/Home/DownloadFile?fileId=44665"
       }
     ]
   },
@@ -611,6 +728,16 @@
         "appealRequested": 0,
         "appealApproved": 0
       }
+    ],
+    "documents": [
+      {
+        "name": "Screenshot 2024-01-29 at 12.15.12 PM.png",
+        "path": "/Home/DownloadFile?fileId=44495"
+      },
+      {
+        "name": "Screenshot 2024-01-29 at 12.15.12 PM.png",
+        "path": "/Home/DownloadFile?fileId=44496"
+      }
     ]
   },
   {
@@ -674,6 +801,20 @@
         "requested": 175,
         "awarded": 175
       }
+    ],
+    "documents": [
+      {
+        "name": "24.04.18 TEDx UCSD Quote_Invoice - Loft Rental Doc.pdf",
+        "path": "/Home/DownloadFile?fileId=44491"
+      },
+      {
+        "name": "EventReservation_Salon3.pdf",
+        "path": "/Home/DownloadFile?fileId=44492"
+      },
+      {
+        "name": "Zanzibar_Updated-Quote_2024.pdf",
+        "path": "/Home/DownloadFile?fileId=44493"
+      }
     ]
   },
   {
@@ -701,6 +842,13 @@
         "requested": 146.58,
         "awarded": 100
       }
+    ],
+    "documents": [
+      {
+        "name": "price_estimate.png",
+        "path": "/Home/DownloadFile?fileId=44500"
+      },
+      { "name": "roombooking.png", "path": "/Home/DownloadFile?fileId=44501" }
     ]
   },
   {
@@ -830,6 +978,32 @@
         "requested": 20.5,
         "awarded": 0
       }
+    ],
+    "documents": [
+      {
+        "name": "tableclothCart.pdf",
+        "path": "/Home/DownloadFile?fileId=45258"
+      },
+      {
+        "name": "Basket _ Party City.pdf",
+        "path": "/Home/DownloadFile?fileId=45259"
+      },
+      {
+        "name": "Amazon.com Shopping Cart.pdf",
+        "path": "/Home/DownloadFile?fileId=45260"
+      },
+      {
+        "name": "Shopping Cart _ Costco.pdf",
+        "path": "/Home/DownloadFile?fileId=45261"
+      },
+      {
+        "name": "Flavors of east africa invoice.pdf",
+        "path": "/Home/DownloadFile?fileId=45262"
+      },
+      {
+        "name": "IMG_D99779445E2D-1.jpeg",
+        "path": "/Home/DownloadFile?fileId=45263"
+      }
     ]
   },
   {
@@ -866,6 +1040,12 @@
         "awarded": 0,
         "appealRequested": 0,
         "appealApproved": 0
+      }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation.pdf",
+        "path": "/Home/DownloadFile?fileId=44523"
       }
     ]
   },
@@ -954,6 +1134,16 @@
         "requested": 24.67,
         "awarded": 24.67
       }
+    ],
+    "documents": [
+      {
+        "name": "speeddatinginterview_ikesplace.pdf",
+        "path": "/Home/DownloadFile?fileId=44547"
+      },
+      {
+        "name": "Room Confirmation 4_3.pdf",
+        "path": "/Home/DownloadFile?fileId=44548"
+      }
     ]
   },
   {
@@ -987,6 +1177,12 @@
         "description": "costco - plates ,dates ,water, cups,napkins,lemonade,soda,chips",
         "requested": 484.02,
         "awarded": 484.02
+      }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation-4.pdf",
+        "path": "/Home/DownloadFile?fileId=44586"
       }
     ]
   },
@@ -1026,6 +1222,20 @@
         "description": "1-Full Tray Fettuccine Alfredo w/Chicken x 150.00 from Lorna's Italian Kitchen",
         "requested": 150,
         "awarded": 150
+      }
+    ],
+    "documents": [
+      {
+        "name": "UCSD University Centers Reservation - Health Summit.pdf",
+        "path": "/Home/DownloadFile?fileId=45335"
+      },
+      {
+        "name": "Lorna's Italian Kitchen - Italian Salad.png",
+        "path": "/Home/DownloadFile?fileId=45336"
+      },
+      {
+        "name": "Lorna's Italian Kitchen - Pasta Marinara & Alfredo.png",
+        "path": "/Home/DownloadFile?fileId=45337"
       }
     ]
   }

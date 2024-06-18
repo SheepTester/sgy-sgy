@@ -97,6 +97,10 @@ export type Cost = {
   appealRequested?: number
   appealApproved?: number
 }
+export type Document = {
+  name: string
+  path: string
+}
 
 export async function getApplication (finId: number) {
   const doc = parse(await fetchApplication(finId))
@@ -114,7 +118,6 @@ export async function getApplication (finId: number) {
   }
   const costs: Cost[] = []
   const table = doc.querySelector('tbody') ?? expect('tbody')
-  console.log(finId)
   for (const row of children(table)) {
     const tds = children(row)
     if (tds[0].getAttribute('colspan')) {
@@ -142,9 +145,14 @@ export async function getApplication (finId: number) {
         : undefined
     })
   }
-  console.log(questions)
-  console.log(costs)
-  return { questions, costs }
+  const documents: Document[] = []
+  for (const a of doc.getElementsByTagName('a')) {
+    const href = a.getAttribute('href')
+    if (href?.startsWith('/Home/DownloadFile')) {
+      documents.push({ name: a.textContent, path: href })
+    }
+  }
+  return { questions, costs, documents }
 }
 
 import fs from 'fs/promises'
