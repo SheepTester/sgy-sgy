@@ -23,11 +23,10 @@ type Event = {
   /** In UTC. */
   date: Date
   venue: string
-  awarded: string
+  awarded?: number
   /** In UTC. */
   updated: Date
-  details: number
-  postEval?: number
+  hasPostEval: boolean
 }
 
 const doc = parse(await fetchTerm('1021'))
@@ -51,25 +50,13 @@ for (const row of children(table)) {
       }`
     ),
     venue,
-    awarded,
+    awarded: awarded ? +awarded.replace(/[$,]/g, '') : undefined,
     updated: new Date(
       `${updated.slice(0, 4)}-${updated.slice(4, 6)}-${
         updated.slice(6).split(/\r?\n/)[0]
       }`
     ),
-    details:
-      parseIntMaybe(
-        row
-          .querySelector('.btn-success')
-          ?.getAttribute('href')
-          ?.replace('/Home/ViewApplication/', '')
-      ) ?? expect('.btn-success[href]'),
-    postEval: parseIntMaybe(
-      row
-        .querySelector('.btn-info')
-        ?.getAttribute('href')
-        ?.replace('/Home/ViewPostEvaluation/', '')
-    )
+    hasPostEval: !!row.querySelector('.btn-info')?.getAttribute('href')
   })
 }
 console.log(results)
