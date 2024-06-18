@@ -12,7 +12,7 @@
  * https://finance.ucsd.edu/Home/ListFunded. I think I could scrape the values
  * in the future, but it's relatively easy so for now I'll just hard-code it.
  */
-export async function fetchTerm (termId: string): Promise<string> {
+export async function fetchTerm (termId: number): Promise<string> {
   return fetch('https://finance.ucsd.edu/Home/ListFunded', {
     headers: {
       cookie: await fetch('https://finance.ucsd.edu/Home/UpdateTerm', {
@@ -31,4 +31,10 @@ export async function fetchTerm (termId: string): Promise<string> {
       )
     }
   }).then(r => r.text())
+}
+
+export function fetchApplication (finId: number): Promise<string> {
+  return fetch(`https://finance.ucsd.edu/Home/ViewApplication/${finId}`).then(
+    r => r.text()
+  )
 }
