@@ -1,310 +1,1032 @@
 [
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Eta Kappa Nu (HKN)",
-    "NAME OF EVENT": "HKN Leetcode Workshop",
-    "DATE OF EVENT": "2/29/2024",
-    "VENUE": "Henry Booker Room",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "The event is structured to focus on three specific coding problems from LeetCode, selected to cover a range of difficulty levels and topics such as algorithms and data structures. This is aimed at enhancing students' problem-solving and coding skills by introducing them to best practices and efficient approaches to coding challenges. The workshop will include a detailed walkthrough of each problem, emphasizing optimal solutions and strategies like time complexity reduction and space optimization. Participants will learn how to approach different types of problems, identify common patterns, and apply appropriate algorithms. Additionally, the workshop is intended for students interested in programming and those preparing for technical interviews, offering insights into how tech companies evaluate coding proficiency.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/19/2024 4:50:34 PM",
-    "CHANGED": "1/19/2024 4:50:34 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Eta Kappa Nu (HKN)",
+      "NAME OF EVENT": "HKN Leetcode Workshop",
+      "DATE OF EVENT": "2/29/2024",
+      "VENUE": "Henry Booker Room",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "The event is structured to focus on three specific coding problems from LeetCode, selected to cover a range of difficulty levels and topics such as algorithms and data structures. This is aimed at enhancing students' problem-solving and coding skills by introducing them to best practices and efficient approaches to coding challenges. The workshop will include a detailed walkthrough of each problem, emphasizing optimal solutions and strategies like time complexity reduction and space optimization. Participants will learn how to approach different types of problems, identify common patterns, and apply appropriate algorithms. Additionally, the workshop is intended for students interested in programming and those preparing for technical interviews, offering insights into how tech companies evaluate coding proficiency.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/19/2024 4:50:34 PM",
+      "CHANGED": "1/19/2024 4:50:34 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "Chipotle Catering: BASES: Cilantro-lime white rice, black beans PROTEINS: Chicken, barbacoa TOPPINGS/VEGGIES: Fajita veggies, shredded cheese, taco lettuce PREMIUM TOPPING: Guacamole SALSAS: Fresh tomato salsa, roasted chili-corn salsa TORTILLA: Soft flour tortillas",
+        "requested": 259,
+        "awarded": 259
+      },
+      { "type": "0", "description": "", "requested": 0, "awarded": 0 }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Association for Computing Machinery (ACM)",
-    "NAME OF EVENT": "Hack Placeholder",
-    "DATE OF EVENT": "3/4/2024",
-    "VENUE": "Henry Booker Room",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Workshop on responsive web dev design! Very important because responsive website makes you look professional!",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/19/2024 11:15:59 PM",
-    "CHANGED": "1/19/2024 11:15:59 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Association for Computing Machinery (ACM)",
+      "NAME OF EVENT": "Hack Placeholder",
+      "DATE OF EVENT": "3/4/2024",
+      "VENUE": "Henry Booker Room",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Workshop on responsive web dev design! Very important because responsive website makes you look professional!",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/19/2024 11:15:59 PM",
+      "CHANGED": "1/19/2024 11:15:59 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "TOFU PAD THAI TRAY",
+        "requested": 70,
+        "awarded": 70
+      },
+      {
+        "type": "Food",
+        "description": "CHICKEN FRIED RICE TRAY",
+        "requested": 70,
+        "awarded": 70
+      },
+      {
+        "type": "Food",
+        "description": "BEEF PAD SEE-IW TRAY x 2",
+        "requested": 180,
+        "awarded": 180
+      },
+      {
+        "type": "Food",
+        "description": "sales tax",
+        "requested": 24.8,
+        "awarded": 24.8
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Association for Computing Machinery (ACM)",
-    "NAME OF EVENT": "ACM Cafe",
-    "DATE OF EVENT": "3/5/2024",
-    "VENUE": "DIB 208",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Grab a cup of joe and take a quick break with your fellow members :0",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "70",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/19/2024 11:23:33 PM",
-    "CHANGED": "1/19/2024 11:23:33 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Association for Computing Machinery (ACM)",
+      "NAME OF EVENT": "ACM Cafe",
+      "DATE OF EVENT": "3/5/2024",
+      "VENUE": "DIB 208",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Grab a cup of joe and take a quick break with your fellow members :0",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "70",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/19/2024 11:23:33 PM",
+      "CHANGED": "1/19/2024 11:23:33 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "3 Gourmet Bagels & Shmear Nosh Box (Two Dozen)",
+        "requested": 223.97,
+        "awarded": 223.97
+      },
+      {
+        "type": "Food",
+        "description": "4 Classic Lunch Nosh Box (Full - 10 Sandwiches)",
+        "requested": 327.96,
+        "awarded": 327.96
+      },
+      {
+        "type": "Food",
+        "description": "sales tax",
+        "requested": 39.9,
+        "awarded": 39.9
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Association for Computing Machinery (ACM)",
-    "NAME OF EVENT": "Events Staff Placeholder",
-    "DATE OF EVENT": "3/5/2024",
-    "VENUE": "Qualcomm Room",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Come out to relax and have some fun during the midterm season with ACM! We'll be doing some fun activities so you can also get to know more people in the club :)",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "26",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/19/2024 11:29:40 PM",
-    "CHANGED": "1/19/2024 11:29:40 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Association for Computing Machinery (ACM)",
+      "NAME OF EVENT": "Events Staff Placeholder",
+      "DATE OF EVENT": "3/5/2024",
+      "VENUE": "Qualcomm Room",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Come out to relax and have some fun during the midterm season with ACM! We'll be doing some fun activities so you can also get to know more people in the club :)",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "26",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/19/2024 11:29:40 PM",
+      "CHANGED": "1/19/2024 11:29:40 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "TOFU PAD THAI TRAY",
+        "requested": 70,
+        "awarded": 70
+      },
+      {
+        "type": "Food",
+        "description": "CHICKEN FRIED RICE TRAY",
+        "requested": 70,
+        "awarded": 70
+      },
+      {
+        "type": "Food",
+        "description": "2 BEEF PAD SEE-IW TRAY",
+        "requested": 180,
+        "awarded": 180
+      },
+      {
+        "type": "Food",
+        "description": "sales tax",
+        "requested": 24.8,
+        "awarded": 24.8
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Association for Computing Machinery (ACM)",
-    "NAME OF EVENT": "Study Jam",
-    "DATE OF EVENT": "3/7/2024",
-    "VENUE": "ASML",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Stressed about your finals? We got you covered! Come study and hangout with friends, and ACM Design has prepared you well with Starbucks coffees and treats :D",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/19/2024 11:35:26 PM",
-    "CHANGED": "1/19/2024 11:35:26 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Association for Computing Machinery (ACM)",
+      "NAME OF EVENT": "Study Jam",
+      "DATE OF EVENT": "3/7/2024",
+      "VENUE": "ASML",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Stressed about your finals? We got you covered! Come study and hangout with friends, and ACM Design has prepared you well with Starbucks coffees and treats :D",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/19/2024 11:35:26 PM",
+      "CHANGED": "1/19/2024 11:35:26 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "28 burritos",
+        "requested": 324.8,
+        "awarded": 324.8
+      },
+      {
+        "type": "Food",
+        "description": "sales tax",
+        "requested": 25.17,
+        "awarded": 25.17
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Association for Computing Machinery (ACM)",
-    "NAME OF EVENT": "Keerthi Event Workshop Placeholder",
-    "DATE OF EVENT": "3/8/2024",
-    "VENUE": "SME ASML Room",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Come out to relax and have some fun during the midterm season with ACM! We'll be doing some fun activities so you can also get to know more people in the club :)",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/19/2024 11:39:05 PM",
-    "CHANGED": "1/19/2024 11:39:05 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Association for Computing Machinery (ACM)",
+      "NAME OF EVENT": "Keerthi Event Workshop Placeholder",
+      "DATE OF EVENT": "3/8/2024",
+      "VENUE": "SME ASML Room",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Come out to relax and have some fun during the midterm season with ACM! We'll be doing some fun activities so you can also get to know more people in the club :)",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/19/2024 11:39:05 PM",
+      "CHANGED": "1/19/2024 11:39:05 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "TOFU PAD THAI TRAY",
+        "requested": 70,
+        "awarded": 70
+      },
+      {
+        "type": "Food",
+        "description": "CHICKEN FRIED RICE TRAY",
+        "requested": 70,
+        "awarded": 70
+      },
+      {
+        "type": "Food",
+        "description": "2 BEEF PAD SEE-IW TRAY",
+        "requested": 180,
+        "awarded": 180
+      },
+      {
+        "type": "Food",
+        "description": "Sales tax",
+        "requested": 24.8,
+        "awarded": 24
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Keyboard Club at UC San Diego",
-    "NAME OF EVENT": "Studio Keebli: Keyboard Meet Of Your Dreams",
-    "DATE OF EVENT": "4/6/2024",
-    "VENUE": "Price Center West - Ballroom AB + East Ballroom",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is a high-scope event that is designed to introduce, foster, and facilitate a community at UC San Diego revolving around keyboards. With a planned 25 Artists & 25 Artisan Makers, Vendors, and Content Creators, we hope to create the most compelling and diverse experience in keyboards in the World. This event will likely be one of the World's biggest Keyboard Exhibitions - with a planned $15,000-$20,000 in product being given back directly to UC San Diego students to equitize the hobby.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "1000",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/22/2024 4:26:01 PM",
-    "CHANGED": "1/22/2024 4:27:37 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Keyboard Club at UC San Diego",
+      "NAME OF EVENT": "Studio Keebli: Keyboard Meet Of Your Dreams",
+      "DATE OF EVENT": "4/6/2024",
+      "VENUE": "Price Center West - Ballroom AB + East Ballroom",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is a high-scope event that is designed to introduce, foster, and facilitate a community at UC San Diego revolving around keyboards. With a planned 25 Artists & 25 Artisan Makers, Vendors, and Content Creators, we hope to create the most compelling and diverse experience in keyboards in the World. This event will likely be one of the World's biggest Keyboard Exhibitions - with a planned $15,000-$20,000 in product being given back directly to UC San Diego students to equitize the hobby.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "1000",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/22/2024 4:26:01 PM",
+      "CHANGED": "1/22/2024 4:27:37 PM"
+    },
+    "costs": [
+      {
+        "type": "Security",
+        "description": "Security costs - quote by David Duran from University Centers.",
+        "requested": 3129.75,
+        "awarded": 3129.75
+      },
+      {
+        "type": "Other",
+        "description": "Merchandising Fee (Processing Fee) for Tables.",
+        "requested": 987.5,
+        "awarded": 987.5
+      },
+      {
+        "type": "Other",
+        "description": "Cardboard Cutout for Studio Keebli",
+        "requested": 182.49,
+        "awarded": 0
+      },
+      {
+        "type": "Flyers",
+        "description": "Marketing Costs (Banner + Posters)",
+        "requested": 200,
+        "awarded": 200
+      },
+      {
+        "type": "Technology",
+        "description": "Technology Fee",
+        "requested": 775,
+        "awarded": 775
+      },
+      {
+        "type": "Other",
+        "description": "Tables from Bright Event Rentals",
+        "requested": 729.1,
+        "awarded": 729.1
+      },
+      {
+        "type": "Other",
+        "description": "Performance Agreement with TaehaTypes",
+        "requested": 1000,
+        "awarded": 1000
+      },
+      {
+        "type": "Other",
+        "description": "Performance Agreement with Hipyotech",
+        "requested": 1500,
+        "awarded": 1500
+      },
+      {
+        "type": "Other",
+        "description": "Performance Agreement with Tinymakesthings",
+        "requested": 750,
+        "awarded": 750
+      },
+      {
+        "type": "Other",
+        "description": "Performance Agreement with Basilleafs",
+        "requested": 300,
+        "awarded": 300
+      },
+      {
+        "type": "Other",
+        "description": "Performance Agreement with Sodiepops",
+        "requested": 200,
+        "awarded": 200
+      },
+      {
+        "type": "Other",
+        "description": "Performance Agreement with Keyzen Caps",
+        "requested": 200,
+        "awarded": 200
+      },
+      {
+        "type": "Other",
+        "description": "Performance Agreement with Jelly_Caps & Della_Key",
+        "requested": 600,
+        "awarded": 600
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Aequora Ballet Company",
-    "NAME OF EVENT": "Spring Show 2024 Rehearsal 1",
-    "DATE OF EVENT": "5/12/2024",
-    "VENUE": "Price Center West Ballroom AB",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is the first day of dress/tech rehearsals (2PM-6PM) for a performance in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company.\r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/22/2024 8:49:56 PM",
-    "CHANGED": "1/27/2024 4:30:36 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Aequora Ballet Company",
+      "NAME OF EVENT": "Spring Show 2024 Rehearsal 1",
+      "DATE OF EVENT": "5/12/2024",
+      "VENUE": "Price Center West Ballroom AB",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is the first day of dress/tech rehearsals (2PM-6PM) for a performance in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company.\r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/22/2024 8:49:56 PM",
+      "CHANGED": "1/27/2024 4:30:36 PM"
+    },
+    "costs": [
+      {
+        "type": "Facility",
+        "description": "$350 for Price Center venue and services",
+        "requested": 350,
+        "awarded": 350
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Aequora Ballet Company",
-    "NAME OF EVENT": "Spring Show 2024 Rehearsal 2",
-    "DATE OF EVENT": "5/13/2024",
-    "VENUE": "Price Center West Ballroom AB",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is the second day of dress/tech rehearsals (7PM-10PM) for a performance in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company.\r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/22/2024 8:52:49 PM",
-    "CHANGED": "1/27/2024 4:31:19 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Aequora Ballet Company",
+      "NAME OF EVENT": "Spring Show 2024 Rehearsal 2",
+      "DATE OF EVENT": "5/13/2024",
+      "VENUE": "Price Center West Ballroom AB",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is the second day of dress/tech rehearsals (7PM-10PM) for a performance in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company.\r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/22/2024 8:52:49 PM",
+      "CHANGED": "1/27/2024 4:31:19 PM"
+    },
+    "costs": [
+      {
+        "type": "Facility",
+        "description": "$350 for Price Center venue and services",
+        "requested": 350,
+        "awarded": 350
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Aequora Ballet Company",
-    "NAME OF EVENT": "Spring Show 2024 Rehearsal 3",
-    "DATE OF EVENT": "5/14/2024",
-    "VENUE": "Price Center West Ballroom AB",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is the third day of dress/tech rehearsals (6PM-10PM) for a performance in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company.\r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/22/2024 8:54:38 PM",
-    "CHANGED": "1/27/2024 4:32:01 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Aequora Ballet Company",
+      "NAME OF EVENT": "Spring Show 2024 Rehearsal 3",
+      "DATE OF EVENT": "5/14/2024",
+      "VENUE": "Price Center West Ballroom AB",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is the third day of dress/tech rehearsals (6PM-10PM) for a performance in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company.\r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "30",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/22/2024 8:54:38 PM",
+      "CHANGED": "1/27/2024 4:32:01 PM"
+    },
+    "costs": [
+      {
+        "type": "Facility",
+        "description": "$350 for Price Center venue and services",
+        "requested": 350,
+        "awarded": 350
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Aequora Ballet Company",
-    "NAME OF EVENT": "Spring Show 2024",
-    "DATE OF EVENT": "5/19/2024",
-    "VENUE": "Price Center West Ballroom AB",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is a performance (7:30PM-9:30PM) in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company. All tickets will be free. \r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "355",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/22/2024 9:08:35 PM",
-    "CHANGED": "1/27/2024 4:38:38 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Aequora Ballet Company",
+      "NAME OF EVENT": "Spring Show 2024",
+      "DATE OF EVENT": "5/19/2024",
+      "VENUE": "Price Center West Ballroom AB",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "This event is a performance (7:30PM-9:30PM) in Spring Quarter in which Aequora Ballet Company members will dance classical and contemporary ballet choreography. The show will feature two other dance groups on campus, Muse Dance Company and Ikigai Dance Company. All tickets will be free. \r\nThe theme of the show is Alice in Wonderland interpretations. For company members, the event itself and preparation for it aim to improve students’ out-of-classroom experience by providing students with a social event, while promoting a balance of academics, personal growth, and extracurriculars. For potential attendees, the performance is an opportunity for students and the UCSD community at large to gain exposure to the arts–ballet specifically–and enrich their experience at UCSD with a live performance of ballet conveniently located on campus. Student attendees may also appreciate the opportunity of connecting with other peers who attend the performance, along with connecting with their dance-maker peers by witnessing their styles of storytelling through movement.  \r\nOverall, Aequora Ballet Company aims to foster a diverse and inclusive classical and contemporary dance community for students to connect and improve their dancing, as well as the opportunity to perform in an annual showcase in which they can share their work with the UCSD community. This is our third year in-person as a student organization and fourth year overall, and we would use the funds to cover the Price Center venue and services.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "355",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/22/2024 9:08:35 PM",
+      "CHANGED": "1/27/2024 4:38:38 PM"
+    },
+    "costs": [
+      {
+        "type": "Security",
+        "description": "n/a",
+        "requested": 0,
+        "awarded": 0
+      },
+      {
+        "type": "Programs",
+        "description": "$274.08 for 150 programs + tax from Imprints",
+        "requested": 274.08,
+        "awarded": 200
+      },
+      {
+        "type": "Flyers",
+        "description": "$109.89 for 1000 flyers + tax from Imprints",
+        "requested": 109.89,
+        "awarded": 0
+      },
+      {
+        "type": "Facility",
+        "description": "$2175 for Price Center venue and services (includes remaining balance from rehearsals)",
+        "requested": 2175,
+        "awarded": 1262.5
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Association for Computing Machinery (ACM)",
-    "NAME OF EVENT": "🌸 Spring Kickoff",
-    "DATE OF EVENT": "4/1/2024",
-    "VENUE": "PC East Ballroom",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "ACM at UCSD is UC San Diego's largest computing and tech organization, with over 1,500 members and over 200 technical, professional, and social events year-round. We’re not just limited to computer science, though — we bring together anyone and everyone who shares our love of technology, design, and innovation! Join us to find out how you can engage in our community for the Spring Quarter through socials, live coding workshops, tech talks, and much more. We welcome people of all backgrounds and skill levels, whether you’re an entry-level UI designer or a machine learning expert. Come be a part of our rapidly growing community of friends at our Spring Kickoff of the year! There will be free food and drinks so make sure to come by!!!! Join our discord to stay engaged with the community!",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "510",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/25/2024 8:20:10 PM",
-    "CHANGED": "2/15/2024 2:23:18 PM"
-  },
-  {},
-  {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "TEDx@UCSanDiego",
-    "NAME OF EVENT": "Spring Salon",
-    "DATE OF EVENT": "4/18/2024",
-    "VENUE": "The Loft",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "In the spirit of \"ideas worth spreading,\" TEDxUCSanDiego is hosting an events that highlight student speakers who are talking on the concept of ‘Potato, Potato’ (possible Salon event title), or essentially the concept of multiple perspectives -- their interpretation of the phrase, what it means to them, and how the topic can be relatable and engaging for their fellow UC San Diego students. TEDxUCSanDiego's mission is to bring together thinkers and doers to share ideas that matter in and to any discipline. Through an on-campus forum, we hope to engage, inspire, and encourage students to change their lives and the world around them.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "95",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/29/2024 9:47:24 AM",
-    "CHANGED": "1/29/2024 9:47:24 AM"
-  },
-  {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Amateur Radio Club at UC San Diego (KK6UC)",
-    "NAME OF EVENT": "Satellites, Space and Radios Workshop",
-    "DATE OF EVENT": "4/1/2024",
-    "VENUE": "Price Center - Revelle College Room",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "We will hold a workshop on how you can use amateur radio to contact satellites such as the ISS. We will also go over telemetry data, how repeaters work and how EME communication works.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "10",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "1/29/2024 4:12:02 PM",
-    "CHANGED": "1/29/2024 4:12:02 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Association for Computing Machinery (ACM)",
+      "NAME OF EVENT": "🌸 Spring Kickoff",
+      "DATE OF EVENT": "4/1/2024",
+      "VENUE": "PC East Ballroom",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "ACM at UCSD is UC San Diego's largest computing and tech organization, with over 1,500 members and over 200 technical, professional, and social events year-round. We’re not just limited to computer science, though — we bring together anyone and everyone who shares our love of technology, design, and innovation! Join us to find out how you can engage in our community for the Spring Quarter through socials, live coding workshops, tech talks, and much more. We welcome people of all backgrounds and skill levels, whether you’re an entry-level UI designer or a machine learning expert. Come be a part of our rapidly growing community of friends at our Spring Kickoff of the year! There will be free food and drinks so make sure to come by!!!! Join our discord to stay engaged with the community!",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "510",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/25/2024 8:20:10 PM",
+      "CHANGED": "2/15/2024 2:23:18 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "chiptole burrito by box",
+        "requested": 2320,
+        "awarded": 2320
+      },
+      {
+        "type": "Food",
+        "description": "chiptole sales tax",
+        "requested": 179.8,
+        "awarded": 179.8
+      },
+      {
+        "type": "Food",
+        "description": "tapex milk tea boba",
+        "requested": 1855.5,
+        "awarded": 1855.5
+      },
+      {
+        "type": "Food",
+        "description": "tapex sales tax",
+        "requested": 143.57,
+        "awarded": 143.57
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Student Support Services Club (SSSC or SSS Club)",
-    "NAME OF EVENT": "31st Cultural Celebration & Awards Ceremony",
-    "DATE OF EVENT": "5/16/2024",
-    "VENUE": "Price Center West Ballroom AB",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Our organization provides a supportive space for students to interact and connect with each other through school events, learning environments (classroom and tutoring workshops), and personal associations throughout the year. For this reason, the mission statement of our organization is to empower underrepresented students in pursuing higher education and to celebrate cultural diversity. Each year our event has several components to follow our mission statement. Firstly, the event will gather the students in our organization who are from different backgrounds and UCSD colleges to celebrate their accomplishments and growth during the academic year. The event will also validate the achievements of the students in our organization and empower them as we come together as a community and support each other. For instance, the graduating seniors and their families, along with current club members will be recognized and honored for their achievements. In addition, the event will celebrate the diversity in the organization by having food catering that showcases the different cultures in our organization. Throughout the event, we will have a keynote speaker and a senior speaker who will inspire our students to succeed in higher education.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "95",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "2/1/2024 11:21:08 AM",
-    "CHANGED": "3/5/2024 12:55:20 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Bridging the Gap",
+      "NAME OF EVENT": "URiM (Underrepresented in Medicine) Conference",
+      "DATE OF EVENT": "4/20/2024",
+      "VENUE": "UCSD Skaggs School of Pharmacy",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "The URiM Conference is a free conference that will take place on Saturday, April 20th, 2023 from 7am-5:10pm. The mission of this conference is to provide undergraduate pre-health minority, first-generation, and lower SES students with some of the information, tools, and opportunities that are necessary to aid them in the process of reaching their healthcare career goals. \r\nFaculty, medical school students, and doctors from the UCSD School of Medicine are already confirmed to speak. We also have confirmed speakers with the Skaggs School of Pharmacy students as well as students from other programs. There will also be an Opportunities Fair where student organizations, UCSD Programs and organizations, and internship/volunteer programs will be tabling for students to explore.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "200",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/27/2024 10:55:31 PM",
+      "CHANGED": "1/29/2024 12:15:43 PM"
+    },
+    "costs": [
+      {
+        "type": "Security",
+        "description": "N/A",
+        "requested": 0,
+        "awarded": 0,
+        "appealRequested": 0,
+        "appealApproved": 0
+      },
+      {
+        "type": "Facility",
+        "description": "30 UCSD Parking Spaces x 15.00, Standard A Frame for Parking x 65.00 for set of 6",
+        "requested": 515,
+        "awarded": 0,
+        "appealRequested": 0,
+        "appealApproved": 0
+      },
+      {
+        "type": "Food",
+        "description": "10-whole 18-inch Pepperoni Pizza x9.95 each from Costco",
+        "requested": 99.5,
+        "awarded": 28.37,
+        "appealRequested": 0,
+        "appealApproved": 28.37
+      },
+      {
+        "type": "Food",
+        "description": "Einstein Bagels 16 Dozen for 247.84, Cream Cheese for 79.84",
+        "requested": 361,
+        "awarded": 890.38,
+        "appealRequested": 890.38,
+        "appealApproved": 890.38
+      },
+      {
+        "type": "Other",
+        "description": "100 Medium Event Badge x1.14 each from Eventgroove",
+        "requested": 113.92,
+        "awarded": 113.92,
+        "appealRequested": 0,
+        "appealApproved": 113.92
+      },
+      {
+        "type": "Other",
+        "description": "100 Lanyards x0.72 each from Eventgroove",
+        "requested": 71.92,
+        "awarded": 0,
+        "appealRequested": 0,
+        "appealApproved": 0
+      },
+      {
+        "type": "Flyers",
+        "description": "2,000 x 0.04 each from uprinting",
+        "requested": 70.6,
+        "awarded": 0,
+        "appealRequested": 0,
+        "appealApproved": 0
+      },
+      {
+        "type": "Other",
+        "description": "10 Banquet Table Plastic x12 each, 20 folding white chair x2 each",
+        "requested": 160,
+        "awarded": 923.43,
+        "appealRequested": 923.43,
+        "appealApproved": 923.43
+      },
+      {
+        "type": "Other",
+        "description": "1,000 Square Cut x 0.0439",
+        "requested": 43.9,
+        "awarded": 43.9,
+        "appealRequested": 0,
+        "appealApproved": 43.9
+      },
+      {
+        "type": "Flyers",
+        "description": "6 roll pack of Painters Tape x8.99 each from Amazon",
+        "requested": 8.99,
+        "awarded": 0,
+        "appealRequested": 0,
+        "appealApproved": 0
+      },
+      {
+        "type": "0",
+        "description": "",
+        "requested": 0,
+        "awarded": 0,
+        "appealRequested": 0,
+        "appealApproved": 0
+      }
+    ]
   },
-  {},
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "American Institute of Chemical Engineers (AIChE)",
-    "NAME OF EVENT": "Speed Dating x Mock Interview Workshop",
-    "DATE OF EVENT": "4/3/2024",
-    "VENUE": "SME 248",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "An event where engineering students can practice interviewing and being the interviewer. As well as learn how to improve their skills through peer advising.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "50",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "2/2/2024 11:33:00 PM",
-    "CHANGED": "2/2/2024 11:33:00 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "TEDx@UCSanDiego",
+      "NAME OF EVENT": "Spring Salon",
+      "DATE OF EVENT": "4/18/2024",
+      "VENUE": "The Loft",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "In the spirit of \"ideas worth spreading,\" TEDxUCSanDiego is hosting an events that highlight student speakers who are talking on the concept of ‘Potato, Potato’ (possible Salon event title), or essentially the concept of multiple perspectives -- their interpretation of the phrase, what it means to them, and how the topic can be relatable and engaging for their fellow UC San Diego students. TEDxUCSanDiego's mission is to bring together thinkers and doers to share ideas that matter in and to any discipline. Through an on-campus forum, we hope to engage, inspire, and encourage students to change their lives and the world around them.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "95",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/29/2024 9:47:24 AM",
+      "CHANGED": "1/29/2024 9:47:24 AM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "50-Assorted Flatbreads x4.00 each from Zanzibar",
+        "requested": 200,
+        "awarded": 125
+      },
+      {
+        "type": "Food",
+        "description": "30-Spanakopita x2.25 each from Zanzibar",
+        "requested": 67.5,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "30-Mozz Skewers x1.75 each from Zanzibar",
+        "requested": 52.5,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "20% Service Charge at Zanzibar",
+        "requested": 64,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Tax at Zanzibar",
+        "requested": 24.8,
+        "awarded": 0
+      },
+      {
+        "type": "Facility",
+        "description": "Facility Rental Fee, Reservation #211996",
+        "requested": 300,
+        "awarded": 300
+      },
+      {
+        "type": "Facility",
+        "description": "Production Labor, Reservation #211996",
+        "requested": 175,
+        "awarded": 175
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Ahlul-Bayt Student Association",
-    "NAME OF EVENT": "Ramadan iftar 1",
-    "DATE OF EVENT": "4/4/2024",
-    "VENUE": "Matthews Quad",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "We will be hosting dinner for those who are fasting to break their fast during the month of Ramadan. Food will be served to student. This relates to our mission of promoting the teachings of the Ahlul-Bayt because one of their teachings is to provide food for those who are fasting to break their fast.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "160",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
-    "Status": "FinalApproval",
-    "DATE CREATED": "2/5/2024 11:00:58 AM",
-    "CHANGED": "2/5/2024 11:00:58 AM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Amateur Radio Club at UC San Diego (KK6UC)",
+      "NAME OF EVENT": "Satellites, Space and Radios Workshop",
+      "DATE OF EVENT": "4/1/2024",
+      "VENUE": "Price Center - Revelle College Room",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "We will hold a workshop on how you can use amateur radio to contact satellites such as the ISS. We will also go over telemetry data, how repeaters work and how EME communication works.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "10",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "1/29/2024 4:12:02 PM",
+      "CHANGED": "1/29/2024 4:12:02 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "Small Sandwich Tray (16) from Mendocino Farms",
+        "requested": 146.58,
+        "awarded": 100
+      }
+    ]
   },
   {
-    "WHO IS THIS REQUEST FOR?": "0",
-    "ORGANIZATION": "Pilipino Undergraduate Society for Health",
-    "NAME OF EVENT": "PUSH Health Summit 2024",
-    "DATE OF EVENT": "4/20/2024",
-    "VENUE": "Price Center - Forum",
-    "IS THE EVENT ON CAMPUS?": "checked",
-    "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Health Summit is an event that brings together professional and graduate student speakers to provide attendees with opportunities for professional development and networking. This Health conference is a space where attendees can interact with speakers and gain insight on their lives in different healthcare fields. As part of our mission, Health Summit Workshop day promotes education and awareness of health issues to productively direct attendees towards their future health professions. My Neighbor Totoro, a Studio Ghibli film, will serve as inspiration for our 2024, 10th annual Health Summit.",
-    "ESTIMATED UNDERGRADUATE ATTENDANCE": "45",
-    "WILL ADMISSION BE CHARGED?": "unchecked",
-    "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
-    "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "checked",
-    "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "Parents Fund",
-    "Status": "FinalApproval",
-    "DATE CREATED": "2/5/2024 4:35:39 PM",
-    "CHANGED": "3/7/2024 9:50:51 PM"
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Student Support Services Club (SSSC or SSS Club)",
+      "NAME OF EVENT": "31st Cultural Celebration & Awards Ceremony",
+      "DATE OF EVENT": "5/16/2024",
+      "VENUE": "Price Center West Ballroom AB",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Our organization provides a supportive space for students to interact and connect with each other through school events, learning environments (classroom and tutoring workshops), and personal associations throughout the year. For this reason, the mission statement of our organization is to empower underrepresented students in pursuing higher education and to celebrate cultural diversity. Each year our event has several components to follow our mission statement. Firstly, the event will gather the students in our organization who are from different backgrounds and UCSD colleges to celebrate their accomplishments and growth during the academic year. The event will also validate the achievements of the students in our organization and empower them as we come together as a community and support each other. For instance, the graduating seniors and their families, along with current club members will be recognized and honored for their achievements. In addition, the event will celebrate the diversity in the organization by having food catering that showcases the different cultures in our organization. Throughout the event, we will have a keynote speaker and a senior speaker who will inspire our students to succeed in higher education.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "95",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "2/1/2024 11:21:08 AM",
+      "CHANGED": "3/5/2024 12:55:20 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "Chamorro Grill",
+        "requested": 480.57,
+        "awarded": 462.5
+      },
+      {
+        "type": "Food",
+        "description": "Flavors of East Africa",
+        "requested": 825.75,
+        "awarded": 0
+      },
+      {
+        "type": "Other",
+        "description": "Kirkland Signature Cutlery, Clear, 360-count",
+        "requested": 18.49,
+        "awarded": 0
+      },
+      {
+        "type": "Other",
+        "description": "Dixie Ultra 8-1/2\" Paper Plate, 240-count",
+        "requested": 22.99,
+        "awarded": 0
+      },
+      {
+        "type": "Other",
+        "description": "Kirkland Signature Chinet 18 oz Plastic Cup, Red, 240-count",
+        "requested": 13.99,
+        "awarded": 0
+      },
+      {
+        "type": "Other",
+        "description": "Kirkland Signature Napkins, 1-Ply, 280-count, 4-pack",
+        "requested": 27.98,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Coca-Cola Mini, 7.5 fl oz, 30-count (x3)",
+        "requested": 61.47,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "LaCroix Sparkling Water, Variety Pack, 12 fl oz, 24-count (x2)",
+        "requested": 29.68,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Pure Life Purified Water, 8 fl oz, 24-count (x2)",
+        "requested": 12.38,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Sprite Mini, 7.5 fl oz, 30-count (x2)",
+        "requested": 40.98,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Manzanita Sol Apple Soda, 12 fl oz, 24-count",
+        "requested": 14.69,
+        "awarded": 0
+      },
+      {
+        "type": "Technology",
+        "description": "209296",
+        "requested": 137.5,
+        "awarded": 137.5
+      },
+      {
+        "type": "Other",
+        "description": "90\" Black Seamless Polyester Round Tablecloth (x14)",
+        "requested": 97.86,
+        "awarded": 0
+      },
+      {
+        "type": "Other",
+        "description": "Chafing Dish Buffet Set 8pc (x2)",
+        "requested": 53.09,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Las Posadas Candy (50 Counts) – Spicy, Sweet, Sour Dulces Mexicanos Assortment Pack – Authentic Mexican Snacks for Kids and Adults (La Guera 50)",
+        "requested": 14.99,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "HI-CHEW Assorted Bulk Bag, 35.3oz | 185+ Count Individually Wrapped",
+        "requested": 17.99,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Kinder Schoko-bons (x2)",
+        "requested": 7.86,
+        "awarded": 0
+      },
+      {
+        "type": "Food",
+        "description": "Dona Pepa Peruvian Cookies",
+        "requested": 20.5,
+        "awarded": 0
+      }
+    ]
+  },
+  {
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Role Playing Games Club",
+      "NAME OF EVENT": "RPG Club Spring GBM",
+      "DATE OF EVENT": "4/9/2024",
+      "VENUE": "The Forum at Price Center",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Quarterly GBM for the Role Playing Games club. Event will include an hour of mingling where guests will be able to play board games and socialize with like minded people. The following three hours will be made up of pitches for long term role playing games from volunteers and a subsequent small group time where individuals interested in said games will meet and coordinate. It will serve as a unique opportunity for individuals who share a common interest in dungeons and dragons and similar role playing games to come together and find a community of people also interested in this hobby.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "80",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "2/2/2024 2:44:58 PM",
+      "CHANGED": "2/2/2024 2:44:58 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "Chipotle, 50 Burritos, 11.60 each",
+        "requested": 580,
+        "awarded": 599.95,
+        "appealRequested": 19.95,
+        "appealApproved": 599.95
+      },
+      {
+        "type": "0",
+        "description": "",
+        "requested": 0,
+        "awarded": 0,
+        "appealRequested": 0,
+        "appealApproved": 0
+      }
+    ]
+  },
+  {
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "American Institute of Chemical Engineers (AIChE)",
+      "NAME OF EVENT": "Speed Dating x Mock Interview Workshop",
+      "DATE OF EVENT": "4/3/2024",
+      "VENUE": "SME 248",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "An event where engineering students can practice interviewing and being the interviewer. As well as learn how to improve their skills through peer advising.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "50",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "2/2/2024 11:33:00 PM",
+      "CHANGED": "2/2/2024 11:33:00 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "2- SOMETIMES I'M A VEGETARIAN x12.25 each",
+        "requested": 24.5,
+        "awarded": 24.5
+      },
+      {
+        "type": "Food",
+        "description": "3-HOT MOMMA HUDA x12.25 each",
+        "requested": 36.75,
+        "awarded": 36.75
+      },
+      {
+        "type": "Food",
+        "description": "2-DA VINCI x13.75 each",
+        "requested": 27.5,
+        "awarded": 27.5
+      },
+      {
+        "type": "Food",
+        "description": "3-JAYMEE SIREWICH x12.25 each",
+        "requested": 36.75,
+        "awarded": 36.75
+      },
+      {
+        "type": "Food",
+        "description": "2-VEGAN PEE WEE x13.75 each",
+        "requested": 27.5,
+        "awarded": 27.5
+      },
+      {
+        "type": "Food",
+        "description": "2-VEGAN JAMES & THE GIANT PEACH x12.25 each",
+        "requested": 24.5,
+        "awarded": 24.5
+      },
+      {
+        "type": "0",
+        "description": "2-VEGAN THE TIME TRAVELER'S WIFE x12.75 each",
+        "requested": 25.5,
+        "awarded": 25.5
+      },
+      {
+        "type": "Food",
+        "description": "2-VEGAN FALL'ING FOR IKE'S x13.75 each",
+        "requested": 27.5,
+        "awarded": 27.5
+      },
+      {
+        "type": "Food",
+        "description": "4-HOT MOMMA HUDA x12.25 each",
+        "requested": 49,
+        "awarded": 49
+      },
+      {
+        "type": "Food",
+        "description": "3-HOLLYWOULD'S SF CHEESESTEAK x12.75 each",
+        "requested": 38.25,
+        "awarded": 38.25
+      },
+      {
+        "type": "Food",
+        "description": "Tax (on everything)",
+        "requested": 24.67,
+        "awarded": 24.67
+      }
+    ]
+  },
+  {
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Ahlul-Bayt Student Association",
+      "NAME OF EVENT": "Ramadan iftar 1",
+      "DATE OF EVENT": "4/4/2024",
+      "VENUE": "Matthews Quad",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "We will be hosting dinner for those who are fasting to break their fast during the month of Ramadan. Food will be served to student. This relates to our mission of promoting the teachings of the Ahlul-Bayt because one of their teachings is to provide food for those who are fasting to break their fast.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "160",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "unchecked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "",
+      "Status": "FinalApproval",
+      "DATE CREATED": "2/5/2024 11:00:58 AM",
+      "CHANGED": "2/5/2024 11:00:58 AM"
+    },
+    "costs": [
+      { "type": "Security", "description": "", "requested": 0, "awarded": 0 },
+      {
+        "type": "Food",
+        "description": "Kabul Kabob House-Qabili Palaw,Chicken Tikka Kabob,Beef Tikka Kabob,Boolani",
+        "requested": 1497.17,
+        "awarded": 1497.17
+      },
+      {
+        "type": "Food",
+        "description": "costco - plates ,dates ,water, cups,napkins,lemonade,soda,chips",
+        "requested": 484.02,
+        "awarded": 484.02
+      }
+    ]
+  },
+  {
+    "questions": {
+      "WHO IS THIS REQUEST FOR?": "0",
+      "ORGANIZATION": "Pilipino Undergraduate Society for Health",
+      "NAME OF EVENT": "PUSH Health Summit 2024",
+      "DATE OF EVENT": "4/20/2024",
+      "VENUE": "Price Center - Forum",
+      "IS THE EVENT ON CAMPUS?": "checked",
+      "DESCRIBE THE EVENT, TRY TO INCLUDE HOW IT RELATES TO YOUR MISSION OR VALUES": "Health Summit is an event that brings together professional and graduate student speakers to provide attendees with opportunities for professional development and networking. This Health conference is a space where attendees can interact with speakers and gain insight on their lives in different healthcare fields. As part of our mission, Health Summit Workshop day promotes education and awareness of health issues to productively direct attendees towards their future health professions. My Neighbor Totoro, a Studio Ghibli film, will serve as inspiration for our 2024, 10th annual Health Summit.",
+      "ESTIMATED UNDERGRADUATE ATTENDANCE": "45",
+      "WILL ADMISSION BE CHARGED?": "unchecked",
+      "IS THIS A PHILANTHROPIC EVENT?": "unchecked",
+      "ARE YOU RECEIVING FUNDING FROM OTHER SOURCES?": "checked",
+      "IF YOU ARE RECEIVING OTHER FUNDING, TELL US WHERE IT IS COMING FROM": "Parents Fund",
+      "Status": "FinalApproval",
+      "DATE CREATED": "2/5/2024 4:35:39 PM",
+      "CHANGED": "3/7/2024 9:50:51 PM"
+    },
+    "costs": [
+      {
+        "type": "Food",
+        "description": "1-Full Tray Italian Salad (A La Carte Menu) x 80.00 from Lorna's Italian Kitchen",
+        "requested": 80,
+        "awarded": 80
+      },
+      {
+        "type": "Food",
+        "description": "1-Full Tray Pasta Marinara (A La Carte Menu) x 90.00 from Lorna's Italian Kitchen",
+        "requested": 90,
+        "awarded": 90
+      },
+      {
+        "type": "Food",
+        "description": "1-Full Tray Fettuccine Alfredo w/Chicken x 150.00 from Lorna's Italian Kitchen",
+        "requested": 150,
+        "awarded": 150
+      }
+    ]
   }
 ]

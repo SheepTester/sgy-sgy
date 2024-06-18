@@ -41,7 +41,7 @@ export async function getEvents (termId: number): Promise<Event[]> {
       row
     ).map(td => td.textContent.trim())
     results.push({
-      finId: +finId,
+      finId: +finId.replaceAll('*', ''),
       organization,
       name,
       date: new Date(
@@ -78,6 +78,26 @@ export type Application = {
   changed: string
 }
 
+export type Cost = {
+  /**
+   * - Flyers
+   * - Programs
+   * - Food
+   * - Contract
+   * - Facility
+   * - Technology
+   * - Security
+   * - Other
+   * From https://finance.ucsd.edu/Finance/Home/CreateApplication
+   */
+  type: string
+  description: string
+  requested: number
+  awarded: number
+  appealRequested?: number
+  appealApproved?: number
+}
+
 export async function getApplication (finId: number) {
   const doc = parse(await fetchApplication(finId))
   const questions: Record<string, string> = {}
@@ -92,8 +112,39 @@ export async function getApplication (finId: number) {
         : dd
     }
   }
+  const costs: Cost[] = []
+  const table = doc.querySelector('tbody') ?? expect('tbody')
+  console.log(finId)
+  for (const row of children(table)) {
+    const tds = children(row)
+    if (tds[0].getAttribute('colspan')) {
+      // Ignore total
+      continue
+    }
+    const [
+      type,
+      description,
+      requested,
+      awarded,
+      appealRequested,
+      appealApproved
+    ] = tds.map(td => td.textContent.trim())
+    costs.push({
+      type,
+      description,
+      requested: +requested.replace(/[$,]/g, ''),
+      awarded: +awarded.replace(/[$,]/g, ''),
+      appealRequested: appealRequested
+        ? +appealRequested.replace(/[$,]/g, '')
+        : undefined,
+      appealApproved: appealApproved
+        ? +appealApproved.replace(/[$,]/g, '')
+        : undefined
+    })
+  }
   console.log(questions)
-  return questions
+  console.log(costs)
+  return { questions, costs }
 }
 
 import fs from 'fs/promises'
