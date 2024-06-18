@@ -3,6 +3,7 @@
 import { parse, HTMLElement, Node } from 'node-html-parser'
 import { fetchTerm } from './fetch'
 import { expect } from '../../lib/assert'
+import { parseIntMaybe } from '../../lib/parseIntMaybe'
 
 function children (element: Node): HTMLElement[] {
   return Array.from(element.childNodes).filter(
@@ -11,15 +12,22 @@ function children (element: Node): HTMLElement[] {
 }
 
 type Event = {
-  finId: string
+  /**
+   * Details: `https://finance.ucsd.edu/Home/ViewApplication/<finId>`
+   *
+   * Post-evaluation form: `https://finance.ucsd.edu/Home/ViewPostEvaluation/<finId>`
+   */
+  finId: number
   organization: string
   name: string
+  /** In UTC. */
   date: Date
   venue: string
   awarded: string
+  /** In UTC. */
   updated: Date
-  details: string
-  postEval?: string
+  details: number
+  postEval?: number
 }
 
 const doc = parse(await fetchTerm('1021'))
@@ -34,7 +42,7 @@ for (const row of children(table)) {
     row
   ).map(td => td.textContent.trim())
   results.push({
-    finId,
+    finId: +finId,
     organization,
     name,
     date: new Date(
@@ -50,9 +58,18 @@ for (const row of children(table)) {
       }`
     ),
     details:
-      row.querySelector('.btn-success')?.getAttribute('href') ??
-      expect('.btn-success[href]'),
-    postEval: row.querySelector('.btn-info')?.getAttribute('href')
+      parseIntMaybe(
+        row
+          .querySelector('.btn-success')
+          ?.getAttribute('href')
+          ?.replace('/Home/ViewApplication/', '')
+      ) ?? expect('.btn-success[href]'),
+    postEval: parseIntMaybe(
+      row
+        .querySelector('.btn-info')
+        ?.getAttribute('href')
+        ?.replace('/Home/ViewPostEvaluation/', '')
+    )
   })
 }
 console.log(results)
