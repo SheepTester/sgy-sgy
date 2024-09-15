@@ -1,3 +1,5 @@
+// tsx explore/police/scrape.ts
+
 import { readFile, writeFile } from 'fs/promises'
 import { getReports, Report } from './parse'
 
