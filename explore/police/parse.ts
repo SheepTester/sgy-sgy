@@ -11,7 +11,7 @@ type TextObject = {
   y: number
 }
 
-type Report = {
+export type Report = {
   type: string
   location: string
   dateReported: string
@@ -34,13 +34,10 @@ const FIELDS = [
 const BASE_URL =
   'https://www.police.ucsd.edu/docs/reports/CallsandArrests/CallsForService/'
 
-async function getReports (date: Date): Promise<Report[]> {
+export async function getReports (fileName: string): Promise<Report[]> {
   const reports: Report[] = []
   const pdf = await getDocument({
-    url: `${BASE_URL}/${date.toLocaleString('en-US', {
-      dateStyle: 'long',
-      timeZone: 'UTC'
-    })}.pdf`,
+    url: `${BASE_URL}/${fileName}`,
     useSystemFonts: true,
     verbosity: VerbosityLevel.ERRORS
   }).promise
@@ -119,4 +116,4 @@ async function getReports (date: Date): Promise<Report[]> {
   return reports
 }
 
-console.log(await getReports(new Date(Date.UTC(2024, 7, 13))))
+// console.log(await getReports('July 25, 2024 UPDATED.pdf'))
