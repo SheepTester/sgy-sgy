@@ -1,7 +1,8 @@
 {
   "type": "module",
   "dependencies": {
-    "node-html-parser": "^6.1.13"
+    "node-html-parser": "^6.1.13",
+    "pdfjs-dist": "^4.6.82"
   },
   "devDependencies": {
     "@types/node": "^20.14.5"
