@@ -1,4 +1,4 @@
-// ts-node-esm explore/finance/scrape.ts
+// tsx explore/finance/scrape.ts
 
 import { parse, HTMLElement, Node } from 'node-html-parser'
 import { fetchApplication, fetchTerm } from './fetch'
@@ -157,9 +157,9 @@ export async function getApplication (finId: number) {
 
 import fs from 'fs/promises'
 await fs.writeFile(
-  'explore/finance/apps.json',
+  'explore/finance/apps-1031.json',
   JSON.stringify(
-    await getEvents(1030).then(events =>
+    await getEvents(1031).then(events =>
       Promise.all(events.slice(0, 20).map(({ finId }) => getApplication(finId)))
     )
   )
