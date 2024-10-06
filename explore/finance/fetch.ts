@@ -38,3 +38,9 @@ export function fetchApplication (finId: number): Promise<string> {
     r => r.text()
   )
 }
+
+export function fetchPeef (finId: number): Promise<string> {
+  return fetch(
+    `https://finance.ucsd.edu/Home/ViewPostEvaluation/${finId}`
+  ).then(r => r.text())
+}

@@ -1,7 +1,7 @@
 // tsx explore/finance/scrape.ts
 
-import { parse, HTMLElement, Node } from 'node-html-parser'
-import { fetchApplication, fetchTerm } from './fetch'
+import { parse, HTMLElement, Node, NodeType } from 'node-html-parser'
+import { fetchApplication, fetchPeef, fetchTerm } from './fetch'
 import { expect } from '../../lib/assert'
 
 function children (element: Node): HTMLElement[] {
@@ -155,12 +155,48 @@ export async function getApplication (finId: number) {
   return { questions, costs, documents }
 }
 
+export async function getPeef (finId: number) {
+  const doc = parse(await fetchPeef(finId))
+  const questions: Record<string, string> = {}
+  for (const field of doc.querySelectorAll('.form-group')) {
+    if (field.querySelector('h2')) {
+      // PART B - SUPPORTING DOCUMENTS
+      continue
+    }
+    const question = field.childNodes[1].textContent
+    const input = field.querySelector('input')
+    if (input) {
+      questions[question] = input.getAttribute('checked') ?? ''
+    } else {
+      questions[question] =
+        field.childNodes
+          .slice(1)
+          .find(node => node.nodeType === NodeType.TEXT_NODE)
+          ?.text.trim() ?? ''
+    }
+  }
+  const documents: Document[] = []
+  for (const a of doc.getElementsByTagName('a')) {
+    const href = a.getAttribute('href')
+    if (href?.startsWith('/Home/DownloadFile')) {
+      documents.push({ name: a.textContent, path: href })
+    }
+  }
+  return { questions, documents }
+}
+
 import fs from 'fs/promises'
 await fs.writeFile(
   'explore/finance/apps-1031.json',
   JSON.stringify(
     await getEvents(1031).then(events =>
-      Promise.all(events.slice(0, 20).map(({ finId }) => getApplication(finId)))
+      Promise.all(
+        events.slice(0, 20).map(async event => ({
+          ...event,
+          ...(await getApplication(event.finId)),
+          peef: event.hasPostEval ? await getPeef(event.finId) : undefined
+        }))
+      )
     )
   )
 )

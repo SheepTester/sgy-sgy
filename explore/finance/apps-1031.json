@@ -1,5 +1,13 @@
 [
   {
+    "finId": 22112,
+    "organization": "Chinese Global Community",
+    "name": "Welcome Ceremony",
+    "date": "2024-09-27T00:00:00.000Z",
+    "venue": "Mandeville Auditorium",
+    "awarded": 4500,
+    "updated": "2024-05-17T17:01:28.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Chinese Global Community",
@@ -75,6 +83,14 @@
     ]
   },
   {
+    "finId": 22207,
+    "organization": "Association for Computing Machinery (ACM)",
+    "name": "Banquet 2",
+    "date": "2024-06-02T00:00:00.000Z",
+    "venue": "Qualcomm Room",
+    "awarded": 600,
+    "updated": "2024-04-20T13:04:42.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Association for Computing Machinery (ACM)",
@@ -121,6 +137,14 @@
     ]
   },
   {
+    "finId": 22250,
+    "organization": "Chem-E-Car Project",
+    "name": "ChemE Car Fall GBM #1",
+    "date": "2024-10-18T00:00:00.000Z",
+    "venue": "ASML Conference Center",
+    "awarded": 156.24,
+    "updated": "2024-09-03T17:36:05.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Chem-E-Car Project",
@@ -154,6 +178,14 @@
     ]
   },
   {
+    "finId": 22251,
+    "organization": "Video Game Development Club (VGDC) at UC San Diego",
+    "name": "Triton-Ware Fall Kickoff 2024",
+    "date": "2024-10-04T00:00:00.000Z",
+    "venue": "Price Center, Red Shoe Room + Bear Room",
+    "awarded": 319.21,
+    "updated": "2024-09-03T15:25:47.000Z",
+    "hasPostEval": true,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Video Game Development Club (VGDC) at UC San Diego",
@@ -192,9 +224,36 @@
         "name": "TritonWareKickofTapexOrder.PNG",
         "path": "/Home/DownloadFile?fileId=47093"
       }
-    ]
+    ],
+    "peef": {
+      "questions": {
+        "ACTUAL ATTENDANCE (# UCSD UNDERGRADUATE STUDENTS)": "120",
+        "IF THERE WAS A DIFFERENCE IN THE ESTIMATED AND ACTUAL ATTENDANCE NUMBERS, PLEASE EXPLAIN WHY YOU THINK THERE WAS A DIFFERENCE. HOW CAN YOU DECREASE THE DIFFERENCE IN ATTENDANCE NUMBERS FOR FUTURE EVENTS?": "It was higher because, again, we killed it. Our club is growing fast and we'll expect more in the future.",
+        "ACTUAL EXPENDITURE": "299.73",
+        "DID YOU RECEIVE OUTSIDE FUNDING?": "checked",
+        "PLEASE LIST ALL SOURCES OF FUNDING ASIDE FROM A.S.": "CSE Department Annual Funding (Covered $21.48 for extra drinks)",
+        "WHAT WAS THE PURPOSE OR GOAL OF THE EVENT?": "To start our game jam and provide a workshop for game development. This will get people making games, which is the whole point of our organization.",
+        "DO YOU CONSIDER THE EVENT TO HAVE BEEN A SUCCESS? WHY OR WHY NOT?": "Yes! We had a ton of people come and people were excited to work together and build their projects.",
+        "WHAT WOULD YOU DESCRIBE AS YOUR MOST VALUABLE RESOURCE?": "Our team, because they put in all the work to make this event possible. But also, our growing enthusiasm is a massively important resource in its own way.",
+        "WHAT IF ANY COMPLICATIONS AROSE DURING THE EVENT?": "Honestly, no big complications. There were just so many people it was hard to fully engage with everyone.",
+        "WHAT STEPS OR ITEMS WOULD YOU IMPROVE FOR THE NEXT EVENT?": "Expect more people in the future, that's pretty much it.",
+        "WHAT ONLINE CHANGES WOULD YOU MAKE TO ADVERTISEMENTS OR PROMOTION?": "I'll need to fix the website to making adding events more simple.",
+        "DO YOU HAVE ANY FEEDBACK FOR US ON THE A.S. FUNDING APPLICATION/PROCESS? HOW CAN WE BETTER SUPPORT YOU AND YOUR ORGANIZATION?": "I left my main feedback on the Fall GBM form."
+      },
+      "documents": [
+        { "name": "Picture 1.JPG", "path": "/Home/DownloadFile?fileId=48508" }
+      ]
+    }
   },
   {
+    "finId": 22252,
+    "organization": "Data Science Student Society",
+    "name": "DS3 Fall GBM",
+    "date": "2024-10-08T00:00:00.000Z",
+    "venue": "Student Services Center - Multi Purpose Room",
+    "awarded": 1925,
+    "updated": "2024-09-03T16:00:22.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Data Science Student Society",
@@ -233,6 +292,14 @@
     ]
   },
   {
+    "finId": 22253,
+    "organization": "NanoEngineering and Technology Society",
+    "name": "NETS Fall GBM",
+    "date": "2024-10-07T00:00:00.000Z",
+    "venue": "SME 248",
+    "awarded": 328.64,
+    "updated": "2024-09-03T16:07:50.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "NanoEngineering and Technology Society",
@@ -272,6 +339,14 @@
     ]
   },
   {
+    "finId": 22254,
+    "organization": "Pilipino Undergraduate Society for Health",
+    "name": "PUSH GBM #1",
+    "date": "2024-10-10T00:00:00.000Z",
+    "venue": "Price Center Governance Chambers",
+    "awarded": 82.88,
+    "updated": "2024-09-03T16:11:55.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Pilipino Undergraduate Society for Health",
@@ -351,6 +426,14 @@
     ]
   },
   {
+    "finId": 22255,
+    "organization": "American Medical Student Association",
+    "name": "Renee Long",
+    "date": "2024-10-01T00:00:00.000Z",
+    "venue": "Price Center - Forum",
+    "awarded": 595,
+    "updated": "2024-08-29T14:00:11.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "American Medical Student Association",
@@ -384,6 +467,14 @@
     ]
   },
   {
+    "finId": 22256,
+    "organization": "American Medical Student Association",
+    "name": "GBM 2 Fall 2024",
+    "date": "2024-10-15T00:00:00.000Z",
+    "venue": "Price Center -  Ballroom West A",
+    "awarded": 595,
+    "updated": "2024-09-03T16:47:45.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "American Medical Student Association",
@@ -422,6 +513,14 @@
     ]
   },
   {
+    "finId": 22257,
+    "organization": "Brain Exercise Initiative, The",
+    "name": "BEI 2024 Fall Quarter GBM",
+    "date": "2024-10-09T00:00:00.000Z",
+    "venue": "PC West Green Table Room",
+    "awarded": 338.07,
+    "updated": "2024-09-03T16:08:01.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Brain Exercise Initiative, The",
@@ -459,6 +558,14 @@
     ]
   },
   {
+    "finId": 22258,
+    "organization": "Pre-Medical APAMSA at UC San Diego",
+    "name": "Game Night Social",
+    "date": "2024-10-15T00:00:00.000Z",
+    "venue": "PC West Bear Room",
+    "awarded": 349.43,
+    "updated": "2024-09-03T16:48:00.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Pre-Medical APAMSA at UC San Diego",
@@ -496,6 +603,14 @@
     ]
   },
   {
+    "finId": 22259,
+    "organization": "Muslim Student Association",
+    "name": "Welcome Back Dinner",
+    "date": "2024-09-24T00:00:00.000Z",
+    "venue": "Multipurpose Room",
+    "awarded": 1752.15,
+    "updated": "2024-08-29T20:57:45.000Z",
+    "hasPostEval": true,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Muslim Student Association",
@@ -552,9 +667,39 @@
         "name": "9.24 reservations.pdf",
         "path": "/Home/DownloadFile?fileId=47063"
       }
-    ]
+    ],
+    "peef": {
+      "questions": {
+        "ACTUAL ATTENDANCE (# UCSD UNDERGRADUATE STUDENTS)": "183",
+        "IF THERE WAS A DIFFERENCE IN THE ESTIMATED AND ACTUAL ATTENDANCE NUMBERS, PLEASE EXPLAIN WHY YOU THINK THERE WAS A DIFFERENCE. HOW CAN YOU DECREASE THE DIFFERENCE IN ATTENDANCE NUMBERS FOR FUTURE EVENTS?": "We had around 50 more students than we estimated. We didn't expect that many students to show up as it was our first event, but we have a better sense of attendance now to help decrease the difference for future events.",
+        "ACTUAL EXPENDITURE": "1098.74",
+        "DID YOU RECEIVE OUTSIDE FUNDING?": "",
+        "PLEASE LIST ALL SOURCES OF FUNDING ASIDE FROM A.S.": "none",
+        "WHAT WAS THE PURPOSE OR GOAL OF THE EVENT?": "To welcome back our Muslim student community after the summer and introduce community resources to new students.",
+        "DO YOU CONSIDER THE EVENT TO HAVE BEEN A SUCCESS? WHY OR WHY NOT?": "Yes, it was a success as we had a lot of new members who were introduced to our organization.",
+        "WHAT WOULD YOU DESCRIBE AS YOUR MOST VALUABLE RESOURCE?": "The reservation room/mpr was definitely valuable to host the event itself.",
+        "WHAT IF ANY COMPLICATIONS AROSE DURING THE EVENT?": "There was a conflict in which we were led to clean up and leave the room earlier than we had planned with our event coordinator, but we were able to resolve the issue.",
+        "WHAT STEPS OR ITEMS WOULD YOU IMPROVE FOR THE NEXT EVENT?": "Faster food distribution.",
+        "WHAT ONLINE CHANGES WOULD YOU MAKE TO ADVERTISEMENTS OR PROMOTION?": "None.",
+        "DO YOU HAVE ANY FEEDBACK FOR US ON THE A.S. FUNDING APPLICATION/PROCESS? HOW CAN WE BETTER SUPPORT YOU AND YOUR ORGANIZATION?": "None, thank you."
+      },
+      "documents": [
+        {
+          "name": "f_KMoFAl0_0_MSA_Ali_Baba_9.24.24.jpeg",
+          "path": "/Home/DownloadFile?fileId=48385"
+        }
+      ]
+    }
   },
   {
+    "finId": 22260,
+    "organization": "Video Game Development Club (VGDC) at UC San Diego",
+    "name": "Fall GBM 2024",
+    "date": "2024-10-03T00:00:00.000Z",
+    "venue": "Computer Science & Engineering Building - CSE1202",
+    "awarded": 600,
+    "updated": "2024-09-03T15:23:00.000Z",
+    "hasPostEval": true,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Video Game Development Club (VGDC) at UC San Diego",
@@ -589,9 +734,36 @@
         "name": "FallGBMCaliBahnMiOrder.PNG",
         "path": "/Home/DownloadFile?fileId=47096"
       }
-    ]
+    ],
+    "peef": {
+      "questions": {
+        "ACTUAL ATTENDANCE (# UCSD UNDERGRADUATE STUDENTS)": "150",
+        "IF THERE WAS A DIFFERENCE IN THE ESTIMATED AND ACTUAL ATTENDANCE NUMBERS, PLEASE EXPLAIN WHY YOU THINK THERE WAS A DIFFERENCE. HOW CAN YOU DECREASE THE DIFFERENCE IN ATTENDANCE NUMBERS FOR FUTURE EVENTS?": "It's HIGHER because we killed it and generated a ton of excitement for the club. We'll plan on higher numbers in the future.",
+        "ACTUAL EXPENDITURE": "663.26",
+        "DID YOU RECEIVE OUTSIDE FUNDING?": "checked",
+        "PLEASE LIST ALL SOURCES OF FUNDING ASIDE FROM A.S.": "Annual CSE Department Funding",
+        "WHAT WAS THE PURPOSE OR GOAL OF THE EVENT?": "To introduce new members to the club, and give new and returning members information about how to get involved for this quarter, generating excitement for game development on campus",
+        "DO YOU CONSIDER THE EVENT TO HAVE BEEN A SUCCESS? WHY OR WHY NOT?": "Absolutely, we had far greater attendance than expected and generated a ton of excitement for the club, leading to almost 200 people signing up for our game jam",
+        "WHAT WOULD YOU DESCRIBE AS YOUR MOST VALUABLE RESOURCE?": "Our amazing team. It absolutely couldn't have been as big a success as it has been without our officers putting in so much work into tabling, flyering, and preparing the event.",
+        "WHAT IF ANY COMPLICATIONS AROSE DURING THE EVENT?": "We had so many people that they were spilling out of the room, which is something we'll have to adjust for in the future.",
+        "WHAT STEPS OR ITEMS WOULD YOU IMPROVE FOR THE NEXT EVENT?": "We'll have to plan for higher attendance numbers, but otherwise I'm super happy with how it turned out.",
+        "WHAT ONLINE CHANGES WOULD YOU MAKE TO ADVERTISEMENTS OR PROMOTION?": "Not much - the only change I want to make is putting a little more time into displaying our event on the website.",
+        "DO YOU HAVE ANY FEEDBACK FOR US ON THE A.S. FUNDING APPLICATION/PROCESS? HOW CAN WE BETTER SUPPORT YOU AND YOUR ORGANIZATION?": "It's really weird that people have to write what they received on the A.S. form, since almost every org has their members fill it out before they've gotten food, and doing it at the end of the event seems extremely impractical. I don't know how to fix it, but I'd probably suggest that it's not worth the hassle to even have the question since most people are going to just lie about what they think they're going to get. Also it was a little unclear to us if it's ok for members to fill out the form before the official start time for the event, and some feedback on when the form is able to be filled out would be helpful."
+      },
+      "documents": [
+        { "name": "DSC01043.JPG", "path": "/Home/DownloadFile?fileId=48507" }
+      ]
+    }
   },
   {
+    "finId": 22261,
+    "organization": "Majiang at UC San Diego",
+    "name": "Majiang Halloween Social Night",
+    "date": "2024-10-31T00:00:00.000Z",
+    "venue": "PC East Ballroom",
+    "awarded": 2000,
+    "updated": "2024-09-29T17:41:56.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Majiang at UC San Diego",
@@ -657,6 +829,14 @@
     ]
   },
   {
+    "finId": 22264,
+    "organization": "Association for Computing Machinery (ACM)",
+    "name": "Resume Review",
+    "date": "2024-10-02T00:00:00.000Z",
+    "venue": "Qualcomm Room",
+    "awarded": 595,
+    "updated": "2024-09-24T17:15:17.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Association for Computing Machinery (ACM)",
@@ -691,6 +871,14 @@
     ]
   },
   {
+    "finId": 22265,
+    "organization": "Association for Computing Machinery (ACM)",
+    "name": "Summer Projects Showcase",
+    "date": "2024-10-03T00:00:00.000Z",
+    "venue": "SME ASML Room",
+    "awarded": 595,
+    "updated": "2024-09-24T17:18:07.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Association for Computing Machinery (ACM)",
@@ -725,6 +913,14 @@
     ]
   },
   {
+    "finId": 22266,
+    "organization": "Association for Computing Machinery (ACM)",
+    "name": "Internship Hunting 101 Panel",
+    "date": "2024-10-04T00:00:00.000Z",
+    "venue": "Qualcomm Room",
+    "awarded": 595,
+    "updated": "2024-09-24T17:16:03.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Association for Computing Machinery (ACM)",
@@ -759,6 +955,14 @@
     ]
   },
   {
+    "finId": 22267,
+    "organization": "Association for Computing Machinery (ACM)",
+    "name": "Software Engineering 101",
+    "date": "2024-10-08T00:00:00.000Z",
+    "venue": "SME ASML Room",
+    "awarded": 595,
+    "updated": "2024-09-24T17:18:33.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Association for Computing Machinery (ACM)",
@@ -793,6 +997,14 @@
     ]
   },
   {
+    "finId": 22268,
+    "organization": "Association for Computing Machinery (ACM)",
+    "name": "AI Welcome Night",
+    "date": "2024-10-09T00:00:00.000Z",
+    "venue": "SME ASML Room",
+    "awarded": 595,
+    "updated": "2024-09-24T17:18:41.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Association for Computing Machinery (ACM)",
@@ -827,6 +1039,14 @@
     ]
   },
   {
+    "finId": 22269,
+    "organization": "Association for Computing Machinery (ACM)",
+    "name": "Designing Success: Exploring Roles in UX",
+    "date": "2024-10-10T00:00:00.000Z",
+    "venue": "SME ASML Room",
+    "awarded": 595,
+    "updated": "2024-09-24T17:18:50.000Z",
+    "hasPostEval": false,
     "questions": {
       "WHO IS THIS REQUEST FOR?": "0",
       "ORGANIZATION": "Association for Computing Machinery (ACM)",
