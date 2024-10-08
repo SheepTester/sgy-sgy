@@ -1,0 +1,1232 @@
+- "101956614768020908698": 1 # 134624 total (UNIQUE)
+  "108967334993004143669": 1
+  "101661452941146024565": 1
+  # ... 134621 of 134624 not shown
+- array: # 134624 array, 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - "101956614768020908698": 1 # 134624 total (UNIQUE)
+      "108967334993004143669": 1
+      "101661452941146024565": 1
+      # ... 134621 of 134624 not shown
+    - null: 134624 # 134624 total
+    - array: # 6 array, 134624 total (134618 null)
+        - "3595140437256898935": 1 # 6 total (UNIQUE)
+          "7819240734289668762": 1
+          "8859647135258546812": 1
+          # ... 3 of 6 not shown
+      null: 134618
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - true: 134624 # 134624 total
+    - array: # 134624 array, 134624 total
+        - 1: 134624 # 134624 total
+        - 4: 132662 # 134624 total
+          2: 1962
+        - 4: 1962 # 1962 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134618 # 134624 total (134618 null)
+      "1629998105788": 1
+      "1629998105694": 1
+      "1630001715463": 1
+      "1631395045074": 1
+      "1629252356959": 1
+      "1629998105700": 1
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - array: # 134624 array, 134624 total
+        - null: 134624 # 134624 total
+        - null: 134624 # 134624 total
+        - array: # 134624 array, 134624 total
+            - array: # 134624 array, 134624 total
+                - 0: 134618 # 134624 total
+                  1: 6
+                - "101956614768020908698": 1 # 134624 total (UNIQUE)
+                  "108967334993004143669": 1
+                  "101661452941146024565": 1
+                  # ... 134621 of 134624 not shown
+                - null: 134624 # 134624 total
+                - null: 134618 # 134624 total (134618 null)
+                  1629998105005457: 4
+                  1631395044532799: 1
+                  1629252356252799: 1
+                - "#42WmSpB8rSM=": 134618 # 134624 total
+                  "#KNs65WrXuNg=": 4
+                  "#aT1v2ibrT20=": 1
+                  "#mygFubGUzas=": 1
+                - 1: 134618 # 134624 total
+                  2: 6
+                - array: # 6 array, 6 total
+                    - 1629998105: 4 # 6 total
+                      1631395044: 1
+                      1629252356: 1
+                    - 5457000: 4 # 6 total
+                      532799000: 1
+                      252799000: 1
+            - array: # 134624 array, 134624 total
+                - 7: 134618 # 134624 total
+                  0: 6
+                - "101956614768020908698": 1 # 134624 total (UNIQUE)
+                  "108967334993004143669": 1
+                  "101661452941146024565": 1
+                  # ... 134621 of 134624 not shown
+                - null: 134624 # 134624 total
+                - null: 134624 # 134624 total
+                - "#42WmSpB8rSM=": 134624 # 134624 total
+                - 7: 134618 # 134624 total
+                  1: 6
+            - array: # 6 array, 6 total
+                - 7: 6 # 6 total
+                - "103693943471688458914": 1 # 6 total (UNIQUE)
+                  "111388121121508248461": 1
+                  "107945849454474753011": 1
+                  # ... 3 of 6 not shown
+                - null: 6 # 6 total
+                - null: 6 # 6 total
+                - "#42WmSpB8rSM=": 6 # 6 total
+                - 7: 6 # 6 total
+    - null: 134624 # 134624 total
+    - null: 134624 # 134624 total
+    - 1: 134624 # 134624 total
+- array: # 134623 array, 134624 total (1 null)
+    - array: # 134623 array, 134623 total
+        - array: # 134623 array, 134623 total
+            - null: 134622 # 134623 total (134622 null)
+              true: 1
+            - 7: 134622 # 134623 total
+              1: 1
+            - true: 134623 # 134623 total
+            - null: 134623 # 134623 total
+            - null: 134623 # 134623 total
+            - null: 132646 # 134623 total (132646 null)
+              0: 1977
+            - null: 134623 # 134623 total
+            - null: 134622 # 134623 total (134622 null)
+              "7569012825893746117": 1
+            - "101956614768020908698": 1 # 134623 total (UNIQUE)
+              "108967334993004143669": 1
+              "101661452941146024565": 1
+              # ... 134620 of 134623 not shown
+            - null: 134623 # 134623 total
+            - null: 134623 # 134623 total
+            - null: 134623 # 134623 total
+            - null: 134623 # 134623 total
+            - null: 134623 # 134623 total
+            - 7: 134622 # 134623 total
+              2: 1
+        - "Unknown Unknown": 636 # 134623 total
+          "Dsc Ta account": 31
+          "Kevin Nguyen": 24
+          "Andrew Nguyen": 22
+          "Justin Lee": 18
+          "Ece Grader account": 17
+          "Cse Grader account": 15
+          "Brian Nguyen": 14
+          "Andrew Kim": 13
+          "Dsc Grader account": 13
+          # ... 120854 of 120864 not shown
+        - null: 134623 # 134623 total
+        - "Michael": 952 # 134623 total
+          "David": 843
+          "Daniel": 735
+          "Andrew": 714
+          "Unknown": 677
+          "Matthew": 651
+          "Jennifer": 631
+          "Jessica": 597
+          "Kevin": 597
+          "Ryan": 571
+          # ... 29041 of 29051 not shown
+        - "Wang": 1653 # 134623 total (2 null)
+          "Li": 1415
+          "Chen": 1411
+          "Nguyen": 1405
+          "Zhang": 1295
+          "Lee": 1237
+          "Unknown": 1140
+          "Liu": 1076
+          "Kim": 1027
+          "Wu": 706
+          # ... 46068 of 46078 not shown
+        - null: 134623 # 134623 total
+        - null: 134623 # 134623 total
+        - null: 134623 # 134623 total
+        - null: 134623 # 134623 total
+        - null: 134623 # 134623 total
+        - null: 134623 # 134623 total
+        - null: 134623 # 134623 total
+        - "Unknown, Unknown": 636 # 134623 total
+          "Ta account, Dsc": 31
+          "Nguyen, Kevin": 24
+          "Nguyen, Andrew": 22
+          "Lee, Justin": 18
+          "Grader account, Ece": 17
+          "Grader account, Cse": 15
+          "Nguyen, Brian": 14
+          "Kim, Andrew": 13
+          "Grader account, Dsc": 13
+          # ... 120854 of 120864 not shown
+        - null: 134623 # 134623 total
+        - null: 134623 # 134623 total
+        - "Unknown Unknown": 636 # 134623 total
+          "Dsc Ta account": 31
+          "Kevin Nguyen": 24
+          "Andrew Nguyen": 22
+          "Justin Lee": 18
+          "Ece Grader account": 17
+          "Cse Grader account": 15
+          "Brian Nguyen": 14
+          "Andrew Kim": 13
+          "Dsc Grader account": 13
+          # ... 120854 of 120864 not shown
+    - array: # 2 array, 2 total
+        - array: # 2 array, 2 total
+            - true: 1 # 2 total (1 null) (UNIQUE)
+              null: 1
+            - 1: 1 # 2 total (UNIQUE)
+              7: 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - "7840165220124540165": 1 # 2 total (1 null) (UNIQUE)
+              null: 1
+            - "6ccddcba8de53d05": 1 # 2 total (UNIQUE)
+              "106054731744536084605": 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 2: 1 # 2 total (UNIQUE)
+              7: 1
+        - "Sean Yen": 1 # 2 total (UNIQUE)
+          "Tuan Tran": 1
+        - null: 2 # 2 total
+        - "Sean": 1 # 2 total (UNIQUE)
+          "Tuan": 1
+        - "Yen": 1 # 2 total (UNIQUE)
+          "Tran": 1
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - "Yen, Sean": 1 # 2 total (UNIQUE)
+          "Tran, Tuan": 1
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - "Sean Yen": 1 # 2 total (UNIQUE)
+          "Tuan Tran": 1
+  null: 1
+- array: # 134624 array, 134624 total
+    - array: # 134624 array, 134624 total
+        - array: # 134624 array, 134624 total
+            - false: 119057 # 134624 total (15566 null)
+              null: 15566
+              true: 1
+            - 0: 134404 # 134624 total
+              7: 220
+            - true: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 119247 # 134624 total (119247 null)
+              0: 15377
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - "101956614768020908698": 1 # 134624 total (UNIQUE)
+              "108967334993004143669": 1
+              "101661452941146024565": 1
+              # ... 134621 of 134624 not shown
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - 1: 134404 # 134624 total
+              7: 220
+        - "https://lh6.googleusercontent.com/-MFXDVTKe6Mg/AAAAAAAAAAI/AAAAAAAAAAA/f3XDqh5nUEMax7e_G_mCElRJ7oAK6WdAwCLcDEAE/mo/photo.jpg": 1 # 134624 total (UNIQUE)
+          "https://lh4.googleusercontent.com/-E-wVpqvpJmM/AAAAAAAAAAI/AAAAAAAAAAA/P4m5q__LN4sprDwiTlWNN19IOSlLFb0ugCLcDEAE/mo/photo.jpg": 1
+          "https://lh3.googleusercontent.com/a-/AOh14Gi2qzp7WPS_Z4t_Q0Im3WZTENTuQRHdV7FmqECl": 1
+          # ... 134621 of 134624 not shown
+        - true: 119058 # 134624 total (15566 null)
+          null: 15566
+        - "EhUxMDE5NTY2MTQ3NjgwMjA5MDg2OTgoATCnoeucBQ==": 1 # 134624 total (UNIQUE)
+          "EhUxMDg5NjczMzQ5OTMwMDQxNDM2NjkoATC_nbbL_v____8B": 1
+          "EhUxMDE2NjE0NTI5NDExNDYwMjQ1NjUoATCLmIyA-v____8B": 1
+          # ... 134621 of 134624 not shown
+        - null: 119057 # 119057 total
+        - null: 119057 # 119057 total
+        - true: 119057 # 119057 total
+        - "0288D1": 5793 # 119057 total
+          "EF6C00": 5776
+          "01579B": 5774
+          "F4511E": 5726
+          "00897B": 5720
+          "7B1FA2": 5714
+          "455A64": 5711
+          "7E57C2": 5694
+          "004D40": 5682
+          "33691E": 5676
+          # ... 11 of 21 not shown
+    - array: # 6 array, 6 total
+        - array: # 6 array, 6 total
+            - true: 6 # 6 total
+            - 1: 6 # 6 total
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - "3595140437256898935": 1 # 6 total (UNIQUE)
+              "7819240734289668762": 1
+              "8859647135258546812": 1
+              # ... 3 of 6 not shown
+            - "31e4812e08570977": 1 # 6 total (UNIQUE)
+              "6c8386050c99aa9a": 1
+              "7af3ca210c64927c": 1
+              # ... 3 of 6 not shown
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - null: 6 # 6 total
+            - 2: 6 # 6 total
+        - "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/V8BNOaftJmYO94sBFOFdYdq1S-sUCEP2ACLcDEAEiGQoBbhD___________8BGLeA9fr______wE/photo.jpg": 1 # 6 total (UNIQUE)
+          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/V8BNOaftJmYqQTfTWvtBizeP8uxzcdEcwCLcDEAEiGQoBchD___________8BGJyh4vv______wE/photo.jpg": 1
+          "https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/V8BNOaftJmYe_2zv70MDLgX9_C_M7Zw3QCLcDEAEiGQoBchD___________8BGJuvhfj______wE/photo.jpg": 1
+          # ... 3 of 6 not shown
+        - true: 6 # 6 total
+        - "EhAzMWU0ODEyZTA4NTcwOTc3KAIw48uZ1QQ=": 1 # 6 total (UNIQUE)
+          "EhA2YzgzODYwNTBjOTlhYTlhKAIw48uZ1QQ=": 1
+          "EhA3YWYzY2EyMTBjNjQ5MjdjKAIw48uZ1QQ=": 1
+          # ... 3 of 6 not shown
+        - null: 6 # 6 total
+        - null: 6 # 6 total
+        - true: 6 # 6 total
+        - "5D4037": 1 # 6 total (UNIQUE)
+          "78909C": 1
+          "01579B": 1
+          # ... 3 of 6 not shown
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- array: # 134624 array, 134624 total
+    - array: # 134624 array, 134624 total
+        - array: # 134624 array, 134624 total
+            - null: 134624 # 134624 total
+            - 7: 134624 # 134624 total
+            - true: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - true: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - "101956614768020908698": 1 # 134624 total (UNIQUE)
+              "108967334993004143669": 1
+              "101661452941146024565": 1
+              # ... 134621 of 134624 not shown
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - true: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - null: 134624 # 134624 total
+            - 7: 134624 # 134624 total
+        - "a2wheeler@ucsd.edu": 1 # 134624 total (UNIQUE)
+          "cetus@ucsd.edu": 1
+          "x2fang@ucsd.edu": 1
+          # ... 134621 of 134624 not shown
+        - null: 134624 # 134624 total
+        - null: 134624 # 134624 total
+        - null: 134624 # 134624 total
+        - null: 134624 # 134624 total
+        - null: 134624 # 134624 total
+        - null: 134624 # 134624 total
+        - 1: 134624 # 134624 total
+        - array: # 134624 array, 134624 total
+            - true: 134624 # 134624 total
+    - array: # 1381 array, 1381 total
+        - array: # 1381 array, 1381 total
+            - null: 1375 # 1381 total (1375 null)
+              true: 6
+            - 7: 1366 # 1381 total
+              0: 9
+              1: 6
+            - null: 1381 # 1381 total
+            - null: 1375 # 1381 total (1375 null)
+              true: 6
+            - null: 1381 # 1381 total
+            - null: 1379 # 1381 total (1379 null)
+              0: 2
+            - true: 1367 # 1381 total (14 null)
+              null: 14
+            - null: 1375 # 1381 total (1375 null)
+              "3595140437256898935": 1
+              "7819240734289668762": 1
+              "8859647135258546812": 1
+              "7840165220124540165": 1
+              "7569012825893746117": 1
+              "5540128572923276783": 1
+            - "107106260532408645885": 1 # 1381 total (UNIQUE)
+              "116701686966192856603": 1
+              "110258318242018615750": 1
+              # ... 1378 of 1381 not shown
+            - null: 1381 # 1381 total
+            - null: 1381 # 1381 total
+            - null: 1376 # 1381 total (1376 null)
+              true: 5
+            - array: # 6 array, 1381 total (1375 null)
+                - array: # 6 array, 6 total
+                    - "103693943471688458914": 1 # 6 total (UNIQUE)
+                      "111388121121508248461": 1
+                      "107945849454474753011": 1
+                      # ... 3 of 6 not shown
+                    - 1: 6 # 6 total
+                    - true: 6 # 6 total
+              null: 1375
+            - null: 1381 # 1381 total
+            - 7: 1366 # 1381 total
+              1: 9
+              2: 6
+        - "adcoffman@ucsd.edu": 1 # 1381 total (UNIQUE)
+          "aml084@ucsd.edu": 1
+          "a4mohamed@ucsd.edu": 1
+          # ... 1378 of 1381 not shown
+        - null: 1364 # 1373 total (1364 null)
+          "home": 7
+          "work": 2
+        - null: 1364 # 1373 total (1364 null)
+          "Home": 7
+          "Work": 2
+        - null: 1364 # 1364 total
+        - null: 1364 # 1364 total
+        - null: 1364 # 1364 total
+        - null: 1364 # 1364 total
+        - 1: 1364 # 1364 total
+    - array: # 39 array, 39 total
+        - array: # 39 array, 39 total
+            - null: 39 # 39 total
+            - 7: 37 # 39 total
+              0: 2
+            - null: 39 # 39 total
+            - null: 39 # 39 total
+            - null: 39 # 39 total
+            - null: 38 # 39 total (38 null)
+              0: 1
+            - true: 38 # 39 total (1 null)
+              null: 1
+            - null: 39 # 39 total
+            - "111241590730167929578": 1 # 39 total (UNIQUE)
+              "104593136476289439251": 1
+              "102130134472466779126": 1
+              # ... 36 of 39 not shown
+            - null: 39 # 39 total
+            - null: 39 # 39 total
+            - null: 39 # 39 total
+            - null: 39 # 39 total
+            - null: 39 # 39 total
+            - 7: 37 # 39 total
+              1: 2
+        - "acms-gda@ucsd.edu": 1 # 39 total (UNIQUE)
+          "alexnguo@ucsd.edu": 1
+          "apsmirnov@ucsd.edu": 1
+          # ... 36 of 39 not shown
+        - null: 37 # 39 total (37 null)
+          "home": 1
+          "work": 1
+        - null: 37 # 39 total (37 null)
+          "Home": 1
+          "Work": 1
+        - null: 37 # 37 total
+        - null: 37 # 37 total
+        - null: 37 # 37 total
+        - null: 37 # 37 total
+        - 1: 37 # 37 total
+    - array: # 2 array, 2 total
+        - array: # 2 array, 2 total
+            - null: 2 # 2 total
+            - 0: 1 # 2 total (UNIQUE)
+              7: 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 0: 1 # 2 total (1 null) (UNIQUE)
+              null: 1
+            - null: 1 # 2 total (1 null) (UNIQUE)
+              true: 1
+            - null: 2 # 2 total
+            - "115583766970832434717": 1 # 2 total (UNIQUE)
+              "104861469799642399607": 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 1: 1 # 2 total (UNIQUE)
+              7: 1
+        - "2015shve@seisen.com": 1 # 2 total (UNIQUE)
+          "wterrazaz@ucsd.edu": 1
+        - "work": 1 # 2 total (1 null) (UNIQUE)
+          null: 1
+        - "Work": 1 # 2 total (1 null) (UNIQUE)
+          null: 1
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - 1: 1 # 1 total
+- null: 134624 # 134624 total
+- array: # 10 array, 134624 total (134614 null)
+    - array: # 10 array, 10 total
+        - array: # 10 array, 10 total
+            - null: 10 # 10 total
+            - 7: 7 # 10 total
+              0: 3
+            - true: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 8 # 10 total (8 null)
+              0: 2
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - "107330626117592846834": 1 # 10 total (UNIQUE)
+              "100954538259440782684": 1
+              "118181362356245806088": 1
+              # ... 7 of 10 not shown
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - 7: 7 # 10 total
+              1: 3
+        - "kleman-g4@ucsd.edu": 3 # 10 total
+          "858-534-8239": 1
+          "858-822-7585": 1
+          "18054229737": 1
+          "309.251.7078": 1
+          "4152992165": 1
+          "534-6985": 1
+          "(413) 335-0431": 1
+        - "work": 7 # 10 total
+          "mobile": 3
+        - null: 9 # 10 total (9 null)
+          "+18585348239": 1
+        - "Work": 7 # 10 total
+          "Mobile": 3
+        - null: 1 # 1 total
+        - "tel:+1-858-534-8239": 1 # 1 total
+    - array: # 1 array, 1 total
+        - array: # 1 array, 1 total
+            - null: 1 # 1 total
+            - 7: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - "118181362356245806088": 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - 7: 1 # 1 total
+        - "858-888-0832": 1 # 1 total
+        - "mobile": 1 # 1 total
+        - null: 1 # 1 total
+        - "Mobile": 1 # 1 total
+  null: 134614
+- array: # 66 array, 134624 total (134558 null)
+    - array: # 66 array, 66 total
+        - array: # 66 array, 66 total
+            - null: 66 # 66 total
+            - 0: 62 # 66 total
+              7: 4
+            - true: 66 # 66 total
+            - null: 66 # 66 total
+            - null: 66 # 66 total
+            - 0: 57 # 66 total (9 null)
+              null: 9
+            - null: 66 # 66 total
+            - null: 66 # 66 total
+            - "109412597610394486557": 1 # 66 total (UNIQUE)
+              "115740583035011819331": 1
+              "108032575135719506809": 1
+              # ... 63 of 66 not shown
+            - null: 66 # 66 total
+            - null: 66 # 66 total
+            - null: 62 # 66 total (62 null)
+              true: 4
+            - null: 66 # 66 total
+            - null: 66 # 66 total
+            - 1: 62 # 66 total
+              7: 4
+        - "University of California, San Diego": 45 # 64 total (1 null)
+          "Massachusetts Institute of Technology": 1
+          "UC San Diego": 1
+          "Harvard University": 1
+          "Palm Desert High School": 1
+          "Leigh High School": 1
+          null: 1
+          "Thai Chinese International School": 1
+          "Mesa Community College": 1
+          "University of Wisconsin-Eau Claire": 1
+          # ... 10 of 20 not shown
+        - null: 62 # 64 total (62 null)
+          "ITS": 1
+          "IT Services": 1
+        - null: 40 # 64 total (40 null)
+          "Microbiology B.S.": 1
+          "Structural Engineering": 1
+          "Bioengineering: Bioinformatics": 1
+          "Program Manager for the SD Area Writing Project": 1
+          "Astronomy": 1
+          "Economics": 1
+          "R&D Engineer 5": 1
+          "Political Science": 1
+          "Linguistics and Cognitive Science": 1
+          # ... 15 of 25 not shown
+        - null: 64 # 64 total
+        - null: 64 # 64 total
+        - null: 63 # 64 total (63 null)
+          "ITS": 1
+        - null: 59 # 64 total (59 null)
+          "Fiat Lux; Continue Nontradition": 1
+          "Metagenomics, Drug Discovery, Multi-Omics Integration": 1
+          "Fall 2017 - Spring 2019: Medical leave": 1
+          "Internship": 1
+          "Graduated from UCSD in 2017 with a Bachelor of Science Degree in Human Biology": 1
+        - null: 64 # 64 total
+        - 2: 55 # 64 total (2 null)
+          1: 7
+          null: 2
+        - null: 47 # 64 total (47 null)
+          "1420099200000": 5
+          "1483344000000": 1
+          "1388563200000": 1
+          "1420185600000": 1
+          "-473299200000": 1
+          "1546387200000": 1
+          "820483200000": 1
+          "1009958400000": 1
+          "1325404800000": 1
+          # ... 4 of 14 not shown
+        - null: 26 # 64 total (26 null)
+          "1420099200000": 14
+          "1451635200000": 5
+          "1483257600000": 4
+          "1546329600000": 3
+          "1577865600000": 2
+          "1609574400000": 1
+          "1514793600000": 1
+          "-347068800000": 1
+          "1167638400000": 1
+          # ... 6 of 16 not shown
+        - null: 50 # 64 total (50 null)
+          true: 14
+        - null: 47 # 64 total (47 null)
+          1420099200000: 5
+          1483344000000: 1
+          1388563200000: 1
+          1420185600000: 1
+          -473299200000: 1
+          1546387200000: 1
+          820483200000: 1
+          1009958400000: 1
+          1325404800000: 1
+          # ... 4 of 14 not shown
+        - null: 26 # 64 total (26 null)
+          1420099200000: 14
+          1451635200000: 5
+          1483257600000: 4
+          1546329600000: 3
+          1577865600000: 2
+          1609574400000: 1
+          1514793600000: 1
+          -347068800000: 1
+          1167638400000: 1
+          # ... 6 of 16 not shown
+        - "school": 55 # 64 total
+          "work": 9
+        - "School": 55 # 64 total
+          "Work": 7
+          "work": 2
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - null: 41 # 41 total
+        - array: # 17 array, 41 total (24 null)
+            - 2015: 6 # 17 total
+              2016: 3
+              2017: 1
+              2014: 1
+              1955: 1
+              2019: 1
+              1996: 1
+              2002: 1
+              2012: 1
+              2006: 1
+            - 1: 17 # 17 total
+            - 1: 11 # 17 total
+              2: 6
+          null: 24
+        - array: # 38 array, 38 total
+            - 2015: 14 # 38 total
+              2016: 7
+              2017: 4
+              2019: 3
+              2020: 2
+              2021: 1
+              2018: 1
+              1959: 1
+              2007: 1
+              2022: 1
+              # ... 3 of 13 not shown
+            - 1: 38 # 38 total
+            - 1: 34 # 38 total
+              2: 4
+    - array: # 20 array, 20 total
+        - array: # 20 array, 20 total
+            - null: 20 # 20 total
+            - 0: 20 # 20 total
+            - null: 20 # 20 total
+            - null: 20 # 20 total
+            - null: 20 # 20 total
+            - 0: 18 # 20 total (2 null)
+              null: 2
+            - null: 20 # 20 total
+            - null: 20 # 20 total
+            - "109412597610394486557": 1 # 20 total (UNIQUE)
+              "115740583035011819331": 1
+              "104554551252776604497": 1
+              # ... 17 of 20 not shown
+            - null: 20 # 20 total
+            - null: 20 # 20 total
+            - null: 20 # 20 total
+            - null: 20 # 20 total
+            - null: 20 # 20 total
+            - 1: 20 # 20 total
+        - "University of California, San Diego": 8 # 20 total
+          "Actifio": 1
+          "UCSD": 1
+          "Princeton University": 1
+          "NiLi": 1
+          "Katholieke Universiteit Leuven": 1
+          "Fullerton College": 1
+          "Technology High School": 1
+          "Nutrishop": 1
+          "Ctrip Computer Technology (Shanghai) Co., Ltd.": 1
+          # ... 3 of 13 not shown
+        - null: 20 # 20 total
+        - null: 5 # 20 total (5 null)
+          "IT Lab Assistant": 1
+          "Associate Professor": 1
+          "Astrophysical Sciences": 1
+          "Public Relations": 1
+          "Student": 1
+          "AOP Student Worker": 1
+          "Linguistics": 1
+          "Data Science": 1
+          "Biochemistry/Chemistry": 1
+          # ... 6 of 16 not shown
+        - null: 20 # 20 total
+        - null: 20 # 20 total
+        - null: 20 # 20 total
+        - null: 17 # 20 total (17 null)
+          "Internship": 1
+          "Beginning my journey toward earning an MBA in September 2021": 1
+          "Statistics": 1
+        - null: 20 # 20 total
+        - 1: 11 # 20 total
+          2: 9
+        - null: 12 # 20 total (12 null)
+          "-347068800000": 1
+          "631180800000": 1
+          "1451721600000": 1
+          "1420099200000": 1
+          "1483286400000": 1
+          "1325404800000": 1
+          "1009872000000": 1
+          "1357027200000": 1
+        - null: 10 # 20 total (10 null)
+          "1420099200000": 2
+          "-189302400000": 1
+          "631152000000": 1
+          "757411200000": 1
+          "1577952000000": 1
+          "1514793600000": 1
+          "1451606400000": 1
+          "1483286400000": 1
+          "1451635200000": 1
+        - null: 18 # 20 total (18 null)
+          true: 2
+        - null: 12 # 20 total (12 null)
+          -347068800000: 1
+          631180800000: 1
+          1451721600000: 1
+          1420099200000: 1
+          1483286400000: 1
+          1325404800000: 1
+          1009872000000: 1
+          1357027200000: 1
+        - null: 10 # 20 total (10 null)
+          1420099200000: 2
+          -189302400000: 1
+          631152000000: 1
+          757411200000: 1
+          1577952000000: 1
+          1514793600000: 1
+          1451606400000: 1
+          1483286400000: 1
+          1451635200000: 1
+        - "work": 11 # 20 total
+          "school": 9
+        - "Work": 11 # 20 total
+          "School": 9
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - null: 10 # 10 total
+        - array: # 8 array, 10 total (2 null)
+            - 1959: 1 # 8 total (UNIQUE)
+              1990: 1
+              2016: 1
+              # ... 5 of 8 not shown
+            - 1: 8 # 8 total
+            - 1: 6 # 8 total
+              2: 2
+          null: 2
+        - array: # 10 array, 10 total
+            - 2016: 2 # 10 total
+              2015: 2
+              1964: 1
+              1990: 1
+              1994: 1
+              2020: 1
+              2018: 1
+              2017: 1
+            - 1: 10 # 10 total
+            - 1: 8 # 10 total
+              2: 2
+    - array: # 2 array, 2 total
+        - array: # 2 array, 2 total
+            - null: 2 # 2 total
+            - 0: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 0: 1 # 2 total (1 null) (UNIQUE)
+              null: 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - "100954538259440782684": 1 # 2 total (UNIQUE)
+              "104360559256620610745": 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 1: 2 # 2 total
+        - "University of Edinburgh": 1 # 2 total (UNIQUE)
+          "University of California, San Diego": 1
+        - null: 2 # 2 total
+        - "Cognitive Science": 1 # 2 total (UNIQUE)
+          "Mathematics, Computer Science": 1
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - 2: 2 # 2 total
+        - "757411200000": 1 # 2 total (UNIQUE)
+          "1451664000000": 1
+        - "788947200000": 1 # 2 total (UNIQUE)
+          "1577894400000": 1
+        - null: 2 # 2 total
+        - 757411200000: 1 # 2 total (UNIQUE)
+          1451664000000: 1
+        - 788947200000: 1 # 2 total (UNIQUE)
+          1577894400000: 1
+        - "school": 2 # 2 total
+        - "School": 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - null: 2 # 2 total
+        - array: # 2 array, 2 total
+            - 1994: 1 # 2 total (UNIQUE)
+              2016: 1
+            - 1: 2 # 2 total
+            - 1: 2 # 2 total
+        - array: # 2 array, 2 total
+            - 1995: 1 # 2 total (UNIQUE)
+              2020: 1
+            - 1: 2 # 2 total
+            - 1: 2 # 2 total
+    - array: # 1 array, 1 total
+        - array: # 1 array, 1 total
+            - null: 1 # 1 total
+            - 0: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - 0: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - "100954538259440782684": 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - 1: 1 # 1 total
+        - "University of California, San Diego": 1 # 1 total
+        - null: 1 # 1 total
+        - "Director, Social Sciences Computing Facility": 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - 1: 1 # 1 total
+        - "1357113600000": 1 # 1 total
+        - "1451721600000": 1 # 1 total
+        - null: 1 # 1 total
+        - 1357113600000: 1 # 1 total
+        - 1451721600000: 1 # 1 total
+        - "work": 1 # 1 total
+        - "Work": 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - array: # 1 array, 1 total
+            - 2013: 1 # 1 total
+            - 1: 1 # 1 total
+            - 2: 1 # 1 total
+        - array: # 1 array, 1 total
+            - 2016: 1 # 1 total
+            - 1: 1 # 1 total
+            - 2: 1 # 1 total
+    - array: # 1 array, 1 total
+        - array: # 1 array, 1 total
+            - null: 1 # 1 total
+            - 0: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - 0: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - "100954538259440782684": 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - 1: 1 # 1 total
+        - "University of California, San Diego": 1 # 1 total
+        - null: 1 # 1 total
+        - "Director of IT, Scripps Institution of Oceanography": 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - 1: 1 # 1 total
+        - "1483344000000": 1 # 1 total
+        - null: 1 # 1 total
+        - true: 1 # 1 total
+        - 1483344000000: 1 # 1 total
+        - null: 1 # 1 total
+        - "work": 1 # 1 total
+        - "Work": 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - array: # 1 array, 1 total
+            - 2017: 1 # 1 total
+            - 1: 1 # 1 total
+            - 2: 1 # 1 total
+  null: 134558
+- array: # 43 array, 134624 total (134581 null)
+    - array: # 43 array, 43 total
+        - array: # 43 array, 43 total
+            - null: 43 # 43 total
+            - 0: 43 # 43 total
+            - true: 43 # 43 total
+            - null: 43 # 43 total
+            - null: 43 # 43 total
+            - 0: 41 # 43 total (2 null)
+              null: 2
+            - null: 43 # 43 total
+            - null: 43 # 43 total
+            - "115711227295225742800": 1 # 43 total (UNIQUE)
+              "109412597610394486557": 1
+              "115740583035011819331": 1
+              # ... 40 of 43 not shown
+            - null: 43 # 43 total
+            - null: 43 # 43 total
+            - null: 43 # 43 total
+            - null: 43 # 43 total
+            - null: 43 # 43 total
+            - 1: 43 # 43 total
+        - "San Diego": 6 # 43 total
+          "San Diego, CA, United States": 3
+          "La Jolla": 3
+          "San Diego, CA": 3
+          "La Jolla, San Diego, CA, United States": 2
+          "Los Angeles": 2
+          "United States": 2
+          "San Diego, California": 2
+          "USA": 1
+          "Weston, MA": 1
+          # ... 18 of 28 not shown
+        - true: 42 # 43 total (1 null)
+          null: 1
+        - null: 39 # 39 total
+        - null: 39 # 39 total
+        - null: 39 # 39 total
+        - null: 39 # 39 total
+        - "default": 39 # 39 total
+    - array: # 10 array, 10 total
+        - array: # 10 array, 10 total
+            - null: 10 # 10 total
+            - 0: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - 0: 9 # 10 total (1 null)
+              null: 1
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - "108032575135719506809": 1 # 10 total (UNIQUE)
+              "114912297286980288351": 1
+              "118010053496002357910": 1
+              # ... 7 of 10 not shown
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - null: 10 # 10 total
+            - 1: 10 # 10 total
+        - "West Los Angeles, California": 1 # 10 total (UNIQUE)
+          "New Delhi, Delhi, India": 1
+          "Carlsbad, CA, United States": 1
+          # ... 7 of 10 not shown
+        - null: 8 # 8 total
+        - null: 8 # 8 total
+        - null: 8 # 8 total
+        - null: 8 # 8 total
+        - null: 8 # 8 total
+        - "default": 8 # 8 total
+    - array: # 5 array, 5 total
+        - array: # 5 array, 5 total
+            - null: 5 # 5 total
+            - 0: 5 # 5 total
+            - null: 5 # 5 total
+            - null: 5 # 5 total
+            - null: 5 # 5 total
+            - 0: 5 # 5 total
+            - null: 5 # 5 total
+            - null: 5 # 5 total
+            - "108032575135719506809": 1 # 5 total (UNIQUE)
+              "118010053496002357910": 1
+              "115560515690410562210": 1
+              # ... 2 of 5 not shown
+            - null: 5 # 5 total
+            - null: 5 # 5 total
+            - null: 5 # 5 total
+            - null: 5 # 5 total
+            - null: 5 # 5 total
+            - 1: 5 # 5 total
+        - "La Cieniga, Los Angeles, California": 1 # 5 total (UNIQUE)
+          "Iran": 1
+          "Long Beach, CA 90813, United States": 1
+          # ... 2 of 5 not shown
+        - null: 4 # 4 total
+        - null: 4 # 4 total
+        - null: 4 # 4 total
+        - null: 4 # 4 total
+        - null: 4 # 4 total
+        - "default": 4 # 4 total
+    - array: # 2 array, 2 total
+        - array: # 2 array, 2 total
+            - null: 2 # 2 total
+            - 0: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 0: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - "108032575135719506809": 1 # 2 total (UNIQUE)
+              "116316235944420846252": 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 1: 2 # 2 total
+        - "Whittier, California": 1 # 2 total (UNIQUE)
+          "San Rafael": 1
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - "default": 1 # 1 total
+    - array: # 1 array, 1 total
+        - array: # 1 array, 1 total
+            - null: 1 # 1 total
+            - 0: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - 0: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - "116316235944420846252": 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - null: 1 # 1 total
+            - 1: 1 # 1 total
+        - "San Jose": 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - null: 1 # 1 total
+        - "default": 1 # 1 total
+  null: 134581
+- array: # 3 array, 134624 total (134621 null)
+    - array: # 3 array, 3 total
+        - array: # 3 array, 3 total
+            - null: 3 # 3 total
+            - 7: 2 # 3 total
+              0: 1
+            - true: 3 # 3 total
+            - null: 3 # 3 total
+            - null: 3 # 3 total
+            - null: 3 # 3 total
+            - null: 3 # 3 total
+            - null: 3 # 3 total
+            - "100954538259440782684": 1 # 3 total (UNIQUE)
+              "118181362356245806088": 1
+              "104467118614674455153": 1
+            - null: 3 # 3 total
+            - null: 3 # 3 total
+            - true: 2 # 3 total (1 null)
+              null: 1
+            - null: 3 # 3 total
+            - null: 3 # 3 total
+            - 7: 2 # 3 total
+              1: 1
+        - "work": 3 # 3 total
+        - null: 2 # 3 total (2 null)
+          "Eckart Building 156, 9500 Gilman Drive 0235, La Jolla, CA 92093": 1
+        - null: 3 # 3 total
+        - null: 3 # 3 total
+        - null: 3 # 3 total
+        - null: 3 # 3 total
+        - null: 3 # 3 total
+        - null: 3 # 3 total
+        - null: 3 # 3 total
+        - "Work": 3 # 3 total
+  null: 134621
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- null: 134624 # 134624 total
+- "%Eg4BAgMJCgsMDxATJi8+PxoEAQIHCA==": 134618 # 134624 total
+  "%Eg4BAgMJCgsMDxATJi8+PxoEAQIHCCIMS05zNjVXclh1Tmc9": 4
+  "%Eg4BAgMJCgsMDxATJi8+PxoEAQIHCCIMYVQxdjJpYnJUMjA9": 1
+  "%Eg4BAgMJCgsMDxATJi8+PxoEAQIHCCIMbXlnRnViR1V6YXM9": 1
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- null: 2 # 2 total
+- array: # 2 array, 2 total
+    - array: # 2 array, 2 total
+        - array: # 2 array, 2 total
+            - null: 2 # 2 total
+            - 7: 2 # 2 total
+            - true: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - "118181362356245806088": 1 # 2 total (UNIQUE)
+              "104467118614674455153": 1
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - null: 2 # 2 total
+            - 7: 2 # 2 total
+        - "0000005467": 1 # 2 total (UNIQUE)
+          "0000562115": 1
+        - "organization": 2 # 2 total
+        - "Organization": 2 # 2 total

@@ -9,7 +9,6 @@ __pycache__
 *.bak
 compiled
 
-private
 .env
 
 # Schoology
