@@ -37,11 +37,11 @@ undefined
 askSgy('/user/2017219/updates') // GET
   .then(console.log)
 
-askSgy('/user/2017219/updates/2230965068/comments', { // POST
+askSgy('/user/2017219/updates/2230965068/comments', {
+  // POST
   comment: 'comment text',
   uid: '2017219'
-})
-  .then(console.log)
+}).then(console.log)
 ```
 
 If you get an error like the following, I have no idea why. Maybe Schoology is dumb, or the Node library I'm using for OAuth is dumb.
@@ -125,7 +125,7 @@ SESS_ID=
 On Schoology, you can get the first four by running the following in the console:
 
 ```js
-`HOST=${window.location.hostname}
+;`HOST=${window.location.hostname}
 UID=${Drupal.settings.s_common.user.uid}
 CSRF_KEY=${Drupal.settings.s_common.csrf_key}
 CSRF_TOKEN=${Drupal.settings.s_common.csrf_token}
@@ -155,3 +155,7 @@ deno run --allow-read --allow-write irrelevant-scripts-maybe/sort-grades.ts priv
 deno run --allow-read --allow-write irrelevant-scripts-maybe/sort-grades.ts private/grades-new.json
 diff private/grades-old.json private/grades-new.json --color=always -c | sed -e 's/\t/ /g'
 ```
+
+# ucsd-event-scraper
+
+Scrapes https://finance.ucsd.edu/Home/ListFunded and maybe Instagram

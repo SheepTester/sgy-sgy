@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "plugins": [
-      {
-        "name": "typescript-deno-plugin"
-      }
-    ]
+    "module": "esnext",
+    "target": "esnext",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "bundler"
   }
 }
