@@ -1,14 +1,44 @@
-# sgy-sgy
+# All purpose scraping
 
 Playing with the [Schoology API](https://developers.schoology.com/api-documentation/rest-api-v1) and [Zoom API](https://marketplace.zoom.us/docs/api-reference/zoom-api)!
 
-For Node stuff, make sure you do
+Scrapes https://finance.ucsd.edu/Home/ListFunded and maybe Instagram
 
-```sh
-npm install
-```
+- [oauth-3leg](#oauth-3leg): Schoology API 3-legged OAuth
+- [explorer](./explorer/): Schoology API
+- [irrelevant-scripts-maybe](#irrelevant-side-note): Schoology API
+- [scraper](#scraper): Schoology API
+- [archiving](./archiving/): Archiving Schoology
+- [zoom](#zoom): Zoom API
+- hdh: Scraping [UCSD HDH's dining hall menus](https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants/)
+- contacts: Scraping Google Contacts, based on [prior work](https://github.com/SheepTester/hello-world/blob/master/google-contacts-scrape.js)
+- lib: Utils for explore/
+- explore/finance: Scraping [UCSD A.S. Finance](https://finance.ucsd.edu/Home/ListFunded)
+- explore/police: Scraping [UCSD crime logs](https://www.police.ucsd.edu/docs/reports/callsandarrests/Calls_and_Arrests.asp)
 
-first.
+## Usage
+
+The code in this repo was largely written just to explore and play around with what's available, so there's little documentation available. Sorry about that!
+
+If it gives you any consolation, I'm also shooting my future self in the foot shrouding all this in mystery.
+
+In general, each script has a comment at the top of the file with the command required to run the script.
+
+- If it starts with `deno`, you'll need [Deno 1.x](https://deno.com/) installed.
+
+- If it starts with `node` or `tsx`, you'll [Node](https://nodejs.org/) installed. Hopefully the latest version still works.
+
+  Then, run the following command to install the dependencies.
+
+  ```sh
+  $ npm install
+  ```
+
+  For `tsx`, you'll also need to install `tsx` globally.
+
+  ```sh
+  $ npm install -g tsx
+  ```
 
 ## Schoology
 
@@ -155,7 +185,3 @@ deno run --allow-read --allow-write irrelevant-scripts-maybe/sort-grades.ts priv
 deno run --allow-read --allow-write irrelevant-scripts-maybe/sort-grades.ts private/grades-new.json
 diff private/grades-old.json private/grades-new.json --color=always -c | sed -e 's/\t/ /g'
 ```
-
-# ucsd-event-scraper
-
-Scrapes https://finance.ucsd.edu/Home/ListFunded and maybe Instagram
