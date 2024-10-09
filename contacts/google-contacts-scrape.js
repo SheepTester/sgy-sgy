@@ -70,8 +70,8 @@ do {
       console.log(pageNum, 'fetched')
       await new Promise(resolve => setTimeout(resolve, 500))
       break
-    } catch {
-      console.log(pageNum, 'failed :(')
+    } catch (error) {
+      console.log(pageNum, 'failed :(', error)
       await new Promise(resolve => setTimeout(resolve, 10000))
     }
   } while (true)

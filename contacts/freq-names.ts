@@ -45,6 +45,19 @@ function addFreq (frequencies: Map<string, number>, entry: string) {
   frequencies.set(entry, (frequencies.get(entry) ?? 0) + 1)
 }
 
+function mergeCases (frequencies: Map<string, number>): Map<string, number> {
+  return new Map(
+    Array.from(
+      Map.groupBy(frequencies, ([name]) => name.toLowerCase()).values(),
+      groups => [
+        // Use the most used casing
+        groups.reduce((cum, curr) => (cum[1] > curr[1] ? cum : curr))[0],
+        groups.reduce((cum, curr) => cum + curr[1], 0)
+      ]
+    )
+  )
+}
+
 function displayFreq (frequencies: Map<string, number>) {
   const sorted = [...frequencies].sort(([, a], [, b]) => b - a)
   const uniqueIndex = sorted.findIndex(([, times]) => times === 1)
@@ -136,17 +149,21 @@ for await (const line of readLines(await Deno.open(fileName))) {
 
 await Deno.writeTextFile(
   './contacts/private/names.md',
-  `## Full names
+  `- [Full names](#full-names)
+- [First names](#first-names)
+- [Last names](#last-names)
 
-${displayFreq(frequencies.fullName)}
+## Full names
+
+${displayFreq(mergeCases(frequencies.fullName))}
 
 ## First names
 
-${displayFreq(frequencies.firstName)}
+${displayFreq(mergeCases(frequencies.firstName))}
 
 ## Last names
 
-${displayFreq(frequencies.lastName)}
+${displayFreq(mergeCases(frequencies.lastName))}
 `
 )
 
