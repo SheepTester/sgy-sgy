@@ -1,12 +1,18 @@
 // From https://github.com/SheepTester/hello-world/blob/master/google-contacts-scrape.js
+// Adapted to use File System Access API to stream JSON
 
 // https://contacts.google.com/u/1/directory
 // run the following in the console
 
-// If using test/stream-to-file-ws.ts, put the websocket server URL here:
-const ws = null // new WebSocket('ws://localhost:8080/contacts.json')
+const handle = await window.showSaveFilePicker({
+  types: [{ accept: { 'application/json': ['.json'] } }]
+})
+const writable = await handle.createWritable()
 
-const url = 'https://contacts.google.com/u/1/_/ContactsUi/data/batchexecute'
+const authUser = new URLPattern('*://contacts.google.com/u/:authuser/*').exec(
+  window.location.href
+).pathname.groups.authuser
+const url = `https://contacts.google.com/u/${authUser}/_/ContactsUi/data/batchexecute`
 const contentType = 'application/x-www-form-urlencoded;charset=UTF-8'
 
 // Guessing what these values mean
@@ -53,41 +59,35 @@ async function getContacts (nextHandle = null) {
   }
 }
 
-if (ws) {
-  await new Promise((resolve, reject) => {
-    ws.onopen = resolve
-    ws.onerror = reject
-  })
-}
-const contacts = []
-let page = { nextHandle: null }
+console.log('window.page')
+window.page = { nextHandle: null }
+let pageNum = 1
 let first = true
 do {
-  page = await getContacts(page.nextHandle)
-  console.log(page)
-  if (ws) {
-    ws.send(
-      page.contacts
-        .map(
-          (contact, i) =>
-            `${first && i === 0 ? '[' : ','} ${JSON.stringify(
-              contact,
-              null,
-              '\t'
-            ).replace(/\s*\n\s*/g, ' ')}\n`
-        )
-        .join('')
-    )
-    first = false
-  } else {
-    contacts.push(...page.contacts)
-  }
+  do {
+    try {
+      page = await getContacts(page.nextHandle)
+      console.log(pageNum, 'fetched')
+      await new Promise(resolve => setTimeout(resolve, 500))
+      break
+    } catch {
+      console.log(pageNum, 'failed :(')
+      await new Promise(resolve => setTimeout(resolve, 10000))
+    }
+  } while (true)
+  writable.write(
+    page.contacts
+      .map(
+        (contact, i) =>
+          `${first && i === 0 ? '[' : ','} ${JSON.stringify(
+            contact,
+            null,
+            '\t'
+          ).replace(/\s*\n\s*/g, ' ')}\n`
+      )
+      .join('')
+  )
+  first = false
+  pageNum++
 } while (page.nextHandle)
-if (ws) {
-  ws.send(']\n')
-  ws.close()
-} else {
-  window.contacts = contacts
-  console.log(contacts)
-  console.log(JSON.stringify(contacts))
-}
+await writable.close()
