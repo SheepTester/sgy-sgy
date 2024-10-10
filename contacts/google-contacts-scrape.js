@@ -3,6 +3,9 @@
 
 // https://contacts.google.com/u/1/directory
 // run the following in the console
+// NOTE: seems to be a rate limit of ~48 (probably 50 including from regular UI)
+// requests per hour per account. may need to use handle to resume scraping. run
+// `await writable.close()` to save to file
 
 const handle = await window.showSaveFilePicker({
   types: [{ accept: { 'application/json': ['.json'] } }]
@@ -61,8 +64,8 @@ async function getContacts (nextHandle = null) {
 
 console.log('window.page')
 window.page = { nextHandle: null }
-let pageNum = 1
-let first = true
+let pageNum = 1 // for display only
+let first = page.nextHandle === null
 do {
   do {
     try {
@@ -71,11 +74,11 @@ do {
       await new Promise(resolve => setTimeout(resolve, 500))
       break
     } catch (error) {
-      console.log(pageNum, 'failed :(', error)
+      console.log(pageNum, 'failed :(', page.nextHandle, error)
       await new Promise(resolve => setTimeout(resolve, 10000))
     }
   } while (true)
-  writable.write(
+  await writable.write(
     page.contacts
       .map(
         (contact, i) =>
@@ -90,4 +93,5 @@ do {
   first = false
   pageNum++
 } while (page.nextHandle)
+await writable.write(']\n')
 await writable.close()
