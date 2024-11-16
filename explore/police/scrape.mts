@@ -1,7 +1,7 @@
-// tsx explore/police/scrape.ts
+// tsx explore/police/scrape.tsx
 
 import { readFile, writeFile } from 'fs/promises'
-import { getReports, Report } from './parse'
+import { getReports, Report } from './parse.mjs'
 
 const fileNames = await fetch(
   'https://www.police.ucsd.edu/docs/reports/CallsandArrests/Calls_and_Arrests.asp'
