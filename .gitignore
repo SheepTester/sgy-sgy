@@ -19,4 +19,4 @@ credentials.json
 refresh-token.txt
 
 # VSCode (because the Deno plugin is annoying and affects JS files)
-.vscode
+#.vscode
