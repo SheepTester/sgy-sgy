@@ -24,7 +24,7 @@ const DAY_LENGTH = 24 * 60 * 60 * 1000
 
 const fmt = new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
-  dateStyle: 'long',
+  dateStyle: 'medium',
   timeStyle: 'short'
 })
 

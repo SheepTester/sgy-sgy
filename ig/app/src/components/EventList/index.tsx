@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { DEFAULT_EVENT_LENGTH, Event, EventObject } from '../Event'
 import styles from './styles.module.css'
 
@@ -17,6 +17,11 @@ function getNow (): { now: number; today: number } {
   return { now: Date.UTC(y, mo - 1, d, h, m, s), today: Date.UTC(y, mo - 1, d) }
 }
 
+const fmtDate = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'UTC',
+  dateStyle: 'full'
+})
+
 export type EventListProps = {
   events: EventObject[]
 }
@@ -27,35 +32,48 @@ export function EventList ({ events }: EventListProps) {
     setNow(getNow())
   }, [])
 
+  const map = (events: EventObject[]) =>
+    Array.from(
+      Map.groupBy(events, event =>
+        Date.UTC(
+          event.start.getUTCFullYear(),
+          event.start.getUTCMonth(),
+          event.start.getUTCDate()
+        )
+      ),
+      ([date, events]) => (
+        <Fragment key={date}>
+          <h3 className={styles.date}>{fmtDate.format(new Date(date))}</h3>
+          {events.map(event => (
+            <Event event={event} now={now} key={event.id} />
+          ))}
+        </Fragment>
+      )
+    )
+
   return (
     <>
       <h2 id='upcoming'>Upcoming events</h2>
       <div className={styles.list}>
-        {events
-          .filter(
+        {map(
+          events.filter(
             event =>
               (event.end
                 ? event.end?.getTime()
                 : event.start.getTime() + DEFAULT_EVENT_LENGTH) > now.now
           )
-          .sort((a, b) => a.start.getTime() - b.start.getTime())
-          .map(event => (
-            <Event event={event} now={now} key={event.id} />
-          ))}
+        )}
       </div>
       <h2 id='past'>Past events</h2>
       <div className={styles.list}>
-        {events
-          .filter(
+        {map(
+          events.filter(
             event =>
               (event.end
                 ? event.end?.getTime()
                 : event.start.getTime() + DEFAULT_EVENT_LENGTH) <= now.now
           )
-          .sort((a, b) => a.start.getTime() - b.start.getTime())
-          .map(event => (
-            <Event event={event} now={now} key={event.id} />
-          ))}
+        ).reverse()}
       </div>
     </>
   )

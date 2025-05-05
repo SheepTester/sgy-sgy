@@ -3,6 +3,7 @@ import styles from './page.module.css'
 import { eventsPromise } from '@/lib/eventsDb'
 import { EventObject } from '@/components/Event'
 import { EventList } from '@/components/EventList'
+import Link from 'next/link'
 
 export default async function Home () {
   const db = await eventsPromise
@@ -45,6 +46,7 @@ export default async function Home () {
       }
     ]
   })
+  events.sort((a, b) => a.start.getTime() - b.start.getTime())
 
   return (
     <>
@@ -52,6 +54,17 @@ export default async function Home () {
         Free food events at UC San Diego
         <sub style={{ fontSize: '0.3em' }}>TM</sub>
       </h1>
+      <p className={styles.description}>
+        Event posts were scanned with{' '}
+        <Link href='https://github.com/SheepTester/sgy-sgy/blob/master/ig/scraper/scraper.ts#L229'>
+          Google Gemini
+        </Link>
+        , which isn't perfect. Prompt engineering{' '}
+        <Link href='https://github.com/SheepTester/sgy-sgy/issues'>
+          improvements
+        </Link>{' '}
+        would be appreciated. Made by Sean and Chaitya.
+      </p>
       <EventList events={events} />
     </>
   )

@@ -5,6 +5,8 @@
   border-radius: 15px;
   display: grid;
   grid-template-columns: auto auto 1fr;
+  grid-template-rows: auto auto 1fr;
+  /* align-content: space-between; */
   grid-template-areas:
     'image title title'
     'image time-icon time'

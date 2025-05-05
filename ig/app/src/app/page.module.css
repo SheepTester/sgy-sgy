@@ -163,3 +163,10 @@ a.secondary {
     filter: invert();
   }
 }
+
+.description a {
+  color: oklch(62.3% 0.214 259.815);
+}
+.description a:hover {
+  text-decoration: underline;
+}
