@@ -3,29 +3,40 @@
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid color-mix(in srgb, currentColor var(--percent), transparent);
   border-radius: 15px;
-  display: grid;
-  grid-template-columns: auto auto 1fr;
-  grid-template-rows: auto auto 1fr;
-  /* align-content: space-between; */
-  grid-template-areas:
-    'image title title'
-    'image time-icon time'
-    'image location-icon location';
-  align-content: start;
-  gap: 5px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
 }
 .faded {
   color: color-mix(in srgb, currentColor 50%, transparent);
 }
 
-.title {
-  grid-area: title;
+.rhs {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1 0 0;
 }
 .title a:hover {
   text-decoration: underline;
 }
-.time-icon {
-  grid-area: time-icon;
+.hasIcon {
+  display: flex;
+  gap: 5px;
+}
+.icon {
+  flex: none;
+}
+.credit {
+  font-size: 0.8em;
+  color: color-mix(in srgb, currentColor 50%, transparent);
+}
+.credit a:hover {
+  text-decoration: underline;
+}
+
+.lhs {
+  flex: none;
 }
 .image {
   width: 80px;
@@ -42,19 +53,11 @@
   justify-content: center;
   text-align: center;
 }
-.event > .imgLocator {
-  margin-right: 5px;
-  grid-area: image;
-}
-a.imgLocator {
+.lhs a,
+.credit a {
   color: oklch(62.3% 0.214 259.815);
 }
-.location-icon {
-  grid-area: location-icon;
-}
-.location {
-  grid-area: location;
-}
+
 .today {
   /* text-decoration: underline; */
   /* border-bottom: 1px solid currentColor; */

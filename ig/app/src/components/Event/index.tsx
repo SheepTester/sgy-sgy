@@ -47,12 +47,12 @@ export function Event ({ event, now }: EventProps) {
       alt={`preview of Instagram source image`}
       title={hoverText}
       loading='lazy'
-      className={`${styles.image} ${styles.imgLocator}`}
+      className={`${styles.image}`}
       width={80}
       height={100}
     />
   ) : (
-    <div className={`${styles.image} ${styles.imgLocator}`} title={hoverText}>
+    <div className={`${styles.image}`} title={hoverText}>
       {event.url ? 'View source' : ''}
     </div>
   )
@@ -68,37 +68,57 @@ export function Event ({ event, now }: EventProps) {
     : event.start.getTime() + DEFAULT_EVENT_LENGTH
   return (
     <article className={styles.event}>
-      <h3 className={styles.title}>
-        {event.url ? <Link href={event.url}>{text}</Link> : text}
-      </h3>
-      <span className={styles.timeIcon}>📅</span>
-      <p className={styles.time}>
-        <span className={isToday ? styles.today : ''}>
-          {parts
-            .slice(0, index)
-            .map(part => part.value)
-            .join('')}
-        </span>
-        {parts
-          .slice(index)
-          .map(part => part.value)
-          .join('')}
-        &nbsp;
-        {event.start.getTime() <= now.now && now.now < end ? (
-          <span className={styles.liveIndicator} aria-label='(happening now)' />
-        ) : null}
-      </p>
-      <span className={styles.locationIcon}>📍</span>
-      <p className={styles.location}>
-        {event.location || '(unknown location)'}
-      </p>
-      {event.url ? (
-        <Link href={event.url} className={styles.imgLocator}>
-          {image}
-        </Link>
-      ) : (
-        image
-      )}
+      <div className={styles.rhs}>
+        <h3 className={styles.title}>
+          {event.url ? <Link href={event.url}>{text}</Link> : text}
+        </h3>
+        <p className={styles.hasIcon}>
+          <span className={styles.icon}>📅</span>
+          <span>
+            <span className={isToday ? styles.today : ''}>
+              {parts
+                .slice(0, index)
+                .map(part => part.value)
+                .join('')}
+            </span>
+            {parts
+              .slice(index)
+              .map(part => part.value)
+              .join('')}
+            &nbsp;
+            {event.start.getTime() <= now.now && now.now < end ? (
+              <span
+                className={styles.liveIndicator}
+                aria-label='(happening now)'
+              />
+            ) : null}
+          </span>
+        </p>
+        <p className={styles.hasIcon}>
+          <span className={styles.icon}>📍</span>
+          <span>{event.location || '(unknown location)'}</span>
+        </p>
+        <p className={styles.credit}>
+          From a{' '}
+          <Link
+            href={
+              postType === 'story'
+                ? `https://instagram.com/stories/${username}/${postId}`
+                : `https://instagram.com/p/${postId}/`
+            }
+          >
+            {postType}
+          </Link>{' '}
+          by{' '}
+          <Link href={`https://www.instagram.com/${username}/`}>
+            @{username}
+          </Link>
+        </p>
+        {/* {event.caption ? <p>{event.caption}</p> : null} */}
+      </div>
+      <div className={styles.lhs}>
+        {event.url ? <Link href={event.url}>{image}</Link> : image}
+      </div>
     </article>
   )
 }
