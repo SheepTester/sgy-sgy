@@ -1,0 +1,51 @@
+.event {
+  padding: 10px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid color-mix(in srgb, currentColor var(--percent), transparent);
+  border-radius: 15px;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-template-areas:
+    'image title title'
+    'image time-icon time'
+    'image location-icon location';
+    align-content: start;
+  gap: 5px;
+}
+.faded {
+  color: color-mix(in srgb, currentColor 50%, transparent)
+}
+
+.title {
+  grid-area: title;
+}
+.title a:hover {
+  text-decoration: underline;
+}
+.time-icon {
+  grid-area: time-icon;
+}
+.image {
+  width: 80px;
+  height: 100px;
+  border-radius: 5px;
+  object-fit: contain;
+  background-color: color-mix(in srgb, currentColor var(--percent), transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.event > .imgLocator {
+  margin-right: 5px;
+  grid-area: image;
+}
+a.imgLocator {
+  color: oklch(62.3% 0.214 259.815);
+}
+.location-icon {
+  grid-area: location-icon;
+}
+.location {
+  grid-area: location;
+}

@@ -1,0 +1,29 @@
+{
+  "name": "fast-find",
+  "version": "1.0.0",
+  "description": "scrape UCSD events on instagram",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Chaitya and Sean",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@google/genai": "^0.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongodb": "^6.16.0",
+    "playwright": "^1.52.0",
+    "sharp": "^0.34.1",
+    "tsc": "^2.0.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.2",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.3"
+  }
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "csrftoken",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "datr",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "ds_user_id",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "ig_did",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "ig_nrcb",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "mid",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "ps_l",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "ps_n",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "sessionid",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "wd",
+    "value": "",
+    "path": "/",
+    "domain": ".instagram.com"
+  }
+]

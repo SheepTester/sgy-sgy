@@ -1,0 +1,7 @@
+node_modules/
+cookies.json
+venv/
+api_key.txt
+mongo_userpass.txt
+.env.development
+auth.json
