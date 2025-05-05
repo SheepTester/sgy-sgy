@@ -509,8 +509,6 @@ if (storiesFromEnd) {
   )
   await storyScroller.hover()
   for (let i = 0; i < 10; i++) await page.mouse.wheel(1000, 0)
-  console.log('screenshot time!')
-  await page.screenshot({ path: 'bruh.png', fullPage: true })
   await page.locator('css=[aria-label^="Story by"]').last().click()
 } else {
   const story = await page.waitForSelector('[aria-label^="Story by"]')
@@ -523,20 +521,32 @@ await page.waitForRequest(
 )
 console.log('a request was made')
 await page.waitForTimeout(1000)
-for (let i = 0; i < 10; i++) {
+const storyIterations = storiesFromEnd ? Infinity : 10
+for (let i = 0; i < storyIterations; i++) {
+  let story = page.locator('css=a[href^="/stories/"]')
   if (storiesFromEnd) {
-    // click last visible story
-    await page
-      .locator('css=section > div > div > div > a[role="link"]')
-      .first()
-      .click()
+    // click first visible story
+    story = story.first()
+    const atEnd = await story.evaluate(link => {
+      // See if the first clickable story is preceded by the currently viewed
+      // story, which has the Menu (3 dots) button shown. If so, then the
+      // currently viewed story is the first story in the row, so we're at the
+      // end
+      return !!link.parentElement?.previousElementSibling?.querySelector(
+        '[aria-label="Menu"]'
+      )
+    })
+    if (atEnd) {
+      console.log("We're done with stories! yay")
+      console.log('screenshot time!')
+      await page.screenshot({ path: 'bruh.png', fullPage: true })
+      break
+    }
   } else {
     // click last visible story
-    await page
-      .locator('css=section > div > div > div > a[role="link"]')
-      .last()
-      .click()
+    story = story.last()
   }
+  await story.click()
   await page
     .waitForRequest(
       request => new URL(request.url()).pathname === '/graphql/query',
@@ -565,7 +575,7 @@ async function insertIfNew (
   if (existingDoc) {
     return null
   }
-  const images = await Promise.all(imageUrls.map(fetchImage))
+  const images = await Promise.all(imageUrls.map(url => fetchImage(url)))
   const events = (await readImages(images, timestamp, caption)).filter(
     event => (event.provided ?? []).length > 0
   )
