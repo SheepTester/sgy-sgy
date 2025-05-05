@@ -1,74 +1,78 @@
 // node --experimental-strip-types scraper.ts
 
-import playwright, { type Response } from "playwright";
+import playwright from 'playwright'
+import type { Response } from 'playwright'
 // import cookies from "./cookies.json" with { type: "json" };
-import path from "path";
-import fs from "fs/promises";
-import GenAI, { type Part } from "@google/genai";
-import { Collection, MongoClient } from "mongodb";
-import sharp from "sharp";
-const { GoogleGenAI } = GenAI;
+import path from 'path'
+import fs from 'fs/promises'
+import GenAI from '@google/genai'
+import type { Part } from '@google/genai'
+import { Collection, MongoClient } from 'mongodb'
+import sharp from 'sharp'
+const { GoogleGenAI } = GenAI
 
 const client = new MongoClient(
-  `mongodb+srv://${(await fs.readFile("mongo_userpass.txt", "utf-8")).trim()}@bruh.duskolx.mongodb.net/?retryWrites=true&w=majority&appName=Bruh`
-);
-await client.connect();
-const db = client.db("events_db");
-const collection: Collection<ScrapedEvent> = db.collection("events_collection");
+  `mongodb+srv://${(
+    await fs.readFile('mongo_userpass.txt', 'utf-8')
+  ).trim()}@bruh.duskolx.mongodb.net/?retryWrites=true&w=majority&appName=Bruh`
+)
+await client.connect()
+const db = client.db('events_db')
+const collection: Collection<ScrapedEvent> = db.collection('events_collection')
 
 type ImageV2Candidate = {
-  width: number;
-  height: number;
-  url: string;
-};
+  width: number
+  height: number
+  url: string
+}
 type StoryStickers<T = {}> =
   | (T & {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
-      rotation: number;
+      x: number
+      y: number
+      width: number
+      height: number
+      rotation: number
     })[]
-  | null;
+  | null
 /** story */
 type EdgeNode = {
   /** seems to be user iD */
-  id: string;
+  id: string
   items: {
     /** ID of story shown in URL */
-    pk: string;
+    pk: string
     /** {pk}_{userId} I think */
-    id: string;
-    accessibility_caption: string;
+    id: string
+    accessibility_caption: string
     image_versions2: {
-      candidates: ImageV2Candidate[];
-    };
+      candidates: ImageV2Candidate[]
+    }
     /** unix timestamp in seconds */
-    taken_at: number;
+    taken_at: number
     /** `taken_at` + 86400 */
-    expiring_at: number;
+    expiring_at: number
     /** an XML string */
-    video_dash_manifest: string | null;
+    video_dash_manifest: string | null
     video_versions:
       | {
-          type: number;
-          url: string;
+          type: number
+          url: string
         }[]
-      | null;
+      | null
     story_hashtags: StoryStickers<{
-      hashtag: { name: string; id: string };
-    }>;
+      hashtag: { name: string; id: string }
+    }>
     story_feed_media: StoryStickers<{
       /** instagram post ID: https://www.instagram.com/p/___/ */
-      media_code: string;
-    }>;
+      media_code: string
+    }>
     story_bloks_stickers: StoryStickers<{
       bloks_sticker: {
         sticker_data: {
-          ig_mention: { full_name: string; username: string };
-        };
-      };
-    }>;
+          ig_mention: { full_name: string; username: string }
+        }
+      }
+    }>
     story_link_stickers: StoryStickers<{
       story_link: {
         /**
@@ -81,150 +85,150 @@ type EdgeNode = {
          * url.searchParams.delete('fbclid')
          * url.toString()
          */
-        url: string;
-      };
-    }>;
-    story_locations: StoryStickers<{ location: { pk: string } }>;
-    story_countdowns: StoryStickers;
-    story_questions: StoryStickers;
-    story_sliders: StoryStickers;
-  }[];
+        url: string
+      }
+    }>
+    story_locations: StoryStickers<{ location: { pk: string } }>
+    story_countdowns: StoryStickers
+    story_questions: StoryStickers
+    story_sliders: StoryStickers
+  }[]
   user: {
-    username: string;
-    profile_pic_url: string;
-  };
-};
+    username: string
+    profile_pic_url: string
+  }
+}
 /** post */
 type TimelinePostNode = {
   media: {
     owner: {
-      username: string;
-    };
+      username: string
+    }
     carousel_media:
       | {
-          accessibility_caption: string;
+          accessibility_caption: string
           image_versions2: {
-            candidates: ImageV2Candidate[];
-          };
+            candidates: ImageV2Candidate[]
+          }
         }[]
-      | null;
-    code: string;
+      | null
+    code: string
     /** same as `owner`?? */
     user: {
-      username: string;
-    };
+      username: string
+    }
     /** probably just the first slide */
     image_versions2: {
-      candidates: ImageV2Candidate[];
-    };
+      candidates: ImageV2Candidate[]
+    }
     /** unix timestamp in seconds */
-    taken_at: number;
+    taken_at: number
     coauthor_producers: {
-      id: string;
+      id: string
       /** same as id? */
-      pk: string;
-      profile_pic_url: string;
-      username: string;
-      full_name: string;
-    }[];
+      pk: string
+      profile_pic_url: string
+      username: string
+      full_name: string
+    }[]
     /** `null` if no caption (i.e. empty string) */
     caption: {
-      text: string;
-    } | null;
-  } | null;
-};
+      text: string
+    } | null
+  } | null
+}
 type GraphQlResponse = {
   data: {
     xdt_api__v1__feed__reels_media__connection?: {
-      edges: { node: EdgeNode }[];
-    };
+      edges: { node: EdgeNode }[]
+    }
     xdt_api__v1__feed__timeline__connection?: {
-      edges: { node: TimelinePostNode }[];
-    };
-  };
-};
+      edges: { node: TimelinePostNode }[]
+    }
+  }
+}
 
 type Story = {
-  imageUrl: string;
-  storyId: string;
+  imageUrl: string
+  storyId: string
   /** instagram post ID: https://www.instagram.com/p/___/ */
-  postId: string | null;
-  timestamp: Date;
-};
+  postId: string | null
+  timestamp: Date
+}
 type UserStories = {
-  username: string;
-  stories: Story[];
-};
+  username: string
+  stories: Story[]
+}
 type TimelinePost = {
-  username: string;
-  caption: string;
-  imageUrls: string[];
-  postId: string;
-  timestamp: Date;
-};
+  username: string
+  caption: string
+  imageUrls: string[]
+  postId: string
+  timestamp: Date
+}
 
-function selectBest(
+function selectBest (
   candidates: ImageV2Candidate[],
   excludeSquare = false
 ): string {
   return candidates.reduce<ImageV2Candidate>(
     (cum, curr) => {
       if (excludeSquare && curr.width === curr.height) {
-        return cum;
+        return cum
       }
-      return curr.width > cum.width ? curr : cum;
+      return curr.width > cum.width ? curr : cum
     },
-    { width: 0, height: 0, url: "" }
-  ).url;
+    { width: 0, height: 0, url: '' }
+  ).url
 }
 
-async function fetchImage(url: string, retries = 0): Promise<ArrayBuffer> {
+async function fetchImage (url: string, retries = 0): Promise<ArrayBuffer> {
   try {
-    const response = await fetch(url).catch((error) => {
-      console.error(error);
-      return Promise.reject(new Error(`Fetch error: ${url}`));
-    });
-    return response.arrayBuffer();
+    const response = await fetch(url).catch(error => {
+      console.error(error)
+      return Promise.reject(new Error(`Fetch error: ${url}`))
+    })
+    return response.arrayBuffer()
     // const buffer = Buffer.from(arrayBuffer);
     // return buffer.toString("base64");
   } catch (error) {
     if (retries < 3) {
-      console.error(error);
+      console.error(error)
       console.log(
-        "fetching image failed. will try again in 5 secs. retries =",
+        'fetching image failed. will try again in 5 secs. retries =',
         retries
-      );
-      await new Promise((resolve) => setTimeout(resolve, 5 * 1000));
-      return fetchImage(url, retries + 1);
+      )
+      await new Promise(resolve => setTimeout(resolve, 5 * 1000))
+      return fetchImage(url, retries + 1)
     } else {
-      throw error;
+      throw error
     }
   }
 }
 
-const apiKey = (await fs.readFile("api_key.txt", "utf-8")).trim();
-const ai = new GoogleGenAI({ apiKey });
+const apiKey = (await fs.readFile('api_key.txt', 'utf-8')).trim()
+const ai = new GoogleGenAI({ apiKey })
 
 type GeminiResult = {
-  provided: string[];
-  location: string;
-  date: { year: number; month: number; date: number };
-  start: { hour: number; minute: number };
-  end?: { hour: number; minute: number };
-};
+  provided: string[]
+  location: string
+  date: { year: number; month: number; date: number }
+  start: { hour: number; minute: number }
+  end?: { hour: number; minute: number }
+}
 type ScrapedEvent = (
-  | (Omit<GeminiResult, "provided"> & {
-      freeFood: string[];
-      result: true;
-      previewData?: string;
-      postTimestamp?: Date;
-      caption?: string;
+  | (Omit<GeminiResult, 'provided'> & {
+      freeFood: string[]
+      result: true
+      previewData?: string
+      postTimestamp?: Date
+      caption?: string
     })
   | { result: false }
 ) & {
-  sourceId: string;
-  url: string | null;
-};
+  sourceId: string
+  url: string | null
+}
 
 const schemaPrompt = `output only a JSON array of event objects without any explanation or formatting, whose contents each conform to the following schema.
 
@@ -234,44 +238,44 @@ const schemaPrompt = `output only a JSON array of event objects without any expl
   "date": { "year": number; "month": number; "date": number }, // Month is between 1 and 12
   "start": { "hour": number; "minute": number }, // 24-hour format. Tip: something like "6-9 pm" is the same as "6 pm to 9 pm"
   "end": { "hour": number; "minute": number } // 24-hour format, optional and omitted if no end time specified
-}`;
+}`
 
-const fmt = new Intl.DateTimeFormat("en-US", {
-  timeZone: "America/Los_Angeles",
-  dateStyle: "long",
+const fmt = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/Los_Angeles',
+  dateStyle: 'long'
   // gemini will use the current time for the event :/
   // timeStyle: "short", // or medium since the timestamps have second precision
-});
-let geminiCalls = 0;
-let starting = 0;
-let geminiReady = Promise.resolve();
-async function readImages(
+})
+let geminiCalls = 0
+let starting = 0
+let geminiReady = Promise.resolve()
+async function readImages (
   images: ArrayBuffer[],
   timestamp: Date,
   caption?: string,
   retries = 0
 ): Promise<GeminiResult[]> {
   // ensure gemini calls are performed in series
-  const { promise, resolve } = Promise.withResolvers<void>();
-  const oldPromise = geminiReady;
-  geminiReady = geminiReady.then(() => promise);
-  await oldPromise;
+  const { promise, resolve } = Promise.withResolvers<void>()
+  const oldPromise = geminiReady
+  geminiReady = geminiReady.then(() => promise)
+  await oldPromise
 
   if (geminiCalls >= 15) {
     // max 15 RPM on free plan. 5 seconds just in case
-    const ready = starting + (60 + 5) * 1000;
-    const delay = ready - Date.now();
-    console.log("taking a", delay / 1000, "sec break to cool off on gemini");
-    await new Promise((resolve) => setTimeout(resolve, delay));
-    geminiCalls = 0;
+    const ready = starting + (60 + 5) * 1000
+    const delay = ready - Date.now()
+    console.log('taking a', delay / 1000, 'sec break to cool off on gemini')
+    await new Promise(resolve => setTimeout(resolve, delay))
+    geminiCalls = 0
   }
   if (geminiCalls === 0) {
-    starting = Date.now();
+    starting = Date.now()
   }
-  geminiCalls++;
+  geminiCalls++
   try {
     const result = await ai.models.generateContent({
-      model: "gemini-2.0-flash",
+      model: 'gemini-2.0-flash',
       contents: [
         ...images.map(
           (buffer): Part =>
@@ -279,43 +283,45 @@ async function readImages(
             // (dataUrl): Part => ({
             ({
               inlineData: {
-                data: Buffer.from(buffer).toString("base64"),
-                mimeType: "image/jpeg",
-              },
+                data: Buffer.from(buffer).toString('base64'),
+                mimeType: 'image/jpeg'
+              }
             })
           // })
           // )
         ),
         {
           text:
-            `Using the following flyer${images.length !== 1 ? "s" : ""}${caption ? " and caption" : ""}, which was posted ${fmt.format(timestamp)}, ${schemaPrompt}` +
-            (caption ? "\n\n" + caption : ""),
-        },
+            `Using the following flyer${images.length !== 1 ? 's' : ''}${
+              caption ? ' and caption' : ''
+            }, which was posted ${fmt.format(timestamp)}, ${schemaPrompt}` +
+            (caption ? '\n\n' + caption : '')
+        }
       ],
       config: {
-        responseMimeType: "application/json",
-      },
-    });
-    return JSON.parse(result.text ?? "{}");
+        responseMimeType: 'application/json'
+      }
+    })
+    return JSON.parse(result.text ?? '{}')
   } catch (error) {
     // ServerError: got status: 503 Service Unavailable. {"error":{"code":503,"message":"The model is overloaded. Please try again later.","status":"UNAVAILABLE"}}
     // ServerError: got status: 500 Internal Server Error. {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
     if (
       retries < 3 &&
       error instanceof Error &&
-      (error.message.includes("503 Service Unavailable") ||
-        error.message.includes("500 Internal Server Error"))
+      (error.message.includes('503 Service Unavailable') ||
+        error.message.includes('500 Internal Server Error'))
     ) {
-      console.error("[gemini error]", error);
-      console.log("cooling off for 15 secs then retrying. retries =", retries);
-      await new Promise((resolve) => setTimeout(resolve, 15 * 1000));
-      resolve();
-      return readImages(images, timestamp, caption, retries + 1);
+      console.error('[gemini error]', error)
+      console.log('cooling off for 15 secs then retrying. retries =', retries)
+      await new Promise(resolve => setTimeout(resolve, 15 * 1000))
+      resolve()
+      return readImages(images, timestamp, caption, retries + 1)
     } else {
-      throw error;
+      throw error
     }
   } finally {
-    resolve();
+    resolve()
   }
 }
 
@@ -324,30 +330,30 @@ async function readImages(
 const browser = await playwright.firefox.launch({
   // see the browser
   // headless: false,
-});
+})
 // const storageStateExists = await fs
 //   .stat("auth.json")
 //   .then(() => true)
 //   .catch(() => false);
 const context = await browser.newContext({
   // storageState: storageStateExists ? "auth.json" : undefined,
-});
+})
 // if (!storageStateExists) {
-await context.addCookies(
-  JSON.parse(await fs.readFile("cookies.json", "utf-8"))
-);
+await context.addCookies(JSON.parse(await fs.readFile('cookies.json', 'utf-8')))
 // }
-const page = await context.newPage();
-const allUserStories: UserStories[] = [];
-const allTimelinePosts: TimelinePost[] = [];
-let id = 0;
-async function handleGraphQlResponse(response: GraphQlResponse): Promise<void> {
+const page = await context.newPage()
+const allUserStories: UserStories[] = []
+const allTimelinePosts: TimelinePost[] = []
+let id = 0
+async function handleGraphQlResponse (
+  response: GraphQlResponse
+): Promise<void> {
   const {
     data: {
       xdt_api__v1__feed__reels_media__connection: storyData,
-      xdt_api__v1__feed__timeline__connection: timelineData,
-    },
-  } = response;
+      xdt_api__v1__feed__timeline__connection: timelineData
+    }
+  } = response
   if (storyData) {
     const userStories = storyData.edges.map(
       ({ node: user }): UserStories => ({
@@ -357,20 +363,20 @@ async function handleGraphQlResponse(response: GraphQlResponse): Promise<void> {
             imageUrl: selectBest(item.image_versions2.candidates, true),
             postId: item.story_feed_media?.[0].media_code ?? null,
             storyId: item.pk,
-            timestamp: new Date(item.taken_at * 1000),
-          };
-        }),
+            timestamp: new Date(item.taken_at * 1000)
+          }
+        })
       })
-    );
-    allUserStories.push(...userStories);
+    )
+    allUserStories.push(...userStories)
     for (const { username, stories } of userStories) {
       for (const { storyId, postId, imageUrl, timestamp } of stories) {
-        const sourceId = `story/${username}/${storyId}`;
+        const sourceId = `story/${username}/${storyId}`
         const url = postId
           ? `https://www.instagram.com/p/${postId}/`
-          : `https://www.instagram.com/stories/${username}/${storyId}/`;
-        const added = await insertIfNew(sourceId, url, [imageUrl], timestamp);
-        console.log(sourceId, added);
+          : `https://www.instagram.com/stories/${username}/${storyId}/`
+        const added = await insertIfNew(sourceId, url, [imageUrl], timestamp)
+        console.log(sourceId, added)
       }
     }
     // for (const { username, stories } of userStories) {
@@ -383,66 +389,66 @@ async function handleGraphQlResponse(response: GraphQlResponse): Promise<void> {
     //   }
     //   console.log();
     // }
-    return;
+    return
   }
   if (timelineData) {
     const timelinePosts = timelineData.edges.flatMap(
       ({ node: { media } }): TimelinePost[] => {
         if (!media) {
-          return [];
+          return []
         }
         const images: {
-          image_versions2: { candidates: ImageV2Candidate[] };
-        }[] = media.carousel_media ?? [media];
+          image_versions2: { candidates: ImageV2Candidate[] }
+        }[] = media.carousel_media ?? [media]
         return [
           {
             username: media.owner.username,
-            caption: media.caption?.text ?? "",
+            caption: media.caption?.text ?? '',
             imageUrls: images.map(({ image_versions2 }) =>
               selectBest(image_versions2.candidates)
             ),
             postId: media.code,
-            timestamp: new Date(media.taken_at * 1000),
-          },
-        ];
+            timestamp: new Date(media.taken_at * 1000)
+          }
+        ]
       }
-    );
-    allTimelinePosts.push(...timelinePosts);
+    )
+    allTimelinePosts.push(...timelinePosts)
     for (const {
       username,
       postId,
       caption,
       imageUrls,
-      timestamp,
+      timestamp
     } of timelinePosts) {
-      const sourceId = `post/${username}/${postId}`;
-      const url = `https://www.instagram.com/p/${postId}/`;
+      const sourceId = `post/${username}/${postId}`
+      const url = `https://www.instagram.com/p/${postId}/`
       const added = await insertIfNew(
         sourceId,
         url,
         imageUrls,
         timestamp,
         caption
-      );
-      console.log(sourceId, added);
+      )
+      console.log(sourceId, added)
     }
-    return;
+    return
   }
-  console.log("| this one has no stories");
+  console.log('| this one has no stories')
 }
-async function handleResponse(response: Response): Promise<void> {
+async function handleResponse (response: Response): Promise<void> {
   // thanks chatgpt
-  const url = response.url();
-  if (new URL(url).pathname === "/graphql/query") {
-    const buffer = await response.body();
+  const url = response.url()
+  if (new URL(url).pathname === '/graphql/query') {
+    const buffer = await response.body()
     const filePath = path.join(
-      "scraped",
-      `d${id.toString().padStart(3, "0")}.json`
-    );
-    console.log(filePath, url);
-    id++;
-    await fs.writeFile(filePath, buffer);
-    await handleGraphQlResponse(JSON.parse(buffer.toString("utf-8")));
+      'scraped',
+      `d${id.toString().padStart(3, '0')}.json`
+    )
+    console.log(filePath, url)
+    id++
+    await fs.writeFile(filePath, buffer)
+    await handleGraphQlResponse(JSON.parse(buffer.toString('utf-8')))
   }
   // if (buffer.slice(0, prefix.length).equals(prefix)) {
   //   await fs.writeFile(filePath + ".json", buffer.slice(prefix.length));
@@ -450,18 +456,18 @@ async function handleResponse(response: Response): Promise<void> {
   //   await fs.writeFile(filePath, buffer);
   // }
 }
-const promises: Promise<void>[] = [];
-page.on("response", (response) => {
-  promises.push(handleResponse(response));
-});
-await page.goto("https://instagram.com/");
-function* analyze(x: any): Generator<GraphQlResponse> {
+const promises: Promise<void>[] = []
+page.on('response', response => {
+  promises.push(handleResponse(response))
+})
+await page.goto('https://instagram.com/')
+function * analyze (x: any): Generator<GraphQlResponse> {
   for (const req of x.require ?? []) {
-    const args = req.at(-1);
+    const args = req.at(-1)
     for (const arg of args) {
       if (arg?.__bbox) {
-        if (arg.__bbox.complete) yield arg.__bbox.result;
-        else yield* analyze(arg.__bbox);
+        if (arg.__bbox.complete) yield arg.__bbox.result
+        else yield * analyze(arg.__bbox)
       }
     }
   }
@@ -471,27 +477,27 @@ for (const script of await page
   .all()) {
   const json = await script
     .textContent()
-    .then((json) => json && JSON.parse(json))
-    .catch(() => {});
-  const results = Array.from(analyze(json));
+    .then(json => json && JSON.parse(json))
+    .catch(() => {})
+  const results = Array.from(analyze(json))
   for (const result of results) {
-    await handleGraphQlResponse(result);
+    await handleGraphQlResponse(result)
   }
 }
-console.log("i am instagramming now");
+console.log('i am instagramming now')
 for (let i = 0; i < 5; i++) {
-  await page.keyboard.press("End"); // scroll to bottom
+  await page.keyboard.press('End') // scroll to bottom
   await page
     .waitForRequest(
-      (request) => new URL(request.url()).pathname === "/graphql/query",
+      request => new URL(request.url()).pathname === '/graphql/query',
       { timeout: 1000 }
     )
-    .catch(() => console.log("no graphql query from pressing end key"));
-  await page.waitForTimeout(500); // give time for page to update so i can press end key again
-  console.log("end key", i + 1);
+    .catch(() => console.log('no graphql query from pressing end key'))
+  await page.waitForTimeout(500) // give time for page to update so i can press end key again
+  console.log('end key', i + 1)
 }
-await page.keyboard.press("Home");
-let storiesFromEnd = true;
+await page.keyboard.press('Home')
+let storiesFromEnd = true
 if (storiesFromEnd) {
   // scroll to end has several benefits:
   // - no ads
@@ -500,81 +506,81 @@ if (storiesFromEnd) {
   // - will include already-read storeies
   const storyScroller = page.locator(
     'css=[data-pagelet="story_tray"] [role=presentation]'
-  );
-  await storyScroller.hover();
-  for (let i = 0; i < 10; i++) await page.mouse.wheel(1000, 0);
-  console.log("screenshot time!");
-  await page.screenshot({ path: "bruh.png", fullPage: true });
-  await page.locator('css=[aria-label^="Story by"]').last().click();
+  )
+  await storyScroller.hover()
+  for (let i = 0; i < 10; i++) await page.mouse.wheel(1000, 0)
+  console.log('screenshot time!')
+  await page.screenshot({ path: 'bruh.png', fullPage: true })
+  await page.locator('css=[aria-label^="Story by"]').last().click()
 } else {
-  const story = await page.waitForSelector('[aria-label^="Story by"]');
-  console.log("i see the stories are ready for me to CLICK");
-  await story.click();
+  const story = await page.waitForSelector('[aria-label^="Story by"]')
+  console.log('i see the stories are ready for me to CLICK')
+  await story.click()
 }
-console.log("story hath been click");
+console.log('story hath been click')
 await page.waitForRequest(
-  (request) => new URL(request.url()).pathname === "/graphql/query"
-);
-console.log("a request was made");
-await page.waitForTimeout(1000);
+  request => new URL(request.url()).pathname === '/graphql/query'
+)
+console.log('a request was made')
+await page.waitForTimeout(1000)
 for (let i = 0; i < 10; i++) {
   if (storiesFromEnd) {
     // click last visible story
     await page
       .locator('css=section > div > div > div > a[role="link"]')
       .first()
-      .click();
+      .click()
   } else {
     // click last visible story
     await page
       .locator('css=section > div > div > div > a[role="link"]')
       .last()
-      .click();
+      .click()
   }
   await page
     .waitForRequest(
-      (request) => new URL(request.url()).pathname === "/graphql/query",
+      request => new URL(request.url()).pathname === '/graphql/query',
       { timeout: 1000 }
     )
     .catch(() =>
-      console.log("no graphql query from paging down story, oh well")
-    );
-  await page.waitForTimeout(500); // give time for page to update so i can press end key again
-  console.log("story pagination", i + 1);
+      console.log('no graphql query from paging down story, oh well')
+    )
+  await page.waitForTimeout(500) // give time for page to update so i can press end key again
+  console.log('story pagination', i + 1)
 }
-await page.context().storageState({ path: "auth.json" });
-await browser.close();
-console.log("i close the browser");
+await page.context().storageState({ path: 'auth.json' })
+await browser.close()
+console.log('i close the browser')
 
-await Promise.all(promises);
+await Promise.all(promises)
 
-async function insertIfNew(
+async function insertIfNew (
   sourceId: string,
   url: string,
   imageUrls: string[],
   timestamp: Date,
   caption?: string
 ): Promise<GeminiResult[] | null> {
-  const existingDoc = await collection.findOne({ sourceId });
+  const existingDoc = await collection.findOne({ sourceId })
   if (existingDoc) {
-    return null;
+    return null
   }
-  const images = await Promise.all(imageUrls.map(fetchImage));
+  const images = await Promise.all(imageUrls.map(fetchImage))
   const events = (await readImages(images, timestamp, caption)).filter(
-    (event) => event.provided.length > 0
-  );
+    event => event.provided.length > 0
+  )
   if (events.length > 0) {
     for (const event of events) {
       if (event.date.year !== new Date().getFullYear()) {
-        console.warn(event, "is in a weird year");
+        console.warn(event, 'is in a weird year')
       }
     }
     // it kinda looks like they're all 4:5 now :/
     const buffer = await sharp(images[0])
-      .resize(80, 100, { fit: "cover" })
+      .resize(80, 100, { fit: 'cover' })
       .webp({ quality: 20 })
-      .toBuffer();
-    const previewData = buffer.toString("base64");
+      .toBuffer()
+    const previewData = buffer.toString('base64')
     await collection.insertMany(
       events.map(
         ({ provided, ...event }): ScrapedEvent => ({
@@ -585,21 +591,21 @@ async function insertIfNew(
           previewData,
           postTimestamp: timestamp,
           caption,
-          result: true,
+          result: true
         })
       )
-    );
+    )
   } else {
     await collection.insertOne({
       sourceId,
       url,
-      result: false,
-    });
+      result: false
+    })
   }
-  return events;
+  return events
 }
 
 // console.log("allUserStories", allUserStories);
 // console.log("allTimelinePosts", allTimelinePosts);
-console.log("ok gamers we done");
-process.exit(0);
+console.log('ok gamers we done')
+process.exit(0)

@@ -9,11 +9,11 @@
     'image title title'
     'image time-icon time'
     'image location-icon location';
-    align-content: start;
+  align-content: start;
   gap: 5px;
 }
 .faded {
-  color: color-mix(in srgb, currentColor 50%, transparent)
+  color: color-mix(in srgb, currentColor 50%, transparent);
 }
 
 .title {
@@ -30,7 +30,11 @@
   height: 100px;
   border-radius: 5px;
   object-fit: contain;
-  background-color: color-mix(in srgb, currentColor var(--percent), transparent);
+  background-color: color-mix(
+    in srgb,
+    currentColor var(--percent),
+    transparent
+  );
   display: flex;
   align-items: center;
   justify-content: center;

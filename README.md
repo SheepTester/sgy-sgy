@@ -15,6 +15,7 @@ Scrapes https://finance.ucsd.edu/Home/ListFunded and maybe Instagram
 - lib: Utils for explore/
 - explore/finance: Scraping [UCSD A.S. Finance](https://finance.ucsd.edu/Home/ListFunded)
 - explore/police: Scraping [UCSD crime logs](https://www.police.ucsd.edu/docs/reports/callsandarrests/Calls_and_Arrests.asp)
+- ig: Scraping Instagram for free food events at UCSD (based on our [LA Hacks project](https://devpost.com/software/free-food-nrab03))
 
 ## Usage
 
