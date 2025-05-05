@@ -17,7 +17,8 @@ export default async function Home () {
     }
     return [
       {
-        id: event._id.toString(),
+        mongoDbId: event._id.toString(),
+        postId: event.sourceId,
         url: event.url,
         freeStuff: event.freeFood.map(item => item.replace(/^free\s+/i, '')),
         location: event.location,

@@ -100,6 +100,7 @@ type EdgeNode = {
 }
 /** post */
 type TimelinePostNode = {
+  /** `null` if ad (i.e. this already filters out ads) */
   media: {
     owner: {
       username: string

@@ -28,6 +28,7 @@ export type EventListProps = {
 export function EventList ({ events }: EventListProps) {
   const [now, setNow] = useState(getNow)
 
+  console.log('now is', new Date(now.now).toISOString())
   useEffect(() => {
     setNow(getNow())
   }, [])
@@ -45,7 +46,7 @@ export function EventList ({ events }: EventListProps) {
         <Fragment key={date}>
           <h3 className={styles.date}>{fmtDate.format(new Date(date))}</h3>
           {events.map(event => (
-            <Event event={event} now={now} key={event.id} />
+            <Event event={event} now={now} key={event.mongoDbId} />
           ))}
         </Fragment>
       )

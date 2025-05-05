@@ -3,7 +3,8 @@ import styles from './styles.module.css'
 import Image from 'next/image'
 
 export type EventObject = {
-  id: string
+  mongoDbId: string
+  postId: string
   url: string | null
   freeStuff: string[]
   location: string
@@ -33,6 +34,8 @@ export type EventProps = {
   now: { now: number; today: number }
 }
 export function Event ({ event, now }: EventProps) {
+  const [postType, username, postId] = event.postId.split('/')
+  const hoverText = `Source: a ${postType} by @${username}`
   const text = (
     <>
       <span className={styles.faded}>Free</span> {event.freeStuff.join(', ')}
@@ -42,13 +45,14 @@ export function Event ({ event, now }: EventProps) {
     <Image
       src={event.imageUrl}
       alt={`preview of Instagram source image`}
+      title={hoverText}
       loading='lazy'
       className={`${styles.image} ${styles.imgLocator}`}
       width={80}
       height={100}
     />
   ) : (
-    <div className={`${styles.image} ${styles.imgLocator}`}>
+    <div className={`${styles.image} ${styles.imgLocator}`} title={hoverText}>
       {event.url ? 'View source' : ''}
     </div>
   )
