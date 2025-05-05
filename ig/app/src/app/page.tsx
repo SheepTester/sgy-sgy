@@ -8,6 +8,12 @@ import Link from 'next/link'
 /** cache for 5 min */
 export const revalidate = 300
 
+const fmt = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/Los_Angeles',
+  dateStyle: 'long',
+  timeStyle: 'long'
+})
+
 export default async function Home () {
   const db = await eventsPromise
   const rawEvents = await db.find({ result: true }).toArray()
@@ -15,6 +21,10 @@ export default async function Home () {
     if (!event.result) {
       return []
     }
+    // if (!event.start) {
+    //   console.warn('Missing `start`', event)
+    // }
+    event.start ??= { hour: 0, minute: 0 }
     return [
       {
         mongoDbId: event._id.toString(),
@@ -67,7 +77,8 @@ export default async function Home () {
         <Link href='https://github.com/SheepTester/sgy-sgy/issues'>
           improvements
         </Link>{' '}
-        would be appreciated. Made by Sean and Chaitya.
+        would be appreciated. Made by Sean and Chaitya. Last updated{' '}
+        {fmt.format(new Date())}.
       </p>
       <EventList events={events} />
     </>

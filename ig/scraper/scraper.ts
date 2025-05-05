@@ -370,16 +370,6 @@ async function handleGraphQlResponse (
       })
     )
     allUserStories.push(...userStories)
-    for (const { username, stories } of userStories) {
-      for (const { storyId, postId, imageUrl, timestamp } of stories) {
-        const sourceId = `story/${username}/${storyId}`
-        const url = postId
-          ? `https://www.instagram.com/p/${postId}/`
-          : `https://www.instagram.com/stories/${username}/${storyId}/`
-        const added = await insertIfNew(sourceId, url, [imageUrl], timestamp)
-        console.log(sourceId, added)
-      }
-    }
     // for (const { username, stories } of userStories) {
     //   console.log(`[${username}]`);
     //   for (const story of stories) {
@@ -415,24 +405,6 @@ async function handleGraphQlResponse (
       }
     )
     allTimelinePosts.push(...timelinePosts)
-    for (const {
-      username,
-      postId,
-      caption,
-      imageUrls,
-      timestamp
-    } of timelinePosts) {
-      const sourceId = `post/${username}/${postId}`
-      const url = `https://www.instagram.com/p/${postId}/`
-      const added = await insertIfNew(
-        sourceId,
-        url,
-        imageUrls,
-        timestamp,
-        caption
-      )
-      console.log(sourceId, added)
-    }
     return
   }
   console.log('| this one has no stories')
@@ -614,6 +586,29 @@ async function insertIfNew (
     })
   }
   return events
+}
+
+for (const { username, stories } of allUserStories) {
+  for (const { storyId, postId, imageUrl, timestamp } of stories) {
+    const sourceId = `story/${username}/${storyId}`
+    const url = postId
+      ? `https://www.instagram.com/p/${postId}/`
+      : `https://www.instagram.com/stories/${username}/${storyId}/`
+    const added = await insertIfNew(sourceId, url, [imageUrl], timestamp)
+    console.log(sourceId, added)
+  }
+}
+for (const {
+  username,
+  postId,
+  caption,
+  imageUrls,
+  timestamp
+} of allTimelinePosts) {
+  const sourceId = `post/${username}/${postId}`
+  const url = `https://www.instagram.com/p/${postId}/`
+  const added = await insertIfNew(sourceId, url, imageUrls, timestamp, caption)
+  console.log(sourceId, added)
 }
 
 // console.log("allUserStories", allUserStories);
