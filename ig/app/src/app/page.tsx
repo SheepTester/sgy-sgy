@@ -5,6 +5,9 @@ import { EventObject } from '@/components/Event'
 import { EventList } from '@/components/EventList'
 import Link from 'next/link'
 
+/** cache for 5 min */
+export const revalidate = 300
+
 export default async function Home () {
   const db = await eventsPromise
   const rawEvents = await db.find({ result: true }).toArray()

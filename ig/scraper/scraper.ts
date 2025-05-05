@@ -567,7 +567,7 @@ async function insertIfNew (
   }
   const images = await Promise.all(imageUrls.map(fetchImage))
   const events = (await readImages(images, timestamp, caption)).filter(
-    event => event.provided.length > 0
+    event => (event.provided ?? []).length > 0
   )
   if (events.length > 0) {
     for (const event of events) {
