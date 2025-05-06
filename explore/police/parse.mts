@@ -62,12 +62,19 @@ export async function getReports (fileName: string): Promise<Report[]> {
       .filter(content => content.trim().length > 0)
 
     if (
-      pageText[0] !== 'UCSD POLICE DEPARTMENT' &&
-      pageText[1] !== 'CRIME AND FIRE LOG/MEDIA BULLETIN'
+      pageText[0] === 'UCSD POLICE DEPARTMENT' &&
+      pageText[1] === 'CRIME AND FIRE LOG/MEDIA BULLETIN'
     ) {
-      throw new Error('page does not start with UCPD header')
+      pageText.splice(0, 3)
+    } else if (
+      pageText.slice(0, 8).join(' ') ===
+      'UCSD POLICE DEPARTMENT CRIME AND FIRE LOG/MEDIA BULLETIN'
+    ) {
+      pageText.splice(0, 11)
+    } else {
+      console.error(pageText)
+      throw new Error(`${fileName}: page ${i} does not start with UCPD header`)
     }
-    pageText.splice(0, 3)
 
     const indices: number[] = []
     for (const [i, content] of pageText.entries()) {

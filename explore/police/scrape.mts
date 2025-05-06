@@ -1,4 +1,4 @@
-// tsx explore/police/scrape.tsx
+// tsx explore/police/scrape.mts
 
 import { readFile, writeFile } from 'fs/promises'
 import { getReports, Report } from './parse.mjs'
