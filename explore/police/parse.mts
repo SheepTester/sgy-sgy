@@ -83,6 +83,22 @@ export async function getReports (fileName: string): Promise<Report[]> {
       }
     }
 
+    if (indices[0] > 0) {
+      // More text before first crime on page. This only happens for Sun God
+      // (e.g. May 3, 2025)
+      console.warn(
+        `${fileName}: text before first crime on page:`,
+        indices,
+        'adding this text to last disposition'
+      )
+      if (reports.length > 0) {
+        const lastReport = reports[reports.length - 1]
+        lastReport.disposition += ' ' + pageText.slice(0, indices[0]).join(' ')
+      } else {
+        throw new Error(`${fileName}: text before first crime`)
+      }
+    }
+
     for (let i = 0; i < indices.length; i++) {
       const start = indices[i]
       const end = indices[i + 1] ?? pageText.length
