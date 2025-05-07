@@ -231,6 +231,26 @@ type ScrapedEvent = (
   url: string | null
 }
 
+/**
+ * prompt notes:
+ * - changed phrasing of "free" to "provided" so it doesn't exclude e.g. "Lunch
+ *   provided"
+ * - removed mentions of "consumable" to include merch like T-shirts, but it
+ *   might be too general now
+ * - `end` was preemptively made optional, not as a response to Gemini's
+ *   behavior
+ * - sometimes gemini will generate a leading zero (e.g. `05`) for `minute`,
+ *   which is invalid JSON
+ * - sometimes gemini will set `location` to `null` instead of an empty string
+ *   when location ins't specified
+ * - had to include tip; otherwise text like "6-9 pm" will be treated as 6 am to
+ *   9 pm
+ * - if time isn't specified, gemini defaults to midnight
+ * - the post date is included elsewhere. otherwise, when the year isn't
+ *   specified, Gemini sometimes defaults to 2024
+ * - unlike the date, including the time of the story/post would make gemini use
+ *   that as the event start date, so the post time isn't included in the prompt
+ */
 const schemaPrompt = `output only a JSON array of event objects without any explanation or formatting, whose contents each conform to the following schema.
 
 {

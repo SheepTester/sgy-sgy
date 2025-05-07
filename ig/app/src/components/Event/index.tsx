@@ -70,7 +70,13 @@ export function Event ({ event, now }: EventProps) {
     <article className={styles.event}>
       <div className={styles.rhs}>
         <h3 className={styles.title}>
-          {event.url ? <Link href={event.url}>{text}</Link> : text}
+          {event.url ? (
+            <Link href={event.url} rel='noreferrer'>
+              {text}
+            </Link>
+          ) : (
+            text
+          )}
         </h3>
         <p className={styles.hasIcon}>
           <span className={styles.icon}>📅</span>
@@ -106,18 +112,28 @@ export function Event ({ event, now }: EventProps) {
                 ? `https://instagram.com/stories/${username}/${postId}`
                 : `https://instagram.com/p/${postId}/`
             }
+            rel='noreferrer'
           >
             {postType}
           </Link>{' '}
           by{' '}
-          <Link href={`https://www.instagram.com/${username}/`}>
+          <Link
+            href={`https://www.instagram.com/${username}/`}
+            rel='noreferrer'
+          >
             @{username}
           </Link>
         </p>
         {/* {event.caption ? <p>{event.caption}</p> : null} */}
       </div>
       <div className={styles.lhs}>
-        {event.url ? <Link href={event.url}>{image}</Link> : image}
+        {event.url ? (
+          <Link href={event.url} rel='noreferrer'>
+            {image}
+          </Link>
+        ) : (
+          image
+        )}
       </div>
     </article>
   )
