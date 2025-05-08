@@ -250,11 +250,13 @@ type ScrapedEvent = (
  *   specified, Gemini sometimes defaults to 2024
  * - unlike the date, including the time of the story/post would make gemini use
  *   that as the event start date, so the post time isn't included in the prompt
+ * - added "tangible" to filter by food and merch and exclude things like "free
+ *   admission"
  */
 const schemaPrompt = `output only a JSON array of event objects without any explanation or formatting, whose contents each conform to the following schema.
 
 {
-  "provided": string[], // List of items provided at the event, if any, using the original phrasing from the post (e.g. "Dirty Birds", "Tapex", "boba", "refreshments", "snacks", "food", "T-shirt"). Exclude items that must be purchased.
+  "provided": string[], // List of tangible items (i.e. food and merch) provided at the event, if any, using the original phrasing from the post (e.g. "Dirty Birds", "Tapex", "boba", "refreshments", "snacks", "food", "T-shirt"). Exclude items that must be purchased.
   "location": string,
   "date": { "year": number; "month": number; "date": number }, // Month is between 1 and 12
   "start": { "hour": number; "minute": number }, // 24-hour format. Tip: something like "6-9 pm" is the same as "6 pm to 9 pm"
@@ -295,6 +297,7 @@ async function readImages (
   }
   geminiCalls++
   try {
+    // TODO: turn down the temperature maybe
     const result = await ai.models.generateContent({
       model: 'gemini-2.0-flash',
       contents: [

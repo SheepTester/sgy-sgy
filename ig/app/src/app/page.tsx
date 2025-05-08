@@ -60,7 +60,12 @@ export default async function Home () {
       }
     ]
   })
-  events.sort((a, b) => a.start.getTime() - b.start.getTime())
+  events.sort(
+    (a, b) =>
+      a.start.getTime() - b.start.getTime() ||
+      (a.imageUrl ?? '').localeCompare(b.imageUrl ?? '') ||
+      a.postId.localeCompare(b.postId)
+  )
 
   return (
     <>
@@ -77,7 +82,7 @@ export default async function Home () {
         <Link href='https://github.com/SheepTester/sgy-sgy/issues'>
           improvements
         </Link>{' '}
-        would be appreciated. Made by Sean and Chaitya. Last updated{' '}
+        would be appreciated. Made by Sean and Chaitya. Page generated{' '}
         {fmt.format(new Date())}.
       </p>
       <EventList events={events} />
