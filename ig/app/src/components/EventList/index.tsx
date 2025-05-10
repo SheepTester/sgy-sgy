@@ -1,8 +1,9 @@
 'use client'
 
 import { Fragment, useEffect, useState } from 'react'
-import { DEFAULT_EVENT_LENGTH, Event, EventObject } from '../Event'
+import { DEFAULT_EVENT_LENGTH, EventObject } from '../Event'
 import styles from './styles.module.css'
+import { EventCard } from '../EventCard'
 
 const fmt = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Los_Angeles',
@@ -21,6 +22,27 @@ const fmtDate = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'UTC',
   dateStyle: 'full'
 })
+
+/**
+ * among events referencing the same post, see what time is most common. if
+ * there's a tie, default to most recent
+ */
+function getMostCommonDate (events: EventObject[]): {
+  start: Date
+  end: Date | null
+} {
+  return Array.from(
+    Map.groupBy(
+      events,
+      event => `${event.start.getTime()}-${event.end?.getTime()}`
+    ).values()
+  ).sort(
+    (a, b) =>
+      b.length - a.length ||
+      Math.max(...b.map(event => event.postTimestamp?.getTime() ?? 0)) -
+        Math.max(...a.map(event => event.postTimestamp?.getTime() ?? 0))
+  )[0][0]
+}
 
 export type EventListProps = {
   events: EventObject[]
@@ -45,9 +67,32 @@ export function EventList ({ events }: EventListProps) {
       ([date, events]) => (
         <Fragment key={date}>
           <h3 className={styles.date}>{fmtDate.format(new Date(date))}</h3>
-          {events.map(event => (
-            <Event event={event} now={now} key={event.mongoDbId} />
-          ))}
+          {Array.from(
+            Map.groupBy(events, event => event.url),
+            ([url, events]) =>
+              url !== null
+                ? [
+                  {
+                    uuid: `url:${url}`,
+                    events,
+                    time: getMostCommonDate(events)
+                  }
+                ]
+                : events.map(event => ({
+                  uuid: `id:${event.mongoDbId}`,
+                  events: [event],
+                  time: event
+                }))
+          )
+            .flat()
+            .sort(
+              (a, b) =>
+                a.time.start.getTime() - b.time.start.getTime() ||
+                (a.time.end?.getTime() ?? 0) - (b.time.end?.getTime() ?? 0)
+            )
+            .map(({ uuid, events }) => (
+              <EventCard events={events} now={now} key={uuid} />
+            ))}
         </Fragment>
       )
     )

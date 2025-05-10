@@ -555,6 +555,7 @@ for (let i = 0; i < storyIterations; i++) {
   console.log('story pagination', i + 1)
 }
 await page.context().storageState({ path: 'auth.json' })
+await context.close()
 await browser.close()
 console.log('i close the browser')
 

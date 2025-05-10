@@ -1,8 +1,4 @@
 .event {
-  padding: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  border: 1px solid color-mix(in srgb, currentColor var(--percent), transparent);
-  border-radius: 15px;
   display: flex;
   flex-direction: row-reverse;
   gap: 10px;
