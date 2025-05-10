@@ -17,9 +17,12 @@ export default async function Home () {
 
   return (
     <>
-      <h1>
-        Upcoming free food events at UC San Diego
-        <sub style={{ fontSize: '0.3em' }}>TM</sub>
+      <h1 className={styles.heading}>
+        Upcoming <em className={styles.title}>Free Food Events</em>{' '}
+        <span className={styles.atUcsd}>
+          at UC San Diego
+          <sub>TM</sub>
+        </span>
       </h1>
       <p className={styles.description}>
         Event posts were scanned with{' '}

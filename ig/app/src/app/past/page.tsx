@@ -17,9 +17,12 @@ export default async function Home () {
 
   return (
     <>
-      <h1>
-        Past free food events at UC San Diego
-        <sub style={{ fontSize: '0.3em' }}>TM</sub>
+      <h1 className={styles.heading}>
+        Past <em className={styles.title}>Free Food Events</em>{' '}
+        <span className={styles.atUcsd}>
+          at UC San Diego
+          <sub>TM</sub>
+        </span>
       </h1>
       <p className={styles.description}>
         Page generated {fmt.format(new Date())}.{' '}

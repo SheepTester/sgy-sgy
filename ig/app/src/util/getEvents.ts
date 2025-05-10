@@ -20,7 +20,7 @@ export async function getEvents (): Promise<EventObject[]> {
          * URL of referenced post (if available), otherwise URL of story. `null`
          * means it was a story but was scraped a while ago
          */
-        url: event.url,
+        referencedUrl: event.url,
         freeStuff: event.freeFood.map(item => item.replace(/^free\s+/i, '')),
         location: event.location,
         start: new Date(

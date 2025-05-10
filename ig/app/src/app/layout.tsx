@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -10,6 +10,10 @@ const InterSans = Inter({
 export const metadata: Metadata = {
   title: 'free food events at ucsd',
   description: 'kitty kat'
+}
+
+export const viewport: Viewport = {
+  themeColor: '#8E51FF'
 }
 
 export default function RootLayout ({

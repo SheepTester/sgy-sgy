@@ -65,19 +65,22 @@ function getConsensus (events: EventObject[]): EventObject {
     event => event.location,
     events[0]
   )
-  // use oldest image, which might be the post if available
-  const { imageUrl, postId, postTimestamp, url } = events[events.length - 1]
+  const { postTimestamp, referencedUrl } = events[events.length - 1]
   return {
-    mongoDbId: `url:${postId}`,
+    mongoDbId: `url:${referencedUrl}`,
     freeStuff: Array.from(allFreeStuff.values()),
     start,
     end,
     location,
-    imageUrl,
-    url,
+    // use oldest image, which might be the post if available
+    imageUrl: events.findLast(event => event.imageUrl)?.imageUrl ?? null,
+    // link to latest post, or latest story if no posts
+    postId:
+      events.find(event => event.postId.startsWith('post/'))?.postId ??
+      events[0].postId,
     // values not important
+    referencedUrl,
     postTimestamp,
-    postId,
     caption: ''
   }
 }
@@ -102,9 +105,9 @@ function organizeEvents (events: EventObject[]): {
     ([date, events]) => ({
       date,
       events: Array.from(
-        Map.groupBy(events, event => event.url),
+        Map.groupBy(events, event => event.referencedUrl),
         ([url, events]) =>
-          url !== null
+          url !== null && events.length > 1
             ? [
               {
                 // sort events first; `getConsensus` kind of relies on this behavior

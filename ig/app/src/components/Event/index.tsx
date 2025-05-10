@@ -5,7 +5,7 @@ import Image from 'next/image'
 export type EventObject = {
   mongoDbId: string
   postId: string
-  url: string | null
+  referencedUrl: string | null
   freeStuff: string[]
   location: string
   /** UTC time */
@@ -84,8 +84,8 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
     <article className={styles.event}>
       <div className={styles.rhs}>
         <h3 className={styles.title}>
-          {event.url ? (
-            <Link href={event.url} rel='noreferrer'>
+          {event.referencedUrl ? (
+            <Link href={event.referencedUrl} rel='noreferrer'>
               {text}
             </Link>
           ) : (
@@ -118,33 +118,33 @@ export function Event ({ event, consensusInfo, now }: EventProps) {
           <span className={styles.icon}>📍</span>
           <span>{event.location || '(unknown location)'}</span>
         </p>
-        {consensusInfo ? (
+        {consensusInfo && consensusInfo.sources > 1 ? (
           <p className={styles.credit}>
             {consensusInfo.updateTime
-              ? `Last updated ${fmtPT.format(consensusInfo.updateTime)}. `
-              : ''}
-            {consensusInfo.sources > 1
-              ? `Based on ${consensusInfo.sources} sources.`
-              : ''}
+              ? `Last advertised ${fmtPT.format(consensusInfo.updateTime)}.`
+              : 'Scraped before May 4.'}{' '}
+            Based on {consensusInfo.sources} sources.
           </p>
-        ) : null}
-        {/* <p className={styles.credit}>
-          From a{' '}
-          <Link
-            href={url}
-            rel='noreferrer'
-          >
-            {postType}
-          </Link>{' '}
-          by{' '}
-          <Link
-            href={`https://www.instagram.com/${username}/`}
-            rel='noreferrer'
-          >
-            @{username}
-          </Link>
-        </p> */}
-        {event.caption ? <p>{event.caption}</p> : null}
+        ) : (
+          <p className={styles.credit}>
+            From a{' '}
+            <Link href={url} rel='noreferrer'>
+              {postType}
+            </Link>{' '}
+            by{' '}
+            <Link
+              href={`https://www.instagram.com/${username}/`}
+              rel='noreferrer'
+            >
+              @{username}
+            </Link>
+            {consensusInfo?.updateTime
+              ? ` on ${fmtPT.format(consensusInfo.updateTime)}`
+              : ''}
+            .
+          </p>
+        )}
+        {/* {event.caption ? <p>{event.caption}</p> : null} */}
       </div>
       <div className={styles.lhs}>
         {url ? (
