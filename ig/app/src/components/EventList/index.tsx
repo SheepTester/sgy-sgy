@@ -1,6 +1,6 @@
 'use client'
 
-import { Fragment, useEffect, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { DEFAULT_EVENT_LENGTH, EventObject } from '../Event'
 import styles from './styles.module.css'
 import { EventCard } from '../EventCard'
@@ -24,19 +24,18 @@ const fmtDate = new Intl.DateTimeFormat('en-CA', {
 })
 
 /**
- * among events referencing the same post, see what time is most common. if
- * there's a tie, default to most recent
+ * among events referencing the same post, see what value is most common. if
+ * there's a tie, default to most recently posted
  */
-function getMostCommonDate (events: EventObject[]): {
-  start: Date
-  end: Date | null
-} {
-  return Array.from(
-    Map.groupBy(
-      events,
-      event => `${event.start.getTime()}-${event.end?.getTime()}`
-    ).values()
-  ).sort(
+function getMostCommonValue (
+  events: EventObject[],
+  key: (event: EventObject) => string | number,
+  ifEmpty?: EventObject
+): EventObject {
+  if (ifEmpty && events.length === 0) {
+    return ifEmpty
+  }
+  return Array.from(Map.groupBy(events, key).values()).sort(
     (a, b) =>
       b.length - a.length ||
       Math.max(...b.map(event => event.postTimestamp?.getTime() ?? 0)) -
@@ -44,10 +43,100 @@ function getMostCommonDate (events: EventObject[]): {
   )[0][0]
 }
 
+/**
+ * among events with the same referenced post (`url`), get a consensus. assumes
+ * events is already sorted most recently posted first
+ */
+function getConsensus (events: EventObject[]): EventObject {
+  const allFreeStuff = new Map<string, string>()
+  for (const { freeStuff } of events) {
+    for (const item of freeStuff) {
+      if (!allFreeStuff.has(item.toLowerCase())) {
+        allFreeStuff.set(item.toLowerCase(), item)
+      }
+    }
+  }
+  const { start, end } = getMostCommonValue(
+    events,
+    event => `${event.start.getTime()}-${event.end?.getTime()}`
+  )
+  const { location } = getMostCommonValue(
+    events.filter(event => event.location),
+    event => event.location,
+    events[0]
+  )
+  // use oldest image, which might be the post if available
+  const { imageUrl, postId, postTimestamp, url } = events[events.length - 1]
+  return {
+    mongoDbId: `url:${postId}`,
+    freeStuff: Array.from(allFreeStuff.values()),
+    start,
+    end,
+    location,
+    imageUrl,
+    url,
+    // values not important
+    postTimestamp,
+    postId,
+    caption: ''
+  }
+}
+
+/**
+ * - partitions and sorts by date, earliest first
+ * - for each date, partitions by referenced post, and sorts by (consensus) time
+ * - for each referenced post, sorts stories by post time
+ */
+function organizeEvents (events: EventObject[]): {
+  date: number
+  events: { consensus: EventObject; events: EventObject[] }[]
+}[] {
+  return Array.from(
+    Map.groupBy(events, event =>
+      Date.UTC(
+        event.start.getUTCFullYear(),
+        event.start.getUTCMonth(),
+        event.start.getUTCDate()
+      )
+    ),
+    ([date, events]) => ({
+      date,
+      events: Array.from(
+        Map.groupBy(events, event => event.url),
+        ([url, events]) =>
+          url !== null
+            ? [
+              {
+                // sort events first; `getConsensus` kind of relies on this behavior
+                events: events.sort(
+                  (a, b) =>
+                    (b.postTimestamp?.getTime() ?? 0) -
+                    (a.postTimestamp?.getTime() ?? 0)
+                ),
+                consensus: getConsensus(events)
+              }
+            ]
+            : events.map(event => ({
+              consensus: { ...event, mongoDbId: `id:${event.mongoDbId}` },
+              events: [event]
+            }))
+      )
+        .flat()
+        .sort(
+          (a, b) =>
+            a.consensus.start.getTime() - b.consensus.start.getTime() ||
+            (a.consensus.end?.getTime() ?? 0) -
+              (b.consensus.end?.getTime() ?? 0)
+        )
+    })
+  ).sort((a, b) => a.date - b.date)
+}
+
 export type EventListProps = {
   events: EventObject[]
+  mode: 'upcoming' | 'past'
 }
-export function EventList ({ events }: EventListProps) {
+export function EventList ({ events, mode }: EventListProps) {
   const [now, setNow] = useState(getNow)
 
   console.log('now is', new Date(now.now).toISOString())
@@ -55,72 +144,41 @@ export function EventList ({ events }: EventListProps) {
     setNow(getNow())
   }, [])
 
-  const map = (events: EventObject[]) =>
-    Array.from(
-      Map.groupBy(events, event =>
-        Date.UTC(
-          event.start.getUTCFullYear(),
-          event.start.getUTCMonth(),
-          event.start.getUTCDate()
-        )
-      ),
-      ([date, events]) => (
-        <Fragment key={date}>
-          <h3 className={styles.date}>{fmtDate.format(new Date(date))}</h3>
-          {Array.from(
-            Map.groupBy(events, event => event.url),
-            ([url, events]) =>
-              url !== null
-                ? [
-                  {
-                    uuid: `url:${url}`,
-                    events,
-                    time: getMostCommonDate(events)
-                  }
-                ]
-                : events.map(event => ({
-                  uuid: `id:${event.mongoDbId}`,
-                  events: [event],
-                  time: event
-                }))
-          )
-            .flat()
-            .sort(
-              (a, b) =>
-                a.time.start.getTime() - b.time.start.getTime() ||
-                (a.time.end?.getTime() ?? 0) - (b.time.end?.getTime() ?? 0)
-            )
-            .map(({ uuid, events }) => (
-              <EventCard events={events} now={now} key={uuid} />
-            ))}
-        </Fragment>
+  const days = useMemo(() => {
+    const days = organizeEvents(
+      events.filter(
+        mode === 'upcoming'
+          ? event =>
+            (event.end
+              ? event.end?.getTime()
+              : event.start.getTime() + DEFAULT_EVENT_LENGTH) > now.now
+          : event =>
+            (event.end
+              ? event.end?.getTime()
+              : event.start.getTime() + DEFAULT_EVENT_LENGTH) <= now.now
       )
     )
+    if (mode === 'past') {
+      days.reverse()
+    }
+    return days
+  }, [now.now, mode])
 
   return (
-    <>
-      <h2 id='upcoming'>Upcoming events</h2>
-      <div className={styles.list}>
-        {map(
-          events.filter(
-            event =>
-              (event.end
-                ? event.end?.getTime()
-                : event.start.getTime() + DEFAULT_EVENT_LENGTH) > now.now
-          )
-        )}
-      </div>
-      <h2 id='past'>Past events</h2>
-      <div className={styles.list}>
-        {map(
-          events.filter(
-            event =>
-              (event.end
-                ? event.end?.getTime()
-                : event.start.getTime() + DEFAULT_EVENT_LENGTH) <= now.now
-          )
-        ).reverse()}
-      </div>
-    </>
+    <div className={styles.list}>
+      {days.map(({ date, events }) => (
+        <Fragment key={date}>
+          <h3 className={styles.date}>{fmtDate.format(new Date(date))}</h3>
+          {events.map(({ consensus, events }) => (
+            <EventCard
+              consensus={consensus}
+              events={events}
+              now={now}
+              key={consensus.mongoDbId}
+            />
+          ))}
+        </Fragment>
+      ))}
+    </div>
   )
 }

@@ -29,12 +29,26 @@ const fmt = new Intl.DateTimeFormat('en-US', {
   timeStyle: 'short'
 })
 
+const fmtPT = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'America/Los_Angeles',
+  dateStyle: 'short',
+  timeStyle: 'short'
+})
+
 export type EventProps = {
   event: EventObject
+  consensusInfo?: {
+    sources: number
+    updateTime: Date | null
+  }
   now: { now: number; today: number }
 }
-export function Event ({ event, now }: EventProps) {
+export function Event ({ event, consensusInfo, now }: EventProps) {
   const [postType, username, postId] = event.postId.split('/')
+  const url =
+    postType === 'story'
+      ? `https://instagram.com/stories/${username}/${postId}`
+      : `https://instagram.com/p/${postId}/`
   const hoverText = `Source: a ${postType} by @${username}`
   const text = (
     <>
@@ -53,7 +67,7 @@ export function Event ({ event, now }: EventProps) {
     />
   ) : (
     <div className={`${styles.image}`} title={hoverText}>
-      {event.url ? 'View source' : ''}
+      View source
     </div>
   )
   const parts = event.end
@@ -104,14 +118,20 @@ export function Event ({ event, now }: EventProps) {
           <span className={styles.icon}>📍</span>
           <span>{event.location || '(unknown location)'}</span>
         </p>
-        <p className={styles.credit}>
+        {consensusInfo ? (
+          <p className={styles.credit}>
+            {consensusInfo.updateTime
+              ? `Last updated ${fmtPT.format(consensusInfo.updateTime)}. `
+              : ''}
+            {consensusInfo.sources > 1
+              ? `Based on ${consensusInfo.sources} sources.`
+              : ''}
+          </p>
+        ) : null}
+        {/* <p className={styles.credit}>
           From a{' '}
           <Link
-            href={
-              postType === 'story'
-                ? `https://instagram.com/stories/${username}/${postId}`
-                : `https://instagram.com/p/${postId}/`
-            }
+            href={url}
             rel='noreferrer'
           >
             {postType}
@@ -123,12 +143,12 @@ export function Event ({ event, now }: EventProps) {
           >
             @{username}
           </Link>
-        </p>
-        {/* {event.caption ? <p>{event.caption}</p> : null} */}
+        </p> */}
+        {event.caption ? <p>{event.caption}</p> : null}
       </div>
       <div className={styles.lhs}>
-        {event.url ? (
-          <Link href={event.url} rel='noreferrer'>
+        {url ? (
+          <Link href={url} rel='noreferrer'>
             {image}
           </Link>
         ) : (
