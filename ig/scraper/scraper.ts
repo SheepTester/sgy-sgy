@@ -326,19 +326,31 @@ async function readImages (
         responseMimeType: 'application/json'
       }
     })
-    return JSON.parse(result.text ?? '{}')
+    return JSON.parse(
+      // sometimes will generate `"minute": 05` or `00`
+      result.text?.replace(
+        /"minute": 0([0-9])/,
+        (_, digit) => `"minute": ${digit}`
+      ) ?? '{}'
+    )
   } catch (error) {
     // ServerError: got status: 503 Service Unavailable. {"error":{"code":503,"message":"The model is overloaded. Please try again later.","status":"UNAVAILABLE"}}
     // ServerError: got status: 500 Internal Server Error. {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
     if (
-      retries < 3 &&
+      retries < 5 &&
       error instanceof Error &&
       (error.message.includes('503 Service Unavailable') ||
         error.message.includes('500 Internal Server Error'))
     ) {
       console.error('[gemini error]', error)
-      console.log('cooling off for 15 secs then retrying. retries =', retries)
-      await new Promise(resolve => setTimeout(resolve, 15 * 1000))
+      const timeout = 60 * (retries + 1) + 5
+      console.log(
+        'cooling off for',
+        timeout,
+        'secs then retrying. retries =',
+        retries
+      )
+      await new Promise(resolve => setTimeout(resolve, timeout * 1000))
       resolve()
       return readImages(images, timestamp, caption, retries + 1)
     } else {
@@ -481,7 +493,7 @@ for (const script of await page
   }
 }
 console.log('i am instagramming now')
-for (let i = 0; i < 5; i++) {
+for (let i = 0; i < 10; i++) {
   await page.keyboard.press('End') // scroll to bottom
   await page
     .waitForRequest(
