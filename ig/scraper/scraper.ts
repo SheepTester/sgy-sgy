@@ -336,14 +336,22 @@ async function readImages (
   } catch (error) {
     // ServerError: got status: 503 Service Unavailable. {"error":{"code":503,"message":"The model is overloaded. Please try again later.","status":"UNAVAILABLE"}}
     // ServerError: got status: 500 Internal Server Error. {"error":{"code":500,"message":"Internal error encountered.","status":"INTERNAL"}}
+    // ClientError: got status: 429 Too Many Requests. {"error":{"code":429,"message":"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits.","status":"RESOURCE_EXHAUSTED","details":[{"@type":"type.googleapis.com/google.rpc.QuotaFailure","violations":[{"quotaMetric":"generativelanguage.googleapis.com/generate_content_free_tier_requests","quotaId":"GenerateRequestsPerMinutePerProjectPerModel-FreeTier","quotaDimensions":{"location":"global","model":"gemini-2.0-flash"},"quotaValue":"15"}]},{"@type":"type.googleapis.com/google.rpc.Help","links":[{"description":"Learn more about Gemini API quotas","url":"https://ai.google.dev/gemini-api/docs/rate-limits"}]},{"@type":"type.googleapis.com/google.rpc.RetryInfo","retryDelay":"23s"}]}}
     if (
       retries < 5 &&
       error instanceof Error &&
-      (error.message.includes('503 Service Unavailable') ||
-        error.message.includes('500 Internal Server Error'))
+      (error.message.includes('503 Service Unavailable.') ||
+        error.message.includes('500 Internal Server Error.') ||
+        error.message.includes('429 Too Many Requests.'))
     ) {
       console.error('[gemini error]', error)
-      const timeout = 60 * (retries + 1) + 5
+      let timeout = 60 * (retries + 1) + 5
+      if (error.message.includes('429 Too Many Requests.')) {
+        const match = error.message.match(/"retryDelay":"(\d+)s"/)
+        if (match) {
+          timeout = +match[1] + 5
+        }
+      }
       console.log(
         'cooling off for',
         timeout,
