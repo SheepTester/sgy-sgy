@@ -256,8 +256,8 @@ type ScrapedEvent = (
 const schemaPrompt = `output only a JSON array of event objects without any explanation or formatting, whose contents each conform to the following schema.
 
 {
-  "provided": string[], // List of tangible items (i.e. food and merch) provided at the event, if any, using the original phrasing from the post (e.g. "Dirty Birds", "Tapex", "boba", "refreshments", "snacks", "food", "T-shirt"). Exclude items that must be purchased.
-  "location": string,
+  "provided": string[], // List of tangible items (i.e. food and merch) provided at the event, if any, using the original phrasing from the post (e.g. "Dirty Birds", "Tapex", "Boba", "refreshments", "snacks", "food", "T-shirt"). Capitalize proper nouns. Keep the phrasing from the post the same but make sure the capitalization is correct (e.g. "Red Bull, bluebooks, scantrons", "clothes, hygiene products", "yummy plant-based food", "essential oils"). Avoid all caps. Make sure the spelling of the items is correct. Exclude items that must be purchased. 
+  "location": string, // Adjust the capitalization appropriately. Do NOT respond to the location with all caps but capitalize necessary letters (e.g. "Library Walk" instead of "LIBRARY WALK", "UCSD Cross Cultural Center" instead of "ucsdcrossculturalcenter").
   "date": { "year": number; "month": number; "date": number }, // Month is between 1 and 12
   "start": { "hour": number; "minute": number }, // 24-hour format. Tip: something like "6-9 pm" is the same as "6 pm to 9 pm"
   "end": { "hour": number; "minute": number } // 24-hour format, optional and omitted if no end time specified
