@@ -329,7 +329,7 @@ async function readImages (
     return JSON.parse(
       // sometimes will generate `"minute": 05` or `00`
       result.text?.replace(
-        /"minute": 0([0-9])/,
+        /"minute":\s*0+([0-9])/,
         (_, digit) => `"minute": ${digit}`
       ) ?? '{}'
     )
