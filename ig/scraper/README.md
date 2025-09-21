@@ -4,6 +4,7 @@ you need:
 
 - Node 22 ideally
 - `cookies.json` instagram web cookies of account you want to scrape with
+  - `sessionid` changes sometimes
 - `api_key.txt` API key for gemini which you can get from Gemini API studio
 - water (see: [About Water and Healthier Drinks](https://www.cdc.gov/healthy-weight-growth/water-healthy-drinks/index.html))
 - `mongo_userpass.txt` mongo atlas username colon password
