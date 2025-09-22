@@ -1,21 +1,26 @@
 # All purpose scraping
 
 Playing with the [Schoology API](https://developers.schoology.com/api-documentation/rest-api-v1) and [Zoom API](https://marketplace.zoom.us/docs/api-reference/zoom-api)!
-
-Scrapes https://finance.ucsd.edu/Home/ListFunded and maybe Instagram
+And scraping [A.S. Finance](https://finance.ucsd.edu/Home/ListFunded) and Instagram.
 
 - [oauth-3leg](#oauth-3leg): Schoology API 3-legged OAuth
+  - Used as a starting point for [WATT](https://gunnwatt.web.app/) and [Disadus](https://disadus.app/)
 - [explorer](./explorer/): Schoology API
 - [irrelevant-scripts-maybe](#irrelevant-side-note): Schoology API
 - [scraper](#scraper): Schoology API
 - [archiving](./archiving/): Archiving Schoology
 - [zoom](#zoom): Zoom API
 - hdh: Scraping [UCSD HDH's dining hall menus](https://hdh-web.ucsd.edu/dining/apps/diningservices/Restaurants/)
-- contacts: Scraping Google Contacts, based on [prior work](https://github.com/SheepTester/hello-world/blob/master/google-contacts-scrape.js)
+- contacts: Scraping Google Contacts
+  - Based on [prior work](https://github.com/SheepTester/hello-world/blob/master/google-contacts-scrape.js)
+  - Later found a better solution [using the official Google APIs](https://sheeptester.github.io/words-go-here/misc/google-directory-scrape.html)
 - lib: Utils for explore/
 - explore/finance: Scraping [UCSD A.S. Finance](https://finance.ucsd.edu/Home/ListFunded)
+  - Implemented on [my web server](https://sheep.thingkingland.app/as-finance/?date=2025-10-03&term=1034)
 - explore/police: Scraping [UCSD crime logs](https://www.police.ucsd.edu/docs/reports/callsandarrests/Calls_and_Arrests.asp)
-- ig: Scraping Instagram for free food events at UCSD (based on our [LA Hacks project](https://devpost.com/software/free-food-nrab03))
+  - Incorporated into [my Discord bot](https://github.com/SheepTester/floofy-bot/)
+- ig: Scraping Instagram for free food events at UCSD
+  - Based on our [LA Hacks project](https://devpost.com/software/free-food-nrab03)
 
 ## Usage
 
