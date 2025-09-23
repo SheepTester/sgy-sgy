@@ -285,11 +285,13 @@ async function readImages (
   await oldPromise
 
   if (geminiCalls >= 15) {
-    // max 15 RPM on free plan. 5 seconds just in case
-    const ready = starting + (60 + 5) * 1000
-    const delay = ready - Date.now()
-    console.log('taking a', delay / 1000, 'sec break to cool off on gemini')
+    // max 15 RPM on free plan
+    const ready = starting + 60 * 1000
+    const delay = Math.max(ready - Date.now(), 0)
+    console.log('taking a', delay / 1000 + 5, 'sec break to cool off on gemini')
     await new Promise(resolve => setTimeout(resolve, delay))
+    // 5 seconds just in case
+    await new Promise(resolve => setTimeout(resolve, 5000))
     geminiCalls = 0
   }
   if (geminiCalls === 0) {

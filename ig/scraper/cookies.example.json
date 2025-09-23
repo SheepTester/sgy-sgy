@@ -1,61 +1,62 @@
 [
   {
     "name": "csrftoken",
-    "value": "",
+    "value": "FIXME",
     "path": "/",
     "domain": ".instagram.com"
   },
   {
     "name": "datr",
-    "value": "",
+    "value": "FIXME",
     "path": "/",
     "domain": ".instagram.com"
   },
   {
     "name": "ds_user_id",
-    "value": "",
+    "value": "FIXME",
     "path": "/",
     "domain": ".instagram.com"
   },
   {
     "name": "ig_did",
-    "value": "",
-    "path": "/",
-    "domain": ".instagram.com"
-  },
-  {
-    "name": "ig_nrcb",
-    "value": "",
+    "value": "FIXME",
     "path": "/",
     "domain": ".instagram.com"
   },
   {
     "name": "mid",
-    "value": "",
-    "path": "/",
-    "domain": ".instagram.com"
-  },
-  {
-    "name": "ps_l",
-    "value": "",
-    "path": "/",
-    "domain": ".instagram.com"
-  },
-  {
-    "name": "ps_n",
-    "value": "",
+    "value": "FIXME",
     "path": "/",
     "domain": ".instagram.com"
   },
   {
     "name": "sessionid",
-    "value": "",
+    "value": "FIXME",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+
+  {
+    "name": "ig_nrcb",
+    "value": "1",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "ps_l",
+    "value": "1",
+    "path": "/",
+    "domain": ".instagram.com"
+  },
+  {
+    "name": "ps_n",
+    "value": "1",
     "path": "/",
     "domain": ".instagram.com"
   },
   {
     "name": "wd",
-    "value": "",
+    "value": "1440x825",
     "path": "/",
     "domain": ".instagram.com"
   }
