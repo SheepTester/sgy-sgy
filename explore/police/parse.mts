@@ -4,11 +4,14 @@ import { getDocument, VerbosityLevel } from 'pdfjs-dist'
 
 type TextObject = {
   content: string
-  // probably not very useful
+  /** true when content is empty it seems? I wouldn't count on it though */
   hasEol: boolean
   x: number
   /** +y is up */
   y: number
+  width: number
+  /** sometimes zero, i think if there's no glyphs */
+  height: number
 }
 
 export type Report = {
@@ -44,33 +47,54 @@ export async function getReports (fileName: string): Promise<Report[]> {
   for (let i = 1; i <= pdf.numPages; i++) {
     const page = await pdf.getPage(i)
     const { items } = await page.getTextContent()
-    const pageText = items
+    const textObjects = items
       .filter(item => 'transform' in item)
       .map(
         (item): TextObject => ({
           content: item.str,
           hasEol: item.hasEOL,
           x: item.transform[4],
-          y: item.transform[5]
+          y: item.transform[5],
+          width: item.width,
+          height: item.height
         })
       )
       .sort(
         // Sort from top to bottom, then left to right
         (a, b) => (Math.abs(a.y - b.y) > 0.1 ? b.y - a.y : a.x - b.x)
       )
-      .map(t => t.content)
-      .filter(content => content.trim().length > 0)
+
+    let text = ''
+    let lastObject: TextObject | null = null
+    for (const object of textObjects) {
+      if (object.content.trim().length === 0) {
+        text += object.content
+        continue
+      }
+      if (lastObject) {
+        if (lastObject.y - object.y > 0.1) {
+          // New line
+          text += '\n'
+        } else if (object.x - (lastObject.x + lastObject.width) > 3) {
+          // Horizontal space
+          text += '\t'
+        }
+      }
+      text += object.content
+      lastObject = object
+    }
+
+    const pageText = text
+      .trim()
+      .split(/\t|\n/)
+      .map(content => content.trim())
 
     if (
       pageText[0] === 'UCSD POLICE DEPARTMENT' &&
       pageText[1] === 'CRIME AND FIRE LOG/MEDIA BULLETIN'
     ) {
+      // pageText[2] is the date
       pageText.splice(0, 3)
-    } else if (
-      pageText.slice(0, 8).join(' ') ===
-      'UCSD POLICE DEPARTMENT CRIME AND FIRE LOG/MEDIA BULLETIN'
-    ) {
-      pageText.splice(0, 11)
     } else {
       console.error(pageText)
       throw new Error(`${fileName}: page ${i} does not start with UCPD header`)
@@ -135,6 +159,9 @@ export async function getReports (fileName: string): Promise<Report[]> {
         disposition
       })
     }
+  }
+  if (reports.length === 0) {
+    throw new Error(`No reports found in ${fileName}. Something went wrong.`)
   }
   return reports
 }
