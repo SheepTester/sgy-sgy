@@ -1,6 +1,6 @@
-// tsx explore/police/display.ts
+// node explore/police/display.ts
 import { readFile } from 'fs/promises'
-import { Report } from './parse.mjs'
+import { Report } from './parse.mts'
 
 const colors = process.stdout.isTTY && !process.env.NO_COLOR
 const bold = (str: string) => (colors ? `\x1b[1;97m${str}\x1b[0m` : str)

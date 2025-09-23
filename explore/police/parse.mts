@@ -1,4 +1,4 @@
-// tsx explore/police/parse.ts
+// node explore/police/parse.ts
 
 import { getDocument, VerbosityLevel } from 'pdfjs-dist'
 

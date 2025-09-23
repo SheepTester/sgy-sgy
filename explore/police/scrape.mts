@@ -1,7 +1,7 @@
-// tsx explore/police/scrape.mts
+// node explore/police/scrape.mts
 
 import { readFile, writeFile } from 'fs/promises'
-import { getReports, Report } from './parse.mjs'
+import { getReports, type Report } from './parse.mts'
 
 const fileNames = await fetch(
   'https://www.police.ucsd.edu/docs/reports/CallsandArrests/Calls_and_Arrests.asp'
