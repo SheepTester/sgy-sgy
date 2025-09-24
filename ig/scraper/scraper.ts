@@ -1,4 +1,4 @@
-// node --experimental-strip-types scraper.ts
+// node --env-file=.env --experimental-strip-types scraper.ts
 
 import type { Part } from '@google/genai'
 import { ApiError, GoogleGenAI } from '@google/genai'
@@ -260,8 +260,10 @@ export class FreeFoodScraper {
     this.logs += message
     if (error !== undefined) {
       this.logs += ' ' + error
+      console.error(message, error)
+    } else {
+      console.error(message)
     }
-    console.error(message, error)
   }
 
   async #fetchImage (url: string, retries = 0): Promise<ArrayBuffer> {
@@ -369,6 +371,9 @@ export class FreeFoodScraper {
           ) {
             if (this.#model === 'gemini-2.0-flash') {
               this.#model = 'gemini-2.5-flash'
+              this.#log(
+                `[gemini] 2.0 flash ratelimit reached, switching to 2.5 flash`
+              )
             } else {
               throw new Error(
                 'Doomed. All the models I hardcoded into the bot have run out of daily quota.'
@@ -394,7 +399,8 @@ export class FreeFoodScraper {
     const {
       data: {
         xdt_api__v1__feed__reels_media__connection: storyData,
-        xdt_api__v1__feed__timeline__connection: timelineData
+        xdt_api__v1__feed__timeline__connection: timelineData,
+        ...rest
       }
     } = response
     if (storyData) {
@@ -441,7 +447,7 @@ export class FreeFoodScraper {
       this.#log(`[graph ql] found ${timelinePosts.length} posts`)
       return
     }
-    this.#log('[graph ql] this one has no stories')
+    this.#log(`[graph ql] has no posts/stories: ${Object.keys(rest)[0]}`)
   }
 
   async #handleResponse (response: Response): Promise<void> {
@@ -599,6 +605,10 @@ export class FreeFoodScraper {
       this.#log('[browser] It seems the stories have opened.')
       await page.waitForTimeout(1000)
       for (let i = 0; ; i++) {
+        await page.screenshot({
+          path: `data/screen-stories-${i}.png`
+          // fullPage: true
+        })
         let story = page.locator('css=a[href^="/stories/"]')
         // click first visible story
         story = story.first()
@@ -675,3 +685,5 @@ export class FreeFoodScraper {
 }
 
 console.log('ok gamers we done. events:', await new FreeFoodScraper().main())
+// Doesn't exit on its own because MongoDB client is still active
+process.exit(0)

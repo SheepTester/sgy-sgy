@@ -5,3 +5,7 @@ api_key.txt
 mongo_userpass.txt
 .env.development
 auth.json
+data/free-food-debug-screenshot.png
+data/free-food-debug-auth.json
+data/screen-*.png
+.env
