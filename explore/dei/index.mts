@@ -1,6 +1,7 @@
 // node explore/dei/index.mts
 
 import { getDocument, VerbosityLevel } from 'pdfjs-dist'
+import fs from 'fs/promises'
 
 type TextObject = {
   content: string
@@ -64,8 +65,30 @@ for (let i = 1; i <= pdf.numPages; i++) {
 
 const collator = new Intl.Collator('en-US', { numeric: true })
 
-const courses = rawCourses
-  .flatMap(course => course.split(/\s*\/\s*(?=[A-QS-Z])|\s*\(formerly\s*/g))
-  .filter(c => !c.startsWith('('))
-  .map(c => c.replace(')', ''))
-console.log(courses)
+const courses = Object.groupBy(
+  rawCourses
+    .flatMap(course => course.split(/\s*\/\s*(?=[A-QS-Z])|\s*\(formerly\s*/g))
+    .flatMap(course =>
+      course.endsWith('/R')
+        ? [course.replace('/R', ''), course.replace('/R', 'R')]
+        : [course]
+    )
+    .map(c => c.replace(')', '').replace(/^([A-Z]+)(\d)/, '$1 $2'))
+    .filter(c => c && !c.startsWith('(')),
+  course => course.split(' ')[0]
+)
+
+await fs.writeFile(
+  'explore/dei/courses.txt',
+  Object.entries(courses)
+    .map(
+      ([k, v]) =>
+        `${k} ${Array.from(
+          new Set(v?.map(code => code.split(' ').slice(1).join(' ')))
+        )
+          .sort(collator.compare)
+          .join(', ')}`
+    )
+    .sort(collator.compare)
+    .join(' or\n') + '\n'
+)
