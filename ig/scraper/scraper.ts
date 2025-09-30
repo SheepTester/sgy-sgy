@@ -4,12 +4,16 @@ import type { Part } from '@google/genai'
 import { ApiError, GoogleGenAI } from '@google/genai'
 import fs from 'fs/promises'
 import { Collection, MongoClient } from 'mongodb'
-import type { Response } from 'playwright'
+import type { Page, Response } from 'playwright'
 import playwright from 'playwright'
 import sharp from 'sharp'
 
 // so it's easier to copypaste between floofy-bot and here
 const isDev = true
+const displayError = (error: unknown) =>
+  error instanceof Error
+    ? error.stack ?? `${error.name}: ${error.message}`
+    : JSON.stringify(error)
 
 let collectionPromise: Promise<Collection<ScrapedEvent>> | undefined
 
@@ -140,6 +144,23 @@ type TimelinePostNode = {
     } | null
   } | null
 }
+type StoryUser = {
+  id: string
+  has_besties_media: boolean
+  muted: boolean
+  latest_reel_media: number
+  /** a timestamp(?) or 0 */
+  seen: number
+  expiring_at: number
+  ranked_position: number
+  /** seems to always be the same as `ranked_position`? */
+  seen_ranked_position: number
+  user: {
+    pk: string
+    username: string
+    profile_pic_url: string
+  }
+}
 type GraphQlResponse = {
   data: {
     xdt_api__v1__feed__reels_media__connection?: {
@@ -147,6 +168,9 @@ type GraphQlResponse = {
     }
     xdt_api__v1__feed__timeline__connection?: {
       edges: { node: TimelinePostNode }[]
+    }
+    xdt_api__v1__feed__reels_tray?: {
+      tray: StoryUser[]
     }
   }
 }
@@ -209,6 +233,10 @@ type ScrapedEvent = (
 type ScrapeStats = {
   posts: number
   stories: number
+  users: number
+  note: string
+}
+type InsertStats = ScrapeStats & {
   newPosts: number
   newStories: number
   inserted: number
@@ -252,15 +280,22 @@ const fmt = new Intl.DateTimeFormat('en-US', {
   // omit time or gemini will use the current time for the event :/
 })
 
+const POST_PAGES = isDev ? 2 : 10
+
 let ai: GoogleGenAI | undefined
 let geminiCalls = 0
 let starting = 0
 let geminiReady = Promise.resolve()
 
+type GeminiModel = 'gemini-2.0-flash' | 'gemini-2.5-flash'
+
 export class FreeFoodScraper {
   #allUserStories: UserStories[] = []
   #allTimelinePosts: TimelinePost[] = []
-  #model: 'gemini-2.0-flash' | 'gemini-2.5-flash' = 'gemini-2.0-flash'
+  #expectedUsernameOrder: string[] = []
+  #expectedUsernames = new Set<string>()
+  #seenUsernames = new Set<string>()
+  #model: GeminiModel = 'gemini-2.0-flash'
 
   logs = ''
 
@@ -380,18 +415,25 @@ export class FreeFoodScraper {
             timeout = +match[1] + 5
           }
           if (
-            error.message.includes('GenerateRequestsPerDayPerProjectPerModel')
+            error.message.includes(
+              'GenerateRequestsPerDayPerProjectPerModel'
+            ) ||
+            error.message.includes('The model is overloaded.')
           ) {
-            if (this.#model === 'gemini-2.0-flash') {
-              this.#model = 'gemini-2.5-flash'
-              this.#log(
-                `[gemini] 2.0 flash ratelimit reached, switching to 2.5 flash`
-              )
-            } else {
-              throw new Error(
-                'Doomed. All the models I hardcoded into the bot have run out of daily quota.'
-              )
-            }
+            const nextModel: GeminiModel =
+              this.#model === 'gemini-2.0-flash'
+                ? 'gemini-2.5-flash'
+                : 'gemini-2.0-flash'
+            this.#log(
+              `[gemini] ${this.#model} ${
+                error.message.includes(
+                  'GenerateRequestsPerDayPerProjectPerModel'
+                )
+                  ? 'ratelimit reached'
+                  : 'overloaded'
+              }, switching to ${nextModel}`
+            )
+            this.#model = nextModel
           }
         }
         this.#log(
@@ -413,12 +455,14 @@ export class FreeFoodScraper {
       data: {
         xdt_api__v1__feed__reels_media__connection: storyData,
         xdt_api__v1__feed__timeline__connection: timelineData,
+        xdt_api__v1__feed__reels_tray: storyUserData,
         ...rest
       }
     } = response
     if (storyData) {
-      const userStories = storyData.edges.map(
-        ({ node: user }): UserStories => ({
+      const userStories = storyData.edges.map(({ node: user }): UserStories => {
+        this.#seenUsernames.add(user.user.username)
+        return {
           username: user.user.username,
           stories: user.items.map((item): Story => {
             return {
@@ -428,8 +472,8 @@ export class FreeFoodScraper {
               timestamp: new Date(item.taken_at * 1000)
             }
           })
-        })
-      )
+        }
+      })
       this.#allUserStories.push(...userStories)
       this.#log(`[graph ql] found ${userStories.length} stories`)
       return
@@ -458,6 +502,19 @@ export class FreeFoodScraper {
       )
       this.#allTimelinePosts.push(...timelinePosts)
       this.#log(`[graph ql] found ${timelinePosts.length} posts`)
+      return
+    }
+    if (storyUserData) {
+      if (this.#expectedUsernames.size > 0) {
+        throw new Error('Received story usernames twice?')
+      }
+      this.#expectedUsernames = new Set(
+        storyUserData.tray.map(user => user.user.username)
+      )
+      this.#expectedUsernameOrder = storyUserData.tray
+        .toSorted((a, b) => a.ranked_position - b.ranked_position)
+        .map(user => user.user.username)
+      this.#log(`[graph ql] found ${this.#expectedUsernames.size} story users`)
       return
     }
     this.#log(`[graph ql] has no posts/stories: ${Object.keys(rest)[0]}`)
@@ -528,8 +585,83 @@ export class FreeFoodScraper {
     return events.length
   }
 
-  async main (onBrowserEnd?: () => void): Promise<ScrapeStats> {
+  async #scrollStories (
+    page: Page,
+    target?: string
+  ): Promise<playwright.Locator> {
+    // Make sure the story tray is visible
+    let done = false
+    const promise = page
+      .locator('css=[data-pagelet="story_tray"]')
+      .waitFor({ timeout: 1000 })
+      .catch(() => {})
+      .then(() => (done = true))
+    while (!done) {
+      await page.keyboard.press('Escape')
+    }
+    await promise
+    const seenUsernames = new Set<string>()
+    try {
+      while (true) {
+        await page
+          .locator('css=[data-pagelet="story_tray"] [aria-label="Next"]')
+          .click({ timeout: 1000 })
+        await page.waitForTimeout(100 + Math.random() * 400)
+        for (const username of await page
+          .locator('css=[aria-label^="Story by"]')
+          .evaluateAll(stories =>
+            stories
+              .map(elem => elem.ariaLabel?.split(',')[0]?.split(' ').at(-1))
+              .filter(x => x !== undefined)
+          )) {
+          seenUsernames.add(username)
+        }
+      }
+    } catch (error) {
+      if (error instanceof Error && error.message.includes('ms exceeded.')) {
+        this.#log(
+          "[scroll] Failed to find next story row page button. We're at the end!"
+        )
+      } else {
+        throw error
+      }
+    }
+    const missing = this.#expectedUsernames.difference(seenUsernames)
+    const extra = seenUsernames.difference(this.#expectedUsernames)
+    if (missing.size > 0) {
+      console.log(`[scroll] missing: ${Array.from(missing).join(', ')}`)
+    }
+    if (extra.size > 0) {
+      console.log(`[scroll] extra: ${Array.from(extra).join(', ')}`)
+    }
+    if (!target) {
+      return page.locator('css=[aria-label^="Story by"]').last()
+    }
+    // tbh this for loop is not necessary because page.locator will fail when it
+    // doesn't see the Go back button
+    for (let i = 0; i < 50; i++) {
+      const count = await page
+        .locator(`css=[aria-label^="Story by ${target},"]`)
+        .count()
+      if (count === 1) {
+        return page.locator(`css=[aria-label^="Story by ${target},"]`)
+      }
+      if (count > 1) {
+        throw new Error(`Found multiple for ${target}`)
+      }
+      await page
+        .locator('css=[data-pagelet="story_tray"] [aria-label="Go back"]')
+        .click({ timeout: 1000 })
+      await page.waitForTimeout(100 + Math.random() * 400)
+    }
+    throw new Error(`Couldn't find ${target} in 50 pages`)
+  }
+
+  async main (
+    onBrowserEnd?: (error: unknown | undefined, stats: ScrapeStats) => void
+  ): Promise<InsertStats> {
     await fs.rm('data/free-food-debug-screenshot.png', { force: true })
+    let note = ''
 
     const browser = await playwright.firefox.launch()
     const context = await browser.newContext()
@@ -585,8 +717,11 @@ export class FreeFoodScraper {
           '[browser] No graphql responses received. Something is awry.'
         )
       }
+      if (this.#expectedUsernames.size === 0) {
+        throw new Error('expected some story usernames on page load')
+      }
       this.#log('[browser] Scrolling down posts...')
-      for (let i = 0; i < 10; i++) {
+      for (let i = 0; i < POST_PAGES; i++) {
         await page.keyboard.press('End') // scroll to bottom
         const start = performance.now()
         let done = false
@@ -609,7 +744,7 @@ export class FreeFoodScraper {
             // await page.screenshot({ path: `data/no-graphql-query-${i + 1}.png` })
             // await page.screenshot({
             //   path: `data/no-graphql-query-${i + 1}-full.png`,
-            //   fullPage: true
+            // fullPage: true
             // })
           })
           .finally(() => {
@@ -618,36 +753,36 @@ export class FreeFoodScraper {
         // keep trying to scroll to bottom
         while (!done) {
           await page.keyboard.press('End')
+          await page.waitForTimeout(100 + Math.random() * 400)
         }
         await promise
-        await page.waitForTimeout(500) // give time for page to update so i can press end key again
       }
       await page.keyboard.press('Home')
       // scroll to end has several benefits:
       // - no ads
-      // - will include already-read storeies
+      // - will include already-read stories
       // downside:
-      // - will include already-read storeies
-      const storyScroller = page.locator(
-        'css=[data-pagelet="story_tray"] [role=presentation]'
-      )
-      await storyScroller.hover()
-      for (let i = 0; i < 10; i++) await page.mouse.wheel(1000, 0)
-      await page.locator('css=[aria-label^="Story by"]').last().click()
-      this.#log('[browser] Reading stories from end...')
-      await page.waitForRequest(
-        request => new URL(request.url()).pathname === '/graphql/query'
-      )
+      // - will include already-read stories
+      const target = await this.#scrollStories(page)
+      // it might make the request immediately while clicking so need to wait
+      // for request before click :/
+      await target.click()
+      // wait for stories close button
+      await page.locator('css=[aria-label="Close"]').waitFor()
       this.#log('[browser] It seems the stories have opened.')
       await page.waitForTimeout(1000)
+      const seenUsernames = new Set<string>()
+      let lastUsername: string | null = null
+      let stuckAt: string | null = null
+      let stucks = 0
       for (let i = 0; ; i++) {
-        if (i > 100) {
-          throw new Error('why am i on page 100')
+        if (i > 500) {
+          throw new Error('I am stuck somehow')
         }
-        await page.screenshot({
-          path: `data/screen-stories-${i}.png`
-          // fullPage: true
-        })
+        // await page.screenshot({
+        //   path: `data/screen-stories-${i}.png`
+        // fullPage: true
+        // })
         let story = page.locator('css=a[href^="/stories/"]')
         // click first visible story
         story = story.first()
@@ -664,39 +799,173 @@ export class FreeFoodScraper {
           this.#log("[browser] We're done with stories! yay")
           break
         }
-        await story.click()
-        await page
+        // [...$$('[aria-label="Menu"]')[0].closest('[style*="transform: translate"]').querySelectorAll('[role="link"]')][1].textContent
+        const usernames = await page
+          .locator('css=[aria-label="Menu"]')
+          .first()
+          .evaluate(menuBtn => {
+            const parent = menuBtn.closest('[style*="transform: translate"]')
+            if (!parent) {
+              let output = ''
+              let e: SVGElement | HTMLElement | null = menuBtn
+              while (e) {
+                output += `${e.outerHTML.split('>')[0]}\n`
+                e = e.parentElement
+              }
+              return { success: false, output }
+            }
+            const usernames = Array.from(
+              parent.querySelectorAll('[role="link"]'),
+              link => link.textContent
+            )
+            return { success: true, usernames }
+          })
+        if (usernames.success) {
+          this.#log(`[username] Usernames: ${JSON.stringify(usernames)}`)
+        } else {
+          this.#log(`[username] No translate parent\n${usernames.output}`)
+        }
+        let username = usernames.usernames?.[1]
+        if (!username) {
+          throw new Error('Expected to find a story username')
+        }
+        if (username === lastUsername) {
+          this.#log(`[stuck] Stuck at ${username}, exiting and reentering...`)
+          if (username === stuckAt) {
+            stucks++
+            if (stucks > 3) {
+              this.#log(`[stuck] Really stuck at ${username} D:`)
+              await page.screenshot({
+                path: 'data/free-food-debug-screenshot.png'
+                // fullPage: true
+              })
+              break
+            }
+            // Move on to the next username /shrug
+            username =
+              this.#expectedUsernameOrder[
+                this.#expectedUsernameOrder.indexOf(username) - 1
+              ]
+          }
+          stuckAt = username
+          // just in case
+          lastUsername = ''
+          seenUsernames.clear()
+          await page.keyboard.press('Escape')
+          const target = await this.#scrollStories(page, username)
+          await target.click()
+          await page.locator('css=[aria-label="Close"]').waitFor()
+          this.#log('[stuck] We resume')
+          continue
+        }
+        if (seenUsernames.has(username)) {
+          this.#log(`[username] We seem to have already seen ${username}`)
+        }
+        if (!this.#expectedUsernames.has(username)) {
+          throw new Error(`who tf is ${username}`)
+        }
+        seenUsernames.add(username)
+        lastUsername = username
+        const start = performance.now()
+        let done = false
+        const promise = page
           .waitForRequest(
             request => new URL(request.url()).pathname === '/graphql/query',
             { timeout: 1000 }
           )
-          .catch(() =>
+          .then(() =>
             this.#log(
-              '[browser] no graphql query from paging down story, oh well'
+              `[browser] story up ${i + 1} (${username}): graphql took ${(
+                (performance.now() - start) /
+                1000
+              ).toFixed(3)}s`
             )
           )
-        await page.waitForTimeout(500) // give time for page to update so i can press end key again
-        this.#log(`[browser] story pagination ${i + 1}`)
+          .catch(() =>
+            this.#log(
+              `[browser] story up ${i + 1} (${username}): no graphql query`
+            )
+          )
+          .finally(() => {
+            done = true
+          })
+        await story.click()
+        await page.waitForTimeout(500 + Math.random() * 500)
+        while (!done) {
+          // go up by user rather than story
+          await page.keyboard.press('ArrowUp')
+          await page.waitForTimeout(500 + Math.random() * 500)
+        }
+        await promise
       }
+
+      const tried = new Set<string>()
+      while (true) {
+        // Calculate missing each time because we might mark more than just
+        // `username` was read
+        const missing = this.#expectedUsernames.difference(this.#seenUsernames)
+        const username = Array.from(missing).find(
+          username => !tried.has(username)
+        )
+        if (!username) {
+          break
+        }
+        tried.add(username)
+        try {
+          const target = await this.#scrollStories(page, username)
+          await target.click()
+          await page.locator('css=[aria-label="Close"]').waitFor()
+          await page.keyboard.press('Escape')
+          await page.waitForTimeout(500 + Math.random() * 500)
+          this.#log(`[missing] Successfully read ${username}`)
+        } catch (error) {
+          if (
+            error instanceof Error &&
+            error.message.includes('ms exceeded.')
+          ) {
+            this.#log(
+              `[missing] Failed to read ${username}: ${displayError(error)}`
+            )
+            await page.screenshot({
+              path: 'data/free-food-debug-screenshot.png'
+            })
+            continue
+          }
+          throw error
+        }
+      }
+
+      // Wait for requests to finish
+      await Promise.all(promises)
       await page
         .context()
         .storageState({ path: 'data/free-food-debug-auth.json' })
 
-      // Wait for requests to finish
-      await Promise.all(promises)
+      const missing2 = this.#expectedUsernames.difference(this.#seenUsernames)
+      const extra = this.#seenUsernames.difference(this.#expectedUsernames)
+      if (missing2.size > 0) {
+        throw new Error(
+          `[missing] Still missing story users: ${[...missing2].join(', ')}`
+        )
+      }
+      if (extra.size > 0) {
+        throw new Error(`Extra story users: ${[...extra].join(', ')}`)
+      }
+      note += missing2.size > 0 ? `Missing: ${[...missing2].join(', ')}\n` : ''
+
+      onBrowserEnd?.(undefined, { ...this.#stats(), note })
     } catch (error) {
+      this.#log('[browser] There was an error! 🚨')
       await page.screenshot({
-        path: 'data/free-food-debug-screenshot.png',
-        fullPage: true
+        path: 'data/free-food-debug-screenshot.png'
+        // fullPage: true
       })
-      throw error
+      onBrowserEnd?.(error, { ...this.#stats(), note })
     } finally {
       await context.close()
       await browser.close()
       this.#log('[browser] i close the browser')
     }
-
-    onBrowserEnd?.()
 
     let total = 0
     let oldStories = 0
@@ -727,12 +996,25 @@ export class FreeFoodScraper {
     }
 
     this.#log('[insert] ok gamers we done')
+    const stats = this.#stats()
     return {
+      ...stats,
       inserted: total,
-      posts: this.#allTimelinePosts.length,
       newPosts: this.#allTimelinePosts.length - oldPosts,
-      stories: this.#allUserStories.length,
-      newStories: this.#allUserStories.length - oldStories
+      newStories: stats.stories - oldStories,
+      note
+    }
+  }
+
+  #stats (): Omit<ScrapeStats, 'note'> {
+    const totalStories = this.#allUserStories.reduce(
+      (cum, curr) => cum + curr.stories.length,
+      0
+    )
+    return {
+      posts: this.#allTimelinePosts.length,
+      users: this.#seenUsernames.size,
+      stories: totalStories
     }
   }
 }
