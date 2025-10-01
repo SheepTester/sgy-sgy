@@ -161,10 +161,7 @@ export function EventList ({ events, mode }: EventListProps) {
               : event.start.getTime() + DEFAULT_EVENT_LENGTH) <= now.now
       )
     )
-    if (mode === 'past') {
-      days.reverse()
-    }
-    return days
+    return mode === 'past' ? days.toReversed().slice(0, 7) : days
   }, [now.now, mode])
 
   return (
