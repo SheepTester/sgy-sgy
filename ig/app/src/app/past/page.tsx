@@ -25,8 +25,9 @@ export default async function Home () {
         </span>
       </h1>
       <p className={styles.description}>
-        Page generated {fmt.format(new Date())}. For now, only the events from
-        the past week are visible. <Link href='/'>See upcoming events.</Link>
+        Page generated {fmt.format(new Date())}. Because I'm hitting Vercel's
+        free plan limits, only the events from the past week are visible for
+        now. <Link href='/'>See upcoming events.</Link>
       </p>
       <EventList events={events} mode='past' />
     </>

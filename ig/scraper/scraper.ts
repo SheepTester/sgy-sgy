@@ -292,6 +292,7 @@ type GeminiModel = 'gemini-2.0-flash' | 'gemini-2.5-flash'
 export class FreeFoodScraper {
   #allUserStories: UserStories[] = []
   #allTimelinePosts: TimelinePost[] = []
+  #expectedUsernameRaw: StoryUser[] = []
   #expectedUsernameOrder: string[] = []
   #expectedUsernames = new Set<string>()
   #seenUsernames = new Set<string>()
@@ -511,9 +512,12 @@ export class FreeFoodScraper {
       this.#expectedUsernames = new Set(
         storyUserData.tray.map(user => user.user.username)
       )
-      this.#expectedUsernameOrder = storyUserData.tray
-        .toSorted((a, b) => a.ranked_position - b.ranked_position)
-        .map(user => user.user.username)
+      this.#expectedUsernameRaw = storyUserData.tray.toSorted(
+        (a, b) => a.ranked_position - b.ranked_position
+      )
+      this.#expectedUsernameOrder = this.#expectedUsernameRaw.map(
+        u => u.user.username
+      )
       this.#log(`[graph ql] found ${this.#expectedUsernames.size} story users`)
       return
     }
@@ -605,7 +609,7 @@ export class FreeFoodScraper {
       while (true) {
         await page
           .locator('css=[data-pagelet="story_tray"] [aria-label="Next"]')
-          .click({ timeout: 1000 })
+          .click({ timeout: 5000 })
         await page.waitForTimeout(100 + Math.random() * 400)
         for (const username of await page
           .locator('css=[aria-label^="Story by"]')
@@ -620,7 +624,7 @@ export class FreeFoodScraper {
     } catch (error) {
       if (error instanceof Error && error.message.includes('ms exceeded.')) {
         this.#log(
-          "[scroll] Failed to find next story row page button. We're at the end!"
+          "[scroll] We're at the end: there's no next story row page button!!"
         )
       } else {
         throw error
@@ -635,6 +639,8 @@ export class FreeFoodScraper {
       console.log(`[scroll] extra: ${Array.from(extra).join(', ')}`)
     }
     if (!target) {
+      // wait for scroll animation to finish
+      await page.waitForTimeout(1000)
       return page.locator('css=[aria-label^="Story by"]').last()
     }
     // tbh this for loop is not necessary because page.locator will fail when it
@@ -649,9 +655,15 @@ export class FreeFoodScraper {
       if (count > 1) {
         throw new Error(`Found multiple for ${target}`)
       }
-      await page
+      let done = false
+      const promise = page
         .locator('css=[data-pagelet="story_tray"] [aria-label="Go back"]')
-        .click({ timeout: 1000 })
+        .click({ timeout: 5000 })
+      promise.finally(() => (done = true))
+      while (!done) {
+        await page.keyboard.press('Escape')
+      }
+      await promise
       await page.waitForTimeout(100 + Math.random() * 400)
     }
     throw new Error(`Couldn't find ${target} in 50 pages`)
@@ -770,6 +782,7 @@ export class FreeFoodScraper {
       // wait for stories close button
       await page.locator('css=[aria-label="Close"]').waitFor()
       this.#log('[browser] It seems the stories have opened.')
+      await page.keyboard.press(' ') // pause story
       await page.waitForTimeout(1000)
       const seenUsernames = new Set<string>()
       let lastUsername: string | null = null
@@ -804,19 +817,26 @@ export class FreeFoodScraper {
           .locator('css=[aria-label="Menu"]')
           .first()
           .evaluate(menuBtn => {
-            const parent = menuBtn.closest('[style*="transform: translate"]')
+            let parent = menuBtn.closest('[style*="transform: translate"]')
             if (!parent) {
               let output = ''
-              let e: SVGElement | HTMLElement | null = menuBtn
-              while (e) {
+              let e: SVGElement | HTMLElement = menuBtn
+              while (e.parentElement) {
                 output += `${e.outerHTML.split('>')[0]}\n`
                 e = e.parentElement
               }
-              return { success: false, output }
+              if (e.tagName === 'DIV') {
+                // div has no parent. that means the tree got removed from the
+                // DOM. that's fine, we will just use this div as the parent
+                // then
+                parent = e
+              } else {
+                return { success: false, output }
+              }
             }
             const usernames = Array.from(
               parent.querySelectorAll('[role="link"]'),
-              link => link.textContent
+              link => link.textContent.replace(/Verified$/, '')
             )
             return { success: true, usernames }
           })
@@ -828,6 +848,47 @@ export class FreeFoodScraper {
         let username = usernames.usernames?.[1]
         if (!username) {
           throw new Error('Expected to find a story username')
+        }
+        if (i === 0) {
+          // This is the first username
+          const {
+            seen: ls,
+            ranked_position: lrp,
+            seen_ranked_position: lsrp,
+            latest_reel_media: llrm,
+            user: { username: lu }
+          } = this.#expectedUsernameRaw[this.#expectedUsernameRaw.length - 1]
+          if (username !== lu) {
+            const index = this.#expectedUsernameRaw.findIndex(
+              user => user.user.username === username
+            )
+            const {
+              seen,
+              ranked_position,
+              seen_ranked_position,
+              latest_reel_media
+            } = this.#expectedUsernameRaw[index]
+            const {
+              seen: ns,
+              ranked_position: nrp,
+              seen_ranked_position: nsrp,
+              latest_reel_media: nlrm,
+              user: { username: nu }
+            } = this.#expectedUsernameRaw[index + 1]
+            const addNote = `[first] We didn't go to the end. We went to ${username} (#${index}, ${seen} vs ${latest_reel_media}, ${ranked_position} = ${seen_ranked_position}) but the last story was ${lu} (#${
+              this.#expectedUsernameRaw.length - 1
+            }, ${ls} vs ${llrm}, ${lrp} = ${lsrp}). Story after is ${nu} (#${
+              index + 1
+            }, ${ns} vs ${nlrm}, ${nrp} = ${nsrp}).\n`
+            this.#log(addNote)
+            note += addNote
+          } else {
+            this.#log(
+              `[first] We're starting at the last story user, ${this.#expectedUsernameOrder.at(
+                -1
+              )}!`
+            )
+          }
         }
         if (username === lastUsername) {
           this.#log(`[stuck] Stuck at ${username}, exiting and reentering...`)
@@ -866,6 +927,9 @@ export class FreeFoodScraper {
         }
         seenUsernames.add(username)
         lastUsername = username
+        const desc = `story up ${
+          i + 1
+        } (${username} #${this.#expectedUsernameOrder.indexOf(username)})`
         const start = performance.now()
         let done = false
         const promise = page
@@ -875,17 +939,13 @@ export class FreeFoodScraper {
           )
           .then(() =>
             this.#log(
-              `[browser] story up ${i + 1} (${username}): graphql took ${(
+              `[browser] ${desc}: graphql took ${(
                 (performance.now() - start) /
                 1000
               ).toFixed(3)}s`
             )
           )
-          .catch(() =>
-            this.#log(
-              `[browser] story up ${i + 1} (${username}): no graphql query`
-            )
-          )
+          .catch(() => this.#log(`[browser] ${desc}: no graphql query`))
           .finally(() => {
             done = true
           })
