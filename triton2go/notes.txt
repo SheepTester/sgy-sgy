@@ -1,0 +1,251 @@
+POST https://firebaseinstallations.googleapis.com/v1/projects/blackboardmobileorder/installations
+Accept: application/json
+Accept-Encoding: gzip
+Cache-Control: no-cache
+Connection: Keep-Alive
+Content-Encoding: gzip
+Content-Length: 134
+Content-Type: application/json
+Host: firebaseinstallations.googleapis.com
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 16; Android SDK built for x86_64 Build/BE2A.250530.026.D1)
+X-Android-Cert: 6EA49784486D6D425844402C202B8CBBAD06679B
+X-Android-Package: com.blackboard.mobileorder
+x-firebase-client: H4sIAAAAAAAA_6tWykhNLCpJSk0sKVayio7VUSpLLSrOzM9TslIyUqoFAFyivEQfAAAA
+x-goog-api-key: AIzaSyBEgf1I_DE5zywUFk3tG4u3aT8f6w-9oGk
+BODY:
+{
+  "fid": "cWEw0jyQS2u0Jv-J-_y0iM",
+  "appId": "1:347274277294:android:949eecfa4db678a7",
+  "authVersion": "FIS_v2",
+  "sdkVersion": "a:17.2.0"
+}
+RESPONSE:
+{
+  "name": "projects/347274277294/installations/cWEw0jyQS2u0Jv-J-_y0iM",
+  "fid": "cWEw0jyQS2u0Jv-J-_y0iM",
+  "refreshToken": "3_AS3qfwIQmrzUT71sSFITwzJ4SKOCPLD_vf0Hw-vphYQV3QVnqJ653v0rR-X5Gs70B1f1bm5L7BGUmZTxMiVNx9yZkXiH9a12hr9fXmZfDou2D0s",
+  "authToken": {
+    "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjE6MzQ3Mjc0Mjc3Mjk0OmFuZHJvaWQ6OTQ5ZWVjZmE0ZGI2NzhhNyIsImV4cCI6MTc2ODk3NTU0OSwiZmlkIjoiY1dFdzBqeVFTMnUwSnYtSi1feTBpTSIsInByb2plY3ROdW1iZXIiOjM0NzI3NDI3NzI5NH0.AB2LPV8wRQIgU1iJBddcfstdDX-o-qzcMKc62IKFpOpSKx6yoENxZQUCIQDMeOXTv37RR_k6aGyxLW4MmWCF-1HcjIAkP80M-p8Uzw",
+    "expiresIn": "604800s"
+  }
+}
+
+GET https://firebase-settings.crashlytics.com/spi/v2/platforms/android/gmp/1:347274277294:android:949eecfa4db678a7/settings?instance=b6f0cad13be214592dee0e058474c5bbbf559951&build_version=95&display_version=2025.1.3&source=1
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getcampuseswithbundlename
+
+Accept-Encoding: gzip
+Connection: Keep-Alive
+Content-Length: 48
+Content-Type: application/json; charset=UTF-8
+Host: mobileorderprodapi.transactcampus.com
+login_token: sessionid: 1768370743709
+User-Agent: okhttp/5.0.0-alpha.2
+BODY:
+{
+  "app_bundle_name": "com.blackboard.mobileorder"
+}
+RESPONSE:
+Connection: keep-alive
+Content-Encoding: gzip
+Content-Type: application/json;charset=UTF-8
+Date: Wed, 14 Jan 2026 06:05:51 GMT
+Request-Context: appId=cid-v1:bb29e616-6ea4-401a-bf5b-747703d70c42
+Transfer-Encoding: chunked
+Vary: accept-encoding
+X-Powered-By: ASP.NET
+{
+  "app_kill_text": "This app has been replaced by a new version and is no longer supported.",
+  "web_instanceid": "faff14d51729a0a31a7cde4667e9a7e63a15ce4d6fdfa40e2a754b49278a4765",
+  "app_kill_url": "https://apps.apple.com/us/app/transact-mobile-ordering/id1494719529",
+  "message": "SUCCESS",
+  "bundle": {
+    "facebook_secretkey": "",
+    "ios_appid": "1436712512",
+    "app_url": "https://appurl.io/vyE0O2a0e",
+    "ios_version_current": "3.3.1",
+    "object_type": "bundle",
+    "bundleid": 1,
+    "android_version_minimum": "3.0.7",
+    "bundle_name": "COM.BLACKBOARD.MOBILEORDER",
+    "azure_hubname": "",
+    "azure_hubconnection_server": "",
+    "google_clienttoken": "",
+    "android_version_current": "3.0.7",
+    "android_version_update_message": "An update to Mobile Ordering is required to continue.",
+    "ios_version_update_message": "This app has been replaced by a newer version. Download it in the app store.",
+    "ios_version_minimum": "3.1.4"
+  },
+  "app_kill_switch": 1,
+  "status": "OK",
+  "campuses": [
+    {
+      "bonus_points": 0,
+      "country": "USA",
+      "loyalty_punchcards_enabled": 0,
+      "mealplan_payments_allowed": 1,
+      "mealplan_signup_url": "samllogin",
+      "brand_hexcolor_welcome_background": "900B29",
+      "campusid": 4,
+      "brand_hexcolor_navbar_background": "900B29",
+      "taxes": [
+        {
+          "is_flat_campus_tax": 0,
+          "gateway_slot": 0,
+          "alt_rate": 0,
+          "is_servicefee_tax": 0,
+          "object_type": "tax",
+          "campusid": 4,
+          "mandatory": 0,
+          "taxable_tax": 0,
+          "conditionid": 0,
+          "rate": 0,
+          "locationid": 11,
+          "segmentid": 0,
+          "qp_id": 1,
+          "name": "Not Assigned",
+          "ctx_id": 15
+        },
+        ...
+      ],
+      "referrer_number_of_orders": 0,
+      "automatedcheckout_title": "",
+      "brand_ios_bundle_name": "com.blackboard.mobileorder",
+      "features": [
+        {
+          "extra_string": "",
+          "object_type": "feature",
+          "is_disabled": 0,
+          "campusid": 4,
+          "description": "Tulane, Deloitte",
+          "cft_id": 269,
+          "label": "Home - Hide invite a friend",
+          "extra_int": 0,
+          "type": 0,
+          "featurekey": "FEA_HOME_HIDEINVITEFRIEND",
+          "extra_string2": "",
+          "extra_int2": 0,
+          "featureid": 8
+        },
+        ...
+      ],
+      "referral_points": 0,
+      "province": "CA",
+      "referral_credit": 0,
+      "privacy_url": "https://www.scu.edu/umc/web-and-digital-design/privacy-policy/",
+      "links": [
+        {
+          "ios_bundle_name": "",
+          "object_type": "custom_link",
+          "campusid": 4,
+          "icon": "campuses/icon_customlink_0_1_6_1570648885704.png",
+          "description": "",
+          "home_visible": 1,
+          "more_visible": 1,
+          "more_position": 1,
+          "label": "SCU Dining Services Menu",
+          "url": "https://scudining.cafebonappetit.com/cafe/marketplace-2/",
+          "open_external": 0,
+          "android_package_name": "",
+          "home_show_on_status": 0,
+          "ccl_id": 287,
+          "home_position": 1
+        },
+        ...
+      ],
+      "base_image_url": "https://hangrybbprod.blob.core.windows.net/",
+      "longitude": 0,
+      "automatedcheckout_amount_owing_threshold": 500,
+      "automatedcheckout_secondary_preauth_amount": 500,
+      "cover_picture_url": "campuses/cover_campus_4_1_13_1538680840804.jpg",
+      "creditcard_processor": "",
+      "timezone_offset_minutes": -480,
+      "object_from_cache": 0,
+      "brand_hexcolor_tabbar_icon": "FFFFFF",
+      "mealplan_name": "Payment Options:",
+      "referrer_points": 0,
+      "automatedcheckout_campuscard_preauth_amount": 2000,
+      "login_email_btn_title": "",
+      "referrer_credit": 0,
+      "loyalty_points_enabled": 0,
+      "campuskey": "SANTACLARAUNIVERSITY",
+      "name": "Santa Clara University",
+      "mealplan_sso_type": 0,
+      "announcement_message": "",
+      "refund_owed_contact_text": "",
+      "loyalty_contests_enabled": 0,
+      "mealplan_success_url": "samlsuccess",
+      "automatedcheckout_creditcard_preauth_amount": 2000,
+      "mealplan_ldap_placeholder": "",
+      "loyalty_challenges_enabled": 0,
+      "city": "Santa Clara",
+      "creditcard_payments_allowed": 0,
+      "mealplan_ldap_dropdown_names": "",
+      "brand_android_bundle_name": "com.blackboard.mobileorder",
+      "timezone": "America/Los_Angeles",
+      "latitude": 0,
+      "is_hidden": 0,
+      "rewards_url": "https://www.blackboard.com/legal/terms-of-use.html",
+      "search_keywords": "california, scu",
+      "brand_hexcolor_primary": "900B29",
+      "applepay_merchantid": "",
+      "icon_picture_url": "campuses/icon_campus_4_1_1_1535637595907.jpg",
+      "terms_url": "https://www.scu.edu/umc/web-and-digital-design/privacy-policy/",
+      "brand_hexcolor_tabbar_icon_unselected": "B2B2B2",
+      "maximum_order_amount": 49998,
+      "automatedcheckout_description": "",
+      "referral_number_of_orders": 0,
+      "automatedcheckout_provider": "",
+      "storagelocker_provider": "",
+      "object_type": "campus",
+      "base_url": "https://mobileorderprodapi.transactcampus.com/",
+      "loyalty_rewards_enabled": 0,
+      "minimum_order_amount": 0,
+      "brand_hexcolor_navbar_text": "FFFFFF",
+      "support_email": "acomobilesupport@scu.edu",
+      "login_returning_btn_title": "",
+      "tenders": [
+        {
+          "ct_id": 13486,
+          "boardplan": 0,
+          "istaxable": 0,
+          "campusid": 4,
+          "is_hidden": 0,
+          "qp_tender_type": "Campus",
+          "mealexchange": 0,
+          "discount_rate": 0,
+          "qp_id_string": "",
+          "qp_id": 98,
+          "cash_eq_value": 0,
+          "isdefault": 1,
+          "currently_available": 1,
+          "casheq": 0,
+          "object_type": "tender",
+          "groupid": 0,
+          "qp_campus_account_type": "Debit",
+          "tender_number": "55",
+          "mealexchange_groups": [],
+          "point_bonus": 0,
+          "conditionid": 6539,
+          "locationid": 1633,
+          "swipe": 0,
+          "segmentid": 0,
+          "name": "ACCESS",
+          "scheduleid": 0,
+          "cash_eq_max_swipes": 1
+        },
+        ...
+      ],
+      "loyalty_enabled": 2,
+      "mealplan_provider": "D",
+      "brand_hexcolor_tabbar_background": "900B29",
+      "brand_logo_picture_url": "campuses/logo_campus_4_1_1_1547076511804.png",
+      "automatedcheckout_email_addresses": "",
+      "login_sso_btn_title": ""
+    },
+    ...
+  ]
+}
+# would be interesting to see list of campuses but ehh that's already in the app
+
+GET https://hangrybbprod.blob.core.windows.net/campuses/icon_campus_88_1_13_1596048946765.jpg
