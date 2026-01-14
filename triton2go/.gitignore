@@ -1,4 +1,7 @@
-hlyshit.json
 secrets.txt
-register.json
-login.json
+raw/getcampuslocations.json
+raw/getloyaltydata.json
+raw/getpastorders.json
+raw/getpushmessages.json
+raw/loginwithtoken.json
+raw/samlsuccess.html

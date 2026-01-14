@@ -1285,3 +1285,135 @@ RESPONSE:
   "status": "OK"
 }
 # this is where i found out they cut off the orders at 2023-03-23, which means that most of my orders are now lost media D:
+
+https://mobileorderprodapi.transactcampus.com/api_user/getuser
+RESPONSE:
+{
+  "web_instanceid": "1a1db42e64c24222c8d6c447e0028598d5fe62845b3b315c8b25f53a387e2abb",
+  "message": "SUCCESS",
+  "user": { ... },
+  "status": "OK"
+}
+
+# after selecting market in JWO
+POST https://mobileorderprodapi.transactcampus.com/api_user/getautomatedcheckouttenders
+BODY:
+{
+  "campusid": "45",
+  "locationid": 1891,
+  "userid": "394445"
+}
+RESPONSE:
+{
+  "automatedcheckout_tenders": [
+    {
+      "ct_id": 13560,
+      "boardplan": 0,
+      "istaxable": 0,
+      "campusid": 45,
+      "is_hidden": 0,
+      "qp_tender_type": "Campus",
+      "mealexchange": 0,
+      "discount_rate": 0,
+      "qp_id_string": "",
+      "qp_id": 4312,
+      "cash_eq_value": 0,
+      "isdefault": 0,
+      "currently_available": 1,
+      "casheq": 0,
+      "object_type": "tender",
+      "groupid": 0,
+      "qp_campus_account_type": "Debit",
+      "tender_number": "27",
+      "mealexchange_groups": [],
+      "point_bonus": 0,
+      "conditionid": 0,
+      "locationid": 1891,
+      "swipe": 0,
+      "segmentid": 0,
+      "name": "Dining Dollars",
+      "scheduleid": 0,
+      "cash_eq_max_swipes": 1
+    },
+    {
+      "ct_id": 13478,
+      "boardplan": 0,
+      "istaxable": 1,
+      "campusid": 45,
+      "is_hidden": 0,
+      "qp_tender_type": "Campus",
+      "mealexchange": 0,
+      "discount_rate": 0,
+      "qp_id_string": "",
+      "qp_id": 4283,
+      "cash_eq_value": 0,
+      "isdefault": 0,
+      "currently_available": 1,
+      "casheq": 0,
+      "object_type": "tender",
+      "groupid": 0,
+      "qp_campus_account_type": "Debit",
+      "tender_number": "11",
+      "mealexchange_groups": [],
+      "point_bonus": 0,
+      "conditionid": 0,
+      "locationid": 1891,
+      "swipe": 0,
+      "segmentid": 0,
+      "name": "Triton Cash Staff",
+      "scheduleid": 0,
+      "cash_eq_max_swipes": 1
+    },
+    {
+      "ct_id": 13477,
+      "boardplan": 0,
+      "istaxable": 0,
+      "campusid": 45,
+      "is_hidden": 0,
+      "qp_tender_type": "Campus",
+      "mealexchange": 0,
+      "discount_rate": 0,
+      "qp_id_string": "",
+      "qp_id": 4282,
+      "cash_eq_value": 0,
+      "isdefault": 0,
+      "currently_available": 1,
+      "casheq": 0,
+      "object_type": "tender",
+      "groupid": 0,
+      "qp_campus_account_type": "Debit",
+      "tender_number": "10",
+      "mealexchange_groups": [],
+      "point_bonus": 0,
+      "conditionid": 0,
+      "locationid": 1891,
+      "swipe": 0,
+      "segmentid": 0,
+      "name": "Triton Cash Student",
+      "scheduleid": 0,
+      "cash_eq_max_swipes": 1
+    }
+  ],
+  "status": "OK",
+  "message": "SUCCESS",
+  "web_instanceid": "6f77be28b3004d4cc1569dedf410c508dec950fcbe1d403138b14e18b993b928"
+}
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getautomatedcheckoutbarcode
+BODY:
+{
+  "has_secondary_tender": 0,
+  "is_associate": 0,
+  "locationid": 1891,
+  "public_token_x": "[...]\u003d",
+  "public_token_y": "[...]\u003d",
+  "ct_id2": 0,
+  "ct_id": 13560
+}
+RESPONSE:
+{
+  "reason": "AUTOMATEDCHECKOUT",
+  "web_instanceid": "2b3b3009ca74641fc58536feefa27f238968565da3704e238e905a41f30977d6",
+  "message": "Select a different tender. The balance on Dining Dollars is $0.00. The minimum amount for entry is $20.00.",
+  "status": "ERROR"
+}
