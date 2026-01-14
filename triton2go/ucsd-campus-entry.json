@@ -6788,7 +6788,7 @@
   "cover_picture_url": "campuses/cover_campus_45_44_457_1597160477932.jpg",
   "creditcard_processor": "FreedomPay",
   "timezone_offset_minutes": -480,
-  "object_from_cache": 0,
+  "object_from_cache": 1,
   "brand_hexcolor_tabbar_icon": "182B49",
   "mealplan_name": "Campus Card",
   "referrer_points": 0,

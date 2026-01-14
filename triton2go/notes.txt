@@ -249,3 +249,1039 @@ X-Powered-By: ASP.NET
 # would be interesting to see list of campuses but ehh that's already in the app
 
 GET https://hangrybbprod.blob.core.windows.net/campuses/icon_campus_88_1_13_1596048946765.jpg
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getaffiliationswithcampus
+
+Accept-Encoding: gzip
+Connection: Keep-Alive
+Content-Length: 30
+Content-Type: application/json; charset=utf-8
+Host: mobileorderprodapi.transactcampus.com
+sessionid: 1768370743709
+# ^ is the same as the previous one
+User-Agent: okhttp/5.0.0-alpha.2
+BODY:
+{
+  "campusid": "45",
+  "userid": "0"
+}
+RESPONSE:
+{
+  "web_instanceid": "d31af726f6726494b5e93d8bd86eab7310728fe28c13730f38c432272c4055e6",
+  "affiliations": [],
+  "message": "SUCCESS",
+  "status": "OK"
+}
+{
+  "web_instanceid": "4e55ee305a83398958a97d0a5e2ae693a71dd10181585e8852fb53357b281637",
+  "affiliations": [],
+  "message": "SUCCESS",
+  "status": "OK"
+}
+# for some reason this presents 3 options
+
+POST https://update.googleapis.com/service/update2/json?cup2key=14:BU6yC96muXmWDTdCahtSEaZMp2w0D5w1Ip6QQ7kupsg&cup2hreq=e7ec7efc236beca57b0563ef8c31ac2a32b538ef83e7503c65821f62ae479df7
+
+Accept-Encoding: gzip
+Connection: Keep-Alive
+Content-Length: 1043
+Content-Type: application/json
+Host: update.googleapis.com
+User-Agent: Dalvik/2.1.0 (Linux; U; Android 16; Android SDK built for x86_64 Build/BE2A.250530.026.D1)
+X-Goog-Update-AppId: llkgjffcdpffmhiakmfcdcblohccpfmo,cffplpkejcbdpfnfabnjikeicbedmifn
+X-Goog-Update-Interactivity: bg
+X-Goog-Update-Updater: android
+BODY:
+{
+  "request": {
+    "@os": "android",
+    "@updater": "androidwebview",
+    "acceptformat": "crx3,puff",
+    "app": [
+      {
+        "appid": "llkgjffcdpffmhiakmfcdcblohccpfmo",
+        "cohort": "1::",
+        "enabled": true,
+        "installdate": 6936,
+        "ping": {
+          "ping_freshness": "{da730b47-a3e0-475d-8e75-3548e67a6a4d}",
+          "rd": 6936
+        },
+        "updatecheck": {},
+        "version": "0.0.0.0"
+      },
+      {
+        "_experimental_mdl_version": "",
+        "appid": "cffplpkejcbdpfnfabnjikeicbedmifn",
+        "cohort": "1:1vi9:",
+        "cohortname": "Public Phase 0",
+        "enabled": true,
+        "installdate": 6936,
+        "ping": {
+          "ping_freshness": "{7efcdb7a-6586-45b4-80dd-3a1fd6786597}",
+          "rd": 6936
+        },
+        "updatecheck": {},
+        "version": "0.0.0.0"
+      }
+    ],
+    "arch": "x64",
+    "dedup": "cr",
+    "hw": {
+      "avx": true,
+      "physmemory": 2,
+      "sse": true,
+      "sse2": true,
+      "sse3": true,
+      "sse41": true,
+      "sse42": true,
+      "ssse3": true
+    },
+    "ismachine": false,
+    "nacl_arch": "x86-64",
+    "os": {
+      "arch": "x86_64",
+      "platform": "Android",
+      "version": "16"
+    },
+    "prodchannel": "unknown",
+    "prodversion": "133.0.6943.137",
+    "protocol": "3.1",
+    "requestid": "{b76421e9-abc5-41a5-9e44-a120da9cbe36}",
+    "sessionid": "{16ddc6ed-d9c6-4ddc-99e4-10a04802cecd}",
+    "updaterchannel": "unknown",
+    "updaterversion": "133.0.6943.137"
+  }
+}
+# i do not think the response body is interesting
+
+GET https://mobileorderprodapi.transactcampus.com/api_user/samllogin?api_key=EF4yhUx3g23K7BeVpxG45UWMe4aB5hVXhTGmD9HH9TYBGWbmhd&campusid=45
+GET https://mobileorderprodapi.transactcampus.com/api_user/samllogin?api_key=EF4yhUx3g23K7BeVpxG45UWMe4aB5hVXhTGmD9HH9TYBGWbmhd&campusid=45
+# api key came from nowhere?
+
+RESPONSE: 302
+Location: https://a5.ucsd.edu/tritON/profile/SAML2/Redirect/SSO?SAMLRequest=lVLRToMwFP0V0ncoIDBsxpapMS6ZbhnMGF%2BWrly1CbTY2xo%2F326TxCejj23PPefcczqdf%2FZd8AEGpVYVSaKYBKCEbqV6rciuuQ1LMp9NkffdwBbOvqktvDtAG%2Fg5hez0UBFnFNMcJTLFe0BmBasX9yuWRjEbjLZa6I4EC0Qw1gtda4WuB1OD%2BZACdttVRd6sHZBR2uuD7ECbFoyfbPkgI2u4Qi6s4P3gMBK6p%2F567zwbPRpAJwQgkuDGG5OK29MuIyHPIyewjaB11Bpp1w%2FUE794EXr0mNIttNKAsLSu1yRY3lTkaX%2B9uN%2Fs6izfFxdtMrlI87CdlC9hlueXIYdLHmZZycuiLGNIfWRLRAdLhZYrW5E0ToswTsIka%2BKCpTFL8sgjn0mw%2Bc7iSqpzwr8FdziDkN01zSbcrOuGBI9jUx5Axl5O6ubvjfCxBzL7V%2BpT%2BlNvNh5%2FfovZFw%3D%3D
+Location: https://a5.ucsd.edu/tritON/profile/SAML2/Redirect/SSO?SAMLRequest=lVJdb8IgFP0rDe8tyOoXsTVOs8xEp7F1WfZikOIksdBxweznD3VNfFq2R%2BCej3sOo%2FFXfYrO0oIyOkOdhKBIamEqpT8ytC2f4gEa5yPg9alhE%2B%2BOeiM%2FvQQXBZwGdn3IkLeaGQ4KmOa1BOYEKybLBaMJYY01zghzQtEEQFoXhKZGg6%2BlLaQ9KyG3m0WGjs41wDCuzV6dpLGVtAFZ8UYlznINXDjB68ZDIkyNw%2FXOBzZ8MQBeCAmAolkwpjR3111aQt5NvIAqkZXHziq3esGB%2BBBE8MUjxRtZKSuFw0WxQtF8lqG33XSyXG%2BLtLvrE05T2uFxn%2FI0TkmaxpwcaDwYVv0DOQz7VfchgAC8nGtwXLsMUUJ7MenEnbQkPUYpIzTpDXrvKFr%2FZPGo9C3h34Lb34aAPZflOl6vihJFr21TYQC1vVzV7d8b4W0PKP9X6iN8r5e3x%2FtvkX8D
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/samlsuccess
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7
+Accept-Encoding: gzip, deflate, br, zstd
+Accept-Language: en-US,en;q=0.9
+Cache-Control: no-cache
+Connection: keep-alive
+Content-Length: 17451
+Content-Type: application/x-www-form-urlencoded
+Host: mobileorderprodapi.transactcampus.com
+Origin: https://a5.ucsd.edu
+Pragma: no-cache
+Referer: https://a5.ucsd.edu/
+sec-ch-ua: "Not(A:Brand";v="99", "Android WebView";v="133", "Chromium";v="133"
+sec-ch-ua-mobile: ?1
+sec-ch-ua-platform: "Android"
+Sec-Fetch-Dest: document
+Sec-Fetch-Mode: navigate
+Sec-Fetch-Site: cross-site
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Linux; Android 16; Android SDK built for x86_64 Build/BE2A.250530.026.D1; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/133.0.6943.137 Mobile Safari/537.36
+# this means it's coming from the webview
+BODY: (url-encoded)
+SAMLResponse: [long string, probably sensitive]
+RESPONSE:
+<div style="overflow-wrap:anywhere;">
+  SAMLResponse Base64:<br />
+  [very long base64-encoded XML, see ucsd-sso.xml]<br />
+  &lt;br/&gt;<br />
+  byteArrayInputStreamBase64Decoded: Attribute List Size = 12<br />
+  &lt;br/&gt;<br />
+  urn:oid:1.3.6.1.4.1.5923.1.1.1.7 || urn:mace:incommon:entitlement:common:1<br />
+  urn:mace:ucsd.edu:sso:people:firstname || Sean<br />
+  urn:oid:2.5.4.42 || Sean<br />
+  urn:mace:ucsd.edu:sso:pps:eid || 2018507<br />
+  urn:oid:0.9.2342.19200300.100.1.3 || syen@ucsd.edu<br />
+  urn:oid:2.16.840.1.113730.3.1.241 || Sean Yen<br />
+  urn:oid:1.3.6.1.4.1.5923.1.1.1.9 || MEMBER@ucsd.edu<br />
+  urn:mace:ucsd.edu:sso:people:lastname || Yen<br />
+  urn:oid:2.16.840.1.113916.1.1.9 || A16948219@ucsd.edu<br />
+  urn:mace:ucsd.edu:sso:hdhid || 916948219<br />
+  hdhid || 916948219<br />
+  urn:oid:2.5.4.4 || Yen<br />
+  <br />
+</div>
+<html>
+
+<head></head>
+
+<body>
+  <p style="font-size:5px"> </p>
+  <div><br />DEBUG OUTPUT (FLAG IS ON)<br />Email: syen@ucsd.edu<br />Card ID: 916948219<br />First Name: Sean<br />Last Name: Yen<br />Extra Data 1: X<br />Extra Data 2: X</div><input id="temp_token" name="temp_token" type="hidden" value="[long hash, 130 chars]"><input id="from_reg" name="from_reg" type="hidden" value="1">
+</body>
+
+</html>
+# 2018507 feels familiar
+# i don't think any of this is particularly sensitive though
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/registerwithcampusssotoken
+sessionid: 1768370743709
+BODY:
+{
+  "os_type": "1",
+  "app_bundle_name": "com.blackboard.mobileorder",
+  "campusid": "45",
+  "temp_token": "[...]",
+  "language": "EN",
+  "hash": "[...]",
+  "userid": "0"
+}
+RESPONSE:
+{
+  "web_instanceid": "6fd46f37fcebe3764f86cff325e875f648bfb6125eac40a4aba896a65c9dd664",
+  "returning": "1",
+  "campus": { ... },
+  # same as from the first request, but object_from_cache -> 1
+  "message": "SUCCESS",
+  "user": {
+    "automatedcheckout_associate": 0,
+    "registration_promo_datetime": "",
+    "os_language": "en",
+    "number_of_referrals": 4,
+    "userid": 394445,
+    "balance": 0,
+    "mealplan_id": "",
+    "program_study_id": 0,
+    "registration_promo_amount": 0,
+    "credits_punchcards": 0,
+    "registration_promo_expiry_datetime": "",
+    "os_platform": "Android",
+    "last_online": "2025-12-29 03:36:47",
+    "points_open_message": 35,
+    "full_name": "Sean Yen",
+    "last_order_datetime": "2025-06-13 04:31:53",
+    "level_increase_points_rateorder_bonus": 10,
+    "is_new_user": 0,
+    "os_type": 1,
+    "announcement_message_referral": "",
+    "level_increase_points_consecutivedays_bonus": 10,
+    "credits_referral": 0,
+    "announcement_message": "",
+    "online_this_month": 0,
+    "device_timezone": "PST",
+    "online_this_week": 0,
+    "number_of_reservations": 0,
+    "orders_cumulative_amount": 506672,
+    "challenges_level": 7,
+    "registration_promoid": 0,
+    "creditcard_1_last4": "",
+    "online_in_last_30days": 0,
+    "max_daily_spend_mealplan": 10000,
+    "points_app_open": 5,
+    "email": "syen@ucsd.edu",
+    "online_in_last_7days": 0,
+    "creditcard_2_type": "",
+    "last_order_datetime_display": "",
+    "registration_promo_number_of_orders": 0,
+    "did_order_yesterday": 0,
+    "os_version": "14",
+    "points_rateorder_bonus": 70,
+    "admin_account": 0,
+    "last_name": "Yen",
+    "last_online_display": "",
+    "opt_in_loyalty": 1,
+    "payment_method_default": 0,
+    "points_consecutivedays_bonus": 70,
+    "challenges_completed": 52,
+    "creditcard_2_last4": "",
+    "ordered_in_last_7days": 0,
+    "phone_verified": 1,
+    "credits_campaigns": 0,
+    "reg_yyyymmdd": "",
+    "last_orderid": 91514601,
+    "referral_code": "seany8",
+    "login_token": "[...]",
+    "picture_url_small": "users/394445_1709145872605_small.jpg",
+    "amount_outstanding": 0,
+    "registration_datetime": "2021-09-15 23:26:27",
+    "picture_url": "users/394445_1709145872605.jpg",
+    "app_version": "2025.2.1",
+    "campusid": 45,
+    "ordered_in_last_30days": 0,
+    "language": "EN",
+    "number_of_contest_entries": 75,
+    "mealplan_campusid": 45,
+    "opt_in_marketing": 1,
+    "points": 10504,
+    "number_of_facility_entries": 0,
+    "has_creditcard_1": 0,
+    "has_creditcard_2": 0,
+    "level_increase_points_open_message": 5,
+    "registration_datetime_display": "",
+    "messages_opened": 128,
+    "level_increase_points_reorder_bonus": 10,
+    "credits_promo": 0,
+    "has_mealplancard": 1,
+    "level_increase_points_base_per_order": 10,
+    "referredby_userid": 0,
+    "retrieved_at_datetime": "2026-01-14 06:23:29",
+    "is_disabled": 0,
+    "number_of_reorders": 6,
+    "push_enabled": 1,
+    "last_order": {
+      "pickup_datetime": "",
+      "reorderid": 0,
+      "userid": 394445,
+      "user_number_of_reservations": 0,
+      "cafeteriaid": 404,
+      "requires_checkin": 0,
+      "location_subtotal": 850,
+      "kitchen_prep_minutes": 9,
+      "points_base": 595,
+      "creditcard_type": "",
+      "ischargedback": 0,
+      "promo_credit_total": 0,
+      "virtualqueue_reminder_before_start_datetime": "",
+      "secondary_tender_number_string": "",
+      "creditcard_processor": "",
+      "mealplan_mealex_count": 0,
+      "checkin_reminder2_datetime": "",
+      "future_day": 0,
+      "rating_food_comment": "",
+      "refunded_text": "",
+      "os_type": 1,
+      "creditcard_last4": "",
+      "promo_credit_code": "",
+      "items": [
+        {
+          "orderid": 91514601,
+          "object_type": "order_item",
+          "price_base": 850,
+          "creditpromo_discount": 0,
+          "menu_sectionid": 75007,
+          "price_with_options": 0,
+          "special_comment": "",
+          "mealplan_discount_amount": 0,
+          "points_bonus": 0,
+          "itemid": 155458427,
+          "number_of_options": 1,
+          "menu_itemid": 8618233,
+          "name": "Sausage Breakfast Burrito",
+          "options": [
+            {
+              "number_of_values": 1,
+              "itemid": 155458427,
+              "is_combo": 0,
+              "menu_optionid": 694280,
+              "object_type": "order_item_option",
+              "price": 0,
+              "values": [
+                {
+                  "mealplan_discount_amount": 0,
+                  "points_bonus": 0,
+                  "valueid": 323505386,
+                  "quantity": 1,
+                  "object_type": "order_item_option_value",
+                  "price": 0,
+                  "name": "Flour Tortilla",
+                  "optionid": 263902072,
+                  "combo_itemid": 0,
+                  "menu_valueid": 969548
+                }
+              ],
+              "name": "Tortilla",
+              "optionid": 263902072
+            }
+          ],
+          "combo_itemid": 0,
+          "mealexchange_applied": 0
+        }
+      ],
+      "secondary_tenderid": 0,
+      "warning_datetime": "",
+      "iscomplete": 1,
+      "order_local_time": "21:31:52",
+      "campaignid": 0,
+      "refunded_datetime": "",
+      "latitude": 0,
+      "kitchen_adjustment_minutes": 0,
+      "location_delivery_tax": 0,
+      "test_order": 0,
+      "mealplan_discount_amount": 0,
+      "points_bonus": 0,
+      "pickupspot_name": "",
+      "punchid": 0,
+      "iscancelled": 0,
+      "mealplan_casheq_total": 0,
+      "slot_time_end": "21:40:00",
+      "orderid_short_string": "91514601",
+      "automatedcheckout": 0,
+      "location_delivery_fee": 0,
+      "delivery_complete_datetime": "",
+      "order_local_date": "2025-06-12",
+      "os_version": "14",
+      "secondary_tender_total": 0,
+      "order_datetime": "2025-06-13 04:31:53",
+      "special_comment": "",
+      "mealplan_mealex_total": 0,
+      "complete_datetime": "2025-06-13 04:33:42",
+      "mealplan_transactionid": "",
+      "mealplan_total": 850,
+      "tender_primary_name": "",
+      "punchcard_credit_total": 0,
+      "locationid": 461,
+      "storagelocker": 0,
+      "creditcard_transactionid": "",
+      "delivery_start_datetime": "",
+      "app_version": "2025.1.3",
+      "creditcard_total": 0,
+      "total_net_payout": 850,
+      "campusid": 45,
+      "user_number_of_orders": 661,
+      "hangry_takeout_fee": 0,
+      "campaign_credit_total": 0,
+      "special_comment_choiceids": "",
+      "barcode_token": "[...]",
+      "longitude": 0,
+      "virtualqueue": 0,
+      "virtualqueue_reminder_before_end_datetime": "",
+      "slot_date": "2025-06-12",
+      "saved_to_pos": 1,
+      "swipe_refund_owed": 0,
+      "account_credit_total": 0,
+      "rating_service_comment": "",
+      "pos_ticket_number_string": "",
+      "number_of_items": 1,
+      "preferred_target_datetime": "2025-06-13 04:38:52",
+      "rating_service": 5,
+      "checkin_reminder1_datetime": "",
+      "tender_secondary_name": "",
+      "mealplan_casheq_count": 0,
+      "isdelivered": 0,
+      "rating_datetime": "2025-06-13 04:34:05",
+      "special_comment_choices": "",
+      "retrieval_type": 0,
+      "asap": 1,
+      "printed_datetime": "2025-06-13 04:31:53",
+      "swipe_charged": 1,
+      "mealplan_tender_number_string": "10",
+      "total": 850,
+      "kitchen_datetime": "",
+      "released_datetime": "2025-06-13 04:31:53",
+      "virtualqueue_reminder_after_end_datetime": "",
+      "campus_tenderid": 4458,
+      "pickupspotid": 0,
+      "creditcard_fee": 0,
+      "virtualqueue_walkin": 0,
+      "rating_food": 5,
+      "orderid": 91514601,
+      "object_type": "order",
+      "preferred_datetime": "2025-06-13 04:40:52",
+      "hangry_takeout_tax": 0,
+      "isrefunded": 0,
+      "secondary_tender_transactionid": "",
+      "checkin_datetime": "",
+      "beta_order": 0,
+      "payment_charged": 1,
+      "promoid": 0,
+      "location_subtotal_tax": 0,
+      "user": {}
+    },
+    "creditcard_1_type": "",
+    "number_of_orders": 661,
+    "phone_number": "",
+    "challenges_level_target": 10,
+    "points_base_per_order": 70,
+    "rated_app": 1,
+    "number_of_referrals_converted": 0,
+    "device_model": "Pixel 4a 5G  bramble",
+    "app_bundle_name": "com.blackboard.mobileorder",
+    "max_daily_spend_creditcard": 10000,
+    "affiliation_id": 0,
+    "registration_type": "S",
+    "credits_rewards": 0,
+    "pending_orders_count": 0,
+    "ordered_this_week": 0,
+    "device_name": "",
+    "is_deleted": 0,
+    "number_of_orders_rated": 338,
+    "first_name": "Sean",
+    "carrier_name": "Dark Star",
+    "email_verified": 1,
+    "object_type": "user",
+    "ordered_this_month": 0,
+    "online_days_ago": 0,
+    "email_receipts": 1,
+    "challenges_level_progress": 8,
+    "points_reorder_bonus": 70
+  },
+  "bundle": {
+    "facebook_secretkey": "",
+    "ios_appid": "1436712512",
+    "app_url": "https://appurl.io/vyE0O2a0e",
+    "ios_version_current": "3.3.1",
+    "object_type": "bundle",
+    "bundleid": 1,
+    "android_version_minimum": "3.0.7",
+    "bundle_name": "COM.BLACKBOARD.MOBILEORDER",
+    "azure_hubname": "",
+    "azure_hubconnection_server": "",
+    "google_clienttoken": "",
+    "android_version_current": "3.0.7",
+    "android_version_update_message": "An update to Mobile Ordering is required to continue.",
+    "ios_version_update_message": "This app has been replaced by a newer version. Download it in the app store.",
+    "ios_version_minimum": "3.1.4"
+  },
+  "status": "OK"
+}
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/loginwithtoken
+Accept-Encoding: gzip
+campusid: 45
+Connection: Keep-Alive
+Content-Length: 412
+Content-Type: application/json; charset=utf-8
+Host: mobileorderprodapi.transactcampus.com
+login_token: [...]
+sessionid: 1768370743709
+User-Agent: okhttp/5.0.0-alpha.2
+userid: 394445
+BODY:
+{
+  "app_version": "2025.1.3",
+  "device_model": "Android SDK built for x86_64 : Emulator",
+  "on_launch": "1",
+  "timezone": "PST",
+  "os_version": "16",
+  "app_bundle_name": "com.blackboard.mobileorder",
+  "os_language": "en",
+  "push_token_fcm": "fcmv1",
+  "device_name": "",
+  "push_enabled": "0",
+  "os_type": "1",
+  "accessibility_mode": "0",
+  "carrier_name": "T-Mobile",
+  "push_token": "d3e0d1eb-8922-4721-b1b8-f9cf543c556e",
+  "userid": "394445",
+  "campusid": "45"
+}
+RESPONSE:
+(see login2.json)
+
+GET https://hangrybbprod.blob.core.windows.net/campuses/icon_customlink_0_1_6_1570649207003.png
+
+GET https://hangrybbprod.blob.core.windows.net/users/394445_1709145872605.jpg
+
+GET https://hangrybbprod.blob.core.windows.net/campuses/cover_campus_45_44_457_1597160477932.jpg
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getcampuslocations
+Accept-Encoding: gzip
+campusid: 45
+Connection: Keep-Alive
+Content-Length: 35
+Content-Type: application/json; charset=utf-8
+Host: mobileorderprodapi.transactcampus.com
+login_token: [...]
+sessionid: 1768370743709
+User-Agent: okhttp/5.0.0-alpha.2
+userid: 394445
+BODY:
+{
+  "campusid": "45",
+  "userid": "394445"
+}
+RESPONSE:
+{
+  "web_instanceid": "faff14d51729a0a31a7cde4667e9a7e63a15ce4d6fdfa40e2a754b49278a4765",
+  "locations": [ ... ],
+  "message": "SUCCESS",
+  "user": { ... },
+  "status": "OK",
+  "cafeterias": [ ... ]
+}
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/trackappevents
+Accept-Encoding: gzip
+api_key: EF4yhUx3g23K7BeVpxG45UWMe4aB5hVXhTGmD9HH9TYBGWbmhd
+# same as above
+Connection: Keep-Alive
+Content-Length: 749
+Content-Type: application/json; charset=utf-8
+Host: mobileorderprodapi.transactcampus.com
+login_token: [...]
+sessionid: 1768370743709
+User-Agent: okhttp/5.0.0-alpha.2
+BODY:
+{
+  "events": [
+    {
+      "namekey": "MBLTRK_APP_FOREGROUNDED",
+      "sessionid": "1768370743709",
+      "category_type": "0",
+      "category_id": "0",
+      "start_timestamp": "1768370743709",
+      "end_timestamp": "0",
+      "extra_string": "",
+      "extra_int1": "0",
+      "extra_int2": "0",
+      "extra_int3": "0",
+      "extra_int4": "0"
+    },
+    {
+      "namekey": "MBLTRK_VIEW_HOME",
+      "sessionid": "1768370743709",
+      "category_type": "0",
+      "category_id": "0",
+      "start_timestamp": "1768371805627",
+      "end_timestamp": "1768371806172",
+      "extra_string": "",
+      "extra_int1": "0",
+      "extra_int2": "0",
+      "extra_int3": "0",
+      "extra_int4": "0"
+    },
+    {
+      "namekey": "MBLTRK_APP_BACKGROUNDED",
+      "sessionid": "1768370743709",
+      "category_type": "0",
+      "category_id": "0",
+      "start_timestamp": "1768371807343",
+      "end_timestamp": "0",
+      "extra_string": "",
+      "extra_int1": "0",
+      "extra_int2": "0",
+      "extra_int3": "0",
+      "extra_int4": "0"
+    }
+  ]
+}
+RESPONSE:
+{
+  "web_instanceid": "f37b56c2c26885265815fa9fe6dbf62e7a8960b394952c4e2cc81077da9bcefb",
+  "message": "SUCCESS",
+  "status": "OK"
+}
+
+GET https://hangrybbprod.blob.core.windows.net/campuses/icon_location_45_44_457_1596031370722.jpg
+
+On relaunch: (changes sessionid)
+1. POST https://mobileorderprodapi.transactcampus.com/api_user/loginwithtoken (same login_token)
+2. POST https://mobileorderprodapi.transactcampus.com/api_user/getcampuslocations
+
+On refresh:
+1. POST https://mobileorderprodapi.transactcampus.com/api_user/getcampuslocations
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getpushmessages
+BODY:
+{
+  "userid": "394445",
+  "campusid": "45"
+}
+RESPONSE:
+{
+  "web_instanceid": "1a1db42e64c24222c8d6c447e0028598d5fe62845b3b315c8b25f53a387e2abb",
+  "message": "SUCCESS",
+  "push_messages": [
+    {
+      "pushid": 8394,
+      "push_datetime": "2025-12-15 18:01:50",
+      "orderid": 0,
+      "object_type": "user_push_message",
+      "title": "Claim your Triton hoops ticket now!",
+      "message": "Claim your ticket for Friday\u2019s men\u2019s basketball game vs. USD! Link in inbox.",
+      "userid": 394445
+    },
+    ...
+  ],
+  "status": "OK"
+}
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/openedmessage
+BODY:
+{
+  "messageid": "4059",
+  "userid": "394445",
+  "campusid": "45"
+}
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getloyaltydata
+BODY:
+{
+  "userid": "394445",
+  "campusid": "45"
+}
+RESPONSE:
+{
+  "contests": [
+    {
+      "is_contest_full": 1,
+      "start_datetime": "2025-05-28 22:11:20",
+      "prize_pickedup_datetime": "",
+      "is_contest_awarded": 1,
+      "campusid": 45,
+      "is_hidden": 0,
+      "description": "",
+      "completed_datetime": "2026-01-09 20:30:55",
+      "title": "Woobles Jade The Succulent",
+      "max_entries": 450,
+      "contestid": 1429,
+      "points_per_entry": 4000,
+      "winner_userid": 1020468,
+      "winner_campusid": 45,
+      "object_type": "contest",
+      "image_url": "contests/image_contest_45_44_5310_1767806456678.jpg",
+      "user_entry_count": 0,
+      "max_entries_per_user": 1,
+      "winner_campus_name": "UC San Diego Triton2Go",
+      "winner_user": "",
+      "winner_user_name": "WESLEY",
+      "prize_received_datetime": "2026-01-13 17:36:54",
+      "conditionid": 0,
+      "segmentid": 0,
+      "total_entries": 450
+    },
+    {
+      "is_contest_full": 1,
+      "start_datetime": "2025-12-03 20:15:40",
+      "prize_pickedup_datetime": "",
+      "is_contest_awarded": 1,
+      "campusid": 45,
+      "is_hidden": 0,
+      "description": "",
+      "completed_datetime": "2025-12-09 20:12:01",
+      "title": "Ultimate Lipton Bike Giveaway !!!!!",
+      "max_entries": 1200,
+      "contestid": 1577,
+      "points_per_entry": 35000,
+      "winner_userid": 712155,
+      "winner_campusid": 45,
+      "object_type": "contest",
+      "image_url": "contests/image_contest_45_44_5385_1764792928217.jpg",
+      "user_entry_count": 0,
+      "max_entries_per_user": 0,
+      "winner_campus_name": "UC San Diego Triton2Go",
+      "winner_user": "",
+      "winner_user_name": "Darling",
+      "prize_received_datetime": "2026-01-06 22:42:12",
+      "conditionid": 0,
+      "segmentid": 0,
+      "total_entries": 1200
+    },
+    {
+      "is_contest_full": 1,
+      "start_datetime": "2026-01-07 17:11:57",
+      "prize_pickedup_datetime": "",
+      "is_contest_awarded": 1,
+      "campusid": 45,
+      "is_hidden": 0,
+      "description": "",
+      "completed_datetime": "2026-01-09 20:40:41",
+      "title": "Woobles Sam The Sloth",
+      "max_entries": 450,
+      "contestid": 1604,
+      "points_per_entry": 3000,
+      "winner_userid": 1388699,
+      "winner_campusid": 45,
+      "object_type": "contest",
+      "image_url": "contests/image_contest_45_44_5310_1767805904527.jpg",
+      "user_entry_count": 0,
+      "max_entries_per_user": 1,
+      "winner_campus_name": "UC San Diego Triton2Go",
+      "winner_user": "",
+      "winner_user_name": "Blanca",
+      "prize_received_datetime": "2026-01-13 17:38:44",
+      "conditionid": 0,
+      "segmentid": 0,
+      "total_entries": 450
+    },
+    {
+      "is_contest_full": 0,
+      "start_datetime": "2026-01-07 17:26:28",
+      "prize_pickedup_datetime": "",
+      "is_contest_awarded": 0,
+      "campusid": 45,
+      "is_hidden": 0,
+      "description": "",
+      "completed_datetime": "",
+      "title": "Cozy and Cute Purple Bundle",
+      "max_entries": 550,
+      "contestid": 1605,
+      "points_per_entry": 6000,
+      "winner_userid": 0,
+      "winner_campusid": 0,
+      "object_type": "contest",
+      "image_url": "contests/image_contest_45_44_5310_1767806772821.jpg",
+      "user_entry_count": 0,
+      "max_entries_per_user": 1,
+      "winner_campus_name": "",
+      "winner_user": "",
+      "winner_user_name": "",
+      "prize_received_datetime": "",
+      "conditionid": 0,
+      "segmentid": 0,
+      "total_entries": 251
+    },
+    {
+      "is_contest_full": 1,
+      "start_datetime": "2026-01-07 17:32:50",
+      "prize_pickedup_datetime": "",
+      "is_contest_awarded": 1,
+      "campusid": 45,
+      "is_hidden": 0,
+      "description": "A supersized hand warmer that's extra cozy for chilly days!",
+      "completed_datetime": "2026-01-11 22:20:10",
+      "title": "Cozy Pup Warmer",
+      "max_entries": 550,
+      "contestid": 1607,
+      "points_per_entry": 6000,
+      "winner_userid": 710489,
+      "winner_campusid": 45,
+      "object_type": "contest",
+      "image_url": "contests/image_contest_45_44_5310_1767807155913.jpg",
+      "user_entry_count": 0,
+      "max_entries_per_user": 1,
+      "winner_campus_name": "UC San Diego Triton2Go",
+      "winner_user": "",
+      "winner_user_name": "Cindy",
+      "prize_received_datetime": "2026-01-13 17:40:51",
+      "conditionid": 0,
+      "segmentid": 0,
+      "total_entries": 550
+    }
+  ],
+  "punch_cards": [],
+  "rewards_purchased": [],
+  "challenges": [
+    {
+      "valueid": 0,
+      "object_type": "challenge",
+      "is_disabled": 0,
+      "campusid": 0,
+      "description": "Order, pay & skip the line.",
+      "completed_datetime": "2021-09-15 23:55:48",
+      "label": "PLACE ORDER",
+      "type": 1,
+      "userid": 394445,
+      "is_completed": 1,
+      "challengekey": "ORDER1",
+      "points": 200,
+      "itemid": 0,
+      "challengeid": 2,
+      "cafeteriaid": 0,
+      "visible_level": 1,
+      "locationid": 0,
+      "target_occurrences": 1,
+      "number_of_occurrences": 661
+    },
+    ...
+  ],
+  "web_instanceid": "75a1168f0f0c88aec28d35a4536d98db70ec3733530f44dd2e7cb114f92af95a",
+  "message": "SUCCESS",
+  "user": { ... },
+  "rewards": [],
+  "status": "OK"
+}
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getcontests
+BODY:
+{
+  "userid": "394445",
+  "campusid": "45"
+}
+RESPONSE:
+{
+  "contests": [ ... ],
+  "web_instanceid": "01c2789b7d0813f09efa6545cc79795b70e6b19b45391a8d61f024d4a2e42d57",
+  "message": "SUCCESS",
+  "user": { ... },
+  "status": "OK"
+}
+# clicking between active/complete/my contests does not send more requests. there are only the four contests above
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getrewards
+BODY:
+{
+  "userid": "394445",
+  "campusid": "45"
+}
+RESPONSE:
+{
+  "rewards_purchased": [],
+  "web_instanceid": "6f77be28b3004d4cc1569dedf410c508dec950fcbe1d403138b14e18b993b928",
+  "message": "SUCCESS",
+  "user": { ... },
+  "rewards": [],
+  "status": "OK"
+}
+
+POST https://mobileorderprodapi.transactcampus.com/api_user/getpastorders
+BODY:
+{
+  "userid": "394445",
+  "campusid": "45"
+}
+RESPONSE:
+{
+  "web_instanceid": "4e55ee305a83398958a97d0a5e2ae693a71dd10181585e8852fb53357b281637",
+  "orders": [
+    {
+      "pickup_datetime": "",
+      "reorderid": 0,
+      "userid": 394445,
+      "user_number_of_reservations": 0,
+      "cafeteriaid": 404,
+      "requires_checkin": 0,
+      "location_subtotal": 850,
+      "kitchen_prep_minutes": 9,
+      "points_base": 595,
+      "creditcard_type": "",
+      "ischargedback": 0,
+      "promo_credit_total": 0,
+      "virtualqueue_reminder_before_start_datetime": "",
+      "secondary_tender_number_string": "",
+      "creditcard_processor": "",
+      "mealplan_mealex_count": 0,
+      "checkin_reminder2_datetime": "",
+      "future_day": 0,
+      "rating_food_comment": "",
+      "refunded_text": "",
+      "os_type": 1,
+      "creditcard_last4": "",
+      "promo_credit_code": "",
+      "items": [
+        {
+          "orderid": 91514601,
+          "object_type": "order_item",
+          "price_base": 850,
+          "creditpromo_discount": 0,
+          "menu_sectionid": 75007,
+          "price_with_options": 0,
+          "special_comment": "",
+          "mealplan_discount_amount": 0,
+          "points_bonus": 0,
+          "itemid": 155458427,
+          "number_of_options": 1,
+          "menu_itemid": 8618233,
+          "name": "Sausage Breakfast Burrito",
+          "options": [
+            {
+              "number_of_values": 1,
+              "itemid": 155458427,
+              "is_combo": 0,
+              "menu_optionid": 694280,
+              "object_type": "order_item_option",
+              "price": 0,
+              "values": [
+                {
+                  "mealplan_discount_amount": 0,
+                  "points_bonus": 0,
+                  "valueid": 323505386,
+                  "quantity": 1,
+                  "object_type": "order_item_option_value",
+                  "price": 0,
+                  "name": "Flour Tortilla",
+                  "optionid": 263902072,
+                  "combo_itemid": 0,
+                  "menu_valueid": 969548
+                }
+              ],
+              "name": "Tortilla",
+              "optionid": 263902072
+            }
+          ],
+          "combo_itemid": 0,
+          "mealexchange_applied": 0
+        }
+      ],
+      "secondary_tenderid": 0,
+      "warning_datetime": "",
+      "iscomplete": 1,
+      "order_local_time": "21:31:52",
+      "campaignid": 0,
+      "refunded_datetime": "",
+      "latitude": 0,
+      "kitchen_adjustment_minutes": 0,
+      "location_delivery_tax": 0,
+      "test_order": 0,
+      "mealplan_discount_amount": 0,
+      "points_bonus": 0,
+      "pickupspot_name": "",
+      "punchid": 0,
+      "iscancelled": 0,
+      "mealplan_casheq_total": 0,
+      "slot_time_end": "21:40:00",
+      "orderid_short_string": "91514601",
+      "automatedcheckout": 0,
+      "location_delivery_fee": 0,
+      "delivery_complete_datetime": "",
+      "order_local_date": "2025-06-12",
+      "os_version": "14",
+      "secondary_tender_total": 0,
+      "order_datetime": "2025-06-13 04:31:53",
+      "special_comment": "",
+      "mealplan_mealex_total": 0,
+      "complete_datetime": "2025-06-13 04:33:42",
+      "mealplan_transactionid": "",
+      "mealplan_total": 850,
+      "tender_primary_name": "",
+      "punchcard_credit_total": 0,
+      "locationid": 461,
+      "storagelocker": 0,
+      "creditcard_transactionid": "",
+      "delivery_start_datetime": "",
+      "app_version": "2025.1.3",
+      "creditcard_total": 0,
+      "total_net_payout": 850,
+      "campusid": 45,
+      "user_number_of_orders": 661,
+      "hangry_takeout_fee": 0,
+      "campaign_credit_total": 0,
+      "special_comment_choiceids": "",
+      "barcode_token": "91514601dfadc59ee728af01b899e9ae9eca5fc7c748de55",
+      "longitude": 0,
+      "virtualqueue": 0,
+      "virtualqueue_reminder_before_end_datetime": "",
+      "slot_date": "2025-06-12",
+      "saved_to_pos": 1,
+      "swipe_refund_owed": 0,
+      "account_credit_total": 0,
+      "rating_service_comment": "",
+      "pos_ticket_number_string": "",
+      "number_of_items": 1,
+      "preferred_target_datetime": "2025-06-13 04:38:52",
+      "rating_service": 5,
+      "checkin_reminder1_datetime": "",
+      "tender_secondary_name": "",
+      "mealplan_casheq_count": 0,
+      "isdelivered": 0,
+      "rating_datetime": "2025-06-13 04:34:05",
+      "special_comment_choices": "",
+      "retrieval_type": 0,
+      "asap": 1,
+      "printed_datetime": "2025-06-13 04:31:53",
+      "swipe_charged": 1,
+      "mealplan_tender_number_string": "10",
+      "total": 850,
+      "kitchen_datetime": "",
+      "released_datetime": "2025-06-13 04:31:53",
+      "virtualqueue_reminder_after_end_datetime": "",
+      "campus_tenderid": 4458,
+      "pickupspotid": 0,
+      "creditcard_fee": 0,
+      "virtualqueue_walkin": 0,
+      "rating_food": 5,
+      "orderid": 91514601,
+      "object_type": "order",
+      "preferred_datetime": "2025-06-13 04:40:52",
+      "hangry_takeout_tax": 0,
+      "isrefunded": 0,
+      "secondary_tender_transactionid": "",
+      "checkin_datetime": "",
+      "beta_order": 0,
+      "payment_charged": 1,
+      "promoid": 0,
+      "location_subtotal_tax": 0,
+      "user": {}
+    },
+    ...
+  ],
+  "message": "SUCCESS",
+  "status": "OK"
+}
+# this is where i found out they cut off the orders at 2023-03-23, which means that most of my orders are now lost media D:
